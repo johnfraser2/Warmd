@@ -2,6 +2,7 @@
 
 # Warmd
 Bugtracker for Warmd - Carbon footprint calculator
+Please fill an issue for any question or suggestion: https://github.com/FredJul/Warmd/issues/new
 
 More info on Play Store:
 
