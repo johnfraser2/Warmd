@@ -3,7 +3,7 @@
 # Warmd
 Bugtracker for Warmd - Carbon footprint calculator
 
-<img src="https://lh3.googleusercontent.com/xCztA2_YsnlqmmFGcml5hzRjC2hgghjq_yqz_SJzCOGJLI2Rr8_d2PZxeYH4LRI0wXU=w1440-h620-rw"/>
+<img src="https://lh3.googleusercontent.com/XPODm9iXcakousuxUoEvpj8SOJ1-zgZDMFoFuzHn9nrWx51K4wziuC3554kgUDHMpSg=w1440-h620-rw"/>
 
 
 Please fill an issue for any question or suggestion: https://github.com/FredJul/Warmd/issues/new
