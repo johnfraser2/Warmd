@@ -1,7 +1,6 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/fredericjulian)
 
-# Warmd
-Bugtracker for Warmd - Carbon footprint calculator
+# Warmd - Carbon footprint calculator
 
 <img src="https://lh3.googleusercontent.com/XPODm9iXcakousuxUoEvpj8SOJ1-zgZDMFoFuzHn9nrWx51K4wziuC3554kgUDHMpSg=w1440-h620-rw"/>
 
