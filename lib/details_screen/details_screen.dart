@@ -35,16 +35,24 @@ class DetailsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              if (dataMap.isNotEmpty && !(_state.categorySet is GlobalCategorySet)) _buildHeader(context, footprint, dataMap),
-              if (dataMap.isNotEmpty && !(_state.categorySet is GlobalCategorySet)) _buildCountriesCard(context),
-              _buildObjectivesCard(context),
-              if (!(_state.categorySet is GlobalCategorySet)) _buildAdvicesCard(context, _state),
-              _buildDisclaimerCard(context),
-              _buildCreditsCard(context),
-            ],
+          child: Theme(
+            data: ThemeData.light(),
+            child: Builder(
+              builder: (context) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    if (dataMap.isNotEmpty && !(_state.categorySet is GlobalCategorySet))
+                      _buildHeader(context, footprint, dataMap),
+                    if (dataMap.isNotEmpty && !(_state.categorySet is GlobalCategorySet)) _buildCountriesCard(context),
+                    _buildObjectivesCard(context),
+                    if (!(_state.categorySet is GlobalCategorySet)) _buildAdvicesCard(context, _state),
+                    _buildDisclaimerCard(context),
+                    _buildCreditsCard(context),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -59,7 +67,7 @@ class DetailsScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Text(
             S.of(context).footprintRepartitionTitle(footprint),
-            style: Theme.of(context).textTheme.subhead,
+            style: Theme.of(context).textTheme.subhead.copyWith(color: Colors.white),
           ),
         ),
         PieChart(
@@ -94,12 +102,7 @@ class DetailsScreen extends StatelessWidget {
             Gaps.h16,
             _buildCountriesDataTable(context),
             Gaps.h32,
-            buildSmartText(
-              context,
-              S.of(context).otherCountriesMore,
-              FontWeight.w300,
-              Colors.grey[100],
-            )
+            buildSmartText(context, S.of(context).otherCountriesMore)
           ],
         ),
       ),
@@ -138,7 +141,7 @@ class DetailsScreen extends StatelessWidget {
                   TextSpan(
                     text: S.of(context).globalObjectivesPart4,
                     style: Theme.of(context).textTheme.body1.copyWith(
-                          color: Colors.blue[200],
+                          color: Colors.blue[400],
                           decoration: TextDecoration.underline,
                           fontWeight: FontWeight.w300,
                         ),
@@ -201,12 +204,7 @@ class DetailsScreen extends StatelessWidget {
               style: _buildTitleStyle(context),
             ),
             Gaps.h16,
-            buildSmartText(
-              context,
-              S.of(context).disclaimerExplanation,
-              FontWeight.w300,
-              Colors.grey[100],
-            ),
+            buildSmartText(context, S.of(context).disclaimerExplanation),
           ],
         ),
       ),
@@ -227,9 +225,7 @@ class DetailsScreen extends StatelessWidget {
               style: _buildTitleStyle(context),
             ),
             Gaps.h16,
-            buildSmartText(
-              context,
-              """
+            buildSmartText(context, """
 ${S.of(context).creditsPart1}
 
 https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf
@@ -256,10 +252,7 @@ https://unsplash.com/photos/iDCtsz-INHI
 https://unsplash.com/photos/6xeDIZgoPaw
 https://unsplash.com/photos/4mQOcabC5AA
 https://unsplash.com/photos/wqLGlhjr6Og
-                  """,
-              FontWeight.w300,
-              Colors.grey[100],
-            ),
+                  """),
           ],
         ),
       ),
@@ -330,7 +323,7 @@ https://unsplash.com/photos/wqLGlhjr6Og
 
   TextStyle _buildTitleStyle(BuildContext context) {
     return Theme.of(context).textTheme.title.copyWith(
-          color: Colors.orange[200],
+          color: warmdGreen,
         );
   }
 

@@ -28,15 +28,32 @@ extension ListExtension<E> on List<E> {
       .values;
 }
 
-SmartText buildSmartText(BuildContext context, String text, FontWeight fontWeight, Color fontColor) {
+const MaterialColor warmdGreen = MaterialColor(
+  _warmdGreenPrimaryValue,
+  <int, Color>{
+    50: Color(_warmdGreenPrimaryValue),
+    100: Color(_warmdGreenPrimaryValue),
+    200: Color(_warmdGreenPrimaryValue),
+    300: Color(_warmdGreenPrimaryValue),
+    400: Color(_warmdGreenPrimaryValue),
+    500: Color(_warmdGreenPrimaryValue),
+    600: Color(_warmdGreenPrimaryValue),
+    700: Color(_warmdGreenPrimaryValue),
+    800: Color(_warmdGreenPrimaryValue),
+    900: Color(_warmdGreenPrimaryValue),
+  },
+);
+const int _warmdGreenPrimaryValue = 0xff41cd8c;
+
+SmartText buildSmartText(BuildContext context, String text) {
   return SmartText(
     linkStyle: Theme.of(context).textTheme.body1.copyWith(
-          color: Colors.blue[200],
+          color: Colors.blue[400],
           decoration: TextDecoration.underline,
-          fontWeight: fontWeight,
+          fontWeight: FontWeight.w300,
         ),
     text: text,
-    style: Theme.of(context).textTheme.body1.copyWith(color: fontColor, fontWeight: fontWeight),
+    style: Theme.of(context).textTheme.body1.copyWith(fontWeight: FontWeight.w300),
     onOpen: (url) {
       launchUrl(url);
     },

@@ -74,8 +74,8 @@ class CriteriasPage extends StatelessWidget {
           state.categorySet = index == 0 ? IndividualCategorySet(context) : GlobalCategorySet(context);
         },
         currentIndex: state.categorySet is IndividualCategorySet ? 0 : 1,
-        backgroundColor: Colors.blueGrey,
-        selectedItemColor: Colors.white,
+        backgroundColor: Colors.grey[800],
+        selectedItemColor: warmdGreen,
         unselectedItemColor: Colors.blueGrey[200],
         items: [
           BottomNavigationBarItem(
@@ -94,29 +94,26 @@ class CriteriasPage extends StatelessWidget {
   Widget _buildGlobalExplanation(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
-      child: Card(
-        margin: const EdgeInsets.all(8.0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Row(
-            children: [
-              Icon(
-                Icons.help_outline,
-                color: Colors.grey[300],
-              ),
-              Gaps.w16,
-              Expanded(
-                child: Text(
-                  S.of(context).globalImpactExplanation,
-                  style: TextStyle(
-                    color: Colors.grey[100],
-                    fontWeight: FontWeight.w300,
+      child: Theme(
+        data: ThemeData.light(),
+        child: Card(
+          margin: const EdgeInsets.all(8.0),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Row(
+              children: [
+                Icon(Icons.help_outline),
+                Gaps.w16,
+                Expanded(
+                  child: Text(
+                    S.of(context).globalImpactExplanation,
+                    style: TextStyle(fontWeight: FontWeight.w400),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -174,7 +171,7 @@ class CriteriasPage extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           S.of(context).knowMore,
-                          style: TextStyle(color: Colors.lightBlue),
+                          style: TextStyle(color: warmdGreen),
                         ),
                       ),
                       onTap: () {
@@ -199,28 +196,41 @@ class CriteriasPage extends StatelessWidget {
       for (CriteriaCategory cat in state.categorySet.categories)
         Padding(
           padding: const EdgeInsets.only(bottom: 32.0),
-          child: Card(
-            margin: const EdgeInsets.all(8.0),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: Column(
-              children: [
-                Image(
-                  image: AssetImage("assets/${cat.key}.webp"),
-                  fit: BoxFit.cover,
-                  height: 164,
-                  width: double.infinity,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      for (Criteria crit in cat.criterias) ..._buildCriteria(context, state, crit),
-                    ],
+          child: Theme(
+            data: ThemeData(
+              brightness: Brightness.light,
+              primarySwatch: warmdGreen,
+              sliderTheme: SliderTheme.of(context).copyWith(
+                valueIndicatorTextStyle: const TextStyle(color: Colors.white),
+              ),
+            ),
+            child: Card(
+              margin: const EdgeInsets.all(8.0),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: Column(
+                children: [
+                  Image(
+                    image: AssetImage("assets/${cat.key}.webp"),
+                    fit: BoxFit.cover,
+                    height: 164,
+                    width: double.infinity,
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
+                    child: Builder(
+                      builder: (context) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            for (Criteria crit in cat.criterias) ..._buildCriteria(context, state, crit),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -241,7 +251,7 @@ class CriteriasPage extends StatelessWidget {
       if (c.explanation != null)
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: buildSmartText(context, c.explanation, FontWeight.normal, Colors.grey[400]),
+          child: buildSmartText(context, c.explanation),
         ),
     ];
   }
@@ -250,7 +260,7 @@ class CriteriasPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        color: Colors.blueGrey[700],
+        color: Colors.grey[100],
         child: Padding(
           padding: const EdgeInsets.only(left: 12, right: 12),
           child: DropdownButton<int>(
@@ -292,21 +302,24 @@ class CriteriasPage extends StatelessWidget {
   }
 
   Color _getDropdownTextColor(Criteria c, int value) {
-    if (c is UnitCriteria || c is MoneyChangeCriteria) return Colors.white;
+    if (c is UnitCriteria || c is MoneyChangeCriteria) return Colors.black;
 
     if (value == c.minValue) {
-      return Colors.green[200];
+      return Colors.green;
     } else if (value == c.maxValue) {
-      return Colors.orange[200];
+      return Colors.orange;
     } else {
-      return Colors.white;
+      return Colors.black;
     }
   }
 
   Widget _buildSlider(Criteria c, String valueWithUnit, BuildContext context, CriteriasState state) {
     return Row(
       children: [
-        Icon(c.leftIcon),
+        Icon(
+          c.leftIcon,
+          color: Colors.black54,
+        ),
         Expanded(
           child: Slider(
             min: c.minValue,
@@ -324,7 +337,10 @@ class CriteriasPage extends StatelessWidget {
             },
           ),
         ),
-        Icon(c.rightIcon),
+        Icon(
+          c.rightIcon,
+          color: Colors.black54,
+        ),
       ],
     );
   }
