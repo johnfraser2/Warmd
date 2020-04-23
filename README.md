@@ -2,7 +2,7 @@
 
 # Warmd - Carbon footprint calculator
 
-<img src="https://lh3.googleusercontent.com/XPODm9iXcakousuxUoEvpj8SOJ1-zgZDMFoFuzHn9nrWx51K4wziuC3554kgUDHMpSg=w1440-h620-rw"/>
+<img src="https://lh3.googleusercontent.com/eBhdiEKYP5LTy4lUDrKonO2bdaqQJmkYcor-7xWXC3tIDRSoPMiJNTK4uf2hNWQkbQ=w1440-h620-rw"/>
 
 It is [free/open-source software](https://www.gnu.org/philosophy/free-sw.html) under the GPLv3 license. You're are free to modify it as long as you respect the license and keep it open-source.
 
