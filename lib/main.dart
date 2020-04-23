@@ -29,20 +29,17 @@ class MyApp extends StatelessWidget {
             valueIndicatorTextStyle: const TextStyle(color: Colors.white),
           ),
         ),
-        home: Home(),
+        home: Builder(
+          builder: (context) {
+            return ChangeNotifierProvider(
+              create: (_) => CriteriasState(context),
+              child: CriteriasPage(),
+            );
+          },
+        ),
         localizationsDelegates: [S.delegate, GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate],
         supportedLocales: S.delegate.supportedLocales,
       ),
-    );
-  }
-}
-
-class Home extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => CriteriasState(context),
-      child: CriteriasPage(),
     );
   }
 }
