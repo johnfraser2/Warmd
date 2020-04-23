@@ -1,7 +1,7 @@
 name: warmd
 description: Wanna save the earth?
 
-version: 1.0.6+10
+version: 1.0.6+11
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
