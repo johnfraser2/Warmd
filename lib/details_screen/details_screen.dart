@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../common/common.dart';
@@ -31,6 +35,13 @@ class DetailsScreen extends StatelessWidget {
           image: AssetImage("assets/text_logo_transparent_small.webp"),
           fit: BoxFit.contain,
         ),
+        actions: [
+          IconButton(
+              icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
+              onPressed: () {
+                Share.share("$footprint\n\n${dataMap.keys.join("\n")}", subject: "Warmd");
+              }),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
