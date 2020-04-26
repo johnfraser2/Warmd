@@ -40,7 +40,7 @@ class DetailsScreen extends StatelessWidget {
               icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
               onPressed: () {
                 Share.share(
-                    "${S.of(context).footprintRepartitionTitle(footprint)}\n\n${dataMap.keys.join("\n")}\n\nWarmd - https://github.com/FredJul/Warmd",
+                    "${S.of(context).footprintRepartitionTitle(footprint)}\n\n${dataMap.keys.join("\n")}\n\n${S.of(context).doneWith}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
                     subject: "Warmd");
               }),
         ],

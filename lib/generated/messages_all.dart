@@ -54,7 +54,7 @@ class $en extends MessageLookupByLibrary {
 		"dairyCriteriaExplanation" : MessageLookupByLibrary.simpleMessage("It is generally recommended to eat some at least once per day."),
 		"snacksCriteriaTitle" : MessageLookupByLibrary.simpleMessage("Number of snacks, drinks or other highly transformed foods per week"),
 		"snacksCriteriaExplanation" : MessageLookupByLibrary.simpleMessage("If you are starving to death, they will do the job. Otherwise, just avoid them."),
-		"snacksCriteriaAdvice" : MessageLookupByLibrary.simpleMessage("Prefer water, vegetables and fruits than snacks, transformed foods or drinks. Buy local to limit carbon emission."),
+		"snacksCriteriaAdvice" : MessageLookupByLibrary.simpleMessage("Prefer water, vegetables and fruits than snacks, transformed foods or drinks. Be careful, buying local products does not necessarily limit carbon emissions and can even make them worse in many cases."),
 		"overweightCriteriaTitle" : MessageLookupByLibrary.simpleMessage("Are you overweight?"),
 		"overweightCriteriaExplanation" : MessageLookupByLibrary.simpleMessage("Being overweight basically means you absorb more energy than you body needs. Each year, humanity consumes unnecessary 140 billions of tons of food."),
 		"overweightCriteriaLabel1" : MessageLookupByLibrary.simpleMessage("No"),
@@ -141,6 +141,7 @@ class $en extends MessageLookupByLibrary {
 		"countryPhilippines" : MessageLookupByLibrary.simpleMessage("Philippines"),
 		"countryCongo" : MessageLookupByLibrary.simpleMessage("Congo"),
 		"countrySoudan" : MessageLookupByLibrary.simpleMessage("Soudan"),
+		"doneWith" : MessageLookupByLibrary.simpleMessage("Done with Warmd - Carbon footprint calculator"),
 
   };
 }
@@ -192,7 +193,7 @@ class $fr extends MessageLookupByLibrary {
 		"dairyCriteriaExplanation" : MessageLookupByLibrary.simpleMessage("Il est généralement recommandé d'en manger au moins une fois par jour."),
 		"snacksCriteriaTitle" : MessageLookupByLibrary.simpleMessage("Nombre de collations, boissons ou autres plats fortement transformés par semaine"),
 		"snacksCriteriaExplanation" : MessageLookupByLibrary.simpleMessage("Si vous mourez de faim, ils feront l'affaire. Sinon, évitez-les."),
-		"snacksCriteriaAdvice" : MessageLookupByLibrary.simpleMessage("Préférez l'eau, les légumes et les fruits aux collations, aux plats transformés ou aux boissons. Achetez local pour limiter les émissions de carbone."),
+		"snacksCriteriaAdvice" : MessageLookupByLibrary.simpleMessage("Préférez l'eau, les légumes et les fruits aux collations, aux plats transformés ou aux boissons. Attention, achetez local ne limite pas forcément les émissions de carbone et peut même les empirer dans de nombreux cas."),
 		"overweightCriteriaTitle" : MessageLookupByLibrary.simpleMessage("Êtes-vous en surpoids ?"),
 		"overweightCriteriaExplanation" : MessageLookupByLibrary.simpleMessage("Le surpoid signifie essentiellement que vous absorbez plus d'énergie que nécessaire. Chaque année, l’humanité consomme 140 milliards de tonnes de nourriture non nécessaires."),
 		"overweightCriteriaLabel1" : MessageLookupByLibrary.simpleMessage("Non"),
@@ -279,6 +280,7 @@ class $fr extends MessageLookupByLibrary {
 		"countryPhilippines" : MessageLookupByLibrary.simpleMessage("Philippines"),
 		"countryCongo" : MessageLookupByLibrary.simpleMessage("Congo"),
 		"countrySoudan" : MessageLookupByLibrary.simpleMessage("Soudan"),
+		"doneWith" : MessageLookupByLibrary.simpleMessage("Fait avec Warmd - Calculateur d'empreinte carbone"),
 
   };
 }

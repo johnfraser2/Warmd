@@ -191,7 +191,7 @@ class S {
   }
 
   String get snacksCriteriaAdvice {
-    return Intl.message("Prefer water, vegetables and fruits than snacks, transformed foods or drinks. Buy local to limit carbon emission.", name: 'snacksCriteriaAdvice');
+    return Intl.message("Prefer water, vegetables and fruits than snacks, transformed foods or drinks. Be careful, buying local products does not necessarily limit carbon emissions and can even make them worse in many cases.", name: 'snacksCriteriaAdvice');
   }
 
   String get overweightCriteriaTitle {
@@ -536,6 +536,10 @@ class S {
 
   String get countrySoudan {
     return Intl.message("Soudan", name: 'countrySoudan');
+  }
+
+  String get doneWith {
+    return Intl.message("Done with Warmd - Carbon footprint calculator", name: 'doneWith');
   }
 
 
