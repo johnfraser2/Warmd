@@ -18,13 +18,13 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, double> dataMap = Map();
+    Map<String, double> temp = Map();
     for (var cat in _state.categorySet.categories) {
       if (cat.co2EqTonsPerYear() > 0) {
-        dataMap.putIfAbsent(
-            "${cat.title} (${cat.co2EqTonsPerYear().toStringAsFixed(1)}t)", () => cat.co2EqTonsPerYear().toDouble());
+        temp.putIfAbsent("${cat.title} (${cat.co2EqTonsPerYear().toStringAsFixed(1)}t)", () => cat.co2EqTonsPerYear().toDouble());
       }
     }
+    final dataMap = temp.sort((a, b) => -a.value.compareTo(b.value));
 
     String footprint = getFootprintValue(context, _state);
 
@@ -39,7 +39,9 @@ class DetailsScreen extends StatelessWidget {
           IconButton(
               icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
               onPressed: () {
-                Share.share("$footprint\n\n${dataMap.keys.join("\n")}", subject: "Warmd");
+                Share.share(
+                    "${S.of(context).footprintRepartitionTitle(footprint)}\n\n${dataMap.keys.join("\n")}\n\nWarmd - https://github.com/FredJul/Warmd",
+                    subject: "Warmd");
               }),
         ],
       ),

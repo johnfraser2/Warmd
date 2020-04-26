@@ -28,6 +28,14 @@ extension ListExtension<E> on List<E> {
       .values;
 }
 
+extension MapExtension<K, V> on Map<K, V> {
+  Map<K, V> sort([int compare(MapEntry<K, V> a, MapEntry<K, V> b)]) {
+    var entries = this.entries.toList();
+    entries.sort(compare);
+    return Map<K, V>.fromEntries(entries);
+  }
+}
+
 const MaterialColor warmdGreen = MaterialColor(
   _warmdGreenPrimaryValue,
   <int, Color>{
