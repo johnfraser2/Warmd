@@ -80,7 +80,7 @@ class DetailsScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Text(
             S.of(context).footprintRepartitionTitle(footprint),
-            style: Theme.of(context).textTheme.subhead.copyWith(color: Colors.white),
+            style: Theme.of(context).textTheme.subtitle1.copyWith(color: Colors.white),
           ),
         ),
         PieChart(
@@ -141,19 +141,19 @@ class DetailsScreen extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: S.of(context).globalObjectivesPart1,
-                    style: Theme.of(context).textTheme.body1.copyWith(fontWeight: FontWeight.w300),
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
                   ),
                   TextSpan(
                     text: S.of(context).globalObjectivesPart2,
-                    style: Theme.of(context).textTheme.body1.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
                     text: S.of(context).globalObjectivesPart3,
-                    style: Theme.of(context).textTheme.body1.copyWith(fontWeight: FontWeight.w300),
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
                   ),
                   TextSpan(
                     text: S.of(context).globalObjectivesPart4,
-                    style: Theme.of(context).textTheme.body1.copyWith(
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(
                           color: Colors.blue[400],
                           decoration: TextDecoration.underline,
                           fontWeight: FontWeight.w300,
@@ -165,7 +165,7 @@ class DetailsScreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text: S.of(context).globalObjectivesPart5,
-                    style: Theme.of(context).textTheme.body1.copyWith(fontWeight: FontWeight.w300),
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
                   ),
                 ],
               ),
@@ -281,12 +281,12 @@ https://unsplash.com/photos/wqLGlhjr6Og
           DataColumn(
               label: Text(
             S.of(context).otherCountriesColumn1Title,
-            style: Theme.of(context).textTheme.subtitle,
+            style: Theme.of(context).textTheme.subtitle2,
           )),
           DataColumn(
               label: Text(
                 S.of(context).otherCountriesColumn2Title,
-                style: Theme.of(context).textTheme.subtitle,
+                style: Theme.of(context).textTheme.subtitle2,
               ),
               numeric: true),
         ],
@@ -314,7 +314,7 @@ https://unsplash.com/photos/wqLGlhjr6Og
       Gaps.h16,
       Text(
         cat.title,
-        style: Theme.of(context).textTheme.subtitle.copyWith(fontWeight: FontWeight.bold),
+        style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
       ),
       Gaps.h8,
       for (Criteria crit in cat.criterias)
@@ -323,7 +323,7 @@ https://unsplash.com/photos/wqLGlhjr6Og
             padding: const EdgeInsets.only(top: 8),
             child: Text(
               '• ${crit.advice()}',
-              style: Theme.of(context).textTheme.body1.copyWith(
+              style: Theme.of(context).textTheme.bodyText2.copyWith(
                     fontWeight: FontWeight.w300,
                   ),
             ),
@@ -335,7 +335,7 @@ https://unsplash.com/photos/wqLGlhjr6Og
   }
 
   TextStyle _buildTitleStyle(BuildContext context) {
-    return Theme.of(context).textTheme.title.copyWith(
+    return Theme.of(context).textTheme.headline6.copyWith(
           color: warmdGreen,
         );
   }

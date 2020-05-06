@@ -55,13 +55,13 @@ const int _warmdGreenPrimaryValue = 0xff41cd8c;
 
 SmartText buildSmartText(BuildContext context, String text) {
   return SmartText(
-    linkStyle: Theme.of(context).textTheme.body1.copyWith(
+    linkStyle: Theme.of(context).textTheme.bodyText2.copyWith(
           color: Colors.blue[400],
           decoration: TextDecoration.underline,
           fontWeight: FontWeight.w300,
         ),
     text: text,
-    style: Theme.of(context).textTheme.body1.copyWith(fontWeight: FontWeight.w300),
+    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
     onOpen: (url) {
       launchUrl(url);
     },

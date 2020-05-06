@@ -156,13 +156,13 @@ class CriteriasPage extends StatelessWidget {
                   children: [
                     Text(
                       S.of(context).yourCarbonFootprint,
-                      style: Theme.of(context).textTheme.title,
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         '$footprint',
-                        style: Theme.of(context).textTheme.body1,
+                        style: Theme.of(context).textTheme.bodyText2,
                       ),
                     ),
                     Gaps.h8,
@@ -251,7 +251,7 @@ class CriteriasPage extends StatelessWidget {
       Gaps.h32,
       Text(
         c.title,
-        style: Theme.of(context).textTheme.subhead,
+        style: Theme.of(context).textTheme.subtitle1,
       ),
       if (c.labels != null) _buildDropdown(context, c, state) else _buildSlider(c, valueWithUnit, context, state),
       if (c.explanation != null)
@@ -280,7 +280,7 @@ class CriteriasPage extends StatelessWidget {
                       item,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.body1,
+                      style: Theme.of(context).textTheme.bodyText2,
                     ),
                   ],
                 );
@@ -297,7 +297,7 @@ class CriteriasPage extends StatelessWidget {
                       value: index,
                       child: Text(
                         label,
-                        style: Theme.of(context).textTheme.body1.copyWith(color: _getDropdownTextColor(c, index)),
+                        style: Theme.of(context).textTheme.bodyText2.copyWith(color: _getDropdownTextColor(c, index)),
                       ),
                     ))
                 .toList(),
