@@ -9,7 +9,7 @@ class EarthAnimController extends RepeatAnimController {
   int _score = 0;
   FlareAnimationLayer _scoreAnimation;
 
-  EarthAnimController() : super("rotation");
+  EarthAnimController() : super('rotation');
 
   @override
   bool advance(FlutterActorArtboard artboard, double elapsed) {
@@ -36,7 +36,7 @@ class EarthAnimController extends RepeatAnimController {
     super.initialize(artboard);
 
     _scoreAnimation = FlareAnimationLayer()
-      ..animation = artboard.getAnimation("color_0_to_100")
+      ..animation = artboard.getAnimation('color_0_to_100')
       ..mix = 1.0
       ..time = computeDestinationTime()
       ..apply(artboard);

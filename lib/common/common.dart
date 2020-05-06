@@ -18,7 +18,7 @@ class Gaps {
 extension ListExtension<E> on List<E> {
   List<E> clone() => List.from(this);
 
-  Iterable<T> mapIndexed<T>(T f(int idx, E element)) => asMap()
+  Iterable<T> mapIndexed<T>(T Function(int idx, E element) f) => asMap()
       .map(
         (idx, element) => MapEntry(
           idx,
@@ -29,7 +29,7 @@ extension ListExtension<E> on List<E> {
 }
 
 extension MapExtension<K, V> on Map<K, V> {
-  Map<K, V> sort([int compare(MapEntry<K, V> a, MapEntry<K, V> b)]) {
+  Map<K, V> sort([int Function(MapEntry<K, V> a, MapEntry<K, V> b) compare]) {
     var entries = this.entries.toList();
     entries.sort(compare);
     return Map<K, V>.fromEntries(entries);
@@ -68,7 +68,7 @@ SmartText buildSmartText(BuildContext context, String text) {
   );
 }
 
-launchUrl(String url) async {
+void launchUrl(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
   }

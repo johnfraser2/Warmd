@@ -18,21 +18,21 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, double> temp = Map();
+    var temp = <String, double>{};
     for (var cat in _state.categorySet.categories) {
       if (cat.co2EqTonsPerYear() > 0) {
-        temp.putIfAbsent("${cat.title} (${cat.co2EqTonsPerYear().toStringAsFixed(1)}t)", () => cat.co2EqTonsPerYear().toDouble());
+        temp.putIfAbsent('${cat.title} (${cat.co2EqTonsPerYear().toStringAsFixed(1)}t)', () => cat.co2EqTonsPerYear().toDouble());
       }
     }
     final dataMap = temp.sort((a, b) => -a.value.compareTo(b.value));
 
-    String footprint = getFootprintValue(context, _state);
+    var footprint = getFootprintValue(context, _state);
 
     return Scaffold(
       appBar: AppBar(
         title: const Image(
           height: 64,
-          image: AssetImage("assets/text_logo_transparent_small.webp"),
+          image: AssetImage('assets/text_logo_transparent_small.webp'),
           fit: BoxFit.contain,
         ),
         actions: [
@@ -41,7 +41,7 @@ class DetailsScreen extends StatelessWidget {
               onPressed: () {
                 Share.share(
                     "${S.of(context).footprintRepartitionTitle(footprint)}\n\n${dataMap.keys.join("\n")}\n\n${S.of(context).doneWith}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
-                    subject: "Warmd");
+                    subject: 'Warmd');
               }),
         ],
       ),
@@ -171,7 +171,7 @@ class DetailsScreen extends StatelessWidget {
               ),
             ),
             Image(
-              image: const AssetImage("assets/carbon_graph.webp"),
+              image: const AssetImage('assets/carbon_graph.webp'),
               fit: BoxFit.contain,
               height: 264,
               width: double.infinity,
@@ -238,7 +238,7 @@ class DetailsScreen extends StatelessWidget {
               style: _buildTitleStyle(context),
             ),
             Gaps.h16,
-            buildSmartText(context, """
+            buildSmartText(context, '''
 ${S.of(context).creditsPart1}
 
 https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf
@@ -265,7 +265,7 @@ https://unsplash.com/photos/iDCtsz-INHI
 https://unsplash.com/photos/6xeDIZgoPaw
 https://unsplash.com/photos/4mQOcabC5AA
 https://unsplash.com/photos/wqLGlhjr6Og
-                  """),
+                  '''),
           ],
         ),
       ),

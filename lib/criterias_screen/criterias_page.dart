@@ -121,14 +121,14 @@ class CriteriasPage extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context, EarthAnimController animController, CriteriasState state) {
-    String footprint = DetailsScreen.getFootprintValue(context, state);
+    var footprint = DetailsScreen.getFootprintValue(context, state);
 
     return Padding(
       padding: const EdgeInsets.only(left: 32, right: 32, bottom: 16),
       child: Column(
         children: [
           const Image(
-            image: AssetImage("assets/text_logo_transparent_small.webp"),
+            image: AssetImage('assets/text_logo_transparent_small.webp'),
             fit: BoxFit.contain,
             height: 70,
           ),
@@ -143,7 +143,7 @@ class CriteriasPage extends StatelessWidget {
                       height: 128,
                       width: 128,
                       child: FlareActor(
-                        "assets/global_warming.flr",
+                        'assets/global_warming.flr',
                         controller: animController,
                       ),
                     ),
@@ -161,7 +161,7 @@ class CriteriasPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "$footprint",
+                        '$footprint',
                         style: Theme.of(context).textTheme.body1,
                       ),
                     ),
@@ -215,7 +215,7 @@ class CriteriasPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Image(
-                        image: AssetImage("assets/${cat.key}.webp"),
+                        image: AssetImage('assets/${cat.key}.webp'),
                         fit: BoxFit.cover,
                         height: 164,
                         width: double.infinity,
@@ -244,7 +244,7 @@ class CriteriasPage extends StatelessWidget {
   }
 
   List<Widget> _buildCriteria(BuildContext context, CriteriasState state, Criteria c) {
-    var unit = c.unit != null ? " " + c.unit : "";
+    var unit = c.unit != null ? ' ' + c.unit : '';
     var valueWithUnit = NumberFormat.decimalPattern().format(c.currentValue.abs()).toString() + unit;
 
     return [
