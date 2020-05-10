@@ -52,7 +52,7 @@ class CriteriasPage extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 64, right: 64, bottom: 32),
                         child: RaisedButton(
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.push<void>(
                               context,
                               MaterialPageRoute(builder: (context) => DetailsScreen(state)),
                             );
@@ -171,11 +171,11 @@ class CriteriasPage extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           S.of(context).knowMore,
-                          style: TextStyle(color: warmdGreen),
+                          style: const TextStyle(color: warmdGreen),
                         ),
                       ),
                       onTap: () {
-                        Navigator.push(
+                        Navigator.push<void>(
                           context,
                           MaterialPageRoute(builder: (context) => DetailsScreen(state)),
                         );

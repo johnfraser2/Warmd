@@ -4,5 +4,6 @@
         "source.organizeImports": true,
         "source.fixAll": true
     },
-    "dart.lineLength": 130
+    "dart.lineLength": 130,
+    "dart.showIgnoreQuickFixes": true
 }

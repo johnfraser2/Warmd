@@ -816,7 +816,7 @@ var _currencies = {
 };
 
 double _getCurrencyRate(MoneyChangeCriteria c) {
-  return 1 / _currencies.entries.elementAt(c.currentValue.toInt()).value['value'];
+  return 1 / (_currencies.entries.elementAt(c.currentValue.toInt()).value['value'] as double);
 }
 
 String _getCurrencyCode(MoneyChangeCriteria c) {
@@ -1741,14 +1741,14 @@ abstract class CriteriaCategorySet {
 class IndividualCategorySet extends CriteriaCategorySet {
   IndividualCategorySet(BuildContext context) {
     var generalCategory = GeneralCategory(context);
-    var homeCategory = HomeCategory(context, generalCategory.criterias[1]);
+    var homeCategory = HomeCategory(context, generalCategory.criterias[1] as MoneyChangeCriteria);
 
     categories = [
       generalCategory,
       homeCategory,
-      TravelCategory(context, homeCategory.criterias[0], generalCategory.criterias[0]),
+      TravelCategory(context, homeCategory.criterias[0] as PeopleCriteria, generalCategory.criterias[0] as UnitCriteria),
       FoodCategory(context),
-      GoodsCategory(context, generalCategory.criterias[1])
+      GoodsCategory(context, generalCategory.criterias[1] as MoneyChangeCriteria)
     ];
   }
 }
@@ -1781,7 +1781,7 @@ class CriteriasState with ChangeNotifier {
     });
   }
 
-  Future _loadFromPersistence() async {
+  Future<void> _loadFromPersistence() async {
     var prefs = await SharedPreferences.getInstance();
 
     categorySet.categories.forEach((cat) {
