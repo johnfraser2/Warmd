@@ -311,7 +311,7 @@ class S {
   }
 
   String get childrenCriteriaExplanation {
-    return Intl.message("Every year, there are 90 million more people on the planet and nature can no longer provide enough natural resources for sustainable development. On average each person consumes 65% of resources in excess (up to 355% for a US citizen).\n\nIt is important to reduce this rate, and we are far from it.\nWomen's education and contraception access are effective ways to achieve control of our population.", name: 'childrenCriteriaExplanation');
+    return Intl.message("Every year, there are 90 million more people on the planet and nature can no longer provide enough natural resources for sustainable development. On average each person consumes 65% of resources in excess (up to 355% for a US citizen).\n\nIt is important to reduce this rate, and we are far from it.\nCountries with good women education and contraception access have a lower birth rate.", name: 'childrenCriteriaExplanation');
   }
 
   String get childrenCategoryTitle {
