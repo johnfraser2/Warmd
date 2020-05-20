@@ -15,30 +15,24 @@ import 'earth_anim_controller.dart';
 
 class CriteriasPage extends StatelessWidget {
   final String title;
+  final _animController = EarthAnimController();
 
   CriteriasPage({this.title, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Provider<EarthAnimController>(
-      create: (context) => EarthAnimController(),
-      child: Consumer<EarthAnimController>(
-        builder: (context, animController, child) {
-          var state = Provider.of<CriteriasState>(context);
-          animController.score = state.categorySet.co2EqTonsPerYear().toInt();
+    var state = context.watch<CriteriasState>();
+    _animController.score = state.categorySet.co2EqTonsPerYear().toInt();
 
-          return _buildContent(context, animController, state);
-        },
-      ),
-    );
+    return _buildContent(context, state);
   }
 
-  Scaffold _buildContent(BuildContext context, EarthAnimController animController, CriteriasState state) {
+  Scaffold _buildContent(BuildContext context, CriteriasState state) {
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            _buildHeader(context, animController, state),
+            _buildHeader(context, state),
             Expanded(
               child: ListView(
                   key: ValueKey(state.categorySet),
@@ -120,7 +114,7 @@ class CriteriasPage extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, EarthAnimController animController, CriteriasState state) {
+  Widget _buildHeader(BuildContext context, CriteriasState state) {
     var footprint = DetailsScreen.getFootprintValue(context, state);
 
     return Padding(
@@ -144,7 +138,7 @@ class CriteriasPage extends StatelessWidget {
                       width: 128,
                       child: FlareActor(
                         'assets/global_warming.flr',
-                        controller: animController,
+                        controller: _animController,
                       ),
                     ),
                   ),

@@ -10,4 +10,6 @@ analyzer:
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
-  exclude: [build/**, lib/generated/**]
+  exclude:
+    - build/**
+    - lib/generated/**
