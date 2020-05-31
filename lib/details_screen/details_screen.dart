@@ -26,7 +26,7 @@ class DetailsScreen extends StatelessWidget {
     }
     final dataMap = temp.sort((a, b) => -a.value.compareTo(b.value));
 
-    var footprint = getFootprintValue(context, _state);
+    var footprint = _state.categorySet.getFormatedFootprint();
 
     return Scaffold(
       appBar: AppBar(
@@ -43,6 +43,41 @@ class DetailsScreen extends StatelessWidget {
                     "${S.of(context).footprintRepartitionTitle(footprint)}\n\n${dataMap.keys.join("\n")}\n\n${S.of(context).doneWith}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
                     subject: 'Warmd');
               }),
+          IconButton(
+              icon: const Icon(Icons.help_outline),
+              onPressed: () {
+                showAboutDialog(
+                  context: context,
+                  children: [
+                    buildSmartText(context, '''
+${S.of(context).aboutPart1}
+
+https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf
+https://www.bbc.com/news/science-environment-49349566
+https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf
+http://www.fao.org/3/a-i3437e.pdf
+https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full
+https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_full.pdf
+https://www.energuide.be/en/questions-answers/is-electric-heating-polluting/1369/
+https://theshiftproject.org/en/article/unsustainable-use-online-video/
+https://en.wikipedia.org/wiki/Greenhouse_gas
+https://fr.wikipedia.org/wiki/Population_mondiale
+https://www.wwf.fr/sites/default/files/doc-2017-07/161027_rapport_planete_vivante.pdf
+https://www.ewg.org/meateatersguide/frequently-asked-questions/
+
+${S.of(context).aboutPart2}
+
+https://materialdesignicons.com
+https://www.2dimensions.com/a/frju/files/flare/global-warming/preview
+https://unsplash.com/photos/tI_DEyjWOkY
+https://unsplash.com/photos/561igiTyvSk
+https://unsplash.com/photos/Xbh_OGLRfUM
+https://unsplash.com/photos/6xeDIZgoPaw
+https://unsplash.com/photos/4mQOcabC5AA
+                  '''),
+                  ],
+                );
+              }),
         ],
       ),
       body: SingleChildScrollView(
@@ -55,13 +90,11 @@ class DetailsScreen extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    if (dataMap.isNotEmpty && !(_state.categorySet is GlobalCategorySet))
-                      _buildHeader(context, footprint, dataMap),
-                    if (dataMap.isNotEmpty && !(_state.categorySet is GlobalCategorySet)) _buildCountriesCard(context),
+                    if (dataMap.isNotEmpty) _buildHeader(context, footprint, dataMap),
+                    if (dataMap.isNotEmpty) _buildCountriesCard(context),
                     _buildObjectivesCard(context),
-                    if (!(_state.categorySet is GlobalCategorySet)) _buildAdvicesCard(context, _state),
+                    _buildAdvicesCard(context, _state),
                     _buildDisclaimerCard(context),
-                    _buildCreditsCard(context),
                   ],
                 );
               },
@@ -89,14 +122,6 @@ class DetailsScreen extends StatelessWidget {
         Gaps.h16,
       ],
     );
-  }
-
-  static String getFootprintValue(BuildContext context, CriteriasState state) {
-    return state.categorySet is IndividualCategorySet
-        ? S.of(context).co2EqTonsValue(state.categorySet.co2EqTonsPerYear().toStringAsFixed(1))
-        : state.categorySet.co2EqTonsPerYear() < 15
-            ? S.of(context).globalImpactLow
-            : state.categorySet.co2EqTonsPerYear() < 30 ? S.of(context).globalImpactMedium : S.of(context).globalImpactHigh;
   }
 
   Card _buildCountriesCard(BuildContext context) {
@@ -218,54 +243,6 @@ class DetailsScreen extends StatelessWidget {
             ),
             Gaps.h16,
             buildSmartText(context, S.of(context).disclaimerExplanation),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Card _buildCreditsCard(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-      margin: EdgeInsets.zero,
-      child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              S.of(context).creditsTitle,
-              style: _buildTitleStyle(context),
-            ),
-            Gaps.h16,
-            buildSmartText(context, '''
-${S.of(context).creditsPart1}
-
-https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf
-https://www.bbc.com/news/science-environment-49349566
-https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf
-http://www.fao.org/3/a-i3437e.pdf
-https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full
-https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_full.pdf
-https://www.energuide.be/en/questions-answers/is-electric-heating-polluting/1369/
-https://theshiftproject.org/en/article/unsustainable-use-online-video/
-https://en.wikipedia.org/wiki/Greenhouse_gas
-https://fr.wikipedia.org/wiki/Population_mondiale
-https://www.wwf.fr/sites/default/files/doc-2017-07/161027_rapport_planete_vivante.pdf
-https://www.ewg.org/meateatersguide/frequently-asked-questions/
-
-${S.of(context).creditsPart2}
-
-https://materialdesignicons.com
-https://www.2dimensions.com/a/frju/files/flare/global-warming/preview
-https://unsplash.com/photos/tI_DEyjWOkY
-https://unsplash.com/photos/561igiTyvSk
-https://unsplash.com/photos/Xbh_OGLRfUM
-https://unsplash.com/photos/iDCtsz-INHI
-https://unsplash.com/photos/6xeDIZgoPaw
-https://unsplash.com/photos/4mQOcabC5AA
-https://unsplash.com/photos/wqLGlhjr6Og
-                  '''),
           ],
         ),
       ),

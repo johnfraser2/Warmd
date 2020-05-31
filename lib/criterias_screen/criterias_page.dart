@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import '../common/common.dart';
 import '../common/criterias.dart';
-import '../common/warmd_icons_icons.dart';
 import '../details_screen/details_screen.dart';
 import '../generated/i18n.dart';
 import 'earth_anim_controller.dart';
@@ -39,84 +38,32 @@ class CriteriasPage extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   scrollDirection: Axis.vertical,
                   children: [
-                    if (state.categorySet is GlobalCategorySet) _buildGlobalExplanation(context),
                     ..._buildCategories(context, state),
-                    if (!(state.categorySet is GlobalCategorySet))
-                      Padding(
-                        padding: const EdgeInsets.only(left: 64, right: 64, bottom: 32),
-                        child: RaisedButton(
-                          onPressed: () {
-                            Navigator.push<void>(
-                              context,
-                              MaterialPageRoute(builder: (context) => DetailsScreen(state)),
-                            );
-                          },
-                          child: Text(S.of(context).seeResults),
-                          padding: const EdgeInsets.all(16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(32.0),
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 64, right: 64, bottom: 32),
+                      child: RaisedButton(
+                        onPressed: () {
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute(builder: (context) => DetailsScreen(state)),
+                          );
+                        },
+                        child: Text(S.of(context).seeResults),
+                        padding: const EdgeInsets.all(16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0),
                         ),
-                      )
+                      ),
+                    )
                   ]),
             ),
           ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (int index) {
-          state.categorySet = index == 0 ? IndividualCategorySet(context) : GlobalCategorySet(context);
-        },
-        currentIndex: state.categorySet is IndividualCategorySet ? 0 : 1,
-        backgroundColor: Colors.grey[800],
-        selectedItemColor: warmdGreen,
-        unselectedItemColor: Colors.blueGrey[200],
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(WarmdIcons.human_male),
-            title: Text(S.of(context).individualApproach),
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(WarmdIcons.earth),
-            title: Text(S.of(context).globalApproach),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildGlobalExplanation(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: Theme(
-        data: ThemeData.light(),
-        child: Card(
-          margin: const EdgeInsets.all(8.0),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Row(
-              children: [
-                Icon(Icons.help_outline),
-                Gaps.w16,
-                Expanded(
-                  child: Text(
-                    S.of(context).globalImpactExplanation,
-                    style: TextStyle(fontWeight: FontWeight.w400),
-                  ),
-                ),
-              ],
-            ),
-          ),
         ),
       ),
     );
   }
 
   Widget _buildHeader(BuildContext context, CriteriasState state) {
-    var footprint = DetailsScreen.getFootprintValue(context, state);
-
     return Padding(
       padding: const EdgeInsets.only(left: 32, right: 32, bottom: 16),
       child: Column(
@@ -155,7 +102,7 @@ class CriteriasPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        '$footprint',
+                        '${state.categorySet.getFormatedFootprint()}',
                         style: Theme.of(context).textTheme.bodyText2,
                       ),
                     ),

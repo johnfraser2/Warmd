@@ -262,72 +262,8 @@ class S {
     return Intl.message("Goods and services", name: 'goodsAndServicesCategoryTitle');
   }
 
-  String get voteCriteriaTitle {
-    return Intl.message("Do you vote for a ecologist party?", name: 'voteCriteriaTitle');
-  }
-
-  String get voteCriteriaExplanation {
-    return Intl.message("If you should do one thing to help ecology, it's certainly this one. You own impact is mostly insignificant compared to your government's one.\n\nIf you live in a democratic country, voting for a ecologist party to ALL elections is certainly the simplest thing to do in order to help.", name: 'voteCriteriaExplanation');
-  }
-
-  String get voteCriteriaLabel1 {
-    return Intl.message("No, I don't want or can't", name: 'voteCriteriaLabel1');
-  }
-
-  String get voteCriteriaLabel2 {
-    return Intl.message("I sometimes favor economy over ecology", name: 'voteCriteriaLabel2');
-  }
-
-  String get voteCriteriaLabel3 {
-    return Intl.message("Yes!", name: 'voteCriteriaLabel3');
-  }
-
-  String get publicOpinionCriteriaTitle {
-    return Intl.message("Do you try to influence public opinion or the government in favor of ecology?", name: 'publicOpinionCriteriaTitle');
-  }
-
-  String get publicOpinionCriteriaExplanation {
-    return Intl.message("As mentioned above, government actions are needed. Lobbying, peaceful demonstrations or the popularization of ecology can potentially influence them.", name: 'publicOpinionCriteriaExplanation');
-  }
-
-  String get publicOpinionCriteriaLabel1 {
-    return Intl.message("Not really", name: 'publicOpinionCriteriaLabel1');
-  }
-
-  String get publicOpinionCriteriaLabel2 {
-    return Intl.message("I just try to convince people around me", name: 'publicOpinionCriteriaLabel2');
-  }
-
-  String get publicOpinionCriteriaLabel3 {
-    return Intl.message("Yes!", name: 'publicOpinionCriteriaLabel3');
-  }
-
-  String get politicalCategoryTitle {
-    return Intl.message("Politics", name: 'politicalCategoryTitle');
-  }
-
-  String get childrenCriteriaTitle {
-    return Intl.message("Number of children", name: 'childrenCriteriaTitle');
-  }
-
-  String get childrenCriteriaExplanation {
-    return Intl.message("Every year, there are 90 million more people on the planet and nature can no longer provide enough natural resources for sustainable development. On average each person consumes 65% of resources in excess (up to 355% for a US citizen).\n\nIt is important to reduce this rate, and we are far from it.\nCountries with good women education and contraception access have a lower birth rate.", name: 'childrenCriteriaExplanation');
-  }
-
-  String get childrenCategoryTitle {
-    return Intl.message("Children", name: 'childrenCategoryTitle');
-  }
-
   String get seeResults {
     return Intl.message("See results", name: 'seeResults');
-  }
-
-  String get individualApproach {
-    return Intl.message("Individual approach", name: 'individualApproach');
-  }
-
-  String get globalApproach {
-    return Intl.message("Global approach", name: 'globalApproach');
   }
 
   String get yourCarbonFootprint {
@@ -348,22 +284,6 @@ class S {
 
   String co2EqTonsValue(value) {
     return Intl.message("${value} tons CO₂eq/year", name: 'co2EqTonsValue', args: [value]);
-  }
-
-  String get globalImpactExplanation {
-    return Intl.message("When we think globally, the personal impact is negligible compared to the impact of a government. Only some of your actions will actually have a significant impact.", name: 'globalImpactExplanation');
-  }
-
-  String get globalImpactLow {
-    return Intl.message("You clearly do more good than harm!", name: 'globalImpactLow');
-  }
-
-  String get globalImpactMedium {
-    return Intl.message("If everyone act like you, we will go through tough times", name: 'globalImpactMedium');
-  }
-
-  String get globalImpactHigh {
-    return Intl.message("If everyone act like you, humanity is doomed", name: 'globalImpactHigh');
   }
 
   String get otherCountriesComparaisonTitle {
@@ -426,16 +346,12 @@ class S {
     return Intl.message("Due to the complexity of the task, I do not expect this app to be very accurate, but it gives you an idea of your impact. It is possible to find different values with other sources, but sometimes they ignore certains elements, such as the impact of imported products.\n\nIn addition, this app focuses only on our carbon footprint, but we should not forget the other types of pollutions (plastics, pesticides, …).\n\nI'm not affiliated with any of the organizations involved.", name: 'disclaimerExplanation');
   }
 
-  String get creditsTitle {
-    return Intl.message("Credits:", name: 'creditsTitle');
+  String get aboutPart1 {
+    return Intl.message("Warmd is open-source (under GPLv3 license):\nhttps://github.com/FredJul/Warmd\n\nMainly based on https://coolclimate.org 's 2019 results, with the help of other sources:", name: 'aboutPart1');
   }
 
-  String get creditsPart1 {
-    return Intl.message("Mainly based on https://coolclimate.org 's 2019 results, with the help of other sources:", name: 'creditsPart1');
-  }
-
-  String get creditsPart2 {
-    return Intl.message("Graphical ressources:", name: 'creditsPart2');
+  String get aboutPart2 {
+    return Intl.message("Graphical ressources:", name: 'aboutPart2');
   }
 
   String get countryUSA {
