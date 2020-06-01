@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -9,7 +10,7 @@ import 'package:provider/provider.dart';
 import '../common/common.dart';
 import '../common/criterias.dart';
 import '../details_screen/details_screen.dart';
-import '../generated/i18n.dart';
+import '../generated/locale_keys.g.dart';
 import 'earth_anim_controller.dart';
 
 class CriteriasPage extends StatelessWidget {
@@ -48,7 +49,7 @@ class CriteriasPage extends StatelessWidget {
                             MaterialPageRoute(builder: (context) => DetailsScreen(state)),
                           );
                         },
-                        child: Text(S.of(context).seeResults),
+                        child: Text(LocaleKeys.seeResults.tr()),
                         padding: const EdgeInsets.all(16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32.0),
@@ -96,7 +97,7 @@ class CriteriasPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      S.of(context).yourCarbonFootprint,
+                      LocaleKeys.yourCarbonFootprint.tr(),
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     Padding(
@@ -111,7 +112,7 @@ class CriteriasPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          S.of(context).knowMore,
+                          LocaleKeys.knowMore.tr(),
                           style: const TextStyle(color: warmdGreen),
                         ),
                       ),
@@ -276,7 +277,7 @@ class CriteriasPage extends StatelessWidget {
                 ? c.labels[c.currentValue.toInt()]
                 : c.currentValue != c.maxValue || c is CleanElectricityCriteria
                     ? valueWithUnit
-                    : S.of(context).valueWithMore(valueWithUnit),
+                    : LocaleKeys.valueWithMore.tr(args: [valueWithUnit]),
             value: c.currentValue,
             onChanged: (double value) {
               c.currentValue = value;

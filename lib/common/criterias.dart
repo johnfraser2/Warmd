@@ -1,10 +1,11 @@
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../generated/i18n.dart';
+import '../generated/locale_keys.g.dart';
 import 'currencies.dart';
 import 'warmd_icons_icons.dart';
 
@@ -45,7 +46,7 @@ class MoneyChangeCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).moneyChangeCriteriaTitle;
+  String get title => LocaleKeys.moneyChangeCriteriaTitle.tr();
 
   @override
   List<String> get labels => Localizations.localeOf(_context).languageCode == 'fr'
@@ -57,7 +58,7 @@ class MoneyChangeCriteria extends Criteria {
 
   @override
   String advice() =>
-      S.of(_context).generalAdvice; // Well, not really the correct place to do so, but there is no obvious better one
+      LocaleKeys.generalAdvice.tr(); // Well, not really the correct place to do so, but there is no obvious better one
 
   double getCurrencyRate() {
     return 1 / (currencies.entries.elementAt(currentValue.toInt()).value['value'] as double);
@@ -69,9 +70,7 @@ class MoneyChangeCriteria extends Criteria {
 }
 
 class UnitCriteria extends Criteria {
-  final BuildContext _context;
-
-  UnitCriteria(this._context) {
+  UnitCriteria() {
     key = 'unit';
     minValue = 0;
     maxValue = 2;
@@ -80,13 +79,13 @@ class UnitCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).unitCriteriaTitle;
+  String get title => LocaleKeys.unitCriteriaTitle.tr();
 
   @override
   List<String> get labels => [
-        S.of(_context).unitCriteriaLabel1,
-        S.of(_context).unitCriteriaLabel2,
-        S.of(_context).unitCriteriaLabel3,
+        LocaleKeys.unitCriteriaLabel1.tr(),
+        LocaleKeys.unitCriteriaLabel2.tr(),
+        LocaleKeys.unitCriteriaLabel3.tr(),
       ];
 
   @override
@@ -101,17 +100,15 @@ class GeneralCategory extends CriteriaCategory {
 
   GeneralCategory(this._context) {
     key = 'general';
-    criterias = [UnitCriteria(_context), MoneyChangeCriteria(_context)];
+    criterias = [UnitCriteria(), MoneyChangeCriteria(_context)];
   }
 
   @override
-  String get title => S.of(_context).generalCategoryTitle;
+  String get title => LocaleKeys.generalCategoryTitle.tr();
 }
 
 class PeopleCriteria extends Criteria {
-  final BuildContext _context;
-
-  PeopleCriteria(this._context) {
+  PeopleCriteria() {
     key = 'people';
     minValue = 1;
     maxValue = 3;
@@ -122,10 +119,10 @@ class PeopleCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).peopleCriteriaTitle;
+  String get title => LocaleKeys.peopleCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).peopleCriteriaExplanation;
+  String get explanation => LocaleKeys.peopleCriteriaExplanation.tr();
 
   @override
   double co2EqTonsPerYear() => 0;
@@ -135,11 +132,10 @@ class PeopleCriteria extends Criteria {
 }
 
 class HeatingFuelCriteria extends Criteria {
-  final BuildContext _context;
   final PeopleCriteria _peopleCriteria;
   final MoneyChangeCriteria _moneyChangeCriteria;
 
-  HeatingFuelCriteria(this._context, this._peopleCriteria, this._moneyChangeCriteria) {
+  HeatingFuelCriteria(this._peopleCriteria, this._moneyChangeCriteria) {
     key = 'heating_fuel';
     minValue = 0;
     step = 100;
@@ -149,10 +145,10 @@ class HeatingFuelCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).heatingFuelCriteriaTitle;
+  String get title => LocaleKeys.heatingFuelCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).heatingFuelCriteriaExplanation(_moneyChangeCriteria.getCurrencyCode());
+  String get explanation => LocaleKeys.heatingFuelCriteriaExplanation.tr(args: [_moneyChangeCriteria.getCurrencyCode()]);
 
   @override
   double get maxValue => (((5000 / _moneyChangeCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -179,7 +175,7 @@ class HeatingFuelCriteria extends Criteria {
   @override
   String advice() {
     if (co2EqTonsPerYear() > 3) {
-      return S.of(_context).heatingFuelCriteriaAdvice;
+      return LocaleKeys.heatingFuelCriteriaAdvice.tr();
     } else {
       return null;
     }
@@ -187,12 +183,11 @@ class HeatingFuelCriteria extends Criteria {
 }
 
 class ElectricityBillCriteria extends Criteria {
-  final BuildContext _context;
   final PeopleCriteria _peopleCriteria;
   final MoneyChangeCriteria _moneyChangeCriteria;
   final CleanElectricityCriteria _cleanElectricityCriteria;
 
-  ElectricityBillCriteria(this._context, this._peopleCriteria, this._moneyChangeCriteria, this._cleanElectricityCriteria) {
+  ElectricityBillCriteria(this._peopleCriteria, this._moneyChangeCriteria, this._cleanElectricityCriteria) {
     key = 'electricity_bill';
     minValue = 0;
     step = 100;
@@ -202,10 +197,10 @@ class ElectricityBillCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).electricityBillCriteriaTitle;
+  String get title => LocaleKeys.electricityBillCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).electricityBillCriteriaExplanation(_moneyChangeCriteria.getCurrencyCode());
+  String get explanation => LocaleKeys.electricityBillCriteriaExplanation.tr(args: [_moneyChangeCriteria.getCurrencyCode()]);
 
   @override
   double get maxValue => (((5000 / _moneyChangeCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -236,9 +231,7 @@ class ElectricityBillCriteria extends Criteria {
 }
 
 class CleanElectricityCriteria extends Criteria {
-  final BuildContext _context;
-
-  CleanElectricityCriteria(this._context) {
+  CleanElectricityCriteria() {
     key = 'clean_electricity';
     minValue = 0;
     maxValue = 100;
@@ -250,10 +243,10 @@ class CleanElectricityCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).cleanElectricityCriteriaTitle;
+  String get title => LocaleKeys.cleanElectricityCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).cleanElectricityCriteriaExplanation;
+  String get explanation => LocaleKeys.cleanElectricityCriteriaExplanation.tr();
 
   @override
   double co2EqTonsPerYear() => 0;
@@ -261,7 +254,7 @@ class CleanElectricityCriteria extends Criteria {
   @override
   String advice() {
     if (currentValue < 80) {
-      return S.of(_context).cleanElectricityCriteriaAdvice;
+      return LocaleKeys.cleanElectricityCriteriaAdvice.tr();
     } else {
       return null;
     }
@@ -269,9 +262,7 @@ class CleanElectricityCriteria extends Criteria {
 }
 
 class WaterCriteria extends Criteria {
-  final BuildContext _context;
-
-  WaterCriteria(this._context) {
+  WaterCriteria() {
     key = 'water';
     minValue = 0;
     maxValue = 2;
@@ -280,16 +271,16 @@ class WaterCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).waterCriteriaTitle;
+  String get title => LocaleKeys.waterCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).waterCriteriaExplanation;
+  String get explanation => LocaleKeys.waterCriteriaExplanation.tr();
 
   @override
   List<String> get labels => [
-        S.of(_context).waterCriteriaLabel1,
-        S.of(_context).waterCriteriaLabel2,
-        S.of(_context).waterCriteriaLabel3,
+        LocaleKeys.waterCriteriaLabel1.tr(),
+        LocaleKeys.waterCriteriaLabel2.tr(),
+        LocaleKeys.waterCriteriaLabel3.tr(),
       ];
 
   @override
@@ -300,7 +291,7 @@ class WaterCriteria extends Criteria {
   @override
   String advice() {
     if (co2EqTonsPerYear() > 1) {
-      return S.of(_context).waterCriteriaAdvice;
+      return LocaleKeys.waterCriteriaAdvice.tr();
     } else {
       return null;
     }
@@ -308,31 +299,28 @@ class WaterCriteria extends Criteria {
 }
 
 class HomeCategory extends CriteriaCategory {
-  final BuildContext _context;
-
-  HomeCategory(this._context, MoneyChangeCriteria moneyChangeCriteria) {
+  HomeCategory(MoneyChangeCriteria moneyChangeCriteria) {
     key = 'home';
 
-    var peopleCriteria = PeopleCriteria(_context);
-    var cleanElectricityCriteria = CleanElectricityCriteria(_context);
+    var peopleCriteria = PeopleCriteria();
+    var cleanElectricityCriteria = CleanElectricityCriteria();
     criterias = [
       peopleCriteria,
-      HeatingFuelCriteria(_context, peopleCriteria, moneyChangeCriteria),
-      ElectricityBillCriteria(_context, peopleCriteria, moneyChangeCriteria, cleanElectricityCriteria),
+      HeatingFuelCriteria(peopleCriteria, moneyChangeCriteria),
+      ElectricityBillCriteria(peopleCriteria, moneyChangeCriteria, cleanElectricityCriteria),
       cleanElectricityCriteria,
-      WaterCriteria(_context),
+      WaterCriteria(),
     ];
   }
 
   @override
-  String get title => S.of(_context).homeCategoryTitle;
+  String get title => LocaleKeys.homeCategoryTitle.tr();
 }
 
 class FlightsCriteria extends Criteria {
-  final BuildContext _context;
   final UnitCriteria _unitCriteria;
 
-  FlightsCriteria(this._context, this._unitCriteria) {
+  FlightsCriteria(this._unitCriteria) {
     key = 'flights';
     minValue = 0;
     maxValue = 100000;
@@ -343,10 +331,10 @@ class FlightsCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).flightsCriteriaTitle;
+  String get title => LocaleKeys.flightsCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).flightsCriteriaExplanation;
+  String get explanation => LocaleKeys.flightsCriteriaExplanation.tr();
 
   @override
   String get unit => _unitCriteria.currentValue == 0 ? 'km' : 'miles';
@@ -361,7 +349,7 @@ class FlightsCriteria extends Criteria {
   @override
   String advice() {
     if (co2EqTonsPerYear() > 1) {
-      return S.of(_context).flightsCriteriaAdvice;
+      return LocaleKeys.flightsCriteriaAdvice.tr();
     } else {
       return null;
     }
@@ -369,12 +357,11 @@ class FlightsCriteria extends Criteria {
 }
 
 class CarCriteria extends Criteria {
-  final BuildContext _context;
   final PeopleCriteria _peopleCriteria;
   final CarConsumptionCriteria _carConsumptionCriteria;
   final UnitCriteria _unitCriteria;
 
-  CarCriteria(this._context, this._peopleCriteria, this._carConsumptionCriteria, this._unitCriteria) {
+  CarCriteria(this._peopleCriteria, this._carConsumptionCriteria, this._unitCriteria) {
     key = 'car';
     minValue = 0;
     maxValue = 100000;
@@ -385,10 +372,10 @@ class CarCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).carCriteriaTitle;
+  String get title => LocaleKeys.carCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).carCriteriaExplanation;
+  String get explanation => LocaleKeys.carCriteriaExplanation.tr();
 
   @override
   String get unit => _unitCriteria.currentValue == 0 ? 'km' : 'miles';
@@ -412,9 +399,9 @@ class CarCriteria extends Criteria {
   @override
   String advice() {
     if (co2EqTonsPerYear() > 1.5) {
-      return S.of(_context).carCriteriaAdviceHigh;
+      return LocaleKeys.carCriteriaAdviceHigh.tr();
     } else if (co2EqTonsPerYear() > 0.5) {
-      return S.of(_context).carCriteriaAdviceLow;
+      return LocaleKeys.carCriteriaAdviceLow.tr();
     } else {
       return null;
     }
@@ -422,10 +409,9 @@ class CarCriteria extends Criteria {
 }
 
 class CarConsumptionCriteria extends Criteria {
-  final BuildContext _context;
   final UnitCriteria _unitCriteria;
 
-  CarConsumptionCriteria(this._context, this._unitCriteria) {
+  CarConsumptionCriteria(this._unitCriteria) {
     key = 'car_consumption';
     minValue = 2;
     maxValue = 20;
@@ -436,7 +422,7 @@ class CarConsumptionCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).carConsumptionCriteriaTitle;
+  String get title => LocaleKeys.carConsumptionCriteriaTitle.tr();
 
   @override
   double get minValue => _unitCriteria.currentValue == 0 ? 2 : -140;
@@ -458,10 +444,9 @@ class CarConsumptionCriteria extends Criteria {
 }
 
 class PublicTransportCriteria extends Criteria {
-  final BuildContext _context;
   final UnitCriteria _unitCriteria;
 
-  PublicTransportCriteria(this._context, this._unitCriteria) {
+  PublicTransportCriteria(this._unitCriteria) {
     key = 'public_transport';
     minValue = 0;
     maxValue = 100000;
@@ -472,7 +457,7 @@ class PublicTransportCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).publicTransportCriteriaTitle;
+  String get title => LocaleKeys.publicTransportCriteriaTitle.tr();
 
   @override
   String get unit => _unitCriteria.currentValue == 0 ? 'km' : 'miles';
@@ -487,7 +472,7 @@ class PublicTransportCriteria extends Criteria {
   @override
   String advice() {
     if (co2EqTonsPerYear() > 3) {
-      return S.of(_context).publicTransportCriteriaAdvice;
+      return LocaleKeys.publicTransportCriteriaAdvice.tr();
     } else {
       return null;
     }
@@ -495,28 +480,24 @@ class PublicTransportCriteria extends Criteria {
 }
 
 class TravelCategory extends CriteriaCategory {
-  final BuildContext _context;
-
-  TravelCategory(this._context, PeopleCriteria peopleCriteria, UnitCriteria unitCriteria) {
+  TravelCategory(PeopleCriteria peopleCriteria, UnitCriteria unitCriteria) {
     key = 'travel';
 
-    var carConsumptionCriteria = CarConsumptionCriteria(_context, unitCriteria);
+    var carConsumptionCriteria = CarConsumptionCriteria(unitCriteria);
     criterias = [
-      FlightsCriteria(_context, unitCriteria),
-      CarCriteria(_context, peopleCriteria, carConsumptionCriteria, unitCriteria),
+      FlightsCriteria(unitCriteria),
+      CarCriteria(peopleCriteria, carConsumptionCriteria, unitCriteria),
       carConsumptionCriteria,
-      PublicTransportCriteria(_context, unitCriteria)
+      PublicTransportCriteria(unitCriteria)
     ];
   }
 
   @override
-  String get title => S.of(_context).travelCategoryTitle;
+  String get title => LocaleKeys.travelCategoryTitle.tr();
 }
 
 class MeatCriteria extends Criteria {
-  final BuildContext _context;
-
-  MeatCriteria(this._context) {
+  MeatCriteria() {
     key = 'meat';
     minValue = 0;
     maxValue = 20;
@@ -527,10 +508,10 @@ class MeatCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).meatCriteriaTitle;
+  String get title => LocaleKeys.meatCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).meatCriteriaExplanation;
+  String get explanation => LocaleKeys.meatCriteriaExplanation.tr();
 
   @override
   double co2EqTonsPerYear() {
@@ -541,7 +522,7 @@ class MeatCriteria extends Criteria {
   @override
   String advice() {
     if (currentValue >= 0.7) {
-      return S.of(_context).meatCriteriaAdvice;
+      return LocaleKeys.meatCriteriaAdvice.tr();
     } else {
       return null;
     }
@@ -549,9 +530,7 @@ class MeatCriteria extends Criteria {
 }
 
 class DairyCriteria extends Criteria {
-  final BuildContext _context;
-
-  DairyCriteria(this._context) {
+  DairyCriteria() {
     key = 'dairy';
     minValue = 0;
     maxValue = 20;
@@ -562,10 +541,10 @@ class DairyCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).dairyCriteriaTitle;
+  String get title => LocaleKeys.dairyCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).dairyCriteriaExplanation;
+  String get explanation => LocaleKeys.dairyCriteriaExplanation.tr();
 
   @override
   double co2EqTonsPerYear() {
@@ -578,9 +557,7 @@ class DairyCriteria extends Criteria {
 }
 
 class SnackCriteria extends Criteria {
-  final BuildContext _context;
-
-  SnackCriteria(this._context) {
+  SnackCriteria() {
     key = 'snack';
     minValue = 0;
     maxValue = 20;
@@ -591,10 +568,10 @@ class SnackCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).snacksCriteriaTitle;
+  String get title => LocaleKeys.snacksCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).snacksCriteriaExplanation;
+  String get explanation => LocaleKeys.snacksCriteriaExplanation.tr();
 
   @override
   double co2EqTonsPerYear() {
@@ -605,7 +582,7 @@ class SnackCriteria extends Criteria {
   @override
   String advice() {
     if (currentValue > 3) {
-      return S.of(_context).snacksCriteriaAdvice;
+      return LocaleKeys.snacksCriteriaAdvice.tr();
     } else {
       return null;
     }
@@ -613,9 +590,7 @@ class SnackCriteria extends Criteria {
 }
 
 class OverweightCriteria extends Criteria {
-  final BuildContext _context;
-
-  OverweightCriteria(this._context) {
+  OverweightCriteria() {
     key = 'overweight';
     minValue = 0;
     maxValue = 2;
@@ -624,16 +599,16 @@ class OverweightCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).overweightCriteriaTitle;
+  String get title => LocaleKeys.overweightCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).overweightCriteriaExplanation;
+  String get explanation => LocaleKeys.overweightCriteriaExplanation.tr();
 
   @override
   List<String> get labels => [
-        S.of(_context).overweightCriteriaLabel1,
-        S.of(_context).overweightCriteriaLabel2,
-        S.of(_context).overweightCriteriaLabel3,
+        LocaleKeys.overweightCriteriaLabel1.tr(),
+        LocaleKeys.overweightCriteriaLabel2.tr(),
+        LocaleKeys.overweightCriteriaLabel3.tr(),
       ];
 
   @override
@@ -642,7 +617,7 @@ class OverweightCriteria extends Criteria {
   @override
   String advice() {
     if (currentValue > 0) {
-      return S.of(_context).overweightCriteriaAdvice;
+      return LocaleKeys.overweightCriteriaAdvice.tr();
     } else {
       return null;
     }
@@ -650,20 +625,18 @@ class OverweightCriteria extends Criteria {
 }
 
 class FoodCategory extends CriteriaCategory {
-  final BuildContext _context;
-
-  FoodCategory(this._context) {
+  FoodCategory() {
     key = 'food';
     criterias = [
-      MeatCriteria(_context),
-      DairyCriteria(_context),
-      SnackCriteria(_context),
-      OverweightCriteria(_context),
+      MeatCriteria(),
+      DairyCriteria(),
+      SnackCriteria(),
+      OverweightCriteria(),
     ];
   }
 
   @override
-  String get title => S.of(_context).foodCategoryTitle;
+  String get title => LocaleKeys.foodCategoryTitle.tr();
 
   @override
   double co2EqTonsPerYear() {
@@ -676,10 +649,9 @@ class FoodCategory extends CriteriaCategory {
 }
 
 class MaterialGoodsCriteria extends Criteria {
-  final BuildContext _context;
   final MoneyChangeCriteria _moneyChangeCriteria;
 
-  MaterialGoodsCriteria(this._context, this._moneyChangeCriteria) {
+  MaterialGoodsCriteria(this._moneyChangeCriteria) {
     key = 'material_goods';
     minValue = 0;
     step = 100;
@@ -689,10 +661,10 @@ class MaterialGoodsCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).materialGoodsCriteriaTitle;
+  String get title => LocaleKeys.materialGoodsCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).materialGoodsCriteriaExplanation;
+  String get explanation => LocaleKeys.materialGoodsCriteriaExplanation.tr();
 
   @override
   double get maxValue => (((3000 / _moneyChangeCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -713,7 +685,7 @@ class MaterialGoodsCriteria extends Criteria {
   @override
   String advice() {
     if (co2EqTonsPerYear() > 2) {
-      return S.of(_context).materialGoodsCriteriaAdvice;
+      return LocaleKeys.materialGoodsCriteriaAdvice.tr();
     } else {
       return null;
     }
@@ -721,9 +693,7 @@ class MaterialGoodsCriteria extends Criteria {
 }
 
 class InternetCriteria extends Criteria {
-  final BuildContext _context;
-
-  InternetCriteria(this._context) {
+  InternetCriteria() {
     key = 'internet';
     minValue = 0;
     maxValue = 2;
@@ -732,16 +702,16 @@ class InternetCriteria extends Criteria {
   }
 
   @override
-  String get title => S.of(_context).internetCriteriaTitle;
+  String get title => LocaleKeys.internetCriteriaTitle.tr();
 
   @override
-  String get explanation => S.of(_context).internetCriteriaExplanation;
+  String get explanation => LocaleKeys.internetCriteriaExplanation.tr();
 
   @override
   List<String> get labels => [
-        S.of(_context).internetCriteriaLabel1,
-        S.of(_context).internetCriteriaLabel2,
-        S.of(_context).internetCriteriaLabel3,
+        LocaleKeys.internetCriteriaLabel1.tr(),
+        LocaleKeys.internetCriteriaLabel2.tr(),
+        LocaleKeys.internetCriteriaLabel3.tr(),
       ];
 
   @override
@@ -750,7 +720,7 @@ class InternetCriteria extends Criteria {
   @override
   String advice() {
     if (co2EqTonsPerYear() > 0.15) {
-      return S.of(_context).internetCriteriaAdvice;
+      return LocaleKeys.internetCriteriaAdvice.tr();
     } else {
       return null;
     }
@@ -758,18 +728,16 @@ class InternetCriteria extends Criteria {
 }
 
 class GoodsCategory extends CriteriaCategory {
-  final BuildContext _context;
-
-  GoodsCategory(this._context, MoneyChangeCriteria moneyChangeCriteria) {
+  GoodsCategory(MoneyChangeCriteria moneyChangeCriteria) {
     key = 'goods';
     criterias = [
-      MaterialGoodsCriteria(_context, moneyChangeCriteria),
-      InternetCriteria(_context),
+      MaterialGoodsCriteria(moneyChangeCriteria),
+      InternetCriteria(),
     ];
   }
 
   @override
-  String get title => S.of(_context).goodsAndServicesCategoryTitle;
+  String get title => LocaleKeys.goodsAndServicesCategoryTitle.tr();
 }
 
 class CriteriaCategorySet {
@@ -778,20 +746,20 @@ class CriteriaCategorySet {
 
   CriteriaCategorySet(this._context) {
     var generalCategory = GeneralCategory(_context);
-    var homeCategory = HomeCategory(_context, generalCategory.criterias[1] as MoneyChangeCriteria);
+    var homeCategory = HomeCategory(generalCategory.criterias[1] as MoneyChangeCriteria);
 
     categories = [
       generalCategory,
       homeCategory,
-      TravelCategory(_context, homeCategory.criterias[0] as PeopleCriteria, generalCategory.criterias[0] as UnitCriteria),
-      FoodCategory(_context),
-      GoodsCategory(_context, generalCategory.criterias[1] as MoneyChangeCriteria)
+      TravelCategory(homeCategory.criterias[0] as PeopleCriteria, generalCategory.criterias[0] as UnitCriteria),
+      FoodCategory(),
+      GoodsCategory(generalCategory.criterias[1] as MoneyChangeCriteria)
     ];
   }
 
   double co2EqTonsPerYear() => categories.map((cat) => cat.co2EqTonsPerYear()).reduce((a, b) => a + b);
 
-  String getFormatedFootprint() => S.of(_context).co2EqTonsValue(co2EqTonsPerYear().toStringAsFixed(1));
+  String getFormatedFootprint() => LocaleKeys.co2EqTonsValue.tr(args: [co2EqTonsPerYear().toStringAsFixed(1)]);
 }
 
 class CriteriasState with ChangeNotifier {

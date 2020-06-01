@@ -1,15 +1,21 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'common/common.dart';
 import 'common/criterias.dart';
 import 'criterias_screen/criterias_page.dart';
-import 'generated/i18n.dart';
+import 'generated/codegen_loader.g.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(EasyLocalization(
+    child: MyApp(),
+    supportedLocales: [const Locale('en'), const Locale('fr')],
+    path: 'resources/langs',
+    assetLoader: const CodegenLoader(),
+  ));
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 }
 
@@ -37,8 +43,6 @@ class MyApp extends StatelessWidget {
             );
           },
         ),
-        localizationsDelegates: [S.delegate, GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate],
-        supportedLocales: S.delegate.supportedLocales,
       ),
     );
   }

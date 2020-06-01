@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../common/common.dart';
 import '../common/criterias.dart';
-import '../generated/i18n.dart';
+import '../generated/locale_keys.g.dart';
 
 class DetailsScreen extends StatelessWidget {
   final CriteriasState _state;
@@ -40,7 +41,9 @@ class DetailsScreen extends StatelessWidget {
               icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
               onPressed: () {
                 Share.share(
-                    "${S.of(context).footprintRepartitionTitle(footprint)}\n\n${dataMap.keys.join("\n")}\n\n${S.of(context).doneWith}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
+                    "${LocaleKeys.footprintRepartitionTitle.tr(args: [
+                      footprint
+                    ])}\n\n${dataMap.keys.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
                     subject: 'Warmd');
               }),
           IconButton(
@@ -50,7 +53,7 @@ class DetailsScreen extends StatelessWidget {
                   context: context,
                   children: [
                     buildSmartText(context, '''
-${S.of(context).aboutPart1}
+${LocaleKeys.aboutPart1.tr()}
 
 https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf
 https://www.bbc.com/news/science-environment-49349566
@@ -65,7 +68,7 @@ https://fr.wikipedia.org/wiki/Population_mondiale
 https://www.wwf.fr/sites/default/files/doc-2017-07/161027_rapport_planete_vivante.pdf
 https://www.ewg.org/meateatersguide/frequently-asked-questions/
 
-${S.of(context).aboutPart2}
+${LocaleKeys.aboutPart2.tr()}
 
 https://materialdesignicons.com
 https://www.2dimensions.com/a/frju/files/flare/global-warming/preview
@@ -112,7 +115,7 @@ https://unsplash.com/photos/4mQOcabC5AA
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            S.of(context).footprintRepartitionTitle(footprint),
+            LocaleKeys.footprintRepartitionTitle.tr(args: [footprint]),
             style: Theme.of(context).textTheme.subtitle1.copyWith(color: Colors.white),
           ),
         ),
@@ -134,13 +137,13 @@ https://unsplash.com/photos/4mQOcabC5AA
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              S.of(context).otherCountriesComparaisonTitle,
+              LocaleKeys.otherCountriesComparaisonTitle.tr(),
               style: _buildTitleStyle(context),
             ),
             Gaps.h16,
             _buildCountriesDataTable(context),
             Gaps.h32,
-            buildSmartText(context, S.of(context).otherCountriesMore)
+            buildSmartText(context, LocaleKeys.otherCountriesMore.tr())
           ],
         ),
       ),
@@ -157,7 +160,7 @@ https://unsplash.com/photos/4mQOcabC5AA
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              S.of(context).globalObjectivesTitle,
+              LocaleKeys.globalObjectivesTitle.tr(),
               style: _buildTitleStyle(context),
             ),
             Gaps.h16,
@@ -165,19 +168,19 @@ https://unsplash.com/photos/4mQOcabC5AA
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: S.of(context).globalObjectivesPart1,
+                    text: LocaleKeys.globalObjectivesPart1.tr(),
                     style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
                   ),
                   TextSpan(
-                    text: S.of(context).globalObjectivesPart2,
+                    text: LocaleKeys.globalObjectivesPart2.tr(),
                     style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: S.of(context).globalObjectivesPart3,
+                    text: LocaleKeys.globalObjectivesPart3.tr(),
                     style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
                   ),
                   TextSpan(
-                    text: S.of(context).globalObjectivesPart4,
+                    text: LocaleKeys.globalObjectivesPart4.tr(),
                     style: Theme.of(context).textTheme.bodyText2.copyWith(
                           color: Colors.blue[400],
                           decoration: TextDecoration.underline,
@@ -189,7 +192,7 @@ https://unsplash.com/photos/4mQOcabC5AA
                       },
                   ),
                   TextSpan(
-                    text: S.of(context).globalObjectivesPart5,
+                    text: LocaleKeys.globalObjectivesPart5.tr(),
                     style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
                   ),
                 ],
@@ -217,7 +220,7 @@ https://unsplash.com/photos/4mQOcabC5AA
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              S.of(context).advicesTitle,
+              LocaleKeys.advicesTitle.tr(),
               style: _buildTitleStyle(context),
             ),
             Gaps.h16,
@@ -238,11 +241,11 @@ https://unsplash.com/photos/4mQOcabC5AA
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              S.of(context).disclaimerTitle,
+              LocaleKeys.disclaimerTitle.tr(),
               style: _buildTitleStyle(context),
             ),
             Gaps.h16,
-            buildSmartText(context, S.of(context).disclaimerExplanation),
+            buildSmartText(context, LocaleKeys.disclaimerExplanation.tr()),
           ],
         ),
       ),
@@ -255,14 +258,14 @@ https://unsplash.com/photos/4mQOcabC5AA
       for (String country in countriesList.keys)
         DataRow(cells: [
           DataCell(Text(country)),
-          DataCell(Text(S.of(context).otherCountriesTonsValue(countriesList[country]))),
+          DataCell(Text(LocaleKeys.otherCountriesTonsValue.tr(args: [countriesList[country].toString()]))),
         ]),
     ];
 
     final yourCo2 = _state.categorySet.co2EqTonsPerYear();
     final yourCell = DataRow(cells: [
-      DataCell(Text('⮕ ${S.of(context).you}', style: TextStyle(color: warmdGreen, fontWeight: FontWeight.bold))),
-      DataCell(Text(S.of(context).otherCountriesTonsValue(yourCo2.toStringAsFixed(1)),
+      DataCell(Text('⮕ ${LocaleKeys.you.tr()}', style: TextStyle(color: warmdGreen, fontWeight: FontWeight.bold))),
+      DataCell(Text(LocaleKeys.otherCountriesTonsValue.tr(args: [yourCo2.toStringAsFixed(1)]),
           style: TextStyle(color: warmdGreen, fontWeight: FontWeight.bold))),
     ]);
 
@@ -278,12 +281,12 @@ https://unsplash.com/photos/4mQOcabC5AA
         columns: [
           DataColumn(
               label: Text(
-            S.of(context).otherCountriesColumn1Title,
+            LocaleKeys.otherCountriesColumn1Title.tr(),
             style: Theme.of(context).textTheme.subtitle2,
           )),
           DataColumn(
               label: Text(
-                S.of(context).otherCountriesColumn2Title,
+                LocaleKeys.otherCountriesColumn2Title.tr(),
                 style: Theme.of(context).textTheme.subtitle2,
               ),
               numeric: true),
@@ -298,7 +301,7 @@ https://unsplash.com/photos/4mQOcabC5AA
       for (CriteriaCategory cat in _state.categorySet.categories) ..._buildCategoryAdviceWidgets(context, cat),
     ];
 
-    return list.length > 1 ? list : [Text(S.of(context).noAdvicesExplanation)];
+    return list.length > 1 ? list : [Text(LocaleKeys.noAdvicesExplanation.tr())];
   }
 
   List<Widget> _buildCategoryAdviceWidgets(BuildContext context, CriteriaCategory cat) {
@@ -335,31 +338,31 @@ https://unsplash.com/photos/4mQOcabC5AA
   // Numbers found on coolclimate.org website
   Map<String, int> _buildCountriesList(BuildContext context) {
     return {
-      S.of(context).countryUSA: 54,
-      S.of(context).countryCanada: 54,
-      S.of(context).countryAustralia: 36,
-      S.of(context).countrySaudiArabia: 35,
-      S.of(context).countryUAE: 34,
-      S.of(context).countryChina: 28,
-      S.of(context).countryIsrael: 25,
-      S.of(context).countrySouthKorea: 25,
-      S.of(context).countryJapan: 23,
-      S.of(context).countryGermany: 23,
-      S.of(context).countrySouthAfrica: 23,
-      S.of(context).countryRussia: 22,
-      S.of(context).countryGreece: 20,
-      S.of(context).countryUK: 19,
-      S.of(context).countryNorway: 17,
-      S.of(context).countryIndia: 16,
-      S.of(context).countryFrance: 16,
-      S.of(context).countryMexico: 16,
-      S.of(context).countryBrasil: 15,
-      S.of(context).countryEgypt: 14,
-      S.of(context).countryVietnam: 13,
-      S.of(context).countryMorocco: 13,
-      S.of(context).countryPhilippines: 13,
-      S.of(context).countryCongo: 13,
-      S.of(context).countrySoudan: 12,
+      LocaleKeys.countryUSA.tr(): 54,
+      LocaleKeys.countryCanada.tr(): 54,
+      LocaleKeys.countryAustralia.tr(): 36,
+      LocaleKeys.countrySaudiArabia.tr(): 35,
+      LocaleKeys.countryUAE.tr(): 34,
+      LocaleKeys.countryChina.tr(): 28,
+      LocaleKeys.countryIsrael.tr(): 25,
+      LocaleKeys.countrySouthKorea.tr(): 25,
+      LocaleKeys.countryJapan.tr(): 23,
+      LocaleKeys.countryGermany.tr(): 23,
+      LocaleKeys.countrySouthAfrica.tr(): 23,
+      LocaleKeys.countryRussia.tr(): 22,
+      LocaleKeys.countryGreece.tr(): 20,
+      LocaleKeys.countryUK.tr(): 19,
+      LocaleKeys.countryNorway.tr(): 17,
+      LocaleKeys.countryIndia.tr(): 16,
+      LocaleKeys.countryFrance.tr(): 16,
+      LocaleKeys.countryMexico.tr(): 16,
+      LocaleKeys.countryBrasil.tr(): 15,
+      LocaleKeys.countryEgypt.tr(): 14,
+      LocaleKeys.countryVietnam.tr(): 13,
+      LocaleKeys.countryMorocco.tr(): 13,
+      LocaleKeys.countryPhilippines.tr(): 13,
+      LocaleKeys.countryCongo.tr(): 13,
+      LocaleKeys.countrySoudan.tr(): 12,
     };
   }
 }
