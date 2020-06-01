@@ -56,7 +56,8 @@ class MoneyChangeCriteria extends Criteria {
   double co2EqTonsPerYear() => 0;
 
   @override
-  String advice() => null;
+  String advice() =>
+      S.of(_context).generalAdvice; // Well, not really the correct place to do so, but there is no obvious better one
 
   double getCurrencyRate() {
     return 1 / (currencies.entries.elementAt(currentValue.toInt()).value['value'] as double);

@@ -50,6 +50,10 @@ class S {
     return Intl.message("General", name: 'generalCategoryTitle');
   }
 
+  String get generalAdvice {
+    return Intl.message("Your own impact is insignificant comparing to governments's ones, and as of today their ecological politics are far from sufficient. If you can, try to influence their decisions, by voting or via other means.", name: 'generalAdvice');
+  }
+
   String get peopleCriteriaTitle {
     return Intl.message("Number of people living in your appartment/house", name: 'peopleCriteriaTitle');
   }
