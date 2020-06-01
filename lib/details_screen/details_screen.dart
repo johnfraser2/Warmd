@@ -261,7 +261,7 @@ https://unsplash.com/photos/4mQOcabC5AA
 
     final yourCo2 = _state.categorySet.co2EqTonsPerYear();
     final yourCell = DataRow(cells: [
-      DataCell(Text(S.of(context).you, style: TextStyle(color: warmdGreen, fontWeight: FontWeight.bold))),
+      DataCell(Text('⮕ ${S.of(context).you}', style: TextStyle(color: warmdGreen, fontWeight: FontWeight.bold))),
       DataCell(Text(S.of(context).otherCountriesTonsValue(yourCo2.toStringAsFixed(1)),
           style: TextStyle(color: warmdGreen, fontWeight: FontWeight.bold))),
     ]);

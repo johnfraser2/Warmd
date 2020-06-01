@@ -347,7 +347,7 @@ class S {
   }
 
   String get disclaimerExplanation {
-    return Intl.message("Due to the complexity of the task, I do not expect this app to be very accurate, but it gives you an idea of your impact. It is possible to find different values with other sources, but sometimes they ignore certains elements, such as the impact of imported products.\n\nIn addition, this app focuses only on our carbon footprint, but we should not forget the other types of pollutions (plastics, pesticides, …).\n\nI'm not affiliated with any of the organizations involved.", name: 'disclaimerExplanation');
+    return Intl.message("Due to the complexity of the task, I do not expect this app to be very accurate, but it gives you an idea of your impact. It is possible to find different values with other sources, but sometimes they ignore certains elements such as the impact of imported products.\n\nIn addition, this app focuses only on our carbon footprint, but we should not forget the other types of pollutions (plastics, pesticides, …).\n\nI'm not affiliated with any of the mentioned organizations.", name: 'disclaimerExplanation');
   }
 
   String get aboutPart1 {

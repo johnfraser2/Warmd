@@ -79,7 +79,7 @@
     "advicesTitle": "Conseils :",
     "noAdvicesExplanation": "Il semblerait que vous fassiez déjà de votre mieux, par conséquent je n'ai aucun conseil.",
     "disclaimerTitle": "Avertissement :",
-    "disclaimerExplanation": "En raison de la complexité de la tâche, je ne m'attends pas à ce que cette application soit très précise, mais elle vous donne une idée de votre impact. Il est possible de trouver des valeurs différentes avec d'autres sources, mais elles ignorent parfois certains éléments tels que l’impact des produits importés.\n\nEn outre, cette application se concentre uniquement sur notre empreinte carbone, mais il ne faut pas pour autant oublier les autres types de pollutions (plastiques, pesticides, …).\n\nJe ne suis affilié à aucune des organisations concernées.",
+    "disclaimerExplanation": "En raison de la complexité de la tâche, je ne m'attends pas à ce que cette application soit très précise, mais elle vous donne une idée de votre impact. Il est possible de trouver des valeurs différentes ailleurs, mais ces sources ignorent parfois certains éléments tels que l’impact des produits importés.\n\nEn outre, cette application se concentre uniquement sur notre empreinte carbone, mais il ne faut pas pour autant oublier les autres types de pollutions (plastiques, pesticides, …).\n\nJe ne suis affilié à aucune des organisations mentionnées.",
     "aboutPart1": "Warmd est open-source (sous licence GPLv3):\nhttps://github.com/FredJul/Warmd\n\nBasé principalement sur les résultats 2019 de https://coolclimate.org , avec l'aide d'autres sources :",
     "aboutPart2": "Ressources graphiques :",
     "you": "Vous",
