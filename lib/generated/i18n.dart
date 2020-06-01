@@ -354,6 +354,10 @@ class S {
     return Intl.message("Graphical ressources:", name: 'aboutPart2');
   }
 
+  String get you {
+    return Intl.message("You", name: 'you');
+  }
+
   String get countryUSA {
     return Intl.message("USA", name: 'countryUSA');
   }

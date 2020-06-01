@@ -93,7 +93,7 @@ https://unsplash.com/photos/4mQOcabC5AA
                     if (dataMap.isNotEmpty) _buildHeader(context, footprint, dataMap),
                     if (dataMap.isNotEmpty) _buildCountriesCard(context),
                     _buildObjectivesCard(context),
-                    _buildAdvicesCard(context, _state),
+                    _buildAdvicesCard(context),
                     _buildDisclaimerCard(context),
                   ],
                 );
@@ -207,7 +207,7 @@ https://unsplash.com/photos/4mQOcabC5AA
     );
   }
 
-  Card _buildAdvicesCard(BuildContext context, CriteriasState state) {
+  Card _buildAdvicesCard(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
       margin: const EdgeInsets.only(bottom: 16),
@@ -221,7 +221,7 @@ https://unsplash.com/photos/4mQOcabC5AA
               style: _buildTitleStyle(context),
             ),
             Gaps.h16,
-            ..._buildAdviceWidgets(context, state),
+            ..._buildAdviceWidgets(context),
           ],
         ),
       ),
@@ -250,7 +250,28 @@ https://unsplash.com/photos/4mQOcabC5AA
   }
 
   Widget _buildCountriesDataTable(BuildContext context) {
-    var countriesList = _buildCountriesList(context);
+    final countriesList = _buildCountriesList(context);
+    final yourCo2 = _state.categorySet.co2EqTonsPerYear();
+
+    var rows = [
+      for (String country in countriesList.keys)
+        DataRow(cells: [
+          DataCell(Text(country)),
+          DataCell(Text(S.of(context).otherCountriesTonsValue(countriesList[country]))),
+        ]),
+    ];
+
+    final yourCell = DataRow(cells: [
+      DataCell(Text(S.of(context).you, style: TextStyle(color: warmdGreen, fontWeight: FontWeight.bold))),
+      DataCell(Text(S.of(context).otherCountriesTonsValue(yourCo2.toStringAsFixed(1)),
+          style: TextStyle(color: warmdGreen, fontWeight: FontWeight.bold))),
+    ]);
+    var higherCountryIdx = countriesList.values.toList().indexWhere((countryCo2) => countryCo2 < yourCo2);
+    if (higherCountryIdx == -1) {
+      rows.add(yourCell);
+    } else {
+      rows.insert(higherCountryIdx, yourCell);
+    }
 
     return IgnorePointer(
       child: DataTable(
@@ -267,20 +288,14 @@ https://unsplash.com/photos/4mQOcabC5AA
               ),
               numeric: true),
         ],
-        rows: [
-          for (String country in countriesList.keys)
-            DataRow(cells: [
-              DataCell(Text(country)),
-              DataCell(Text(S.of(context).otherCountriesTonsValue(countriesList[country]))),
-            ]),
-        ],
+        rows: rows,
       ),
     );
   }
 
-  List<Widget> _buildAdviceWidgets(BuildContext context, CriteriasState state) {
+  List<Widget> _buildAdviceWidgets(BuildContext context) {
     var list = [
-      for (CriteriaCategory cat in state.categorySet.categories) ..._buildCategoryAdviceWidgets(context, cat),
+      for (CriteriaCategory cat in _state.categorySet.categories) ..._buildCategoryAdviceWidgets(context, cat),
     ];
 
     return list.length > 1 ? list : [Text(S.of(context).noAdvicesExplanation)];
