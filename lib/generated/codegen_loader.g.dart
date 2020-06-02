@@ -199,7 +199,7 @@ class CodegenLoader extends AssetLoader {
     "snacksCriteriaTitle": "Nombre de collations, boissons ou autres plats fortement transformés par semaine",
     "snacksCriteriaExplanation": "Si vous mourez de faim, ils feront l'affaire. Sinon, évitez-les.",
     "snacksCriteriaAdvice":
-        "Préférez l'eau, les légumes et les fruits aux collations, aux plats transformés ou aux boissons. Attention, achetez local ne limite pas forcément les émissions de carbone et peut même les empirer dans de nombreux cas.",
+        "Préférez l'eau, les légumes et les fruits aux collations, aux plats transformés ou aux boissons. Attention, acheter local ne limite pas forcément les émissions de carbone et peut même les empirer dans de nombreux cas.",
     "overweightCriteriaTitle": "Êtes-vous en surpoids ?",
     "overweightCriteriaExplanation":
         "Le surpoid signifie essentiellement que vous absorbez plus d'énergie que nécessaire. Chaque année, l’humanité consomme 140 milliards de tonnes de nourriture non nécessaires.",
