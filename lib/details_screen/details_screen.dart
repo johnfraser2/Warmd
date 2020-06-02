@@ -263,10 +263,10 @@ https://unsplash.com/photos/4mQOcabC5AA
     ];
 
     final yourCo2 = _state.categorySet.co2EqTonsPerYear();
+    const yourTextStyle = TextStyle(color: warmdGreen, fontWeight: FontWeight.bold);
     final yourCell = DataRow(cells: [
-      DataCell(Text('⮕ ${LocaleKeys.you.tr()}', style: TextStyle(color: warmdGreen, fontWeight: FontWeight.bold))),
-      DataCell(Text(LocaleKeys.otherCountriesTonsValue.tr(args: [yourCo2.toStringAsFixed(1)]),
-          style: TextStyle(color: warmdGreen, fontWeight: FontWeight.bold))),
+      DataCell(Text('⮕ ${LocaleKeys.you.tr()}', style: yourTextStyle)),
+      DataCell(Text(LocaleKeys.otherCountriesTonsValue.tr(args: [yourCo2.toStringAsFixed(1)]), style: yourTextStyle)),
     ]);
 
     var higherCountryIdx = countriesList.values.toList().indexWhere((countryCo2) => countryCo2 < yourCo2);
