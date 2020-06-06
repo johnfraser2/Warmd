@@ -19,7 +19,7 @@ class CodegenLoader extends AssetLoader {
     "unitCriteriaLabel3": "Miles and Gallons (UK)",
     "generalCategoryTitle": "General",
     "generalAdvice":
-        "Your own impact is insignificant comparing to governments's ones, and as of today their ecological politics are far from sufficient. If you can, try to influence their decisions, by voting or via other means.",
+        "Your own impact is insignificant compared to the government, and as of today their ecological policies are far from sufficient. If you can, try to influence their decisions, by voting or via other means.",
     "peopleCriteriaTitle": "Number of people living in your appartment/house",
     "peopleCriteriaExplanation": "The more you are, the less energy per person is needed to heat or drive you.",
     "heatingFuelCriteriaTitle": "Your heating fuel/gas bill",
@@ -59,16 +59,16 @@ class CodegenLoader extends AssetLoader {
     "meatCriteriaExplanation":
         "The meat is a major greenhouse gas emmiter. The beef and lamb emit more than 3 times more greenhouse gas than chicken and more than 5 times more greenhouse gas than most vegetables.",
     "meatCriteriaAdvice":
-        "Adults does not need more than 2-3 meat meal per week (a bit more for kids). You also should favorise chicken (3 times less poluting than beef).",
+        "Adults does not need more than 2-3 meat meal per week (a bit more for kids). You should not exceed that number and favorise chicken (3 times less poluting than beef) or even subtitute them with some vegetables rich in proteins and iron (tofu, seitan, lentils, quinoa…) or even insects, but pay attention to avoid potential deficiencies.",
     "dairyCriteriaTitle": "Number of dairy products per week",
     "dairyCriteriaExplanation": "It is generally recommended to eat some at least once per day.",
     "snacksCriteriaTitle": "Number of snacks, drinks or other highly transformed foods per week",
     "snacksCriteriaExplanation": "If you are starving to death, they will do the job. Otherwise, just avoid them.",
     "snacksCriteriaAdvice":
-        "Prefer water, vegetables and fruits than snacks, transformed foods or drinks. Be careful, buying local products does not necessarily limit carbon emissions and can even make them worse in many cases.",
+        "Prefer water, vegetables and fruits over snacks, transformed foods or drinks. Be careful, buying local products does not necessarily limit carbon emissions and can even make them worse in many cases.",
     "overweightCriteriaTitle": "Are you overweight?",
     "overweightCriteriaExplanation":
-        "Being overweight basically means you absorb more energy than you body needs. Each year, humanity consumes unnecessary 140 billions of tons of food.",
+        "Being overweight basically means you absorb more energy than your body needs. Each year, humanity consumes an unnecessary 140 billions of tons of food.",
     "overweightCriteriaLabel1": "No",
     "overweightCriteriaLabel2": "A bit",
     "overweightCriteriaLabel3": "Quite a lot",
@@ -81,7 +81,7 @@ class CodegenLoader extends AssetLoader {
         "You buy too much goods and should certainly limit them. If you really need to buy new ones, find second-hand ones and sell or give your previous ones.",
     "internetCriteriaTitle": "Amount of Internet data used",
     "internetCriteriaExplanation":
-        "Internet is already responsible of more than 4% of total carbon emissions, and it could double before 2025.",
+        "Internet is already responsible for more than 4% of total carbon emissions, and it could double before 2025.",
     "internetCriteriaLabel1": "Only few emails or search per week",
     "internetCriteriaLabel2": "I use some websites or cloud services at least once per day",
     "internetCriteriaLabel3": "I watch lot of streaming video (> 30 min / day)",
@@ -193,7 +193,7 @@ class CodegenLoader extends AssetLoader {
     "meatCriteriaExplanation":
         "La viande est un important émetteur de gaz à effet de serre. Le bœuf et l'agneau émettent plus de 3 fois plus de gaz à effet de serre que le poulet et plus de 5 fois plus de gaz à effet de serre que la plupart des légumes.",
     "meatCriteriaAdvice":
-        "Les adultes n'ont pas besoin de plus de 2-3 repas de viande par semaine (un peu plus pour les enfants). Vous devriez aussi favoriser le poulet (3 fois moins polluant que le bœuf).",
+        "Les adultes n'ont pas besoin de plus de 2-3 repas de viande par semaine (un peu plus pour les enfants). Vous ne devriez pas dépasser ce nombre et privilégier le poulet (3 fois moins polluant que le bœuf) ou même les substituer par des légumes riches en protéines et en fer (tofu, seitan, lentilles, quinoa ...) ou même des insectes, mais attention à éviter de potentielles carences.",
     "dairyCriteriaTitle": "Nombre de produits laitiers par semaine",
     "dairyCriteriaExplanation": "Il est généralement recommandé d'en manger au moins une fois par jour.",
     "snacksCriteriaTitle": "Nombre de collations, boissons ou autres plats fortement transformés par semaine",
