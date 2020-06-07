@@ -1,12 +1,12 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/fredericjulian)
 
-# Warmd - Carbon footprint calculator
+# Warmd - Personal carbon footprint calculator
 
 <img src="https://lh3.googleusercontent.com/XmXX4m877oLj9pgZSQjdGanJ8oVSca6K8yaY4WjI-5_EGMzIljBkrRIsN_u9wQvDlRyr=w1440-h620-rw"/>
 
-It is [free/open-source software](https://www.gnu.org/philosophy/free-sw.html) under the GPLv3 license. You're are free to modify it as long as you respect the license and keep it open-source.
+Warmd is a personal carbon footprint calculator which gives you an idea of your own carbon impact and helps you to improve it with adapted advices.
 
-Please fill an issue for any question or suggestion: https://github.com/FredJul/Warmd/issues/new
+It is [free/open-source software](https://www.gnu.org/philosophy/free-sw.html) under the GPLv3 license. You're are free to modify it as long as you respect the license and keep it open-source.
 
 More info on Play Store and App Store pages:
 
@@ -17,10 +17,16 @@ More info on Play Store and App Store pages:
   <img src="https://itsallwidgets.com/images/apple.png" style="width:180px"/>
 </a>
 
+## Assistance
+Please fill in an issue for any question or suggestion [here](https://github.com/FredJul/Warmd/issues/new).
+
 ## Privacy Policy
-Warmd does everything on your phone and does not need access to Internet. It doesn't try to steal any data nor to display ads. My only goal is to reduce a bit the human impact on our planet.
+Warmd does everything on your phone and does not need access to Internet. It doesn't try to steal any data or use them for commercial purposes.
 
-## Donation
-Via [PayPal](https://www.paypal.me/fredericjulian)
+## Contribution and donation
+As previously said, Warmd is an free open-source software without any ads or paid features. My only goal is to reduce a bit the human impact on our planet.
 
-Via Bitcoin: `3DprwFMg5bXGz8QimyiaoEE7mmCkj2DGf5`
+You can help Warmd development by:
+- developing features and bugfixes
+- improving or adding translations (Weblate setup in progress...)
+- donating via [PayPal](https://www.paypal.me/fredericjulian) or via Bitcoin: `3DprwFMg5bXGz8QimyiaoEE7mmCkj2DGf5`
