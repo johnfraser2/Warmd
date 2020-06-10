@@ -9,7 +9,7 @@ Warmd is a personal carbon footprint calculator which gives you an idea of your 
 It is [free/open-source software](https://www.gnu.org/philosophy/free-sw.html) under the GPLv3 license. You're are free to modify it as long as you respect the license and keep it open-source.
 
 ## Contact and Assistance
-Please create a ticket for any question or suggestion [here](https://github.com/FredJul/Warmd/issues/new).
+Please write to warmd_app@icloud.com or create a ticket [here](https://github.com/FredJul/Warmd/issues/new) for any bug report or suggestion.
 
 ## Installation
 <a href="https://play.google.com/store/apps/details?id=net.frju.verdure" target="_blank" class="is-slightly-elevated" rel="nofollow">
