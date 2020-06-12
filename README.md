@@ -27,5 +27,5 @@ As previously said, Warmd is an free open-source software without any ads or pai
 
 You can help Warmd development by:
 - developing features and bugfixes
-- improving or adding translations (Weblate setup in progress...)
+- improving or adding translations on [Crowdin](https://frju.crowdin.com/warmd)
 - donating via [PayPal](https://www.paypal.me/fredericjulian) or via Bitcoin: `3DprwFMg5bXGz8QimyiaoEE7mmCkj2DGf5`
