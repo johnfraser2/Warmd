@@ -1,7 +1,7 @@
 name: warmd
 description: Wanna save the earth?
 
-version: 1.0.10+15
+version: 1.0.11+16
 
 environment:
 
@@ -14,7 +14,7 @@ dependencies:
   flare_flutter: ^2.0.3
   shared_preferences: ^0.5.7+3
   pie_chart: ^3.1.1
-  url_launcher: ^5.4.10
+  url_launcher: ^5.4.11
   smart_text_view: ^0.1.0
   share: ^0.6.4+3
   cupertino_icons: ^0.1.3
