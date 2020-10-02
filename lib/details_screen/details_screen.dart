@@ -47,7 +47,7 @@ class DetailsScreen extends StatelessWidget {
                     subject: 'Warmd');
               }),
           IconButton(
-              icon: const Icon(Icons.help_outline),
+              icon: Icon(Platform.isIOS ? CupertinoIcons.question_circle : Icons.help_outline),
               onPressed: () {
                 showAboutDialog(
                   context: context,
@@ -198,8 +198,8 @@ https://unsplash.com/photos/4mQOcabC5AA
                 ],
               ),
             ),
-            Image(
-              image: const AssetImage('assets/carbon_graph.webp'),
+            const Image(
+              image: AssetImage('assets/carbon_graph.webp'),
               fit: BoxFit.contain,
               height: 264,
               width: double.infinity,

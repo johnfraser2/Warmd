@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
           sliderTheme: SliderTheme.of(context).copyWith(
             valueIndicatorTextStyle: const TextStyle(color: Colors.white),
           ),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: Builder(
           builder: (context) {
