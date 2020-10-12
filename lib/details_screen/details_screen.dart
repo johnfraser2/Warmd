@@ -119,8 +119,11 @@ https://unsplash.com/photos/4mQOcabC5AA
             style: Theme.of(context).textTheme.subtitle1.copyWith(color: Colors.white),
           ),
         ),
-        PieChart(
-          dataMap: dataMap,
+        SizedBox(
+          height: 200,
+          child: PieChart(
+            dataMap: dataMap,
+          ),
         ),
         Gaps.h16,
       ],
