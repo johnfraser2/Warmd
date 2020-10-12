@@ -1,4 +1,7 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
+
+// ignore_for_file: prefer_single_quotes
+
 import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart' show AssetLoader;
@@ -11,7 +14,49 @@ class CodegenLoader extends AssetLoader{
     return Future.value(mapLocales[locale.toString()]);
   }
 
-    static const Map<String,String> en = {
+  static const Map<String,dynamic> zh = {};
+static const Map<String,dynamic> tr = {};
+static const Map<String,dynamic> hu = {};
+static const Map<String,dynamic> nl = {};
+static const Map<String,dynamic> ja = {};
+static const Map<String,dynamic> de = {
+  "moneyChangeCriteriaTitle": "Was ist deine lokale Währung?",
+  "unitCriteriaTitle": "Welche Einheiten verwendest du?",
+  "unitCriteriaLabel1": "Meter und Liter",
+  "unitCriteriaLabel2": "Meilen und Gallonen (USA)",
+  "unitCriteriaLabel3": "Meilen und Gallonen (UK)",
+  "generalCategoryTitle": "Allgemein",
+  "waterCriteriaTitle": "Dein Wasserverbrauch",
+  "waterCriteriaLabel2": "Normal",
+  "yourCarbonFootprint": "Dein CO2-Fußabdruck:",
+  "you": "Du",
+  "countryUSA": "USA",
+  "countryCanada": "Kanada",
+  "countryAustralia": "Australien",
+  "countrySaudiArabia": "Saudi-Arabien",
+  "countryChina": "China",
+  "countryIsrael": "Israel",
+  "countrySouthKorea": "Südkorea",
+  "countryJapan": "Japan",
+  "countryGermany": "Deutschland",
+  "countrySouthAfrica": "Südafrika",
+  "countryRussia": "Russland",
+  "countryGreece": "Griechenland",
+  "countryNorway": "Norwegen",
+  "countryIndia": "Indien",
+  "countryFrance": "Frankreich",
+  "countryMexico": "Mexiko",
+  "countryEgypt": "Ägypten",
+  "countryVietnam": "Vietnam",
+  "countryMorocco": "Marokko",
+  "countryPhilippines": "Philippinen"
+};
+static const Map<String,dynamic> ru = {};
+static const Map<String,dynamic> pl = {};
+static const Map<String,dynamic> uk = {};
+static const Map<String,dynamic> fi = {};
+static const Map<String,dynamic> pt = {};
+static const Map<String,dynamic> en = {
   "moneyChangeCriteriaTitle": "What is your local currency?",
   "unitCriteriaTitle": "Which units do you use?",
   "unitCriteriaLabel1": "Meters and Liters",
@@ -123,7 +168,32 @@ class CodegenLoader extends AssetLoader{
   "countrySoudan": "Soudan",
   "doneWith": "Done with Warmd - Carbon footprint calculator"
 };
-  static const Map<String,String> fr = {
+static const Map<String,dynamic> it = {
+  "moneyChangeCriteriaTitle": "Qual è la tua valuta locale?",
+  "unitCriteriaTitle": "Quali unità di misura usi?",
+  "unitCriteriaLabel1": "Metri e Litri",
+  "unitCriteriaLabel2": "Miglia e Galloni (Stati Uniti)",
+  "unitCriteriaLabel3": "Miglia e Galloni (Regno Unito)",
+  "generalCategoryTitle": "Generale",
+  "generalAdvice": "Il tuo impatto è insignificante rispetto al governo, e ad oggi le loro politiche ecologiche sono tutt'altro che sufficienti. Se possibile, cerca di influenzare le loro decisioni, andando a votare o mediante altri mezzi.",
+  "peopleCriteriaTitle": "Numero di persone che vivono nella tua abitazione",
+  "peopleCriteriaExplanation": "Più siete, meno energia per individuo è richiesta per il riscaldamento o il trasporto.",
+  "heatingFuelCriteriaTitle": "La tua bolletta del riscaldamento",
+  "heatingFuelCriteriaExplanation": "Spesa annuale, in {}.",
+  "heatingFuelCriteriaAdvice": "Prima di tutto, cerca di isolare al meglio la tua casa e di non riscaldarla più del necessario (è possibile utilizzare controlli intelligenti per limitare il riscaldamento e non riscaldare una stanza per adulti al di sopra di 66°F/19°C in quanto può ridurre la qualità del sonno). Inoltre, è preferibile riscaldarsi con l'impiego di una pompa di calore, con elettricità prodotta da fonti rinnovabili oppure con pellet di legno provenienti da foreste locali e sostenibili.",
+  "electricityBillCriteriaTitle": "La tua bolletta della corrente elettrica",
+  "electricityBillCriteriaExplanation": "Spesa annuale, in {}.",
+  "cleanElectricityCriteriaTitle": "Percentuale di energia elettrica priva di carbonio",
+  "cleanElectricityCriteriaExplanation": "Incluse l'energia nucleare, eolica o idraulica.\n\nMaggiori informazioni su https://www.electricitymap.org",
+  "cleanElectricityCriteriaAdvice": "Scegli il tuo fornitore di energia per pagare solamente energia rinnovabile o nucleare.",
+  "waterCriteriaTitle": "Il tuo consumo di acqua",
+  "waterCriteriaExplanation": "Inclusa l'acqua per le tue docce, bagni, sciacquoni e giardinaggio.",
+  "waterCriteriaLabel1": "Basso (docce veloci, senza giardino)",
+  "waterCriteriaLabel2": "Normale",
+  "waterCriteriaLabel3": "Alto (docce lunghe o bagni, giardini grandi, ...)"
+};
+static const Map<String,dynamic> sr = {};
+static const Map<String,dynamic> fr = {
   "moneyChangeCriteriaTitle": "Quelle est votre monnaie locale ?",
   "unitCriteriaTitle": "Quelles unités utilisez-vous?",
   "unitCriteriaLabel1": "Mètres et Litres",
@@ -208,7 +278,7 @@ class CodegenLoader extends AssetLoader{
   "aboutPart1": "Warmd est open-source (sous licence GPLv3):\nhttps://github.com/FredJul/Warmd\n\nBasé principalement sur les résultats 2019 de https://coolclimate.org , avec l'aide d'autres sources :",
   "aboutPart2": "Ressources graphiques :",
   "you": "Vous",
-  "countryUSA": "USA",
+  "countryUSA": "Etats-Unis d'Amérique",
   "countryCanada": "Canada",
   "countryAustralia": "Australie",
   "countrySaudiArabia": "Arabie Saoudite",
@@ -221,7 +291,7 @@ class CodegenLoader extends AssetLoader{
   "countrySouthAfrica": "Afrique du Sud",
   "countryRussia": "Russie",
   "countryGreece": "Grèce",
-  "countryUK": "UK",
+  "countryUK": "Royaume-Uni",
   "countryNorway": "Norvège",
   "countryIndia": "Inde",
   "countryFrance": "France",
@@ -235,5 +305,18 @@ class CodegenLoader extends AssetLoader{
   "countrySoudan": "Soudan",
   "doneWith": "Fait avec Warmd - Calculateur d'empreinte carbone"
 };
-  static const Map<String, Map<String,String>> mapLocales = {"en": en, "fr": fr};
+static const Map<String,dynamic> el = {};
+static const Map<String,dynamic> ro = {};
+static const Map<String,dynamic> ca = {};
+static const Map<String,dynamic> ko = {};
+static const Map<String,dynamic> he = {};
+static const Map<String,dynamic> vi = {};
+static const Map<String,dynamic> cs = {};
+static const Map<String,dynamic> no = {};
+static const Map<String,dynamic> af = {};
+static const Map<String,dynamic> da = {};
+static const Map<String,dynamic> sv = {};
+static const Map<String,dynamic> es = {};
+static const Map<String,dynamic> ar = {};
+static const Map<String, Map<String,dynamic>> mapLocales = {"zh": zh, "tr": tr, "hu": hu, "nl": nl, "ja": ja, "de": de, "ru": ru, "pl": pl, "uk": uk, "fi": fi, "pt": pt, "en": en, "it": it, "sr": sr, "fr": fr, "el": el, "ro": ro, "ca": ca, "ko": ko, "he": he, "vi": vi, "cs": cs, "no": no, "af": af, "da": da, "sv": sv, "es": es, "ar": ar};
 }
