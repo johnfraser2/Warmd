@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,11 +9,6 @@ import 'criterias_screen/criterias_page.dart';
 import 'generated/codegen_loader.g.dart';
 
 void main() async {
-  // Hack: remove this when https://github.com/flutter/flutter/issues/55642 will be fixed
-  while (Platform.localeName == null) {
-    await Future.delayed(const Duration(milliseconds: 100), () {});
-  }
-
   runApp(EasyLocalization(
     child: MyApp(),
     supportedLocales: [const Locale('en'), const Locale('fr')],

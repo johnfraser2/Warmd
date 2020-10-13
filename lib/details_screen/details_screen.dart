@@ -32,7 +32,7 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Image(
-          height: 64,
+          height: 48,
           image: AssetImage('assets/text_logo_transparent_small.webp'),
           fit: BoxFit.contain,
         ),
