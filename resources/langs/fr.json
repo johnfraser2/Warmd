@@ -1,4 +1,5 @@
 {
+    "countryCriteriaTitle": "Où vivez-vous ?",
     "generalCategoryTitle": "Général",
     "generalAdvice": "Votre propre impact est insignifiant par rapport à celui des gouvernements, et aujourd'hui leurs politiques écologiques sont loin d'être suffisantes. Si vous pouvez, essayez d'influencer sur leurs décisions, via les élections ou par d'autres moyens.",
     "peopleCriteriaTitle": "Nombre de personne vivant dans votre appartement/maison",
@@ -75,7 +76,7 @@
     "noAdvicesExplanation": "Il semblerait que vous fassiez déjà de votre mieux, par conséquent je n'ai aucun conseil.",
     "disclaimerTitle": "Avertissement :",
     "disclaimerExplanation": "En raison de la complexité de la tâche, je ne m'attends pas à ce que cette application soit très précise, mais elle vous donne une idée de votre impact. Il est possible de trouver des valeurs différentes ailleurs, mais ces sources ignorent parfois certains éléments tels que l'impact des produits importés.\n\nEn outre, cette application se concentre uniquement sur notre empreinte carbone, mais il ne faut pas pour autant oublier les autres types de pollutions (plastiques, pesticides, …).\n\nJe ne suis affilié à aucune des organisations mentionnées.",
-    "aboutPart1": "Warmd est open-source (sous licence GPLv3) :\nhttps://github.com/FredJul/Warmd\nVous pouvez aider à le traduire ici : https://frju. rowdin.com/warmd\n\nLes résultats sont principalement basés sur les données 2019 de https://coolclimate.org, avec l'aide d'autres sources :",
+    "aboutPart1": "Warmd est open-source (sous licence GPLv3) :\nhttps://github.com/FredJul/Warmd\nVous pouvez aider à le traduire ici : https://frju.crowdin.com/warmd\n\nLes résultats sont principalement basés sur les données 2019 de https://coolclimate.org, avec l'aide d'autres sources :",
     "aboutPart2": "Ressources graphiques :",
     "you": "Vous",
     "countryUSA": "Etats-Unis d'Amérique",
