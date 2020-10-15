@@ -1,9 +1,4 @@
 {
-    "moneyChangeCriteriaTitle": "Was ist deine lokale Währung?",
-    "unitCriteriaTitle": "Welche Einheiten verwendest du?",
-    "unitCriteriaLabel1": "Meter und Liter",
-    "unitCriteriaLabel2": "Meilen und Gallonen (USA)",
-    "unitCriteriaLabel3": "Meilen und Gallonen (UK)",
     "generalCategoryTitle": "Allgemein",
     "waterCriteriaTitle": "Dein Wasserverbrauch",
     "waterCriteriaLabel2": "Normal",
