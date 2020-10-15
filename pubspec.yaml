@@ -3,9 +3,9 @@ description: Wanna save the earth?
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.11+16
+version: 1.1.0+17
 
 environment:
   sdk: ">=2.10.0 <3.0.0"
@@ -14,7 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
-    sdk: flutter 
+    sdk: flutter
   provider: ^4.3.2+2
   flare_flutter: ^2.0.6
   shared_preferences: ^0.5.12
