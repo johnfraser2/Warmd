@@ -20,11 +20,6 @@ static const Map<String,dynamic> hu = {};
 static const Map<String,dynamic> nl = {};
 static const Map<String,dynamic> ja = {};
 static const Map<String,dynamic> de = {
-  "moneyChangeCriteriaTitle": "Was ist deine lokale Währung?",
-  "unitCriteriaTitle": "Welche Einheiten verwendest du?",
-  "unitCriteriaLabel1": "Meter und Liter",
-  "unitCriteriaLabel2": "Meilen und Gallonen (USA)",
-  "unitCriteriaLabel3": "Meilen und Gallonen (UK)",
   "generalCategoryTitle": "Allgemein",
   "waterCriteriaTitle": "Dein Wasserverbrauch",
   "waterCriteriaLabel2": "Normal",
@@ -165,11 +160,6 @@ static const Map<String,dynamic> en = {
   "doneWith": "Done with Warmd - Carbon footprint calculator"
 };
 static const Map<String,dynamic> it = {
-  "moneyChangeCriteriaTitle": "Qual è la tua valuta locale?",
-  "unitCriteriaTitle": "Quali unità di misura usi?",
-  "unitCriteriaLabel1": "Metri e Litri",
-  "unitCriteriaLabel2": "Miglia e Galloni (Stati Uniti)",
-  "unitCriteriaLabel3": "Miglia e Galloni (Regno Unito)",
   "generalCategoryTitle": "Generale",
   "generalAdvice": "Il tuo impatto è insignificante rispetto al governo, e ad oggi le loro politiche ecologiche sono tutt'altro che sufficienti. Se possibile, cerca di influenzare le loro decisioni, andando a votare o mediante altri mezzi.",
   "peopleCriteriaTitle": "Numero di persone che vivono nella tua abitazione",
@@ -190,7 +180,7 @@ static const Map<String,dynamic> it = {
 };
 static const Map<String,dynamic> sr = {};
 static const Map<String,dynamic> fr = {
-  "countryCriteriaTitle": "Où habitez-vous?",
+  "countryCriteriaTitle": "Où vivez-vous ?",
   "generalCategoryTitle": "Général",
   "generalAdvice": "Votre propre impact est insignifiant par rapport à celui des gouvernements, et aujourd'hui leurs politiques écologiques sont loin d'être suffisantes. Si vous pouvez, essayez d'influencer sur leurs décisions, via les élections ou par d'autres moyens.",
   "peopleCriteriaTitle": "Nombre de personne vivant dans votre appartement/maison",
@@ -230,7 +220,7 @@ static const Map<String,dynamic> fr = {
   "snacksCriteriaExplanation": "Si vous mourez de faim, ils feront l'affaire. Sinon, évitez-les.",
   "snacksCriteriaAdvice": "Préférez l'eau, les légumes et les fruits aux collations, aux plats transformés ou aux boissons. Attention, acheter local ne limite pas forcément les émissions de carbone et peut même les empirer dans de nombreux cas.",
   "overweightCriteriaTitle": "Êtes-vous en surpoids ?",
-  "overweightCriteriaExplanation": "Le surpoid signifie essentiellement que vous absorbez plus d'énergie que nécessaire. Chaque année, l'humanité consomme 140 milliards de tonnes de nourriture non nécessaires.",
+  "overweightCriteriaExplanation": "Le surpoids signifie essentiellement que vous absorbez plus d'énergie que nécessaire. Chaque année, l'humanité consomme 140 milliards de tonnes de nourriture non nécessaires.",
   "overweightCriteriaLabel1": "Non",
   "overweightCriteriaLabel2": "Un peu",
   "overweightCriteriaLabel3": "Beaucoup",
@@ -267,7 +257,7 @@ static const Map<String,dynamic> fr = {
   "noAdvicesExplanation": "Il semblerait que vous fassiez déjà de votre mieux, par conséquent je n'ai aucun conseil.",
   "disclaimerTitle": "Avertissement :",
   "disclaimerExplanation": "En raison de la complexité de la tâche, je ne m'attends pas à ce que cette application soit très précise, mais elle vous donne une idée de votre impact. Il est possible de trouver des valeurs différentes ailleurs, mais ces sources ignorent parfois certains éléments tels que l'impact des produits importés.\n\nEn outre, cette application se concentre uniquement sur notre empreinte carbone, mais il ne faut pas pour autant oublier les autres types de pollutions (plastiques, pesticides, …).\n\nJe ne suis affilié à aucune des organisations mentionnées.",
-  "aboutPart1": "Warmd est open-source (sous licence GPLv3):\nhttps://github.com/FredJul/Warmd\n\nBasé principalement sur les résultats 2019 de https://coolclimate.org , avec l'aide d'autres sources :",
+  "aboutPart1": "Warmd est open-source (sous licence GPLv3) :\nhttps://github.com/FredJul/Warmd\nVous pouvez aider à le traduire ici : https://frju.crowdin.com/warmd\n\nLes résultats sont principalement basés sur les données 2019 de https://coolclimate.org, avec l'aide d'autres sources :",
   "aboutPart2": "Ressources graphiques :",
   "you": "Vous",
   "countryUSA": "Etats-Unis d'Amérique",
