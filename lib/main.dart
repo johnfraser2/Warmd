@@ -39,13 +39,9 @@ class MyApp extends StatelessWidget {
           ),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: Builder(
-          builder: (context) {
-            return ChangeNotifierProvider(
-              create: (_) => CriteriasState(context),
-              child: CriteriasPage(),
-            );
-          },
+        home: ChangeNotifierProvider(
+          create: (_) => CriteriasState(),
+          child: CriteriasPage(),
         ),
       ),
     );

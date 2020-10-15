@@ -1,9 +1,5 @@
 {
-    "moneyChangeCriteriaTitle": "What is your local currency?",
-    "unitCriteriaTitle": "Which units do you use?",
-    "unitCriteriaLabel1": "Meters and Liters",
-    "unitCriteriaLabel2": "Miles and Gallons (US)",
-    "unitCriteriaLabel3": "Miles and Gallons (UK)",
+    "countryCriteriaTitle": "Where do you live?",
     "generalCategoryTitle": "General",
     "generalAdvice": "Your own impact is insignificant compared to the government, and as of today their ecological policies are far from sufficient. If you can, try to influence their decisions, by voting or via other means.",
     "peopleCriteriaTitle": "Number of people living in your apartment/house",

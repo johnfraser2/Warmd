@@ -247,7 +247,7 @@ class CriteriasPage extends StatelessWidget {
   }
 
   Color _getDropdownTextColor(Criteria c, int value) {
-    if (c is UnitCriteria || c is MoneyChangeCriteria) return Colors.black;
+    if (c is CountryCriteria) return Colors.black;
 
     if (value == c.minValue) {
       return Colors.green;
