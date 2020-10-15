@@ -148,35 +148,32 @@ class CriteriasPage extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              // Not using Card to avoid a small display issue with images
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(18.0),
-                child: Container(
-                  margin: const EdgeInsets.all(1.0),
-                  color: Colors.white,
-                  child: Column(
-                    children: [
-                      Image(
-                        image: AssetImage('assets/${cat.key}.webp'),
-                        fit: BoxFit.cover,
-                        height: 164,
-                        width: double.infinity,
+              child: Card(
+                margin: const EdgeInsets.all(8.0),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Column(
+                  children: [
+                    Image(
+                      image: AssetImage('assets/${cat.key}.webp'),
+                      fit: BoxFit.cover,
+                      height: 164,
+                      width: double.infinity,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
+                      child: Builder(
+                        builder: (context) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              for (Criteria crit in cat.criterias) ..._buildCriteria(context, state, crit),
+                            ],
+                          );
+                        },
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
-                        child: Builder(
-                          builder: (context) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                for (Criteria crit in cat.criterias) ..._buildCriteria(context, state, crit),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -250,7 +247,7 @@ class CriteriasPage extends StatelessWidget {
   }
 
   Color _getDropdownTextColor(Criteria c, int value) {
-    if (c is UnitCriteria || c is MoneyChangeCriteria) return Colors.black;
+    if (c is CountryCriteria) return Colors.black;
 
     if (value == c.minValue) {
       return Colors.green;

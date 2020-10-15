@@ -57,11 +57,7 @@ static const Map<String,dynamic> uk = {};
 static const Map<String,dynamic> fi = {};
 static const Map<String,dynamic> pt = {};
 static const Map<String,dynamic> en = {
-  "moneyChangeCriteriaTitle": "What is your local currency?",
-  "unitCriteriaTitle": "Which units do you use?",
-  "unitCriteriaLabel1": "Meters and Liters",
-  "unitCriteriaLabel2": "Miles and Gallons (US)",
-  "unitCriteriaLabel3": "Miles and Gallons (UK)",
+  "countryCriteriaTitle": "Where do you live?",
   "generalCategoryTitle": "General",
   "generalAdvice": "Your own impact is insignificant compared to the government, and as of today their ecological policies are far from sufficient. If you can, try to influence their decisions, by voting or via other means.",
   "peopleCriteriaTitle": "Number of people living in your apartment/house",
@@ -138,7 +134,7 @@ static const Map<String,dynamic> en = {
   "noAdvicesExplanation": "Well, it seems you already does your best, hence I have no advice.",
   "disclaimerTitle": "Disclaimer:",
   "disclaimerExplanation": "Due to the complexity of the task, I do not expect this app to be very accurate, but it gives you an idea of your impact. It is possible to find different values with other sources, but sometimes they ignore certains elements such as the impact of imported products.\n\nIn addition, this app focuses only on our carbon footprint, but we should not forget the other types of pollutions (plastics, pesticides, …).\n\nI'm not affiliated with any of the mentioned organizations.",
-  "aboutPart1": "Warmd is open-source (under GPLv3 license):\nhttps://github.com/FredJul/Warmd\n\nMainly based on https://coolclimate.org 's 2019 results, with the help of other sources:",
+  "aboutPart1": "Warmd is open-source (under GPLv3 license):\nhttps://github.com/FredJul/Warmd\nYou can help translating it there: https://frju.crowdin.com/warmd\n\nResults are mainly based on https://coolclimate.org 's 2019 data, with the help of other sources:",
   "aboutPart2": "Graphical ressources:",
   "you": "You",
   "countryUSA": "USA",
@@ -194,11 +190,7 @@ static const Map<String,dynamic> it = {
 };
 static const Map<String,dynamic> sr = {};
 static const Map<String,dynamic> fr = {
-  "moneyChangeCriteriaTitle": "Quelle est votre monnaie locale ?",
-  "unitCriteriaTitle": "Quelles unités utilisez-vous?",
-  "unitCriteriaLabel1": "Mètres et Litres",
-  "unitCriteriaLabel2": "Miles et Gallons (US)",
-  "unitCriteriaLabel3": "Miles et Gallons (UK)",
+  "countryCriteriaTitle": "Où habitez-vous?",
   "generalCategoryTitle": "Général",
   "generalAdvice": "Votre propre impact est insignifiant par rapport à celui des gouvernements, et aujourd'hui leurs politiques écologiques sont loin d'être suffisantes. Si vous pouvez, essayez d'influencer sur leurs décisions, via les élections ou par d'autres moyens.",
   "peopleCriteriaTitle": "Nombre de personne vivant dans votre appartement/maison",

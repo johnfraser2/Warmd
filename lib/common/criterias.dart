@@ -34,24 +34,22 @@ abstract class CriteriaCategory {
   double co2EqTonsPerYear() => criterias.map((crit) => crit.co2EqTonsPerYear()).reduce((a, b) => a + b);
 }
 
-class MoneyChangeCriteria extends Criteria {
-  final BuildContext _context;
+enum UnitSystem { metric, us, uk }
 
-  MoneyChangeCriteria(this._context) {
-    key = 'money_change';
+class CountryCriteria extends Criteria {
+  CountryCriteria() {
+    key = 'country';
     minValue = 0;
-    maxValue = currencies.length.toDouble() - 1;
+    maxValue = countries.length.toDouble() - 1;
     step = 1;
-    currentValue = 145; // USD
+    currentValue = _getCurrentCountryPos().toDouble();
   }
 
   @override
-  String get title => LocaleKeys.moneyChangeCriteriaTitle.tr();
+  String get title => LocaleKeys.countryCriteriaTitle.tr();
 
   @override
-  List<String> get labels => Localizations.localeOf(_context).languageCode == 'fr'
-      ? currencies.entries.map((entry) => entry.key + ' - ' + entry.value['fr'].toString()).toList()
-      : currencies.entries.map((entry) => entry.key + ' - ' + entry.value['en'].toString()).toList();
+  List<String> get labels => countries.map((c) => c['name']).toList();
 
   @override
   double co2EqTonsPerYear() => 0;
@@ -61,46 +59,43 @@ class MoneyChangeCriteria extends Criteria {
       LocaleKeys.generalAdvice.tr(); // Well, not really the correct place to do so, but there is no obvious better one
 
   double getCurrencyRate() {
-    return 1 / (currencies.entries.elementAt(currentValue.toInt()).value['value'] as double);
+    return 1 / currencyRates[countries[currentValue.toInt()]['currency']];
   }
 
   String getCurrencyCode() {
-    return currencies.keys.elementAt(currentValue.toInt());
-  }
-}
-
-class UnitCriteria extends Criteria {
-  UnitCriteria() {
-    key = 'unit';
-    minValue = 0;
-    maxValue = 2;
-    step = 1;
-    currentValue = 0;
+    return countries[currentValue.toInt()]['currency'];
   }
 
-  @override
-  String get title => LocaleKeys.unitCriteriaTitle.tr();
+  UnitSystem unitSystem() {
+    final countryCode = countries[currentValue.toInt()]['code'];
+    if (countryCode == 'US') {
+      return UnitSystem.us;
+    } else if (countryCode == 'GB') {
+      return UnitSystem.uk;
+    }
 
-  @override
-  List<String> get labels => [
-        LocaleKeys.unitCriteriaLabel1.tr(),
-        LocaleKeys.unitCriteriaLabel2.tr(),
-        LocaleKeys.unitCriteriaLabel3.tr(),
-      ];
+    return UnitSystem.metric;
+  }
 
-  @override
-  double co2EqTonsPerYear() => 0;
+  int _getCurrentCountryPos() {
+    final locales = WidgetsBinding.instance.window.locales;
+    if (locales != null && locales.isNotEmpty) {
+      final locale = locales.first;
+      final idx = countries.indexWhere((c) => c['code'] == (locale.countryCode ?? locale.languageCode.toUpperCase()));
+      if (idx != -1) {
+        return idx;
+      }
+    }
 
-  @override
-  String advice() => null;
+    // US by default if not found
+    return 234;
+  }
 }
 
 class GeneralCategory extends CriteriaCategory {
-  final BuildContext _context;
-
-  GeneralCategory(this._context) {
+  GeneralCategory() {
     key = 'general';
-    criterias = [UnitCriteria(), MoneyChangeCriteria(_context)];
+    criterias = [CountryCriteria()];
   }
 
   @override
@@ -133,9 +128,9 @@ class PeopleCriteria extends Criteria {
 
 class HeatingFuelCriteria extends Criteria {
   final PeopleCriteria _peopleCriteria;
-  final MoneyChangeCriteria _moneyChangeCriteria;
+  final CountryCriteria _countryCriteria;
 
-  HeatingFuelCriteria(this._peopleCriteria, this._moneyChangeCriteria) {
+  HeatingFuelCriteria(this._peopleCriteria, this._countryCriteria) {
     key = 'heating_fuel';
     minValue = 0;
     step = 100;
@@ -148,23 +143,23 @@ class HeatingFuelCriteria extends Criteria {
   String get title => LocaleKeys.heatingFuelCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.heatingFuelCriteriaExplanation.tr(args: [_moneyChangeCriteria.getCurrencyCode()]);
+  String get explanation => LocaleKeys.heatingFuelCriteriaExplanation.tr(args: [_countryCriteria.getCurrencyCode()]);
 
   @override
-  double get maxValue => (((5000 / _moneyChangeCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+  double get maxValue => (((5000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
 
   @override
   double get currentValue => min(maxValue, super.currentValue);
 
   @override
-  String get unit => _moneyChangeCriteria.getCurrencyCode();
+  String get unit => _countryCriteria.getCurrencyCode();
 
   @override
   double co2EqTonsPerYear() {
     var peopleNumber = _peopleCriteria.currentValue;
     var peopleFactor = peopleNumber > 1 ? peopleNumber / 1.3 : 1;
 
-    var moneyChange = _moneyChangeCriteria.getCurrencyRate();
+    var moneyChange = _countryCriteria.getCurrencyRate();
 
     var fuelBill = currentValue * moneyChange;
     var co2TonsPerFuelDollar = 0.005;
@@ -184,10 +179,10 @@ class HeatingFuelCriteria extends Criteria {
 
 class ElectricityBillCriteria extends Criteria {
   final PeopleCriteria _peopleCriteria;
-  final MoneyChangeCriteria _moneyChangeCriteria;
+  final CountryCriteria _countryCriteria;
   final CleanElectricityCriteria _cleanElectricityCriteria;
 
-  ElectricityBillCriteria(this._peopleCriteria, this._moneyChangeCriteria, this._cleanElectricityCriteria) {
+  ElectricityBillCriteria(this._peopleCriteria, this._countryCriteria, this._cleanElectricityCriteria) {
     key = 'electricity_bill';
     minValue = 0;
     step = 100;
@@ -200,23 +195,23 @@ class ElectricityBillCriteria extends Criteria {
   String get title => LocaleKeys.electricityBillCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.electricityBillCriteriaExplanation.tr(args: [_moneyChangeCriteria.getCurrencyCode()]);
+  String get explanation => LocaleKeys.electricityBillCriteriaExplanation.tr(args: [_countryCriteria.getCurrencyCode()]);
 
   @override
-  double get maxValue => (((5000 / _moneyChangeCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+  double get maxValue => (((5000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
 
   @override
   double get currentValue => min(maxValue, super.currentValue);
 
   @override
-  String get unit => _moneyChangeCriteria.getCurrencyCode();
+  String get unit => _countryCriteria.getCurrencyCode();
 
   @override
   double co2EqTonsPerYear() {
     var peopleNumber = _peopleCriteria.currentValue;
     var peopleFactor = peopleNumber > 1 ? peopleNumber / 1.3 : 1;
 
-    var moneyChange = _moneyChangeCriteria.getCurrencyRate();
+    var moneyChange = _countryCriteria.getCurrencyRate();
 
     var electricityBill = currentValue * moneyChange;
     var co2ElectricityPercent = min(100, 100 - _cleanElectricityCriteria.currentValue + 15); // +15% because nothing is 100% clean
@@ -299,15 +294,15 @@ class WaterCriteria extends Criteria {
 }
 
 class HomeCategory extends CriteriaCategory {
-  HomeCategory(MoneyChangeCriteria moneyChangeCriteria) {
+  HomeCategory(CountryCriteria CountryCriteria) {
     key = 'home';
 
     var peopleCriteria = PeopleCriteria();
     var cleanElectricityCriteria = CleanElectricityCriteria();
     criterias = [
       peopleCriteria,
-      HeatingFuelCriteria(peopleCriteria, moneyChangeCriteria),
-      ElectricityBillCriteria(peopleCriteria, moneyChangeCriteria, cleanElectricityCriteria),
+      HeatingFuelCriteria(peopleCriteria, CountryCriteria),
+      ElectricityBillCriteria(peopleCriteria, CountryCriteria, cleanElectricityCriteria),
       cleanElectricityCriteria,
       WaterCriteria(),
     ];
@@ -318,9 +313,9 @@ class HomeCategory extends CriteriaCategory {
 }
 
 class FlightsCriteria extends Criteria {
-  final UnitCriteria _unitCriteria;
+  final CountryCriteria _countryCriteria;
 
-  FlightsCriteria(this._unitCriteria) {
+  FlightsCriteria(this._countryCriteria) {
     key = 'flights';
     minValue = 0;
     maxValue = 100000;
@@ -337,12 +332,12 @@ class FlightsCriteria extends Criteria {
   String get explanation => LocaleKeys.flightsCriteriaExplanation.tr();
 
   @override
-  String get unit => _unitCriteria.currentValue == 0 ? 'km' : 'miles';
+  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
 
   @override
   double co2EqTonsPerYear() {
     var co2TonsPerKm = 0.00028;
-    var milesToKmFactor = _unitCriteria.currentValue == 0 ? 1 : 1.61;
+    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
     return currentValue * milesToKmFactor * co2TonsPerKm;
   }
 
@@ -359,9 +354,9 @@ class FlightsCriteria extends Criteria {
 class CarCriteria extends Criteria {
   final PeopleCriteria _peopleCriteria;
   final CarConsumptionCriteria _carConsumptionCriteria;
-  final UnitCriteria _unitCriteria;
+  final CountryCriteria _countryCriteria;
 
-  CarCriteria(this._peopleCriteria, this._carConsumptionCriteria, this._unitCriteria) {
+  CarCriteria(this._peopleCriteria, this._carConsumptionCriteria, this._countryCriteria) {
     key = 'car';
     minValue = 0;
     maxValue = 100000;
@@ -378,20 +373,20 @@ class CarCriteria extends Criteria {
   String get explanation => LocaleKeys.carCriteriaExplanation.tr();
 
   @override
-  String get unit => _unitCriteria.currentValue == 0 ? 'km' : 'miles';
+  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
 
   @override
   double co2EqTonsPerYear() {
     var peopleNumber = _peopleCriteria.currentValue;
     var peopleFactor = peopleNumber > 1 ? peopleNumber / 1.8 : 1;
 
-    var litersPerKm = (_unitCriteria.currentValue == 0
+    var litersPerKm = (_countryCriteria.unitSystem() == UnitSystem.metric
             ? _carConsumptionCriteria.currentValue
-            : _unitCriteria.currentValue == 1
+            : _countryCriteria.unitSystem() == UnitSystem.us
                 ? 235.2 / -_carConsumptionCriteria.currentValue
                 : 282.5 / -_carConsumptionCriteria.currentValue) /
         100;
-    var milesToKmFactor = _unitCriteria.currentValue == 0 ? 1 : 1.61;
+    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
     var co2TonsPerLiter = 0.0033;
     return (currentValue / peopleFactor) * milesToKmFactor * litersPerKm * co2TonsPerLiter;
   }
@@ -409,9 +404,9 @@ class CarCriteria extends Criteria {
 }
 
 class CarConsumptionCriteria extends Criteria {
-  final UnitCriteria _unitCriteria;
+  final CountryCriteria _countryCriteria;
 
-  CarConsumptionCriteria(this._unitCriteria) {
+  CarConsumptionCriteria(this._countryCriteria) {
     key = 'car_consumption';
     minValue = 2;
     maxValue = 20;
@@ -425,16 +420,16 @@ class CarConsumptionCriteria extends Criteria {
   String get title => LocaleKeys.carConsumptionCriteriaTitle.tr();
 
   @override
-  double get minValue => _unitCriteria.currentValue == 0 ? 2 : -140;
+  double get minValue => _countryCriteria.unitSystem() == UnitSystem.metric ? 2 : -140;
 
   @override
-  double get maxValue => _unitCriteria.currentValue == 0 ? 20 : -11;
+  double get maxValue => _countryCriteria.unitSystem() == UnitSystem.metric ? 20 : -11;
 
   @override
   double get currentValue => min(maxValue, max(minValue, super.currentValue));
 
   @override
-  String get unit => _unitCriteria.currentValue == 0 ? 'L/100km' : 'mpg';
+  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'L/100km' : 'mpg';
 
   @override
   double co2EqTonsPerYear() => 0;
@@ -444,9 +439,9 @@ class CarConsumptionCriteria extends Criteria {
 }
 
 class PublicTransportCriteria extends Criteria {
-  final UnitCriteria _unitCriteria;
+  final CountryCriteria _countryCriteria;
 
-  PublicTransportCriteria(this._unitCriteria) {
+  PublicTransportCriteria(this._countryCriteria) {
     key = 'public_transport';
     minValue = 0;
     maxValue = 100000;
@@ -460,12 +455,12 @@ class PublicTransportCriteria extends Criteria {
   String get title => LocaleKeys.publicTransportCriteriaTitle.tr();
 
   @override
-  String get unit => _unitCriteria.currentValue == 0 ? 'km' : 'miles';
+  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
 
   @override
   double co2EqTonsPerYear() {
     var co2TonsPerKm = 0.00014;
-    var milesToKmFactor = _unitCriteria.currentValue == 0 ? 1 : 1.61;
+    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
     return currentValue * milesToKmFactor * co2TonsPerKm;
   }
 
@@ -480,15 +475,15 @@ class PublicTransportCriteria extends Criteria {
 }
 
 class TravelCategory extends CriteriaCategory {
-  TravelCategory(PeopleCriteria peopleCriteria, UnitCriteria unitCriteria) {
+  TravelCategory(PeopleCriteria peopleCriteria, CountryCriteria CountryCriteria) {
     key = 'travel';
 
-    var carConsumptionCriteria = CarConsumptionCriteria(unitCriteria);
+    var carConsumptionCriteria = CarConsumptionCriteria(CountryCriteria);
     criterias = [
-      FlightsCriteria(unitCriteria),
-      CarCriteria(peopleCriteria, carConsumptionCriteria, unitCriteria),
+      FlightsCriteria(CountryCriteria),
+      CarCriteria(peopleCriteria, carConsumptionCriteria, CountryCriteria),
       carConsumptionCriteria,
-      PublicTransportCriteria(unitCriteria)
+      PublicTransportCriteria(CountryCriteria)
     ];
   }
 
@@ -649,9 +644,9 @@ class FoodCategory extends CriteriaCategory {
 }
 
 class MaterialGoodsCriteria extends Criteria {
-  final MoneyChangeCriteria _moneyChangeCriteria;
+  final CountryCriteria _countryCriteria;
 
-  MaterialGoodsCriteria(this._moneyChangeCriteria) {
+  MaterialGoodsCriteria(this._countryCriteria) {
     key = 'material_goods';
     minValue = 0;
     step = 100;
@@ -667,17 +662,17 @@ class MaterialGoodsCriteria extends Criteria {
   String get explanation => LocaleKeys.materialGoodsCriteriaExplanation.tr();
 
   @override
-  double get maxValue => (((3000 / _moneyChangeCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+  double get maxValue => (((3000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
 
   @override
   double get currentValue => min(maxValue, super.currentValue);
 
   @override
-  String get unit => _moneyChangeCriteria.getCurrencyCode();
+  String get unit => _countryCriteria.getCurrencyCode();
 
   @override
   double co2EqTonsPerYear() {
-    var moneyChange = _moneyChangeCriteria.getCurrencyRate();
+    var moneyChange = _countryCriteria.getCurrencyRate();
     var co2TonsPerDollar = 0.0062;
     return currentValue * moneyChange * co2TonsPerDollar;
   }
@@ -728,10 +723,10 @@ class InternetCriteria extends Criteria {
 }
 
 class GoodsCategory extends CriteriaCategory {
-  GoodsCategory(MoneyChangeCriteria moneyChangeCriteria) {
+  GoodsCategory(CountryCriteria CountryCriteria) {
     key = 'goods';
     criterias = [
-      MaterialGoodsCriteria(moneyChangeCriteria),
+      MaterialGoodsCriteria(CountryCriteria),
       InternetCriteria(),
     ];
   }
@@ -741,19 +736,19 @@ class GoodsCategory extends CriteriaCategory {
 }
 
 class CriteriaCategorySet {
-  final BuildContext _context;
   List<CriteriaCategory> categories;
 
-  CriteriaCategorySet(this._context) {
-    var generalCategory = GeneralCategory(_context);
-    var homeCategory = HomeCategory(generalCategory.criterias[1] as MoneyChangeCriteria);
+  CriteriaCategorySet() {
+    var generalCategory = GeneralCategory();
+    var countryCriteria = generalCategory.criterias[0] as CountryCriteria;
+    var homeCategory = HomeCategory(countryCriteria);
 
     categories = [
       generalCategory,
       homeCategory,
-      TravelCategory(homeCategory.criterias[0] as PeopleCriteria, generalCategory.criterias[0] as UnitCriteria),
+      TravelCategory(homeCategory.criterias[0] as PeopleCriteria, countryCriteria),
       FoodCategory(),
-      GoodsCategory(generalCategory.criterias[1] as MoneyChangeCriteria)
+      GoodsCategory(countryCriteria)
     ];
   }
 
@@ -772,8 +767,8 @@ class CriteriasState with ChangeNotifier {
     });
   }
 
-  CriteriasState(BuildContext context) {
-    categorySet = CriteriaCategorySet(context);
+  CriteriasState() {
+    categorySet = CriteriaCategorySet();
   }
 
   void persist(Criteria c) {
