@@ -81,7 +81,7 @@ class CountryCriteria extends Criteria {
     final locales = WidgetsBinding.instance.window.locales;
     if (locales != null && locales.isNotEmpty) {
       final locale = locales.first;
-      final idx = countries.indexWhere((c) => c['code'] == (locale.countryCode ?? locale.languageCode));
+      final idx = countries.indexWhere((c) => c['code'] == (locale.countryCode ?? locale.languageCode.toUpperCase()));
       if (idx != -1) {
         return idx;
       }
