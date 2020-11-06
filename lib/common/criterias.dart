@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../generated/locale_keys.g.dart';
 import 'currencies.dart';
-import 'warmd_icons_icons.dart';
 
 abstract class Criteria {
   String key;
@@ -19,8 +18,6 @@ abstract class Criteria {
   double step;
   double currentValue;
   List<String> labels;
-  IconData leftIcon;
-  IconData rightIcon;
 
   double co2EqTonsPerYear();
   String advice();
@@ -44,9 +41,6 @@ class CountryCriteria extends Criteria {
     step = 1;
     currentValue = _getCurrentCountryPos().toDouble();
   }
-
-  @override
-  String get title => LocaleKeys.countryCriteriaTitle.tr();
 
   @override
   List<String> get labels => countries.map((c) => c['name']).toList();
@@ -109,8 +103,6 @@ class PeopleCriteria extends Criteria {
     maxValue = 3;
     step = 1;
     currentValue = 1;
-    leftIcon = Icons.person;
-    rightIcon = WarmdIcons.account_group;
   }
 
   @override
@@ -135,8 +127,6 @@ class HeatingFuelCriteria extends Criteria {
     minValue = 0;
     step = 100;
     currentValue = 0;
-    leftIcon = WarmdIcons.piggy_bank;
-    rightIcon = WarmdIcons.radiator;
   }
 
   @override
@@ -187,8 +177,6 @@ class ElectricityBillCriteria extends Criteria {
     minValue = 0;
     step = 100;
     currentValue = 1000;
-    leftIcon = WarmdIcons.coin_outline;
-    rightIcon = WarmdIcons.cash_multiple;
   }
 
   @override
@@ -233,8 +221,6 @@ class CleanElectricityCriteria extends Criteria {
     step = 5;
     currentValue = 10;
     unit = '%';
-    leftIcon = WarmdIcons.fuel;
-    rightIcon = WarmdIcons.wind_turbine;
   }
 
   @override
@@ -321,8 +307,6 @@ class FlightsCriteria extends Criteria {
     maxValue = 100000;
     step = 5000;
     currentValue = 0;
-    leftIcon = Icons.airplanemode_inactive;
-    rightIcon = Icons.airplanemode_active;
   }
 
   @override
@@ -362,8 +346,6 @@ class CarCriteria extends Criteria {
     maxValue = 100000;
     step = 5000;
     currentValue = 0;
-    leftIcon = Icons.directions_bike;
-    rightIcon = WarmdIcons.car_sports;
   }
 
   @override
@@ -412,8 +394,6 @@ class CarConsumptionCriteria extends Criteria {
     maxValue = 20;
     step = 1;
     currentValue = 8;
-    leftIcon = WarmdIcons.sprout;
-    rightIcon = WarmdIcons.gas_station;
   }
 
   @override
@@ -447,8 +427,6 @@ class PublicTransportCriteria extends Criteria {
     maxValue = 100000;
     step = 5000;
     currentValue = 0;
-    leftIcon = Icons.directions_bike;
-    rightIcon = Icons.train;
   }
 
   @override
@@ -498,8 +476,6 @@ class MeatCriteria extends Criteria {
     maxValue = 20;
     step = 1;
     currentValue = 0;
-    leftIcon = WarmdIcons.food_apple_outline;
-    rightIcon = WarmdIcons.cow;
   }
 
   @override
@@ -531,8 +507,6 @@ class DairyCriteria extends Criteria {
     maxValue = 20;
     step = 1;
     currentValue = 0;
-    leftIcon = WarmdIcons.food_apple_outline;
-    rightIcon = WarmdIcons.cheese;
   }
 
   @override
@@ -558,8 +532,6 @@ class SnackCriteria extends Criteria {
     maxValue = 20;
     step = 1;
     currentValue = 0;
-    leftIcon = WarmdIcons.food_off;
-    rightIcon = WarmdIcons.food;
   }
 
   @override
@@ -651,8 +623,6 @@ class MaterialGoodsCriteria extends Criteria {
     minValue = 0;
     step = 100;
     currentValue = 0;
-    leftIcon = WarmdIcons.piggy_bank;
-    rightIcon = WarmdIcons.cash_multiple;
   }
 
   @override
@@ -758,17 +728,11 @@ class CriteriaCategorySet {
 }
 
 class CriteriasState with ChangeNotifier {
-  CriteriaCategorySet _categorySet;
+  final _categorySet = CriteriaCategorySet();
   CriteriaCategorySet get categorySet => _categorySet;
-  set categorySet(CriteriaCategorySet newValue) {
-    _categorySet = newValue;
-    _loadFromPersistence().then((_) {
-      notifyListeners();
-    });
-  }
 
   CriteriasState() {
-    categorySet = CriteriaCategorySet();
+    _loadState();
   }
 
   void persist(Criteria c) {
@@ -779,10 +743,10 @@ class CriteriasState with ChangeNotifier {
     });
   }
 
-  Future<void> _loadFromPersistence() async {
+  Future<void> _loadState() async {
     var prefs = await SharedPreferences.getInstance();
 
-    categorySet.categories.forEach((cat) {
+    _categorySet.categories.forEach((cat) {
       cat.criterias.forEach((crit) {
         crit.currentValue = prefs.getDouble(crit.key) ?? crit.currentValue;
 
@@ -793,5 +757,7 @@ class CriteriasState with ChangeNotifier {
         }
       });
     });
+
+    notifyListeners();
   }
 }

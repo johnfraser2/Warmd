@@ -5,54 +5,60 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../common/common.dart';
 import '../common/criterias.dart';
 import '../generated/locale_keys.g.dart';
+import 'score_widget.dart';
 
 class DetailsScreen extends StatelessWidget {
-  final CriteriasState _state;
-
-  DetailsScreen(this._state, {Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    var state = context.watch<CriteriasState>();
+
     var temp = <String, double>{};
-    for (var cat in _state.categorySet.categories) {
+    for (var cat in state.categorySet.categories) {
       if (cat.co2EqTonsPerYear() > 0) {
         temp.putIfAbsent('${cat.title} (${cat.co2EqTonsPerYear().toStringAsFixed(1)}t)', () => cat.co2EqTonsPerYear().toDouble());
       }
     }
     final dataMap = temp.sort((a, b) => -a.value.compareTo(b.value));
 
-    var footprint = _state.categorySet.getFormatedFootprint();
+    var footprint = state.categorySet.getFormatedFootprint();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Image(
-          height: 48,
-          image: AssetImage('assets/text_logo_transparent_small.webp'),
-          fit: BoxFit.contain,
-        ),
-        actions: [
-          IconButton(
-              icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
-              onPressed: () {
-                Share.share(
-                    "${LocaleKeys.footprintRepartitionTitle.tr(args: [
-                      footprint
-                    ])}\n\n${dataMap.keys.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
-                    subject: 'Warmd');
-              }),
-          IconButton(
-              icon: Icon(Platform.isIOS ? CupertinoIcons.question_circle : Icons.help_outline),
-              onPressed: () {
-                showAboutDialog(
-                  context: context,
-                  children: [
-                    buildSmartText(context, '''
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Builder(
+            builder: (context) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Gaps.h8,
+                  Row(
+                    children: [
+                      buildBackButton(context),
+                      Expanded(child: Container()),
+                      IconButton(
+                          icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
+                          onPressed: () {
+                            Share.share(
+                                "${LocaleKeys.footprintRepartitionTitle.tr(args: [
+                                  footprint
+                                ])}\n\n${dataMap.keys.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
+                                subject: 'Warmd');
+                          }),
+                      IconButton(
+                          icon: Icon(Platform.isIOS ? CupertinoIcons.question_circle : Icons.help_outline),
+                          onPressed: () {
+                            showAboutDialog(
+                              context: context,
+                              children: [
+                                buildSmartText(context, '''
 ${LocaleKeys.aboutPart1.tr()}
 
 https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf
@@ -70,59 +76,63 @@ https://www.ewg.org/meateatersguide/frequently-asked-questions/
 
 ${LocaleKeys.aboutPart2.tr()}
 
-https://materialdesignicons.com
-https://www.2dimensions.com/a/frju/files/flare/global-warming/preview
 https://unsplash.com/photos/tI_DEyjWOkY
 https://unsplash.com/photos/561igiTyvSk
 https://unsplash.com/photos/Xbh_OGLRfUM
 https://unsplash.com/photos/6xeDIZgoPaw
 https://unsplash.com/photos/4mQOcabC5AA
                   '''),
-                  ],
-                );
-              }),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Theme(
-            data: ThemeData.light(),
-            child: Builder(
-              builder: (context) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    if (dataMap.isNotEmpty) _buildHeader(context, footprint, dataMap),
-                    if (dataMap.isNotEmpty) _buildCountriesCard(context),
-                    _buildObjectivesCard(context),
-                    _buildAdvicesCard(context),
-                    _buildDisclaimerCard(context),
-                  ],
-                );
-              },
-            ),
+                              ],
+                            );
+                          }),
+                    ],
+                  ),
+                  Gaps.h16,
+                  if (dataMap.isNotEmpty) _buildTotalFootprint(context, state, dataMap),
+                  if (dataMap.isNotEmpty) _buildCountriesCard(context, state),
+                  _buildObjectivesCard(context),
+                  _buildAdvicesCard(context, state),
+                  _buildDisclaimerCard(context),
+                ],
+              );
+            },
           ),
         ),
       ),
     );
   }
 
-  Widget _buildHeader(BuildContext context, String footprint, Map<String, double> dataMap) {
+  Widget _buildTotalFootprint(BuildContext context, CriteriasState state, Map<String, double> dataMap) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            LocaleKeys.footprintRepartitionTitle.tr(args: [footprint]),
-            style: Theme.of(context).textTheme.subtitle1.copyWith(color: Colors.white),
+            'Your carbon footprint is',
+            style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
+        Center(child: ScoreWidget(state)),
+        Gaps.h48,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            'Repartition is',
+            style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
+          ),
+        ),
+        Gaps.h24,
         SizedBox(
           height: 200,
-          child: PieChart(
-            dataMap: dataMap,
+          child: Center(
+            child: PieChart(
+              dataMap: dataMap,
+              chartValuesOptions: const ChartValuesOptions(
+                showChartValueBackground: false,
+                chartValueStyle: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
         ),
         Gaps.h16,
@@ -130,9 +140,12 @@ https://unsplash.com/photos/4mQOcabC5AA
     );
   }
 
-  Card _buildCountriesCard(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+  Widget _buildCountriesCard(BuildContext context, CriteriasState state) {
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(18)),
+        color: warmdLightBlue,
+      ),
       margin: const EdgeInsets.only(bottom: 16),
       child: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -144,18 +157,21 @@ https://unsplash.com/photos/4mQOcabC5AA
               style: _buildTitleStyle(context),
             ),
             Gaps.h16,
-            _buildCountriesDataTable(context),
+            _buildCountriesDataTable(context, state),
             Gaps.h32,
-            buildSmartText(context, LocaleKeys.otherCountriesMore.tr())
+            buildSmartText(context, LocaleKeys.otherCountriesMore.tr(), defaultColor: Colors.black),
           ],
         ),
       ),
     );
   }
 
-  Card _buildObjectivesCard(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+  Widget _buildObjectivesCard(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(18)),
+        color: warmdLightBlue,
+      ),
       margin: const EdgeInsets.only(bottom: 16),
       child: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -185,7 +201,7 @@ https://unsplash.com/photos/4mQOcabC5AA
                   TextSpan(
                     text: LocaleKeys.globalObjectivesPart4.tr(),
                     style: Theme.of(context).textTheme.bodyText2.copyWith(
-                          color: Colors.blue[400],
+                          color: warmdDarkBlue,
                           decoration: TextDecoration.underline,
                           fontWeight: FontWeight.w300,
                         ),
@@ -213,9 +229,12 @@ https://unsplash.com/photos/4mQOcabC5AA
     );
   }
 
-  Card _buildAdvicesCard(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+  Widget _buildAdvicesCard(BuildContext context, CriteriasState state) {
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(18)),
+        color: warmdLightBlue,
+      ),
       margin: const EdgeInsets.only(bottom: 16),
       child: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -227,16 +246,19 @@ https://unsplash.com/photos/4mQOcabC5AA
               style: _buildTitleStyle(context),
             ),
             Gaps.h16,
-            ..._buildAdviceWidgets(context),
+            ..._buildAdviceWidgets(context, state),
           ],
         ),
       ),
     );
   }
 
-  Card _buildDisclaimerCard(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+  Widget _buildDisclaimerCard(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(18)),
+        color: warmdLightBlue,
+      ),
       margin: const EdgeInsets.only(bottom: 16),
       child: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -248,14 +270,17 @@ https://unsplash.com/photos/4mQOcabC5AA
               style: _buildTitleStyle(context),
             ),
             Gaps.h16,
-            buildSmartText(context, LocaleKeys.disclaimerExplanation.tr()),
+            Text(
+              LocaleKeys.disclaimerExplanation.tr(),
+              style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildCountriesDataTable(BuildContext context) {
+  Widget _buildCountriesDataTable(BuildContext context, CriteriasState state) {
     final countriesList = _buildCountriesList(context);
     var rows = [
       for (String country in countriesList.keys)
@@ -265,8 +290,8 @@ https://unsplash.com/photos/4mQOcabC5AA
         ]),
     ];
 
-    final yourCo2 = _state.categorySet.co2EqTonsPerYear();
-    const yourTextStyle = TextStyle(color: warmdGreen, fontWeight: FontWeight.bold);
+    final yourCo2 = state.categorySet.co2EqTonsPerYear();
+    const yourTextStyle = TextStyle(color: warmdBlue, fontWeight: FontWeight.bold);
     final yourCell = DataRow(cells: [
       DataCell(Text('⮕ ${LocaleKeys.you.tr()}', style: yourTextStyle)),
       DataCell(Text(LocaleKeys.otherCountriesTonsValue.tr(args: [yourCo2.toStringAsFixed(1)]), style: yourTextStyle)),
@@ -283,14 +308,15 @@ https://unsplash.com/photos/4mQOcabC5AA
       child: DataTable(
         columns: [
           DataColumn(
-              label: Text(
-            LocaleKeys.otherCountriesColumn1Title.tr(),
-            style: Theme.of(context).textTheme.subtitle2,
-          )),
+            label: Text(
+              LocaleKeys.otherCountriesColumn1Title.tr(),
+              style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
+            ),
+          ),
           DataColumn(
               label: Text(
                 LocaleKeys.otherCountriesColumn2Title.tr(),
-                style: Theme.of(context).textTheme.subtitle2,
+                style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
               ),
               numeric: true),
         ],
@@ -299,9 +325,9 @@ https://unsplash.com/photos/4mQOcabC5AA
     );
   }
 
-  List<Widget> _buildAdviceWidgets(BuildContext context) {
+  List<Widget> _buildAdviceWidgets(BuildContext context, CriteriasState state) {
     var list = [
-      for (CriteriaCategory cat in _state.categorySet.categories) ..._buildCategoryAdviceWidgets(context, cat),
+      for (CriteriaCategory cat in state.categorySet.categories) ..._buildCategoryAdviceWidgets(context, cat),
     ];
 
     return list.length > 1 ? list : [Text(LocaleKeys.noAdvicesExplanation.tr())];
@@ -333,8 +359,9 @@ https://unsplash.com/photos/4mQOcabC5AA
   }
 
   TextStyle _buildTitleStyle(BuildContext context) {
-    return Theme.of(context).textTheme.headline6.copyWith(
-          color: warmdGreen,
+    return Theme.of(context).textTheme.subtitle1.copyWith(
+          color: warmdDarkBlue,
+          fontWeight: FontWeight.bold,
         );
   }
 
