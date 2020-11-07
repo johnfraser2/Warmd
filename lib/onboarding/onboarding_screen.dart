@@ -9,7 +9,7 @@ import '../common/delayable_state.dart';
 class OnboardingScreen extends StatefulWidget {
   final Function onOnboardingFinished;
 
-  OnboardingScreen({this.onOnboardingFinished, Key key}) : super(key: key);
+  const OnboardingScreen({@required this.onOnboardingFinished, Key key}) : super(key: key);
 
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();

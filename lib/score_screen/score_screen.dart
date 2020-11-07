@@ -14,7 +14,20 @@ import '../common/criterias.dart';
 import '../generated/locale_keys.g.dart';
 import 'score_widget.dart';
 
-class DetailsScreen extends StatelessWidget {
+class ScoreScreen extends StatelessWidget {
+  final Function onSeeConsequencesTapped;
+  final Function onSeeActionsTapped;
+  final Function onRestartTapped;
+  final Function onSeeAboutTapped;
+
+  const ScoreScreen(
+      {@required this.onSeeConsequencesTapped,
+      @required this.onSeeActionsTapped,
+      @required this.onRestartTapped,
+      @required this.onSeeAboutTapped,
+      Key key})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var state = context.watch<CriteriasState>();
@@ -27,12 +40,11 @@ class DetailsScreen extends StatelessWidget {
     }
     final dataMap = temp.sort((a, b) => -a.value.compareTo(b.value));
 
-    var footprint = state.getFormatedFootprint();
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
+            _buildHeader(context, dataMap, state),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Builder(
@@ -40,25 +52,8 @@ class DetailsScreen extends StatelessWidget {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Gaps.h8,
-                      Row(
-                        children: [
-                          buildBackButton(context),
-                          Expanded(child: Container()),
-                          IconButton(
-                              icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
-                              onPressed: () {
-                                Share.share(
-                                    "${LocaleKeys.footprintRepartitionTitle.tr(args: [
-                                      footprint
-                                    ])}\n\n${dataMap.keys.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
-                                    subject: 'Warmd');
-                              }),
-                        ],
-                      ),
-                      Gaps.h16,
-                      if (dataMap.isNotEmpty) _buildTotalFootprint(context, state, dataMap),
-                      if (dataMap.isNotEmpty) _buildCountriesCard(context, state),
+                      if (dataMap.isNotEmpty) _buildFootprintRepartition(context, state, dataMap),
+                      _buildCountriesComparison(context, state),
                       _buildObjectivesCard(context),
                       _buildAdvicesCard(context, state),
                     ],
@@ -73,25 +68,96 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTotalFootprint(BuildContext context, CriteriasState state, Map<String, double> dataMap) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _buildHeader(BuildContext context, Map<String, double> dataMap, CriteriasState state) {
+    return Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            'Your carbon footprint is',
-            style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
+        Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(36), bottomRight: Radius.circular(36)),
+            color: warmdLightBlue,
+          ),
+          margin: const EdgeInsets.only(bottom: 32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Gaps.h8,
+              Row(
+                children: [
+                  buildBackButton(context),
+                  Expanded(child: Container()),
+                  IconButton(
+                      icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
+                      onPressed: () {
+                        var footprint = state.getFormatedFootprint();
+
+                        Share.share(
+                            "${LocaleKeys.footprintRepartitionTitle.tr(args: [
+                              footprint
+                            ])}\n\n${dataMap.keys.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
+                            subject: 'Warmd');
+                      }),
+                ],
+              ),
+              Gaps.h16,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'Your carbon footprint is',
+                  style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
+                ),
+              ),
+              Center(child: ScoreWidget(state)),
+              Gaps.h32,
+              Center(
+                child: TextButton(
+                  onPressed: () => onSeeConsequencesTapped(),
+                  child: Text(
+                    "See what happens when you don't take action >",
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                  ),
+                ),
+              ),
+              Gaps.h48,
+            ],
           ),
         ),
-        Center(child: ScoreWidget(state)),
-        Gaps.h48,
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            'Repartition is',
-            style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
+        Positioned.fill(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 92),
+              child: ElevatedButton(
+                onPressed: () => onSeeActionsTapped(),
+                child: const Text(
+                  'SEE WHAT YOU NEED TO DO',
+                  textAlign: TextAlign.center,
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(warmdGreen),
+                  shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  )),
+                  textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.subtitle2.copyWith(
+                        fontWeight: FontWeight.bold,
+                      )),
+                  padding:
+                      MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
+                ),
+              ),
+            ),
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFootprintRepartition(BuildContext context, CriteriasState state, Map<String, double> dataMap) {
+    return Column(
+      children: [
+        Gaps.h64,
+        Text(
+          'FOOTPRINT ANALYSIS',
+          style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
         ),
         Gaps.h24,
         SizedBox(
@@ -106,34 +172,23 @@ class DetailsScreen extends StatelessWidget {
             ),
           ),
         ),
-        Gaps.h16,
       ],
     );
   }
 
-  Widget _buildCountriesCard(BuildContext context, CriteriasState state) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(18)),
-        color: warmdLightBlue,
-      ),
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              LocaleKeys.otherCountriesComparaisonTitle.tr(),
-              style: _buildTitleStyle(context),
-            ),
-            Gaps.h16,
-            _buildCountriesDataTable(context, state),
-            Gaps.h32,
-            buildSmartText(context, LocaleKeys.otherCountriesMore.tr(), defaultColor: Colors.black),
-          ],
+  Widget _buildCountriesComparison(BuildContext context, CriteriasState state) {
+    return Column(
+      children: [
+        Gaps.h64,
+        Text(
+          'COMPARISON WITH OTHERS',
+          style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
         ),
-      ),
+        Gaps.h16,
+        _buildCountriesDataTable(context, state),
+        Gaps.h32,
+        buildSmartText(context, LocaleKeys.otherCountriesMore.tr(), defaultColor: Colors.black),
+      ],
     );
   }
 

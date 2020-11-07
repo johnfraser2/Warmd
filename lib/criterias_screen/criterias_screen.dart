@@ -11,9 +11,9 @@ import '../common/criterias.dart';
 import '../generated/locale_keys.g.dart';
 
 class CriteriasScreen extends StatelessWidget {
-  final Function onDetailsTapped;
+  final Function onSeeScoreTapped;
 
-  CriteriasScreen({this.onDetailsTapped, Key key}) : super(key: key);
+  const CriteriasScreen({@required this.onSeeScoreTapped, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class CriteriasScreen extends StatelessWidget {
               child: Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    onDetailsTapped();
+                    onSeeScoreTapped();
                   },
                   child: const Text(
                     'CONTINUE',

@@ -8,6 +8,8 @@ const warmdDarkBlue = Color(0xFF123079);
 
 const warmdRed = Color(0xFFFF757D);
 
+const warmdGreen = Color(0xFF7CCE17);
+
 class Gaps {
   static const Widget h4 = SizedBox(height: 4);
   static const Widget h8 = SizedBox(height: 8);

@@ -9,7 +9,7 @@ import '../common/criterias.dart';
 class CountryScreen extends StatelessWidget {
   final Function onCountrySelected;
 
-  CountryScreen({this.onCountrySelected, Key key}) : super(key: key);
+  const CountryScreen({@required this.onCountrySelected, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

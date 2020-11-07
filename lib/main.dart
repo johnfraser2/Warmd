@@ -10,10 +10,10 @@ import 'common/common.dart';
 import 'common/criterias.dart';
 import 'common/delayable_state.dart';
 import 'criterias_screen/criterias_screen.dart';
-import 'details_screen/details_screen.dart';
 import 'generated/codegen_loader.g.dart';
 import 'onboarding/country_screen.dart';
 import 'onboarding/onboarding_screen.dart';
+import 'score_screen/score_screen.dart';
 import 'splash_screen.dart';
 
 void main() async {
@@ -45,7 +45,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends DelayableState<MyApp> {
   var _splashScreenSeen = false;
   var _showCountrySelectionScreen = false;
-  var _showDetailScreen = false;
+  var _showScoreScreen = false;
   final _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
@@ -105,7 +105,7 @@ class _MyAppState extends DelayableState<MyApp> {
                       key: _navigatorKey,
                       pages: [
                         if (!_splashScreenSeen)
-                          MaterialPage<SplashScreen>(
+                          const MaterialPage<SplashScreen>(
                             child: SplashScreen(),
                           ),
                         if (_splashScreenSeen && !initState.countrySelected && !_showCountrySelectionScreen)
@@ -132,16 +132,31 @@ class _MyAppState extends DelayableState<MyApp> {
                         if (_splashScreenSeen && !_showCountrySelectionScreen && initState.countrySelected)
                           MaterialPage<CriteriasScreen>(
                             child: CriteriasScreen(
-                              onDetailsTapped: () {
+                              onSeeScoreTapped: () {
                                 setState(() {
-                                  _showDetailScreen = true;
+                                  _showScoreScreen = true;
                                 });
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && _showDetailScreen)
-                          MaterialPage<DetailsScreen>(
-                            child: DetailsScreen(),
+                        if (_splashScreenSeen && _showScoreScreen)
+                          MaterialPage<ScoreScreen>(
+                            child: ScoreScreen(
+                              onSeeConsequencesTapped: () {
+                                setState(() {});
+                              },
+                              onSeeActionsTapped: () {
+                                setState(() {});
+                              },
+                              onRestartTapped: () {
+                                setState(() {
+                                  _showScoreScreen = false;
+                                });
+                              },
+                              onSeeAboutTapped: () {
+                                setState(() {});
+                              },
+                            ),
                           ),
                       ],
                       onPopPage: (route, dynamic result) {
@@ -150,9 +165,9 @@ class _MyAppState extends DelayableState<MyApp> {
                         }
 
                         setState(() {
-                          if (_showDetailScreen) {
+                          if (_showScoreScreen) {
                             _showCountrySelectionScreen = false;
-                            _showDetailScreen = false;
+                            _showScoreScreen = false;
                           } else {
                             _showCountrySelectionScreen = true;
                           }
