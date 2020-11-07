@@ -40,7 +40,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
               child: PageView.builder(
                 controller: _pageController,
                 physics: const BouncingScrollPhysics(),
-                itemCount: 3,
+                itemCount: 2,
                 itemBuilder: (context, i) {
                   if (i == 0) {
                     return Center(
@@ -88,34 +88,35 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                         ),
                       ),
                     );
-                  } else {
-                    return Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 350),
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/seal.svg',
-                            ),
-                            const Text(
-                              'A climate-conscious community',
-                              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
-                            ),
-                            Gaps.h32,
-                            Text(
-                              'Be part of a community to share your ideas, progress & much more.',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.grey[600], fontSize: 18),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
                   }
+                  // else {
+                  //   return Center(
+                  //     child: ConstrainedBox(
+                  //       constraints: const BoxConstraints(maxWidth: 350),
+                  //       child: Column(
+                  //         children: [
+                  //           SvgPicture.asset(
+                  //             'assets/seal.svg',
+                  //           ),
+                  //           const Text(
+                  //             'A climate-conscious community',
+                  //             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                  //           ),
+                  //           Gaps.h32,
+                  //           Text(
+                  //             'Be part of a community to share your ideas, progress & much more.',
+                  //             textAlign: TextAlign.center,
+                  //             style: TextStyle(color: Colors.grey[600], fontSize: 18),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   );
+                  // }
                 },
               ),
               align: IndicatorAlign.bottom,
-              length: 3,
+              length: 2,
               padding: const EdgeInsets.all(10),
               indicatorColor: Colors.grey[300],
               indicatorSelectorColor: warmdDarkBlue,

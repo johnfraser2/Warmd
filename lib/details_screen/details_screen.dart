@@ -31,72 +31,43 @@ class DetailsScreen extends StatelessWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Builder(
-            builder: (context) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Gaps.h8,
-                  Row(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Builder(
+                builder: (context) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      buildBackButton(context),
-                      Expanded(child: Container()),
-                      IconButton(
-                          icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
-                          onPressed: () {
-                            Share.share(
-                                "${LocaleKeys.footprintRepartitionTitle.tr(args: [
-                                  footprint
-                                ])}\n\n${dataMap.keys.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
-                                subject: 'Warmd');
-                          }),
-                      IconButton(
-                          icon: Icon(Platform.isIOS ? CupertinoIcons.question_circle : Icons.help_outline),
-                          onPressed: () {
-                            showAboutDialog(
-                              context: context,
-                              children: [
-                                buildSmartText(context, '''
-${LocaleKeys.aboutPart1.tr()}
-
-https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf
-https://www.bbc.com/news/science-environment-49349566
-https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf
-http://www.fao.org/3/a-i3437e.pdf
-https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full
-https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_full.pdf
-https://www.energuide.be/en/questions-answers/is-electric-heating-polluting/1369/
-https://theshiftproject.org/en/article/unsustainable-use-online-video/
-https://en.wikipedia.org/wiki/Greenhouse_gas
-https://fr.wikipedia.org/wiki/Population_mondiale
-https://www.wwf.fr/sites/default/files/doc-2017-07/161027_rapport_planete_vivante.pdf
-https://www.ewg.org/meateatersguide/frequently-asked-questions/
-
-${LocaleKeys.aboutPart2.tr()}
-
-https://unsplash.com/photos/tI_DEyjWOkY
-https://unsplash.com/photos/561igiTyvSk
-https://unsplash.com/photos/Xbh_OGLRfUM
-https://unsplash.com/photos/6xeDIZgoPaw
-https://unsplash.com/photos/4mQOcabC5AA
-                  '''),
-                              ],
-                            );
-                          }),
+                      Gaps.h8,
+                      Row(
+                        children: [
+                          buildBackButton(context),
+                          Expanded(child: Container()),
+                          IconButton(
+                              icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
+                              onPressed: () {
+                                Share.share(
+                                    "${LocaleKeys.footprintRepartitionTitle.tr(args: [
+                                      footprint
+                                    ])}\n\n${dataMap.keys.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
+                                    subject: 'Warmd');
+                              }),
+                        ],
+                      ),
+                      Gaps.h16,
+                      if (dataMap.isNotEmpty) _buildTotalFootprint(context, state, dataMap),
+                      if (dataMap.isNotEmpty) _buildCountriesCard(context, state),
+                      _buildObjectivesCard(context),
+                      _buildAdvicesCard(context, state),
                     ],
-                  ),
-                  Gaps.h16,
-                  if (dataMap.isNotEmpty) _buildTotalFootprint(context, state, dataMap),
-                  if (dataMap.isNotEmpty) _buildCountriesCard(context, state),
-                  _buildObjectivesCard(context),
-                  _buildAdvicesCard(context, state),
-                  _buildDisclaimerCard(context),
-                ],
-              );
-            },
-          ),
+                  );
+                },
+              ),
+            ),
+            _buildGoToSourcesButton(context),
+          ],
         ),
       ),
     );
@@ -237,7 +208,7 @@ https://unsplash.com/photos/4mQOcabC5AA
       ),
       margin: const EdgeInsets.only(bottom: 16),
       child: Padding(
-        padding: const EdgeInsets.all(32.0),
+        padding: const EdgeInsets.all(32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -253,30 +224,69 @@ https://unsplash.com/photos/4mQOcabC5AA
     );
   }
 
-  Widget _buildDisclaimerCard(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(18)),
-        color: warmdLightBlue,
-      ),
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              LocaleKeys.disclaimerTitle.tr(),
-              style: _buildTitleStyle(context),
-            ),
-            Gaps.h16,
-            Text(
-              LocaleKeys.disclaimerExplanation.tr(),
-              style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-            ),
-          ],
+  Widget _buildGoToSourcesButton(BuildContext context) {
+    return InkWell(
+      child: Ink(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(36), topRight: Radius.circular(36)),
+          color: warmdLightBlue,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(48),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Text(
+                  'Understand how your carbon footprint is calculated and how you could help this project.',
+                  style: Theme.of(context).textTheme.subtitle2.copyWith(
+                        color: warmdDarkBlue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ),
+              Gaps.w24,
+              Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  color: warmdDarkBlue,
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                child: const Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
+      onTap: () {
+        showAboutDialog(
+          context: context,
+          children: [
+            buildSmartText(context, '''
+${LocaleKeys.aboutPart1.tr()}
+
+https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf
+https://www.bbc.com/news/science-environment-49349566
+https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf
+http://www.fao.org/3/a-i3437e.pdf
+https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full
+https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_full.pdf
+https://www.energuide.be/en/questions-answers/is-electric-heating-polluting/1369/
+https://theshiftproject.org/en/article/unsustainable-use-online-video/
+https://en.wikipedia.org/wiki/Greenhouse_gas
+https://fr.wikipedia.org/wiki/Population_mondiale
+https://www.wwf.fr/sites/default/files/doc-2017-07/161027_rapport_planete_vivante.pdf
+https://www.ewg.org/meateatersguide/frequently-asked-questions/
+
+${LocaleKeys.disclaimerTitle.tr()}
+${LocaleKeys.disclaimerExplanation.tr()}
+                      '''),
+          ],
+        );
+      },
     );
   }
 

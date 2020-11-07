@@ -78,7 +78,7 @@ class _MyAppState extends DelayableState<MyApp> {
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(warmdRed),
             shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(32.0),
+              borderRadius: BorderRadius.circular(32),
             )),
             textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.headline6.copyWith(
                   color: Colors.white, // Does not work, don't know why
