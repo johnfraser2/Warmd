@@ -69,6 +69,21 @@ class ScoreScreen extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context, Map<String, double> dataMap, CriteriasState state) {
+    final greenButtonStyle = ButtonStyle(
+      backgroundColor: MaterialStateProperty.all<Color>(warmdGreen),
+      shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      )),
+      textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2.copyWith(
+            fontWeight: FontWeight.bold,
+          )),
+      minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
+      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
+    );
+    final greyButtonStyle = greenButtonStyle.copyWith(
+      backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
+    );
+
     return Stack(
       children: [
         Container(
@@ -76,7 +91,7 @@ class ScoreScreen extends StatelessWidget {
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(36), bottomRight: Radius.circular(36)),
             color: warmdLightBlue,
           ),
-          margin: const EdgeInsets.only(bottom: 32),
+          margin: const EdgeInsets.only(bottom: 36),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -113,7 +128,7 @@ class ScoreScreen extends StatelessWidget {
                   onPressed: () => onSeeConsequencesTapped(),
                   child: Text(
                     "See what happens when you don't take action >",
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                    style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                   ),
                 ),
               ),
@@ -125,24 +140,33 @@ class ScoreScreen extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 92),
-              child: ElevatedButton(
-                onPressed: () => onSeeActionsTapped(),
-                child: const Text(
-                  'SEE WHAT YOU NEED TO DO',
-                  textAlign: TextAlign.center,
-                ),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(warmdGreen),
-                  shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  )),
-                  textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.subtitle2.copyWith(
-                        fontWeight: FontWeight.bold,
-                      )),
-                  padding:
-                      MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
-                ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () => onSeeActionsTapped(),
+                      child: const Text(
+                        'SEE WHAT YOU NEED TO DO',
+                        textAlign: TextAlign.center,
+                      ),
+                      style: greenButtonStyle,
+                    ),
+                  ),
+                  Gaps.w16,
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () => onRestartTapped(),
+                      child: Text(
+                        'REDO QUESTIONNAIRE',
+                        textAlign: TextAlign.center,
+                        style:
+                            Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: Colors.grey[600]),
+                      ),
+                      style: greyButtonStyle,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
