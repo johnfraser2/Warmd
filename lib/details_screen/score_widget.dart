@@ -28,7 +28,7 @@ class ScoreWidget extends StatefulWidget {
 class _ScoreWidgetState extends State<ScoreWidget> {
   @override
   Widget build(BuildContext context) {
-    final scoreRatio = min(1.0, widget.state.categorySet.co2EqTonsPerYear() / 25);
+    final scoreRatio = min(1.0, widget.state.co2EqTonsPerYear() / 25);
 
     return Stack(
       children: [
@@ -45,10 +45,11 @@ class _ScoreWidgetState extends State<ScoreWidget> {
           child: Align(
             alignment: Alignment.bottomCenter,
             child: RichText(
+              textAlign: TextAlign.center,
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: widget.state.categorySet.co2EqTonsPerYear().toStringAsFixed(1) + ' ',
+                    text: widget.state.co2EqTonsPerYear().toStringAsFixed(1) + ' ',
                     style: Theme.of(context)
                         .textTheme
                         .headline3
@@ -59,7 +60,7 @@ class _ScoreWidgetState extends State<ScoreWidget> {
                     style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: '\nCo2 eq/year',
+                    text: '\nCO₂eq/year',
                     style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                 ],

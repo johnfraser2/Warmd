@@ -25,7 +25,7 @@ class CriteriasScreen extends StatelessWidget {
   Widget _buildContent(BuildContext context, CriteriasState state) {
     return Scaffold(
       body: ListView(
-          key: ValueKey(state.categorySet),
+          key: ValueKey(state),
           padding: const EdgeInsets.symmetric(horizontal: 8),
           scrollDirection: Axis.vertical,
           children: [
@@ -59,7 +59,7 @@ class CriteriasScreen extends StatelessWidget {
   }
 
   List<Widget> _buildCategories(BuildContext context, CriteriasState state) {
-    final cats = state.categorySet.categories.clone()..removeAt(0); // We hide the country criteria since we selected it before
+    final cats = state.categories.clone()..removeAt(0); // We hide the country criteria since we selected it before
 
     return [
       for (CriteriaCategory cat in cats)

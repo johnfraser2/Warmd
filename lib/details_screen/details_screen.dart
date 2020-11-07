@@ -20,14 +20,14 @@ class DetailsScreen extends StatelessWidget {
     var state = context.watch<CriteriasState>();
 
     var temp = <String, double>{};
-    for (var cat in state.categorySet.categories) {
+    for (var cat in state.categories) {
       if (cat.co2EqTonsPerYear() > 0) {
         temp.putIfAbsent('${cat.title} (${cat.co2EqTonsPerYear().toStringAsFixed(1)}t)', () => cat.co2EqTonsPerYear().toDouble());
       }
     }
     final dataMap = temp.sort((a, b) => -a.value.compareTo(b.value));
 
-    var footprint = state.categorySet.getFormatedFootprint();
+    var footprint = state.getFormatedFootprint();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -290,7 +290,7 @@ https://unsplash.com/photos/4mQOcabC5AA
         ]),
     ];
 
-    final yourCo2 = state.categorySet.co2EqTonsPerYear();
+    final yourCo2 = state.co2EqTonsPerYear();
     const yourTextStyle = TextStyle(color: warmdBlue, fontWeight: FontWeight.bold);
     final yourCell = DataRow(cells: [
       DataCell(Text('⮕ ${LocaleKeys.you.tr()}', style: yourTextStyle)),
@@ -327,7 +327,7 @@ https://unsplash.com/photos/4mQOcabC5AA
 
   List<Widget> _buildAdviceWidgets(BuildContext context, CriteriasState state) {
     var list = [
-      for (CriteriaCategory cat in state.categorySet.categories) ..._buildCategoryAdviceWidgets(context, cat),
+      for (CriteriaCategory cat in state.categories) ..._buildCategoryAdviceWidgets(context, cat),
     ];
 
     return list.length > 1 ? list : [Text(LocaleKeys.noAdvicesExplanation.tr())];

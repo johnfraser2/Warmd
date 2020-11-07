@@ -705,35 +705,29 @@ class GoodsCategory extends CriteriaCategory {
   String get title => LocaleKeys.goodsAndServicesCategoryTitle.tr();
 }
 
-class CriteriaCategorySet {
-  List<CriteriaCategory> categories;
+class CriteriasState with ChangeNotifier {
+  List<CriteriaCategory> _categories;
+  List<CriteriaCategory> get categories => _categories;
 
-  CriteriaCategorySet() {
+  CriteriasState() {
     var generalCategory = GeneralCategory();
     var countryCriteria = generalCategory.criterias[0] as CountryCriteria;
     var homeCategory = HomeCategory(countryCriteria);
 
-    categories = [
+    _categories = [
       generalCategory,
       homeCategory,
       TravelCategory(homeCategory.criterias[0] as PeopleCriteria, countryCriteria),
       FoodCategory(),
       GoodsCategory(countryCriteria)
     ];
-  }
 
-  double co2EqTonsPerYear() => categories.map((cat) => cat.co2EqTonsPerYear()).reduce((a, b) => a + b);
-
-  String getFormatedFootprint() => LocaleKeys.co2EqTonsValue.tr(args: [co2EqTonsPerYear().toStringAsFixed(1)]);
-}
-
-class CriteriasState with ChangeNotifier {
-  final _categorySet = CriteriaCategorySet();
-  CriteriaCategorySet get categorySet => _categorySet;
-
-  CriteriasState() {
     _loadState();
   }
+
+  double co2EqTonsPerYear() => _categories.map((cat) => cat.co2EqTonsPerYear()).reduce((a, b) => a + b);
+
+  String getFormatedFootprint() => LocaleKeys.co2EqTonsValue.tr(args: [co2EqTonsPerYear().toStringAsFixed(1)]);
 
   void persist(Criteria c) {
     notifyListeners();
@@ -746,7 +740,7 @@ class CriteriasState with ChangeNotifier {
   Future<void> _loadState() async {
     var prefs = await SharedPreferences.getInstance();
 
-    _categorySet.categories.forEach((cat) {
+    _categories.forEach((cat) {
       cat.criterias.forEach((crit) {
         crit.currentValue = prefs.getDouble(crit.key) ?? crit.currentValue;
 

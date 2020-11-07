@@ -14,7 +14,7 @@ class CountryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<CriteriasState>();
-    final c = state.categorySet.categories[0].criterias[0];
+    final c = state.categories[0].criterias[0];
 
     return Scaffold(
       body: Column(
