@@ -14,13 +14,7 @@ abstract class  LocaleKeys {
   static const cleanElectricityCriteriaTitle = 'cleanElectricityCriteriaTitle';
   static const cleanElectricityCriteriaExplanation = 'cleanElectricityCriteriaExplanation';
   static const cleanElectricityCriteriaAdvice = 'cleanElectricityCriteriaAdvice';
-  static const waterCriteriaTitle = 'waterCriteriaTitle';
-  static const waterCriteriaExplanation = 'waterCriteriaExplanation';
-  static const waterCriteriaLabel1 = 'waterCriteriaLabel1';
-  static const waterCriteriaLabel2 = 'waterCriteriaLabel2';
-  static const waterCriteriaLabel3 = 'waterCriteriaLabel3';
-  static const waterCriteriaAdvice = 'waterCriteriaAdvice';
-  static const homeCategoryTitle = 'homeCategoryTitle';
+  static const utilitiesCategoryTitle = 'utilitiesCategoryTitle';
   static const flightsCriteriaTitle = 'flightsCriteriaTitle';
   static const flightsCriteriaExplanation = 'flightsCriteriaExplanation';
   static const flightsCriteriaAdvice = 'flightsCriteriaAdvice';
@@ -50,6 +44,12 @@ abstract class  LocaleKeys {
   static const materialGoodsCriteriaTitle = 'materialGoodsCriteriaTitle';
   static const materialGoodsCriteriaExplanation = 'materialGoodsCriteriaExplanation';
   static const materialGoodsCriteriaAdvice = 'materialGoodsCriteriaAdvice';
+  static const waterCriteriaTitle = 'waterCriteriaTitle';
+  static const waterCriteriaExplanation = 'waterCriteriaExplanation';
+  static const waterCriteriaLabel1 = 'waterCriteriaLabel1';
+  static const waterCriteriaLabel2 = 'waterCriteriaLabel2';
+  static const waterCriteriaLabel3 = 'waterCriteriaLabel3';
+  static const waterCriteriaAdvice = 'waterCriteriaAdvice';
   static const internetCriteriaTitle = 'internetCriteriaTitle';
   static const internetCriteriaExplanation = 'internetCriteriaExplanation';
   static const internetCriteriaLabel1 = 'internetCriteriaLabel1';

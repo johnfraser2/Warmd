@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -11,16 +12,16 @@ import '../common/criterias.dart';
 import '../common/screen_template.dart';
 import '../generated/locale_keys.g.dart';
 
-class HomeCategoryScreen extends StatelessWidget {
+class UtilitiesCategoryScreen extends StatelessWidget {
   final Function onContinueTapped;
 
-  const HomeCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
+  const UtilitiesCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var state = context.watch<CriteriasState>();
 
-    return _CriteriasScreen(criteriaCategory: state.categories[1], onContinueTapped: onContinueTapped);
+    return _CriteriasScreen(criteriaCategory: state.categories[1], progressValue: 0.2, onContinueTapped: onContinueTapped);
   }
 }
 
@@ -33,7 +34,7 @@ class TravelCategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = context.watch<CriteriasState>();
 
-    return _CriteriasScreen(criteriaCategory: state.categories[2], onContinueTapped: onContinueTapped);
+    return _CriteriasScreen(criteriaCategory: state.categories[2], progressValue: 0.4, onContinueTapped: onContinueTapped);
   }
 }
 
@@ -46,7 +47,7 @@ class FoodCategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = context.watch<CriteriasState>();
 
-    return _CriteriasScreen(criteriaCategory: state.categories[3], onContinueTapped: onContinueTapped);
+    return _CriteriasScreen(criteriaCategory: state.categories[3], progressValue: 0.6, onContinueTapped: onContinueTapped);
   }
 }
 
@@ -59,26 +60,34 @@ class GoodsCategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var state = context.watch<CriteriasState>();
 
-    return _CriteriasScreen(criteriaCategory: state.categories[4], onContinueTapped: onContinueTapped);
+    return _CriteriasScreen(criteriaCategory: state.categories[4], progressValue: 0.8, onContinueTapped: onContinueTapped);
   }
 }
 
 class _CriteriasScreen extends StatelessWidget {
   final CriteriaCategory criteriaCategory;
+  final double progressValue;
   final Function onContinueTapped;
 
-  const _CriteriasScreen({@required this.criteriaCategory, @required this.onContinueTapped, Key key}) : super(key: key);
+  const _CriteriasScreen(
+      {@required this.criteriaCategory, @required this.progressValue, @required this.onContinueTapped, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var state = context.watch<CriteriasState>();
 
     return ScreenTemplate(
-      progressValue: 0.2,
+      progressValue: progressValue,
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: Column(
           children: [
+            SvgPicture.asset(
+              'assets/${criteriaCategory.key}.svg',
+              height: 96,
+            ),
+            Gaps.h16,
             Text(
               criteriaCategory.title,
               style: Theme.of(context).textTheme.headline5.copyWith(color: warmdGreen, fontWeight: FontWeight.bold),

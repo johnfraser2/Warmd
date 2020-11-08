@@ -146,8 +146,8 @@ class _MyAppState extends DelayableState<MyApp> {
                             ),
                           ),
                         if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum)
-                          MaterialPage<HomeCategoryScreen>(
-                            child: HomeCategoryScreen(
+                          MaterialPage<UtilitiesCategoryScreen>(
+                            child: UtilitiesCategoryScreen(
                               onContinueTapped: () {
                                 setState(() {
                                   _stepsNum++;
