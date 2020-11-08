@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:warmd/score_screen/actions_screen.dart';
+import 'package:warmd/score_screen/consequences_screen.dart';
 
 import 'common/common.dart';
 import 'common/criterias.dart';
@@ -46,6 +48,8 @@ class _MyAppState extends DelayableState<MyApp> {
   var _splashScreenSeen = false;
   var _showCountrySelectionScreen = false;
   var _showScoreScreen = false;
+  var _showActionsScreen = false;
+  var _showConsequencesScreen = false;
   final _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
@@ -145,10 +149,14 @@ class _MyAppState extends DelayableState<MyApp> {
                           MaterialPage<ScoreScreen>(
                             child: ScoreScreen(
                               onSeeConsequencesTapped: () {
-                                setState(() {});
+                                setState(() {
+                                  _showConsequencesScreen = true;
+                                });
                               },
                               onSeeActionsTapped: () {
-                                setState(() {});
+                                setState(() {
+                                  _showActionsScreen = true;
+                                });
                               },
                               onRestartTapped: () {
                                 setState(() {
@@ -160,6 +168,14 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
+                        if (_splashScreenSeen && _showConsequencesScreen)
+                          const MaterialPage<ConsequencesScreen>(
+                            child: ConsequencesScreen(),
+                          ),
+                        if (_splashScreenSeen && _showActionsScreen)
+                          const MaterialPage<ActionsScreen>(
+                            child: ActionsScreen(),
+                          ),
                       ],
                       onPopPage: (route, dynamic result) {
                         if (!route.didPop(result)) {
@@ -167,7 +183,11 @@ class _MyAppState extends DelayableState<MyApp> {
                         }
 
                         setState(() {
-                          if (_showScoreScreen) {
+                          if (_showActionsScreen) {
+                            _showActionsScreen = false;
+                          } else if (_showConsequencesScreen) {
+                            _showConsequencesScreen = false;
+                          } else if (_showScoreScreen) {
                             _showCountrySelectionScreen = false;
                             _showScoreScreen = false;
                           } else {

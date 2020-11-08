@@ -2,12 +2,10 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../common/common.dart';
 import '../common/criterias.dart';
@@ -53,13 +51,12 @@ class ScoreScreen extends StatelessWidget {
                   children: [
                     if (dataMap.isNotEmpty) _buildFootprintRepartition(context, state, dataMap),
                     _buildCountriesComparison(context, state),
-                    _buildObjectivesCard(context),
-                    _buildAdvicesCard(context, state),
                   ],
                 );
               },
             ),
           ),
+          Gaps.h64,
           _buildGoToSourcesButton(context),
         ],
       ),
@@ -93,7 +90,7 @@ class ScoreScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Gaps.h32,
+              const SizedBox(height: 44),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
@@ -217,93 +214,6 @@ class ScoreScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildObjectivesCard(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(18)),
-        color: warmdLightBlue,
-      ),
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              LocaleKeys.globalObjectivesTitle.tr(),
-              style: _buildTitleStyle(context),
-            ),
-            Gaps.h16,
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: LocaleKeys.globalObjectivesPart1.tr(),
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-                  ),
-                  TextSpan(
-                    text: LocaleKeys.globalObjectivesPart2.tr(),
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  TextSpan(
-                    text: LocaleKeys.globalObjectivesPart3.tr(),
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-                  ),
-                  TextSpan(
-                    text: LocaleKeys.globalObjectivesPart4.tr(),
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(
-                          color: warmdDarkBlue,
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.w300,
-                        ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        launch('https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf');
-                      },
-                  ),
-                  TextSpan(
-                    text: LocaleKeys.globalObjectivesPart5.tr(),
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-                  ),
-                ],
-              ),
-            ),
-            const Image(
-              image: AssetImage('assets/carbon_graph.webp'),
-              fit: BoxFit.contain,
-              height: 264,
-              width: double.infinity,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAdvicesCard(BuildContext context, CriteriasState state) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(18)),
-        color: warmdLightBlue,
-      ),
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              LocaleKeys.advicesTitle.tr(),
-              style: _buildTitleStyle(context),
-            ),
-            Gaps.h16,
-            ..._buildAdviceWidgets(context, state),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildGoToSourcesButton(BuildContext context) {
     return InkWell(
       child: Ink(
@@ -413,46 +323,6 @@ ${LocaleKeys.disclaimerExplanation.tr()}
         rows: rows,
       ),
     );
-  }
-
-  List<Widget> _buildAdviceWidgets(BuildContext context, CriteriasState state) {
-    var list = [
-      for (CriteriaCategory cat in state.categories) ..._buildCategoryAdviceWidgets(context, cat),
-    ];
-
-    return list.length > 1 ? list : [Text(LocaleKeys.noAdvicesExplanation.tr())];
-  }
-
-  List<Widget> _buildCategoryAdviceWidgets(BuildContext context, CriteriaCategory cat) {
-    var list = [
-      Gaps.h16,
-      Text(
-        cat.title,
-        style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
-      ),
-      Gaps.h8,
-      for (Criteria crit in cat.criterias)
-        if (crit.advice() != null)
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Text(
-              '• ${crit.advice()}',
-              style: Theme.of(context).textTheme.bodyText2.copyWith(
-                    fontWeight: FontWeight.w300,
-                  ),
-            ),
-          ),
-      Gaps.h16,
-    ];
-
-    return list.length > 4 ? list : [];
-  }
-
-  TextStyle _buildTitleStyle(BuildContext context) {
-    return Theme.of(context).textTheme.subtitle1.copyWith(
-          color: warmdDarkBlue,
-          fontWeight: FontWeight.bold,
-        );
   }
 
   // Numbers found on coolclimate.org website

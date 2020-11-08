@@ -7,7 +7,7 @@ class ScreenTemplate extends StatelessWidget {
   final double progressValue;
   final Widget body;
 
-  const ScreenTemplate({@required this.progressValue, @required this.body, Key key}) : super(key: key);
+  const ScreenTemplate({this.progressValue, @required this.body, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
