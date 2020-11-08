@@ -11,24 +11,73 @@ import '../common/criterias.dart';
 import '../common/screen_template.dart';
 import '../generated/locale_keys.g.dart';
 
-class CriteriasScreen extends StatelessWidget {
-  final Function onSeeScoreTapped;
+class HomeCategoryScreen extends StatelessWidget {
+  final Function onContinueTapped;
 
-  const CriteriasScreen({@required this.onSeeScoreTapped, Key key}) : super(key: key);
+  const HomeCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var state = context.watch<CriteriasState>();
 
-    return _buildContent(context, state);
+    return _CriteriasScreen(criteriaCategory: state.categories[1], onContinueTapped: onContinueTapped);
   }
+}
 
-  Widget _buildContent(BuildContext context, CriteriasState state) {
+class TravelCategoryScreen extends StatelessWidget {
+  final Function onContinueTapped;
+
+  const TravelCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var state = context.watch<CriteriasState>();
+
+    return _CriteriasScreen(criteriaCategory: state.categories[2], onContinueTapped: onContinueTapped);
+  }
+}
+
+class FoodCategoryScreen extends StatelessWidget {
+  final Function onContinueTapped;
+
+  const FoodCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var state = context.watch<CriteriasState>();
+
+    return _CriteriasScreen(criteriaCategory: state.categories[3], onContinueTapped: onContinueTapped);
+  }
+}
+
+class GoodsCategoryScreen extends StatelessWidget {
+  final Function onContinueTapped;
+
+  const GoodsCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var state = context.watch<CriteriasState>();
+
+    return _CriteriasScreen(criteriaCategory: state.categories[4], onContinueTapped: onContinueTapped);
+  }
+}
+
+class _CriteriasScreen extends StatelessWidget {
+  final CriteriaCategory criteriaCategory;
+  final Function onContinueTapped;
+
+  const _CriteriasScreen({@required this.criteriaCategory, @required this.onContinueTapped, Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var state = context.watch<CriteriasState>();
+
     return ScreenTemplate(
       progressValue: 0.2,
       body: Column(
         children: [
-          ..._buildCategories(context, state),
+          _buildCategory(context, state),
           const Padding(
             padding: EdgeInsets.all(24),
             child: Text(
@@ -42,7 +91,7 @@ class CriteriasScreen extends StatelessWidget {
             child: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  onSeeScoreTapped();
+                  onContinueTapped();
                 },
                 child: const Text('CONTINUE'),
               ),
@@ -53,46 +102,41 @@ class CriteriasScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildCategories(BuildContext context, CriteriasState state) {
-    final cats = state.categories.clone()..removeAt(0); // We hide the country criteria since we selected it before
-
-    return [
-      for (CriteriaCategory cat in cats)
-        Padding(
-          padding: const EdgeInsets.only(bottom: 32.0),
-          child: Container(
-            margin: const EdgeInsets.all(8.0),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(18)),
-              color: warmdLightBlue,
-            ),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: Column(
-              children: [
-                Image(
-                  image: AssetImage('assets/${cat.key}.webp'),
-                  fit: BoxFit.cover,
-                  height: 164,
-                  width: double.infinity,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
-                  child: Builder(
-                    builder: (context) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          for (Criteria crit in cat.criterias) ..._buildCriteria(context, state, crit),
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
+  Widget _buildCategory(BuildContext context, CriteriasState state) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 32.0),
+      child: Container(
+        margin: const EdgeInsets.all(8.0),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(18)),
+          color: warmdLightBlue,
         ),
-    ];
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Column(
+          children: [
+            Image(
+              image: AssetImage('assets/${criteriaCategory.key}.webp'),
+              fit: BoxFit.cover,
+              height: 164,
+              width: double.infinity,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
+              child: Builder(
+                builder: (context) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      for (Criteria crit in criteriaCategory.criterias) ..._buildCriteria(context, state, crit),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   List<Widget> _buildCriteria(BuildContext context, CriteriasState state, Criteria c) {

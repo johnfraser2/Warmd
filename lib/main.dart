@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:warmd/score_screen/actions_screen.dart';
-import 'package:warmd/score_screen/consequences_screen.dart';
 
+import 'categories/criterias_screens.dart';
 import 'common/common.dart';
 import 'common/criterias.dart';
 import 'common/delayable_state.dart';
-import 'criterias_screen/criterias_screen.dart';
 import 'generated/codegen_loader.g.dart';
 import 'onboarding/country_screen.dart';
 import 'onboarding/onboarding_screen.dart';
-import 'score_screen/score_screen.dart';
+import 'score/actions_screen.dart';
+import 'score/consequences_screen.dart';
+import 'score/score_screen.dart';
 import 'splash_screen.dart';
 
 void main() async {
@@ -44,10 +44,11 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
+const _firstCategoryScreenNum = 2;
+
 class _MyAppState extends DelayableState<MyApp> {
   var _splashScreenSeen = false;
-  var _showCountrySelectionScreen = false;
-  var _showScoreScreen = false;
+  var _stepsNum = _firstCategoryScreenNum;
   var _showActionsScreen = false;
   var _showConsequencesScreen = false;
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -113,38 +114,69 @@ class _MyAppState extends DelayableState<MyApp> {
                           const MaterialPage<SplashScreen>(
                             child: SplashScreen(),
                           ),
-                        if (_splashScreenSeen && !initState.countrySelected && !_showCountrySelectionScreen)
+                        if (_splashScreenSeen && !initState.countrySelected && _stepsNum == _firstCategoryScreenNum)
                           MaterialPage<OnboardingScreen>(
                             child: OnboardingScreen(
                               onOnboardingFinished: () {
                                 setState(() {
-                                  _showCountrySelectionScreen = true;
+                                  _stepsNum = 1;
                                 });
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && _showCountrySelectionScreen)
+                        if (_splashScreenSeen &&
+                            ((!initState.countrySelected && _stepsNum == 1) || (initState.countrySelected && _stepsNum >= 1)))
                           MaterialPage<CountryScreen>(
                             child: CountryScreen(
                               onCountrySelected: () {
                                 initState.countrySelected = true;
                                 setState(() {
-                                  _showCountrySelectionScreen = false;
+                                  _stepsNum++;
                                 });
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && !_showCountrySelectionScreen && initState.countrySelected)
-                          MaterialPage<CriteriasScreen>(
-                            child: CriteriasScreen(
-                              onSeeScoreTapped: () {
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum)
+                          MaterialPage<HomeCategoryScreen>(
+                            child: HomeCategoryScreen(
+                              onContinueTapped: () {
                                 setState(() {
-                                  _showScoreScreen = true;
+                                  _stepsNum++;
                                 });
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && _showScoreScreen)
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 1)
+                          MaterialPage<TravelCategoryScreen>(
+                            child: TravelCategoryScreen(
+                              onContinueTapped: () {
+                                setState(() {
+                                  _stepsNum++;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 2)
+                          MaterialPage<FoodCategoryScreen>(
+                            child: FoodCategoryScreen(
+                              onContinueTapped: () {
+                                setState(() {
+                                  _stepsNum++;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 3)
+                          MaterialPage<GoodsCategoryScreen>(
+                            child: GoodsCategoryScreen(
+                              onContinueTapped: () {
+                                setState(() {
+                                  _stepsNum++;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 4)
                           MaterialPage<ScoreScreen>(
                             child: ScoreScreen(
                               onSeeConsequencesTapped: () {
@@ -159,7 +191,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                               onRestartTapped: () {
                                 setState(() {
-                                  _showScoreScreen = false;
+                                  _stepsNum = _firstCategoryScreenNum;
                                 });
                               },
                               onSeeAboutTapped: () {
@@ -186,11 +218,8 @@ class _MyAppState extends DelayableState<MyApp> {
                             _showActionsScreen = false;
                           } else if (_showConsequencesScreen) {
                             _showConsequencesScreen = false;
-                          } else if (_showScoreScreen) {
-                            _showCountrySelectionScreen = false;
-                            _showScoreScreen = false;
                           } else {
-                            _showCountrySelectionScreen = true;
+                            _stepsNum--;
                           }
                         });
 
