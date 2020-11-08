@@ -44,10 +44,7 @@ class CriteriasScreen extends StatelessWidget {
                 onPressed: () {
                   onSeeScoreTapped();
                 },
-                child: const Text(
-                  'CONTINUE',
-                  style: TextStyle(color: Colors.white),
-                ),
+                child: const Text('CONTINUE'),
               ),
             ),
           )

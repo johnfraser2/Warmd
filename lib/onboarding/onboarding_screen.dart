@@ -129,10 +129,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
               onPressed: () {
                 widget.onOnboardingFinished();
               },
-              child: const Text(
-                'GET STARTED',
-                style: TextStyle(color: Colors.white),
-              ),
+              child: const Text('GET STARTED'),
             ),
           ),
           Gaps.h64,

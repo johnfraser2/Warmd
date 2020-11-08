@@ -71,8 +71,6 @@ class _MyAppState extends DelayableState<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         sliderTheme: SliderTheme.of(context).copyWith(
-          //TODO check how to use Valeda font
-          valueIndicatorTextStyle: const TextStyle(color: Colors.white),
           activeTrackColor: warmdRed,
           inactiveTrackColor: Colors.grey[50],
           thumbColor: Colors.white,
@@ -85,10 +83,11 @@ class _MyAppState extends DelayableState<MyApp> {
             shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(32),
             )),
-            //TODO check how to use Valeda font
-            textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.headline6.copyWith(
-                  color: Colors.white, // Does not work, don't know why
-                )),
+            textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(
+              fontFamily: 'VarelaRound',
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            )),
             elevation: MaterialStateProperty.all<double>(0),
             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 72, vertical: 14)),
           ),
