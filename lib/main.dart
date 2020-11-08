@@ -107,15 +107,16 @@ class _MyAppState extends DelayableState<MyApp> {
                 ? Container()
                 : WillPopScope(
                     onWillPop: () async {
-                      // If we are on the first category screen, the system back button quit the app (contrary to the top-left back one)
-                      if (initState.countrySelected && _stepsNum == _firstCategoryScreenNum) {
+                      // If we are on the first category screen (or before), the system back button quit the app (contrary to the top-left back one)
+                      // That is a non-standard navigation.
+                      if (_stepsNum <= _firstCategoryScreenNum) {
                         return true;
                       } else {
                         _onPopPage();
                         return false;
                       }
                     },
-                    // The navigation is non-standard. Screens are not stacked to not reset display when coming back to them.
+                    // Screens are not stacked to not reset display when coming back to them.
                     child: Navigator(
                       key: _navigatorKey,
                       pages: [
