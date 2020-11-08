@@ -106,7 +106,16 @@ class _MyAppState extends DelayableState<MyApp> {
             builder: (_, initState, __) => initState.countrySelected == null
                 ? Container()
                 : WillPopScope(
-                    onWillPop: () async => !await _navigatorKey.currentState.maybePop(),
+                    onWillPop: () async {
+                      // If we are on the first category screen, the system back button quit the app (contrary to the top-left back one)
+                      if (initState.countrySelected && _stepsNum == _firstCategoryScreenNum) {
+                        return true;
+                      } else {
+                        _onPopPage();
+                        return false;
+                      }
+                    },
+                    // The navigation is non-standard. Screens are not stacked to not reset display when coming back to them.
                     child: Navigator(
                       key: _navigatorKey,
                       pages: [
@@ -124,8 +133,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen &&
-                            ((!initState.countrySelected && _stepsNum == 1) || (initState.countrySelected && _stepsNum >= 1)))
+                        if (_splashScreenSeen && _stepsNum == 1)
                           MaterialPage<CountryScreen>(
                             child: CountryScreen(
                               onCountrySelected: () {
@@ -136,7 +144,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum)
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum)
                           MaterialPage<HomeCategoryScreen>(
                             child: HomeCategoryScreen(
                               onContinueTapped: () {
@@ -146,7 +154,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 1)
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum + 1)
                           MaterialPage<TravelCategoryScreen>(
                             child: TravelCategoryScreen(
                               onContinueTapped: () {
@@ -156,7 +164,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 2)
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum + 2)
                           MaterialPage<FoodCategoryScreen>(
                             child: FoodCategoryScreen(
                               onContinueTapped: () {
@@ -166,7 +174,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 3)
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum + 3)
                           MaterialPage<GoodsCategoryScreen>(
                             child: GoodsCategoryScreen(
                               onContinueTapped: () {
@@ -176,7 +184,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 4)
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum + 4)
                           MaterialPage<ScoreScreen>(
                             child: ScoreScreen(
                               onSeeConsequencesTapped: () {
@@ -213,16 +221,7 @@ class _MyAppState extends DelayableState<MyApp> {
                           return false;
                         }
 
-                        setState(() {
-                          if (_showActionsScreen) {
-                            _showActionsScreen = false;
-                          } else if (_showConsequencesScreen) {
-                            _showConsequencesScreen = false;
-                          } else {
-                            _stepsNum--;
-                          }
-                        });
-
+                        _onPopPage();
                         return true;
                       },
                     ),
@@ -231,6 +230,18 @@ class _MyAppState extends DelayableState<MyApp> {
         ),
       ),
     );
+  }
+
+  void _onPopPage() {
+    setState(() {
+      if (_showActionsScreen) {
+        _showActionsScreen = false;
+      } else if (_showConsequencesScreen) {
+        _showConsequencesScreen = false;
+      } else {
+        _stepsNum--;
+      }
+    });
   }
 }
 
