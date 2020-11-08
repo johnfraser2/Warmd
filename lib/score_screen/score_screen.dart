@@ -41,29 +41,27 @@ class ScoreScreen extends StatelessWidget {
     final dataMap = temp.sort((a, b) => -a.value.compareTo(b.value));
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildHeader(context, dataMap, state),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Builder(
-                builder: (context) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      if (dataMap.isNotEmpty) _buildFootprintRepartition(context, state, dataMap),
-                      _buildCountriesComparison(context, state),
-                      _buildObjectivesCard(context),
-                      _buildAdvicesCard(context, state),
-                    ],
-                  );
-                },
-              ),
+      body: ListView(
+        children: [
+          _buildHeader(context, dataMap, state),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Builder(
+              builder: (context) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    if (dataMap.isNotEmpty) _buildFootprintRepartition(context, state, dataMap),
+                    _buildCountriesComparison(context, state),
+                    _buildObjectivesCard(context),
+                    _buildAdvicesCard(context, state),
+                  ],
+                );
+              },
             ),
-            _buildGoToSourcesButton(context),
-          ],
-        ),
+          ),
+          _buildGoToSourcesButton(context),
+        ],
       ),
     );
   }
@@ -95,27 +93,30 @@ class ScoreScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Gaps.h8,
-              Row(
-                children: [
-                  buildBackButton(context),
-                  Expanded(child: Container()),
-                  IconButton(
-                      icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
-                      onPressed: () {
-                        var footprint = state.getFormatedFootprint();
+              Gaps.h32,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Row(
+                  children: [
+                    buildBackButton(context),
+                    Expanded(child: Container()),
+                    IconButton(
+                        icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
+                        onPressed: () {
+                          var footprint = state.getFormatedFootprint();
 
-                        Share.share(
-                            "${LocaleKeys.footprintRepartitionTitle.tr(args: [
-                              footprint
-                            ])}\n\n${dataMap.keys.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
-                            subject: 'Warmd');
-                      }),
-                ],
+                          Share.share(
+                              "${LocaleKeys.footprintRepartitionTitle.tr(args: [
+                                footprint
+                              ])}\n\n${dataMap.keys.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
+                              subject: 'Warmd');
+                        }),
+                  ],
+                ),
               ),
               Gaps.h16,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 38),
                 child: Text(
                   'Your carbon footprint is',
                   style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),

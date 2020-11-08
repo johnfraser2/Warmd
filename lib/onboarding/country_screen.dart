@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../common/common.dart';
 import '../common/criterias.dart';
+import '../common/steps_progress_indicator.dart';
 
 class CountryScreen extends StatelessWidget {
   final Function onCountrySelected;
@@ -20,6 +21,11 @@ class CountryScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Gaps.h16,
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: StepsProgressIndicator(value: 0.1),
+          ),
           Gaps.h64,
           Expanded(
             child: Container(
@@ -27,15 +33,15 @@ class CountryScreen extends StatelessWidget {
               alignment: Alignment.center,
               child: Column(
                 children: [
-                  const Text(
+                  Text(
                     'COUNTRY',
-                    style: TextStyle(color: warmdBlue, fontSize: 20),
+                    style: Theme.of(context).textTheme.headline6.copyWith(color: warmdBlue, fontWeight: FontWeight.bold),
                   ),
                   Gaps.h32,
-                  const Text(
+                  Text(
                     'Which country do you reside in?',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: warmdDarkBlue, fontSize: 22, fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                   ),
                   Gaps.h64,
                   Container(
@@ -78,9 +84,12 @@ class CountryScreen extends StatelessWidget {
                     ),
                   ),
                   Gaps.h32,
-                  const Text(
+                  Text(
                     'This information allows us to correctly compute your carbon footprint.',
-                    style: TextStyle(color: warmdDarkBlue, fontSize: 14, fontWeight: FontWeight.w500),
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle2
+                        .copyWith(color: warmdDarkBlue, fontSize: 14, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
@@ -91,10 +100,7 @@ class CountryScreen extends StatelessWidget {
               onPressed: () {
                 onCountrySelected();
               },
-              child: const Text(
-                'CONTINUE',
-                style: TextStyle(color: Colors.white),
-              ),
+              child: const Text('CONTINUE'),
             ),
           ),
           Gaps.h64,

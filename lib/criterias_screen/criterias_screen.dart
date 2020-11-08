@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../common/common.dart';
 import '../common/criterias.dart';
+import '../common/screen_template.dart';
 import '../generated/locale_keys.g.dart';
 
 class CriteriasScreen extends StatelessWidget {
@@ -23,38 +24,35 @@ class CriteriasScreen extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context, CriteriasState state) {
-    return Scaffold(
-      body: ListView(
-          key: ValueKey(state),
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          scrollDirection: Axis.vertical,
-          children: [
-            Gaps.h8,
-            buildBackButton(context),
-            ..._buildCategories(context, state),
-            const Padding(
-              padding: EdgeInsets.all(24),
-              child: Text(
-                'You can always update the data later on.',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: warmdDarkBlue, fontSize: 14, fontWeight: FontWeight.w500),
-              ),
+    return ScreenTemplate(
+      progressValue: 0.2,
+      body: Column(
+        children: [
+          ..._buildCategories(context, state),
+          const Padding(
+            padding: EdgeInsets.all(24),
+            child: Text(
+              'You can always update the data later on.',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: warmdDarkBlue, fontSize: 14, fontWeight: FontWeight.w500),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 12, bottom: 32),
-              child: Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    onSeeScoreTapped();
-                  },
-                  child: const Text(
-                    'CONTINUE',
-                    style: TextStyle(color: Colors.white),
-                  ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 12, bottom: 32),
+            child: Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  onSeeScoreTapped();
+                },
+                child: const Text(
+                  'CONTINUE',
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
-            )
-          ]),
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -65,38 +63,35 @@ class CriteriasScreen extends StatelessWidget {
       for (CriteriaCategory cat in cats)
         Padding(
           padding: const EdgeInsets.only(bottom: 32.0),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              margin: const EdgeInsets.all(8.0),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(18)),
-                color: warmdLightBlue,
-              ),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Column(
-                children: [
-                  Image(
-                    image: AssetImage('assets/${cat.key}.webp'),
-                    fit: BoxFit.cover,
-                    height: 164,
-                    width: double.infinity,
+          child: Container(
+            margin: const EdgeInsets.all(8.0),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(18)),
+              color: warmdLightBlue,
+            ),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: Column(
+              children: [
+                Image(
+                  image: AssetImage('assets/${cat.key}.webp'),
+                  fit: BoxFit.cover,
+                  height: 164,
+                  width: double.infinity,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
+                  child: Builder(
+                    builder: (context) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for (Criteria crit in cat.criterias) ..._buildCriteria(context, state, crit),
+                        ],
+                      );
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
-                    child: Builder(
-                      builder: (context) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            for (Criteria crit in cat.criterias) ..._buildCriteria(context, state, crit),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
