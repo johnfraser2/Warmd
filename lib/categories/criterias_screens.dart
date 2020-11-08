@@ -75,20 +75,24 @@ class _CriteriasScreen extends StatelessWidget {
 
     return ScreenTemplate(
       progressValue: 0.2,
-      body: Column(
-        children: [
-          _buildCategory(context, state),
-          const Padding(
-            padding: EdgeInsets.all(24),
-            child: Text(
+      body: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          children: [
+            Text(
+              criteriaCategory.title,
+              style: Theme.of(context).textTheme.headline5.copyWith(color: warmdGreen, fontWeight: FontWeight.bold),
+            ),
+            Gaps.h32,
+            for (Criteria crit in criteriaCategory.criterias) _buildCriteria(context, state, crit),
+            Gaps.h32,
+            Text(
               'You can always update the data later on.',
               textAlign: TextAlign.center,
-              style: TextStyle(color: warmdDarkBlue, fontSize: 14, fontWeight: FontWeight.w500),
+              style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 12, bottom: 32),
-            child: Center(
+            Gaps.h24,
+            Center(
               child: ElevatedButton(
                 onPressed: () {
                   onContinueTapped();
@@ -96,65 +100,38 @@ class _CriteriasScreen extends StatelessWidget {
                 child: const Text('CONTINUE'),
               ),
             ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCategory(BuildContext context, CriteriasState state) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 32.0),
-      child: Container(
-        margin: const EdgeInsets.all(8.0),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(18)),
-          color: warmdLightBlue,
-        ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Column(
-          children: [
-            Image(
-              image: AssetImage('assets/${criteriaCategory.key}.webp'),
-              fit: BoxFit.cover,
-              height: 164,
-              width: double.infinity,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 24.0),
-              child: Builder(
-                builder: (context) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      for (Criteria crit in criteriaCategory.criterias) ..._buildCriteria(context, state, crit),
-                    ],
-                  );
-                },
-              ),
-            ),
+            Gaps.h48,
           ],
         ),
       ),
     );
   }
 
-  List<Widget> _buildCriteria(BuildContext context, CriteriasState state, Criteria c) {
+  Widget _buildCriteria(BuildContext context, CriteriasState state, Criteria c) {
     var unit = c.unit != null ? ' ' + c.unit : '';
     var valueWithUnit = NumberFormat.decimalPattern().format(c.currentValue.abs()).toString() + unit;
 
-    return [
-      Gaps.h32,
-      Text(
-        c.title,
-        style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(18)),
+        color: warmdLightBlue,
       ),
-      Gaps.h8,
-      if (c.explanation != null) buildSmartText(context, c.explanation),
-      Gaps.h8,
-      if (c.labels != null) _buildDropdown(context, c, state) else _buildSlider(c, valueWithUnit, context, state),
-      Gaps.h8,
-    ];
+      padding: const EdgeInsets.all(32),
+      margin: const EdgeInsets.only(bottom: 32),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            c.title,
+            style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
+          ),
+          Gaps.h8,
+          if (c.explanation != null) buildSmartText(context, c.explanation),
+          Gaps.h8,
+          if (c.labels != null) _buildDropdown(context, c, state) else _buildSlider(c, valueWithUnit, context, state),
+        ],
+      ),
+    );
   }
 
   Widget _buildDropdown(BuildContext context, Criteria c, CriteriasState state) {

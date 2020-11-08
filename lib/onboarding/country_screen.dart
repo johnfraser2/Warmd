@@ -86,10 +86,7 @@ class CountryScreen extends StatelessWidget {
                   Gaps.h32,
                   Text(
                     'This information allows us to correctly compute your carbon footprint.',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle2
-                        .copyWith(color: warmdDarkBlue, fontSize: 14, fontWeight: FontWeight.w500),
+                    style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
                   ),
                 ],
               ),

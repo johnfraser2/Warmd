@@ -73,7 +73,7 @@ class _MyAppState extends DelayableState<MyApp> {
         scaffoldBackgroundColor: Colors.white,
         sliderTheme: SliderTheme.of(context).copyWith(
           activeTrackColor: warmdRed,
-          inactiveTrackColor: Colors.grey[50],
+          inactiveTrackColor: Colors.grey[300],
           thumbColor: Colors.white,
           tickMarkShape: SliderTickMarkShape.noTickMark,
           trackHeight: 8,
