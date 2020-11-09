@@ -21,6 +21,8 @@ abstract class Criteria {
 
   double co2EqTonsPerYear();
   String advice();
+
+  String getFormatedFootprint() => LocaleKeys.co2EqTonsValue.tr(args: [co2EqTonsPerYear().toStringAsFixed(1)]);
 }
 
 abstract class CriteriaCategory {

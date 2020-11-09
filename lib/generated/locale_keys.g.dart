@@ -1,11 +1,8 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 abstract class  LocaleKeys {
-  static const countryCriteriaTitle = 'countryCriteriaTitle';
   static const generalCategoryTitle = 'generalCategoryTitle';
   static const generalAdvice = 'generalAdvice';
-  static const peopleCriteriaTitle = 'peopleCriteriaTitle';
-  static const peopleCriteriaExplanation = 'peopleCriteriaExplanation';
   static const heatingFuelCriteriaTitle = 'heatingFuelCriteriaTitle';
   static const heatingFuelCriteriaExplanation = 'heatingFuelCriteriaExplanation';
   static const heatingFuelCriteriaAdvice = 'heatingFuelCriteriaAdvice';
@@ -60,56 +57,19 @@ abstract class  LocaleKeys {
   static const internetCriteriaLabel3 = 'internetCriteriaLabel3';
   static const internetCriteriaAdvice = 'internetCriteriaAdvice';
   static const goodsAndServicesCategoryTitle = 'goodsAndServicesCategoryTitle';
-  static const seeResults = 'seeResults';
-  static const yourCarbonFootprint = 'yourCarbonFootprint';
-  static const knowMore = 'knowMore';
   static const valueWithMore = 'valueWithMore';
   static const valueWithLess = 'valueWithLess';
   static const footprintRepartitionTitle = 'footprintRepartitionTitle';
   static const co2EqTonsValue = 'co2EqTonsValue';
-  static const otherCountriesComparaisonTitle = 'otherCountriesComparaisonTitle';
-  static const otherCountriesColumn1Title = 'otherCountriesColumn1Title';
-  static const otherCountriesColumn2Title = 'otherCountriesColumn2Title';
-  static const otherCountriesTonsValue = 'otherCountriesTonsValue';
-  static const otherCountriesMore = 'otherCountriesMore';
   static const globalObjectivesTitle = 'globalObjectivesTitle';
   static const globalObjectivesPart1 = 'globalObjectivesPart1';
   static const globalObjectivesPart2 = 'globalObjectivesPart2';
   static const globalObjectivesPart3 = 'globalObjectivesPart3';
   static const globalObjectivesPart4 = 'globalObjectivesPart4';
   static const globalObjectivesPart5 = 'globalObjectivesPart5';
-  static const advicesTitle = 'advicesTitle';
-  static const noAdvicesExplanation = 'noAdvicesExplanation';
   static const disclaimerTitle = 'disclaimerTitle';
   static const disclaimerExplanation = 'disclaimerExplanation';
   static const aboutPart1 = 'aboutPart1';
-  static const aboutPart2 = 'aboutPart2';
-  static const you = 'you';
-  static const countryUSA = 'countryUSA';
-  static const countryCanada = 'countryCanada';
-  static const countryAustralia = 'countryAustralia';
-  static const countrySaudiArabia = 'countrySaudiArabia';
-  static const countryUAE = 'countryUAE';
-  static const countryChina = 'countryChina';
-  static const countryIsrael = 'countryIsrael';
-  static const countrySouthKorea = 'countrySouthKorea';
-  static const countryJapan = 'countryJapan';
-  static const countryGermany = 'countryGermany';
-  static const countrySouthAfrica = 'countrySouthAfrica';
-  static const countryRussia = 'countryRussia';
-  static const countryGreece = 'countryGreece';
-  static const countryUK = 'countryUK';
-  static const countryNorway = 'countryNorway';
-  static const countryIndia = 'countryIndia';
-  static const countryFrance = 'countryFrance';
-  static const countryMexico = 'countryMexico';
-  static const countryBrasil = 'countryBrasil';
-  static const countryEgypt = 'countryEgypt';
-  static const countryVietnam = 'countryVietnam';
-  static const countryMorocco = 'countryMorocco';
-  static const countryPhilippines = 'countryPhilippines';
-  static const countryCongo = 'countryCongo';
-  static const countrySoudan = 'countrySoudan';
   static const doneWith = 'doneWith';
 
 }

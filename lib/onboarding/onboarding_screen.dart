@@ -65,7 +65,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                         ),
                       ),
                     );
-                  } else if (i == 1) {
+                  } else {
                     return Center(
                       child: ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 350),
