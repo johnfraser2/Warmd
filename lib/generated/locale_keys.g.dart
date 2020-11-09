@@ -61,6 +61,7 @@ abstract class  LocaleKeys {
   static const yourCarbonFootprint = 'yourCarbonFootprint';
   static const knowMore = 'knowMore';
   static const valueWithMore = 'valueWithMore';
+  static const valueWithLess = 'valueWithLess';
   static const footprintRepartitionTitle = 'footprintRepartitionTitle';
   static const co2EqTonsValue = 'co2EqTonsValue';
   static const otherCountriesComparaisonTitle = 'otherCountriesComparaisonTitle';

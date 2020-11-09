@@ -288,6 +288,7 @@ class CarCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
+    // We use -value for US/UK mpg because they are negative values (to have min < max)
     var litersPerKm = (_countryCriteria.unitSystem() == UnitSystem.metric
             ? _carConsumptionCriteria.currentValue
             : _countryCriteria.unitSystem() == UnitSystem.us
@@ -326,10 +327,12 @@ class CarConsumptionCriteria extends Criteria {
   String get title => LocaleKeys.carConsumptionCriteriaTitle.tr();
 
   @override
-  double get minValue => _countryCriteria.unitSystem() == UnitSystem.metric ? 2 : -140;
+  double get minValue =>
+      _countryCriteria.unitSystem() == UnitSystem.metric ? 2 : -141; // Minus to have a correct ordering (min < max)
 
   @override
-  double get maxValue => _countryCriteria.unitSystem() == UnitSystem.metric ? 20 : -11;
+  double get maxValue =>
+      _countryCriteria.unitSystem() == UnitSystem.metric ? 15 : -15; // Minus to have a correct ordering (min < max)
 
   @override
   double get currentValue => min(maxValue, max(minValue, super.currentValue));

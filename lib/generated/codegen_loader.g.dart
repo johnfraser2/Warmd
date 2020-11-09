@@ -112,6 +112,7 @@ static const Map<String,dynamic> en = {
   "yourCarbonFootprint": "Your carbon footprint:",
   "knowMore": "Learn more",
   "valueWithMore": "{} or more",
+  "valueWithLess": "{} or less",
   "footprintRepartitionTitle": "Repartition of your {}:",
   "co2EqTonsValue": "{} tons CO₂eq/year",
   "otherCountriesComparaisonTitle": "Comparison with others:",

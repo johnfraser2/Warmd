@@ -117,27 +117,37 @@ class _CriteriasScreen extends StatelessWidget {
   }
 
   Widget _buildCriteria(BuildContext context, CriteriasState state, Criteria c) {
-    var unit = c.unit != null ? ' ' + c.unit : '';
-    var valueWithUnit = NumberFormat.decimalPattern().format(c.currentValue.abs()).toString() + unit;
-
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(18)),
         color: warmdLightBlue,
       ),
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.symmetric(vertical: 32),
       margin: const EdgeInsets.only(bottom: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            c.title,
-            style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Text(
+              c.title,
+              style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
+            ),
           ),
           Gaps.h8,
-          if (c.explanation != null) buildSmartText(context, c.explanation),
+          if (c.explanation != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: buildSmartText(context, c.explanation),
+            ),
           Gaps.h8,
-          if (c.labels != null) _buildDropdown(context, c, state) else _buildSlider(c, valueWithUnit, context, state),
+          if (c.labels != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: _buildDropdown(context, c, state),
+            )
+          else
+            _buildSlider(c, context, state),
         ],
       ),
     );
@@ -200,13 +210,17 @@ class _CriteriasScreen extends StatelessWidget {
     }
   }
 
-  Widget _buildSlider(Criteria c, String valueWithUnit, BuildContext context, CriteriasState state) {
+  Widget _buildSlider(Criteria c, BuildContext context, CriteriasState state) {
+    var unit = c.unit != null ? ' ' + c.unit : '';
+    var valueWithUnit = NumberFormat.decimalPattern().format(c.currentValue.abs()).toString() + unit;
+
     const valueTextStyle = TextStyle(color: warmdDarkBlue);
 
+    final quarter = (c.maxValue - c.minValue) / 4;
     final valueText1 = valueToShortString(c.minValue);
-    final valueText2 = valueToShortString((c.maxValue + c.minValue) * 0.25);
-    final valueText3 = valueToShortString((c.maxValue + c.minValue) * 0.5);
-    final valueText4 = valueToShortString((c.maxValue + c.minValue) * 0.75);
+    final valueText2 = valueToShortString(c.minValue + quarter);
+    final valueText3 = valueToShortString(c.minValue + 2 * quarter);
+    final valueText4 = valueToShortString(c.minValue + 3 * quarter);
     final valueText5 = valueToShortString(c.maxValue);
 
     final shouldDisplayOnlyThreeValues =
@@ -214,40 +228,41 @@ class _CriteriasScreen extends StatelessWidget {
 
     return Column(
       children: [
-        Slider(
-          min: c.minValue,
-          max: c.maxValue,
-          divisions: (c.maxValue - c.minValue) ~/ c.step,
-          label: c.labels != null
-              ? c.labels[c.currentValue.toInt()]
-              : c.currentValue != c.maxValue || c is CleanElectricityCriteria
-                  ? valueWithUnit
-                  : LocaleKeys.valueWithMore.tr(args: [valueWithUnit]),
-          value: c.currentValue,
-          onChanged: (double value) {
-            c.currentValue = value;
-            state.persist(c);
-          },
-        ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(valueText1, style: valueTextStyle),
-              if (!shouldDisplayOnlyThreeValues) Text(valueText2, style: valueTextStyle),
-              Text(valueText3, style: valueTextStyle),
-              if (!shouldDisplayOnlyThreeValues) Text(valueText4, style: valueTextStyle),
-              Text(valueText5 + '+', style: valueTextStyle),
-            ],
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Slider(
+            min: c.minValue,
+            max: c.maxValue,
+            divisions: (c.maxValue - c.minValue) ~/ c.step,
+            label: c.labels != null
+                ? c.labels[c.currentValue.toInt()]
+                : c.currentValue != c.maxValue || c.unit == '%' // We can't go above 100% so we don't display "or more"
+                    ? valueWithUnit
+                    : c.minValue < 0 // Some values are negatives because more is better (like mpg)
+                        ? LocaleKeys.valueWithLess.tr(args: [valueWithUnit])
+                        : LocaleKeys.valueWithMore.tr(args: [valueWithUnit]),
+            value: c.currentValue,
+            onChanged: (double value) {
+              c.currentValue = value;
+              state.persist(c);
+            },
           ),
+        ),
+        Row(
+          children: [
+            Expanded(child: Center(child: Text(valueText1, style: valueTextStyle))),
+            if (!shouldDisplayOnlyThreeValues) Expanded(child: Center(child: Text(valueText2, style: valueTextStyle))),
+            Expanded(child: Center(child: Text(valueText3, style: valueTextStyle))),
+            if (!shouldDisplayOnlyThreeValues) Expanded(child: Center(child: Text(valueText4, style: valueTextStyle))),
+            Expanded(child: Center(child: Text(valueText5 + (c.minValue < 0 ? '' : '+'), style: valueTextStyle))),
+          ],
         )
       ],
     );
   }
 
   String valueToShortString(double value) {
-    var intValue = value.toInt();
+    var intValue = value.abs().round();
     if (intValue < 1000) {
       return intValue.toString();
     } else {
