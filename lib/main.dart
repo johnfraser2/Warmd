@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:warmd/onboarding/welcome_screen.dart';
 
 import 'categories/criterias_screens.dart';
 import 'common/common.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-const _firstCategoryScreenNum = 2;
+const _firstCategoryScreenNum = 3;
 
 class _MyAppState extends DelayableState<MyApp> {
   var _splashScreenSeen = false;
@@ -135,6 +136,16 @@ class _MyAppState extends DelayableState<MyApp> {
                             ),
                           ),
                         if (_splashScreenSeen && _stepsNum == 1)
+                          MaterialPage<WelcomeScreen>(
+                            child: WelcomeScreen(
+                              onStartSelected: () {
+                                setState(() {
+                                  _stepsNum++;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && _stepsNum == 2)
                           MaterialPage<CountryScreen>(
                             child: CountryScreen(
                               onCountrySelected: () {
