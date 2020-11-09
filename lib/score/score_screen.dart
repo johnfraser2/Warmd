@@ -44,17 +44,7 @@ class ScoreScreen extends StatelessWidget {
           _buildHeader(context, dataMap, state),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Builder(
-              builder: (context) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    if (dataMap.isNotEmpty) _buildFootprintRepartition(context, state, dataMap),
-                    _buildCountriesComparison(context, state),
-                  ],
-                );
-              },
-            ),
+            child: _buildFootprintRepartition(context, state, dataMap),
           ),
           Gaps.h64,
           _buildGoToSourcesButton(context),
@@ -198,22 +188,6 @@ class ScoreScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCountriesComparison(BuildContext context, CriteriasState state) {
-    return Column(
-      children: [
-        Gaps.h64,
-        Text(
-          'COMPARISON WITH OTHERS',
-          style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
-        ),
-        Gaps.h16,
-        _buildCountriesDataTable(context, state),
-        Gaps.h32,
-        buildSmartText(context, LocaleKeys.otherCountriesMore.tr(), defaultColor: Colors.black),
-      ],
-    );
-  }
-
   Widget _buildGoToSourcesButton(BuildContext context) {
     return InkWell(
       child: Ink(
@@ -278,81 +252,5 @@ ${LocaleKeys.disclaimerExplanation.tr()}
         );
       },
     );
-  }
-
-  Widget _buildCountriesDataTable(BuildContext context, CriteriasState state) {
-    final countriesList = _buildCountriesList(context);
-    var rows = [
-      for (String country in countriesList.keys)
-        DataRow(cells: [
-          DataCell(Text(country)),
-          DataCell(Text(LocaleKeys.otherCountriesTonsValue.tr(args: [countriesList[country].toString()]))),
-        ]),
-    ];
-
-    final yourCo2 = state.co2EqTonsPerYear();
-    const yourTextStyle = TextStyle(color: warmdBlue, fontWeight: FontWeight.bold);
-    final yourCell = DataRow(cells: [
-      DataCell(Text('⮕ ${LocaleKeys.you.tr()}', style: yourTextStyle)),
-      DataCell(Text(LocaleKeys.otherCountriesTonsValue.tr(args: [yourCo2.toStringAsFixed(1)]), style: yourTextStyle)),
-    ]);
-
-    var higherCountryIdx = countriesList.values.toList().indexWhere((countryCo2) => countryCo2 < yourCo2);
-    if (higherCountryIdx == -1) {
-      rows.add(yourCell);
-    } else {
-      rows.insert(higherCountryIdx, yourCell);
-    }
-
-    return IgnorePointer(
-      child: DataTable(
-        columns: [
-          DataColumn(
-            label: Text(
-              LocaleKeys.otherCountriesColumn1Title.tr(),
-              style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
-            ),
-          ),
-          DataColumn(
-              label: Text(
-                LocaleKeys.otherCountriesColumn2Title.tr(),
-                style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
-              ),
-              numeric: true),
-        ],
-        rows: rows,
-      ),
-    );
-  }
-
-  // Numbers found on coolclimate.org website
-  Map<String, int> _buildCountriesList(BuildContext context) {
-    return {
-      LocaleKeys.countryUSA.tr(): 54,
-      LocaleKeys.countryCanada.tr(): 54,
-      LocaleKeys.countryAustralia.tr(): 36,
-      LocaleKeys.countrySaudiArabia.tr(): 35,
-      LocaleKeys.countryUAE.tr(): 34,
-      LocaleKeys.countryChina.tr(): 28,
-      LocaleKeys.countryIsrael.tr(): 25,
-      LocaleKeys.countrySouthKorea.tr(): 25,
-      LocaleKeys.countryJapan.tr(): 23,
-      LocaleKeys.countryGermany.tr(): 23,
-      LocaleKeys.countrySouthAfrica.tr(): 23,
-      LocaleKeys.countryRussia.tr(): 22,
-      LocaleKeys.countryGreece.tr(): 20,
-      LocaleKeys.countryUK.tr(): 19,
-      LocaleKeys.countryNorway.tr(): 17,
-      LocaleKeys.countryIndia.tr(): 16,
-      LocaleKeys.countryFrance.tr(): 16,
-      LocaleKeys.countryMexico.tr(): 16,
-      LocaleKeys.countryBrasil.tr(): 15,
-      LocaleKeys.countryEgypt.tr(): 14,
-      LocaleKeys.countryVietnam.tr(): 13,
-      LocaleKeys.countryMorocco.tr(): 13,
-      LocaleKeys.countryPhilippines.tr(): 13,
-      LocaleKeys.countryCongo.tr(): 13,
-      LocaleKeys.countrySoudan.tr(): 12,
-    };
   }
 }

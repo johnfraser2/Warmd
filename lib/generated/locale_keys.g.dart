@@ -44,6 +44,9 @@ abstract class  LocaleKeys {
   static const materialGoodsCriteriaTitle = 'materialGoodsCriteriaTitle';
   static const materialGoodsCriteriaExplanation = 'materialGoodsCriteriaExplanation';
   static const materialGoodsCriteriaAdvice = 'materialGoodsCriteriaAdvice';
+  static const savingsCriteriaTitle = 'savingsCriteriaTitle';
+  static const savingsCriteriaExplanation = 'savingsCriteriaExplanation';
+  static const savingsCriteriaAdvice = 'savingsCriteriaAdvice';
   static const waterCriteriaTitle = 'waterCriteriaTitle';
   static const waterCriteriaExplanation = 'waterCriteriaExplanation';
   static const waterCriteriaLabel1 = 'waterCriteriaLabel1';

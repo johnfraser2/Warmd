@@ -213,13 +213,13 @@ class CleanElectricityCriteria extends Criteria {
 }
 
 class UtilitiesCategory extends CriteriaCategory {
-  UtilitiesCategory(CountryCriteria CountryCriteria) {
+  UtilitiesCategory(CountryCriteria countryCriteria) {
     key = 'utilities';
 
     var cleanElectricityCriteria = CleanElectricityCriteria();
     criterias = [
-      HeatingFuelCriteria(CountryCriteria),
-      ElectricityBillCriteria(CountryCriteria, cleanElectricityCriteria),
+      HeatingFuelCriteria(countryCriteria),
+      ElectricityBillCriteria(countryCriteria, cleanElectricityCriteria),
       cleanElectricityCriteria,
     ];
   }
@@ -382,15 +382,15 @@ class PublicTransportCriteria extends Criteria {
 }
 
 class TravelCategory extends CriteriaCategory {
-  TravelCategory(CountryCriteria CountryCriteria) {
+  TravelCategory(CountryCriteria countryCriteria) {
     key = 'travel';
 
-    var carConsumptionCriteria = CarConsumptionCriteria(CountryCriteria);
+    var carConsumptionCriteria = CarConsumptionCriteria(countryCriteria);
     criterias = [
-      FlightsCriteria(CountryCriteria),
-      CarCriteria(carConsumptionCriteria, CountryCriteria),
+      FlightsCriteria(countryCriteria),
+      CarCriteria(carConsumptionCriteria, countryCriteria),
       carConsumptionCriteria,
-      PublicTransportCriteria(CountryCriteria)
+      PublicTransportCriteria(countryCriteria)
     ];
   }
 
@@ -586,6 +586,51 @@ class MaterialGoodsCriteria extends Criteria {
   }
 }
 
+class SavingsCriteria extends Criteria {
+  final CountryCriteria _countryCriteria;
+
+  SavingsCriteria(this._countryCriteria) {
+    key = 'savings';
+    minValue = 0;
+    step = 1000;
+    currentValue = 0;
+  }
+
+  @override
+  String get title => LocaleKeys.savingsCriteriaTitle.tr();
+
+  @override
+  String get explanation => LocaleKeys.savingsCriteriaExplanation.tr();
+
+  @override
+  double get maxValue => (((100000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+
+  @override
+  double get currentValue => min(maxValue, super.currentValue);
+
+  @override
+  String get unit => _countryCriteria.getCurrencyCode();
+
+  @override
+  double co2EqTonsPerYear() {
+    var moneyChange = _countryCriteria.getCurrencyRate();
+
+    // Based on Rift app's results, but reduced a lot because it is quite unsure due to lack of transparency
+    // and it greatly depends on bank/type of account/country, so I prefer to be safe here.
+    var co2TonsPerDollar = 0.00025;
+    return currentValue * moneyChange * co2TonsPerDollar;
+  }
+
+  @override
+  String advice() {
+    if (co2EqTonsPerYear() > 1) {
+      return LocaleKeys.savingsCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
+}
+
 class WaterCriteria extends Criteria {
   WaterCriteria() {
     key = 'water';
@@ -659,10 +704,11 @@ class InternetCriteria extends Criteria {
 }
 
 class GoodsCategory extends CriteriaCategory {
-  GoodsCategory(CountryCriteria CountryCriteria) {
+  GoodsCategory(CountryCriteria countryCriteria) {
     key = 'goods';
     criterias = [
-      MaterialGoodsCriteria(CountryCriteria),
+      MaterialGoodsCriteria(countryCriteria),
+      SavingsCriteria(countryCriteria),
       WaterCriteria(),
       InternetCriteria(),
     ];

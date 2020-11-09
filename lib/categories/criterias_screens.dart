@@ -230,7 +230,7 @@ class _CriteriasScreen extends StatelessWidget {
       children: [
         FractionallySizedBox(
           widthFactor:
-              0.92, // We need this to be aligned with the below row. Not perfect, could this be improved by using LayoutBuilder?
+              0.92, // We need this to be aligned with the number's row below. Not perfect, could this be improved by using LayoutBuilder?
           child: Slider(
             min: c.minValue,
             max: c.maxValue,
