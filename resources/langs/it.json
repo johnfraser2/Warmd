@@ -1,11 +1,7 @@
 {
     "generalCategoryTitle": "Generale",
-    "generalAdvice": "Il tuo impatto è insignificante rispetto al governo, e ad oggi le loro politiche ecologiche sono tutt'altro che sufficienti. Se possibile, cerca di influenzare le loro decisioni, andando a votare o mediante altri mezzi.",
-    "peopleCriteriaTitle": "Numero di persone che vivono nella tua abitazione",
-    "peopleCriteriaExplanation": "Più siete, meno energia per individuo è richiesta per il riscaldamento o il trasporto.",
     "heatingFuelCriteriaTitle": "La tua bolletta del riscaldamento",
     "heatingFuelCriteriaExplanation": "Spesa annuale, in {}.",
-    "heatingFuelCriteriaAdvice": "Prima di tutto, cerca di isolare al meglio la tua casa e di non riscaldarla più del necessario (è possibile utilizzare controlli intelligenti per limitare il riscaldamento e non riscaldare una stanza per adulti al di sopra di 66°F/19°C in quanto può ridurre la qualità del sonno). Inoltre, è preferibile riscaldarsi con l'impiego di una pompa di calore, con elettricità prodotta da fonti rinnovabili oppure con pellet di legno provenienti da foreste locali e sostenibili.",
     "electricityBillCriteriaTitle": "La tua bolletta della corrente elettrica",
     "electricityBillCriteriaExplanation": "Spesa annuale, in {}.",
     "cleanElectricityCriteriaTitle": "Percentuale di energia elettrica priva di carbonio",
