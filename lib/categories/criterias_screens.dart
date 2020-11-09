@@ -228,8 +228,9 @@ class _CriteriasScreen extends StatelessWidget {
 
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+        FractionallySizedBox(
+          widthFactor:
+              0.92, // We need this to be aligned with the below row. Not perfect, could this be improved by using LayoutBuilder?
           child: Slider(
             min: c.minValue,
             max: c.maxValue,
