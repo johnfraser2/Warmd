@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../common/common.dart';
@@ -16,6 +17,9 @@ class ConsequencesScreen extends StatelessWidget {
     return ScreenTemplate(
       body: Column(
         children: [
+          SvgPicture.asset(
+            'assets/sky.svg',
+          ),
           Gaps.h32,
           Text(
             'What are the consequences of climate change?',
@@ -24,6 +28,13 @@ class ConsequencesScreen extends StatelessWidget {
           ),
           Gaps.h32,
           _buildObjectivesCard(context),
+          Gaps.h32,
+          Align(
+            alignment: Alignment.bottomRight,
+            child: SvgPicture.asset(
+              'assets/ice.svg',
+            ),
+          ),
         ],
       ),
     );

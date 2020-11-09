@@ -42,6 +42,13 @@ class ActionsScreen extends StatelessWidget {
           for (int position in orderedAdvices.keys)
             _buildAdviceCard(context, position, orderedAdvices[position],
                 state.categories.firstWhere((cat) => cat.criterias.contains(orderedAdvices[position]))),
+          Gaps.h32,
+          Align(
+            alignment: Alignment.bottomRight,
+            child: SvgPicture.asset(
+              'assets/ice.svg',
+            ),
+          ),
         ],
       ),
     );
