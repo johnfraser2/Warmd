@@ -131,7 +131,7 @@ class HeatingFuelCriteria extends Criteria {
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 3) {
+    if (co2EqTonsPerYear() > 2) {
       return LocaleKeys.heatingFuelCriteriaAdvice.tr();
     } else {
       return null;
@@ -141,9 +141,8 @@ class HeatingFuelCriteria extends Criteria {
 
 class ElectricityBillCriteria extends Criteria {
   final CountryCriteria _countryCriteria;
-  final CleanElectricityCriteria _cleanElectricityCriteria;
 
-  ElectricityBillCriteria(this._countryCriteria, this._cleanElectricityCriteria) {
+  ElectricityBillCriteria(this._countryCriteria) {
     key = 'electricity_bill';
     minValue = 0;
     step = 100;
@@ -166,23 +165,17 @@ class ElectricityBillCriteria extends Criteria {
   String get unit => _countryCriteria.getCurrencyCode();
 
   @override
-  double co2EqTonsPerYear() {
-    var moneyChange = _countryCriteria.getCurrencyRate();
-
-    var electricityBill = currentValue * moneyChange;
-    var co2ElectricityPercent = min(100, 100 - _cleanElectricityCriteria.currentValue + 15); // +15% because nothing is 100% clean
-    var kWhPrice = 0.15; // in dollars
-    var co2TonsPerKWh = 0.00065;
-
-    return ((electricityBill / 100 * co2ElectricityPercent) / kWhPrice * co2TonsPerKWh);
-  }
+  double co2EqTonsPerYear() => 0;
 
   @override
   String advice() => null;
 }
 
 class CleanElectricityCriteria extends Criteria {
-  CleanElectricityCriteria() {
+  final CountryCriteria _countryCriteria;
+  final ElectricityBillCriteria _electricityBillCriteria;
+
+  CleanElectricityCriteria(this._countryCriteria, this._electricityBillCriteria) {
     key = 'clean_electricity';
     minValue = 0;
     maxValue = 100;
@@ -198,11 +191,20 @@ class CleanElectricityCriteria extends Criteria {
   String get explanation => LocaleKeys.cleanElectricityCriteriaExplanation.tr();
 
   @override
-  double co2EqTonsPerYear() => 0;
+  double co2EqTonsPerYear() {
+    var moneyChange = _countryCriteria.getCurrencyRate();
+
+    var electricityBill = _electricityBillCriteria.currentValue * moneyChange;
+    var co2ElectricityPercent = min(100, 100 - currentValue + 15); // +15% because nothing is 100% clean
+    var kWhPrice = 0.15; // in dollars
+    var co2TonsPerKWh = 0.00065;
+
+    return ((electricityBill / 100 * co2ElectricityPercent) / kWhPrice * co2TonsPerKWh);
+  }
 
   @override
   String advice() {
-    if (currentValue < 80) {
+    if (co2EqTonsPerYear() > 0.5) {
       return LocaleKeys.cleanElectricityCriteriaAdvice.tr();
     } else {
       return null;
@@ -214,11 +216,11 @@ class UtilitiesCategory extends CriteriaCategory {
   UtilitiesCategory(CountryCriteria countryCriteria) {
     key = 'utilities';
 
-    var cleanElectricityCriteria = CleanElectricityCriteria();
+    var electricityBillCriteria = ElectricityBillCriteria(countryCriteria);
     criterias = [
       HeatingFuelCriteria(countryCriteria),
-      ElectricityBillCriteria(countryCriteria, cleanElectricityCriteria),
-      cleanElectricityCriteria,
+      electricityBillCriteria,
+      CleanElectricityCriteria(countryCriteria, electricityBillCriteria),
     ];
   }
 
@@ -371,7 +373,7 @@ class PublicTransportCriteria extends Criteria {
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 3) {
+    if (co2EqTonsPerYear() > 2) {
       return LocaleKeys.publicTransportCriteriaAdvice.tr();
     } else {
       return null;
@@ -419,7 +421,7 @@ class MeatCriteria extends Criteria {
 
   @override
   String advice() {
-    if (currentValue >= 0.7) {
+    if (co2EqTonsPerYear() > 1) {
       return LocaleKeys.meatCriteriaAdvice.tr();
     } else {
       return null;
@@ -449,7 +451,7 @@ class DairyCriteria extends Criteria {
   }
 
   @override
-  String advice() => null; // I can't advice to eat less
+  String advice() => null; // I don't know if I can advice to eat less, especially regarding children. Need to check.
 }
 
 class SnackCriteria extends Criteria {
@@ -475,7 +477,7 @@ class SnackCriteria extends Criteria {
 
   @override
   String advice() {
-    if (currentValue > 3) {
+    if (co2EqTonsPerYear() > 0.5) {
       return LocaleKeys.snacksCriteriaAdvice.tr();
     } else {
       return null;
@@ -484,7 +486,11 @@ class SnackCriteria extends Criteria {
 }
 
 class OverweightCriteria extends Criteria {
-  OverweightCriteria() {
+  final MeatCriteria _meatCriteria;
+  final DairyCriteria _dairyCriteria;
+  final SnackCriteria _snackCriteria;
+
+  OverweightCriteria(this._meatCriteria, this._dairyCriteria, this._snackCriteria) {
     key = 'overweight';
     minValue = 0;
     maxValue = 2;
@@ -506,11 +512,16 @@ class OverweightCriteria extends Criteria {
       ];
 
   @override
-  double co2EqTonsPerYear() => 0;
+  double co2EqTonsPerYear() {
+    var overweightFactor = currentValue == 2 ? 0.5 : (currentValue == 1 ? 0.25 : 0);
+
+    return (_meatCriteria.co2EqTonsPerYear() + _dairyCriteria.co2EqTonsPerYear() + _snackCriteria.co2EqTonsPerYear()) *
+        overweightFactor;
+  }
 
   @override
   String advice() {
-    if (currentValue > 0) {
+    if (co2EqTonsPerYear() > 0.5) {
       return LocaleKeys.overweightCriteriaAdvice.tr();
     } else {
       return null;
@@ -521,25 +532,21 @@ class OverweightCriteria extends Criteria {
 class FoodCategory extends CriteriaCategory {
   FoodCategory() {
     key = 'food';
+
+    final meatCriteria = MeatCriteria();
+    final dairyCriteria = DairyCriteria();
+    final snackCriteria = SnackCriteria();
+
     criterias = [
       MeatCriteria(),
       DairyCriteria(),
       SnackCriteria(),
-      OverweightCriteria(),
+      OverweightCriteria(meatCriteria, dairyCriteria, snackCriteria),
     ];
   }
 
   @override
   String get title => LocaleKeys.foodCategoryTitle.tr();
-
-  @override
-  double co2EqTonsPerYear() {
-    var overweightValue = criterias[3].currentValue;
-    var overweightFactor = overweightValue == 2 ? 1.5 : (overweightValue == 1 ? 1.25 : 1);
-
-    return (criterias[0].co2EqTonsPerYear() + criterias[1].co2EqTonsPerYear() + criterias[2].co2EqTonsPerYear()) *
-        overweightFactor;
-  }
 }
 
 class MaterialGoodsCriteria extends Criteria {
@@ -693,7 +700,7 @@ class InternetCriteria extends Criteria {
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 0.15) {
+    if (co2EqTonsPerYear() > 0.5) {
       return LocaleKeys.internetCriteriaAdvice.tr();
     } else {
       return null;
