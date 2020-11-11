@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+import '../common/blue_card.dart';
 import '../common/common.dart';
 import '../common/criterias.dart';
 import '../common/screen_template.dart';
@@ -23,7 +24,7 @@ class ActionsScreen extends StatelessWidget {
           SvgPicture.asset(
             'assets/sky.svg',
           ),
-          Gaps.h32,
+          Gaps.h48,
           Text(
             'What should you do?',
             textAlign: TextAlign.center,
@@ -42,7 +43,7 @@ class ActionsScreen extends StatelessWidget {
           for (int position in orderedAdvices.keys)
             _buildAdviceCard(context, position, orderedAdvices[position],
                 state.categories.firstWhere((cat) => cat.criterias.contains(orderedAdvices[position]))),
-          Gaps.h32,
+          Gaps.h128,
           Align(
             alignment: Alignment.bottomRight,
             child: SvgPicture.asset(
@@ -73,13 +74,7 @@ class ActionsScreen extends StatelessWidget {
   }
 
   Widget _buildAdviceCard(BuildContext context, int position, Criteria crit, CriteriaCategory category) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(18)),
-        color: warmdLightBlue,
-      ),
-      padding: const EdgeInsets.all(32),
-      margin: const EdgeInsets.only(bottom: 32),
+    return BlueCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -91,7 +86,7 @@ class ActionsScreen extends StatelessWidget {
                   '${position + 1}.',
                   style: Theme.of(context).textTheme.headline2.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: position == 0 || crit.co2EqTonsPerYear() > 2 ? warmdRed : warmdBlue,
+                        color: position == 0 || crit.co2EqTonsPerYear() > 1 ? warmdRed : warmdBlue,
                       ),
                 ),
                 Gaps.w16,

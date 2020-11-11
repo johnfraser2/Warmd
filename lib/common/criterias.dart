@@ -580,7 +580,7 @@ class MaterialGoodsCriteria extends Criteria {
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 2) {
+    if (co2EqTonsPerYear() > 1) {
       return LocaleKeys.materialGoodsCriteriaAdvice.tr();
     } else {
       return null;

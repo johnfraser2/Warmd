@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../common/blue_card.dart';
 import '../common/common.dart';
 import '../common/criterias.dart';
 import '../common/screen_template.dart';
@@ -117,13 +118,8 @@ class _CriteriasScreen extends StatelessWidget {
   }
 
   Widget _buildCriteria(BuildContext context, CriteriasState state, Criteria c) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(18)),
-        color: warmdLightBlue,
-      ),
+    return BlueCard(
       padding: const EdgeInsets.symmetric(vertical: 32),
-      margin: const EdgeInsets.only(bottom: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

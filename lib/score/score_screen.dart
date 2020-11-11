@@ -111,12 +111,16 @@ class ScoreScreen extends StatelessWidget {
               ),
               Center(child: ScoreWidget(state)),
               Gaps.h32,
-              Center(
-                child: TextButton(
-                  onPressed: () => onSeeConsequencesTapped(),
-                  child: Text(
-                    "See what happens when you don't take action >",
-                    style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: Center(
+                  child: TextButton(
+                    onPressed: () => onSeeConsequencesTapped(),
+                    child: Text(
+                      "See what happens when you don't take action >",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                    ),
                   ),
                 ),
               ),
@@ -233,6 +237,7 @@ class ScoreScreen extends StatelessWidget {
 ${LocaleKeys.aboutPart1.tr()}
 
 https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf
+http://www.uhm.hawaii.edu/news/article.php?aId=8657
 https://www.bbc.com/news/science-environment-49349566
 https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf
 http://www.fao.org/3/a-i3437e.pdf

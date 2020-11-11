@@ -60,7 +60,7 @@ class _ScoreWidgetState extends State<ScoreWidget> {
                     style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: '\nCO₂eq/year',
+                    text: '\nCO₂e/year',
                     style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                 ],

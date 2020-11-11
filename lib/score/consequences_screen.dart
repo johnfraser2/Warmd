@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:markup_text/markup_text.dart';
 
+import '../common/blue_card.dart';
 import '../common/common.dart';
 import '../common/screen_template.dart';
 import '../generated/locale_keys.g.dart';
@@ -20,15 +20,17 @@ class ConsequencesScreen extends StatelessWidget {
           SvgPicture.asset(
             'assets/sky.svg',
           ),
-          Gaps.h32,
+          Gaps.h48,
           Text(
-            'What are the consequences of climate change?',
+            'What is climate change?',
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
           ),
           Gaps.h32,
+          _buildConsequencesCard(context),
           _buildObjectivesCard(context),
-          Gaps.h32,
+          _buildActionsCard(context),
+          Gaps.h48,
           Align(
             alignment: Alignment.bottomRight,
             child: SvgPicture.asset(
@@ -40,68 +42,104 @@ class ConsequencesScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildObjectivesCard(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(18)),
-        color: warmdLightBlue,
+  Widget _buildConsequencesCard(BuildContext context) {
+    return BlueCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Consequences of global warming',
+            style: Theme.of(context).textTheme.subtitle1.copyWith(
+                  color: warmdDarkBlue,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          Gaps.h16,
+          MarkupText(
+            'We already gained (b)+1°C(/b) from pre-industrial levels, with non-negligeable impacts.\n\nBy reaching (b)+2°C(/b) in 2100, (a https://www.wwf.org.uk/updates/our-warming-world-how-much-difference-will-half-degree-really-make)we will certainly suffer(/a) a major loss in our biodiversity (-18% insects, -16% plants, -8% vertebrates, -99% corals), 49 million people will be impacted by sea-level rise and 410 million people will suffer severe drought, leading to massive emigration, financial and political instabilities.\n\nAt (b)+4°C(/b) humans will not be able to live around the equator (a http://www.uhm.hawaii.edu/news/article.php?aId=8657)due to deadly heat(/a):',
+            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+          ),
+          Gaps.h16,
+          const Image(
+            image: AssetImage('assets/dead_zones_4deg.webp'),
+            fit: BoxFit.contain,
+            height: 180,
+            width: double.infinity,
+          ),
+          Gaps.h16,
+          MarkupText(
+            'Billions of people will emigrate to other area with a very high risk of famines, wars and millions or billions of deaths.',
+            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+          ),
+        ],
       ),
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              LocaleKeys.globalObjectivesTitle.tr(),
-              style: Theme.of(context).textTheme.subtitle1.copyWith(
-                    color: warmdDarkBlue,
-                    fontWeight: FontWeight.bold,
-                  ),
+    );
+  }
+
+  Widget _buildObjectivesCard(BuildContext context) {
+    return BlueCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            LocaleKeys.globalObjectivesTitle.tr(),
+            style: Theme.of(context).textTheme.subtitle1.copyWith(
+                  color: warmdDarkBlue,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          Gaps.h16,
+          MarkupText(
+            LocaleKeys.globalObjectivesPart1.tr(),
+            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+          ),
+          Gaps.h16,
+          Center(
+            child: SvgPicture.asset(
+              'assets/graph_emissions.svg',
+              height: 180,
             ),
-            Gaps.h16,
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: LocaleKeys.globalObjectivesPart1.tr(),
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-                  ),
-                  TextSpan(
-                    text: LocaleKeys.globalObjectivesPart2.tr(),
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  TextSpan(
-                    text: LocaleKeys.globalObjectivesPart3.tr(),
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-                  ),
-                  TextSpan(
-                    text: LocaleKeys.globalObjectivesPart4.tr(),
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(
-                          color: warmdDarkBlue,
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.w300,
-                        ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        launch('https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf');
-                      },
-                  ),
-                  TextSpan(
-                    text: LocaleKeys.globalObjectivesPart5.tr(),
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-                  ),
-                ],
-              ),
+          ),
+          Gaps.h16,
+          MarkupText(
+            LocaleKeys.globalObjectivesPart2.tr(),
+            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionsCard(BuildContext context) {
+    return BlueCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'How should we start?',
+            style: Theme.of(context).textTheme.subtitle1.copyWith(
+                  color: warmdDarkBlue,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          Gaps.h16,
+          MarkupText(
+            'Emissions essentially come from few main sectors (source: IPCC, 2014, global emissions).',
+            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+          ),
+          Gaps.h16,
+          Center(
+            child: SvgPicture.asset(
+              'assets/emissions_sectors.svg',
+              height: 180,
             ),
-            const Image(
-              image: AssetImage('assets/carbon_graph.webp'),
-              fit: BoxFit.contain,
-              height: 264,
-              width: double.infinity,
-            ),
-          ],
-        ),
+          ),
+          Gaps.h16,
+          MarkupText(
+            'Unfortunately they are all considered today as essential. As such, it is very hard to establish a plan to decarbonate all of them.\n\nHowever, it appears the first thing to do is to (b)completely stop using fossil fuels(/b) (coal, oil, gas) and replace them with non-carbonated electricity ((a https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_chapter7.pdf)IPCC(/a) recommands an increased use of both nuclear and renewable energy).\n\nThen there is a need for (b)better food management(/b), with less meat and waste.\n\nTo finish, it could be useful to start organizing a global degrowth since it could be the only solution to reach a complete decarbonation.',
+            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+          ),
+        ],
       ),
     );
   }

@@ -229,6 +229,10 @@ class _MyAppState extends DelayableState<MyApp> {
                           ),
                       ],
                       onPopPage: (route, dynamic result) {
+                        if (!route.didPop(result)) {
+                          return false;
+                        }
+
                         _onPopPage();
                         return true;
                       },

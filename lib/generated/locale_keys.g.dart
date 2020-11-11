@@ -64,9 +64,6 @@ abstract class  LocaleKeys {
   static const globalObjectivesTitle = 'globalObjectivesTitle';
   static const globalObjectivesPart1 = 'globalObjectivesPart1';
   static const globalObjectivesPart2 = 'globalObjectivesPart2';
-  static const globalObjectivesPart3 = 'globalObjectivesPart3';
-  static const globalObjectivesPart4 = 'globalObjectivesPart4';
-  static const globalObjectivesPart5 = 'globalObjectivesPart5';
   static const disclaimerTitle = 'disclaimerTitle';
   static const disclaimerExplanation = 'disclaimerExplanation';
   static const aboutPart1 = 'aboutPart1';
