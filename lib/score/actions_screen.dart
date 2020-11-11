@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +9,12 @@ import '../common/blue_card.dart';
 import '../common/common.dart';
 import '../common/criterias.dart';
 import '../common/screen_template.dart';
+import '../generated/locale_keys.g.dart';
 
 class ActionsScreen extends StatelessWidget {
-  const ActionsScreen({Key key}) : super(key: key);
+  final Function onSeeClimateChangeTapped;
+
+  const ActionsScreen({@required this.onSeeClimateChangeTapped, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +44,7 @@ class ActionsScreen extends StatelessWidget {
             ),
           ),
           Gaps.h32,
+          _buildPolicalAdviceCard(context),
           for (int position in orderedAdvices.keys)
             _buildAdviceCard(context, position, orderedAdvices[position],
                 state.categories.firstWhere((cat) => cat.criterias.contains(orderedAdvices[position]))),
@@ -65,12 +70,59 @@ class ActionsScreen extends StatelessWidget {
 
     orderedAdvices.sort((a, b) => a.co2EqTonsPerYear().compareTo(b.co2EqTonsPerYear()) * -1);
 
-    // Special treatment for the CountryCriteria one, which is certainly the first one to be displayed but can't be measured
-    final countryCriteria = orderedAdvices.firstWhere((element) => element is CountryCriteria);
-    orderedAdvices.remove(countryCriteria);
-    orderedAdvices.insert(0, countryCriteria);
-
     return orderedAdvices;
+  }
+
+  Widget _buildPolicalAdviceCard(BuildContext context) {
+    return BlueCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              children: [
+                Text(
+                  '1.',
+                  style: Theme.of(context).textTheme.headline2.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: warmdRed,
+                      ),
+                ),
+                Gaps.w16,
+                Expanded(
+                  child: Text(
+                    'Politics',
+                    style: Theme.of(context).textTheme.headline6.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: warmdDarkBlue,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Gaps.h8,
+          Text(
+            LocaleKeys.politicalAdvice.tr(),
+            style: Theme.of(context).textTheme.bodyText2.copyWith(
+                  fontWeight: FontWeight.w300,
+                ),
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: TextButton(
+              onPressed: () => onSeeClimateChangeTapped(),
+              child: Text(
+                'See what they can do >',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildAdviceCard(BuildContext context, int position, Criteria crit, CriteriaCategory category) {
@@ -83,10 +135,10 @@ class ActionsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  '${position + 1}.',
+                  '${position + 2}.',
                   style: Theme.of(context).textTheme.headline2.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: position == 0 || crit.co2EqTonsPerYear() > 1 ? warmdRed : warmdBlue,
+                        color: crit.co2EqTonsPerYear() > 1 ? warmdRed : warmdBlue,
                       ),
                 ),
                 Gaps.w16,
@@ -114,11 +166,10 @@ class ActionsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (category is! GeneralCategory)
-                  SvgPicture.asset(
-                    'assets/${category.key}.svg',
-                    height: 48,
-                  ),
+                SvgPicture.asset(
+                  'assets/${category.key}.svg',
+                  height: 48,
+                ),
               ],
             ),
           ),

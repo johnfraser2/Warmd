@@ -1,8 +1,7 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 abstract class  LocaleKeys {
-  static const generalCategoryTitle = 'generalCategoryTitle';
-  static const generalAdvice = 'generalAdvice';
+  static const politicalAdvice = 'politicalAdvice';
   static const heatingFuelCriteriaTitle = 'heatingFuelCriteriaTitle';
   static const heatingFuelCriteriaExplanation = 'heatingFuelCriteriaExplanation';
   static const heatingFuelCriteriaAdvice = 'heatingFuelCriteriaAdvice';

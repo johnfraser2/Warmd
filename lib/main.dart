@@ -14,8 +14,9 @@ import 'generated/codegen_loader.g.dart';
 import 'onboarding/country_screen.dart';
 import 'onboarding/onboarding_screen.dart';
 import 'onboarding/welcome_screen.dart';
+import 'score/about_screen.dart';
 import 'score/actions_screen.dart';
-import 'score/consequences_screen.dart';
+import 'score/climate_change_screen.dart';
 import 'score/score_screen.dart';
 import 'splash_screen.dart';
 
@@ -51,7 +52,9 @@ class _MyAppState extends DelayableState<MyApp> {
   var _splashScreenSeen = false;
   var _stepsNum = _firstCategoryScreenNum;
   var _showActionsScreen = false;
-  var _showConsequencesScreen = false;
+  var _showClimateChangeScreen = false;
+  var _showClimateChangeScreenFromActions = false;
+  var _showAboutScreen = false;
   final _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
@@ -199,9 +202,9 @@ class _MyAppState extends DelayableState<MyApp> {
                         if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum + 4)
                           MaterialPage<ScoreScreen>(
                             child: ScoreScreen(
-                              onSeeConsequencesTapped: () {
+                              onSeeClimateChangeTapped: () {
                                 setState(() {
-                                  _showConsequencesScreen = true;
+                                  _showClimateChangeScreen = true;
                                 });
                               },
                               onSeeActionsTapped: () {
@@ -215,17 +218,29 @@ class _MyAppState extends DelayableState<MyApp> {
                                 });
                               },
                               onSeeAboutTapped: () {
-                                setState(() {});
+                                setState(() {
+                                  _showAboutScreen = true;
+                                });
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && _showConsequencesScreen)
-                          const MaterialPage<ConsequencesScreen>(
-                            child: ConsequencesScreen(),
-                          ),
                         if (_splashScreenSeen && _showActionsScreen)
-                          const MaterialPage<ActionsScreen>(
-                            child: ActionsScreen(),
+                          MaterialPage<ActionsScreen>(
+                            child: ActionsScreen(
+                              onSeeClimateChangeTapped: () {
+                                setState(() {
+                                  _showClimateChangeScreenFromActions = true;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && (_showClimateChangeScreen || _showClimateChangeScreenFromActions))
+                          const MaterialPage<ClimateChangeScreen>(
+                            child: ClimateChangeScreen(),
+                          ),
+                        if (_splashScreenSeen && _showAboutScreen)
+                          const MaterialPage<AboutScreen>(
+                            child: AboutScreen(),
                           ),
                       ],
                       onPopPage: (route, dynamic result) {
@@ -246,10 +261,14 @@ class _MyAppState extends DelayableState<MyApp> {
 
   void _onPopPage() {
     setState(() {
-      if (_showActionsScreen) {
+      if (_showClimateChangeScreenFromActions) {
+        _showClimateChangeScreenFromActions = false;
+      } else if (_showActionsScreen) {
         _showActionsScreen = false;
-      } else if (_showConsequencesScreen) {
-        _showConsequencesScreen = false;
+      } else if (_showClimateChangeScreen) {
+        _showClimateChangeScreen = false;
+      } else if (_showAboutScreen) {
+        _showAboutScreen = false;
       } else {
         _stepsNum--;
       }

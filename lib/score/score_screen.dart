@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:markup_text/markup_text.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
@@ -14,13 +13,13 @@ import '../generated/locale_keys.g.dart';
 import 'score_widget.dart';
 
 class ScoreScreen extends StatelessWidget {
-  final Function onSeeConsequencesTapped;
+  final Function onSeeClimateChangeTapped;
   final Function onSeeActionsTapped;
   final Function onRestartTapped;
   final Function onSeeAboutTapped;
 
   const ScoreScreen(
-      {@required this.onSeeConsequencesTapped,
+      {@required this.onSeeClimateChangeTapped,
       @required this.onSeeActionsTapped,
       @required this.onRestartTapped,
       @required this.onSeeAboutTapped,
@@ -116,11 +115,11 @@ class ScoreScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: Center(
                   child: TextButton(
-                    onPressed: () => onSeeConsequencesTapped(),
+                    onPressed: () => onSeeClimateChangeTapped(),
                     child: Text(
                       "See what happens when you don't take action >",
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                      style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                     ),
                   ),
                 ),
@@ -230,30 +229,7 @@ class ScoreScreen extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () {
-        showAboutDialog(
-          context: context,
-          children: [
-            MarkupText('''
-${LocaleKeys.aboutPart1.tr()}
-
-https://www.bbc.com/news/science-environment-49349566
-https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf
-http://www.fao.org/3/a-i3437e.pdf
-https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full
-https://www.energuide.be/en/questions-answers/is-electric-heating-polluting/1369/
-https://theshiftproject.org/en/article/unsustainable-use-online-video/
-https://en.wikipedia.org/wiki/Greenhouse_gas
-https://fr.wikipedia.org/wiki/Population_mondiale
-https://www.wwf.fr/sites/default/files/doc-2017-07/161027_rapport_planete_vivante.pdf
-https://www.ewg.org/meateatersguide/frequently-asked-questions/
-
-${LocaleKeys.disclaimerTitle.tr()}
-${LocaleKeys.disclaimerExplanation.tr()}
-                      '''),
-          ],
-        );
-      },
+      onTap: () => onSeeAboutTapped(),
     );
   }
 }

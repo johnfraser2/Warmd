@@ -9,8 +9,8 @@ import '../common/common.dart';
 import '../common/screen_template.dart';
 import '../generated/locale_keys.g.dart';
 
-class ConsequencesScreen extends StatelessWidget {
-  const ConsequencesScreen({Key key}) : super(key: key);
+class ClimateChangeScreen extends StatelessWidget {
+  const ClimateChangeScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class ConsequencesScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            'Billions of people will emigrate to other area with a very high risk of famines, wars and millions or billions of deaths.\n\n(b)+6°C(/b) is the same difference of average temperature between the previous (b)ice age and the 20th century(/b).',
+            'Billions of people will emigrate to other area with a very high risk of famines, wars and millions or billions of deaths.\n\n(b)+6°C(/b) is the same difference of average temperature between the previous (b)ice age(/b) and the (b)20th century(/b).',
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
@@ -136,7 +136,7 @@ class ConsequencesScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            '• The first thing to do is to (b)completely stop using fossil fuels(/b) (coal, oil, gas) and replace them with non-carbonated electricity ((a https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_chapter7.pdf)IPCC(/a) recommands an increased use of both nuclear and renewable energy).\n\n• Then there is a need for (b)better food management(/b), with less meat and waste.\n\n• To finish, it could be necessary to start organizing a global degrowth and a birth rate control since it could be the only solution to reach a complete decarbonation.',
+            '• The first thing to do is to (b)completely stop using fossil fuels(/b) (coal, oil, gas) and replace them with non-carbonated electricity ((a https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_chapter7.pdf)IPCC(/a) recommands an increased use of both nuclear and renewable energy).\n\n• Then there is a need for (b)better food management(/b), with less meat production and waste.\n\n• To finish, it could be necessary to start organizing a global degrowth and a birth rate control since it could be the only solution to reach a complete decarbonation.',
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
           ),
         ],

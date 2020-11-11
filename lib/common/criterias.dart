@@ -51,8 +51,7 @@ class CountryCriteria extends Criteria {
   double co2EqTonsPerYear() => 0;
 
   @override
-  String advice() =>
-      LocaleKeys.generalAdvice.tr(); // Well, not really the correct place to do so, but there is no obvious better one
+  String advice() => null;
 
   double getCurrencyRate() {
     return 1 / currencyRates[countries[currentValue.toInt()]['currency']];
@@ -93,9 +92,6 @@ class GeneralCategory extends CriteriaCategory {
     key = 'general';
     criterias = [CountryCriteria()];
   }
-
-  @override
-  String get title => LocaleKeys.generalCategoryTitle.tr();
 }
 
 class HeatingFuelCriteria extends Criteria {
