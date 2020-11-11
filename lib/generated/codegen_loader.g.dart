@@ -114,9 +114,6 @@ static const Map<String,dynamic> en = {
   "globalObjectivesTitle": "Global goals",
   "globalObjectivesPart1": "To stay below +2°C, we need to (a https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf)cut our greenhouse gas emissions(/a) by (b)20% by 2030(/b) and (b)stop emitting any by 2075(/b).",
   "globalObjectivesPart2": "So far, it is unlikely to happen. Until now we constantly increased our emissions and there is still no clear sign of reduction.\n\nWith the current trend and without effective efforts, we will end up with at least (b)+4°C by 2100(/b).",
-  "disclaimerTitle": "Disclaimer:",
-  "disclaimerExplanation": "Due to the complexity of the task, I do not expect this app to be very accurate, but it gives you an idea of your impact. It is possible to find different values with other sources, but sometimes they ignore certains elements such as the impact of imported products.\n\nIn addition, this app focuses only on our carbon footprint, but we should not forget the other types of pollutions (plastics, pesticides, …).\n\nI'm not affiliated with any of the mentioned organizations.",
-  "aboutPart1": "Warmd is open-source (under GPLv3 license):\nhttps://github.com/FredJul/Warmd\nYou can help translating it there: https://frju.crowdin.com/warmd\n\nResults are mainly based on https://coolclimate.org 's 2019 data, with the help of other sources:",
   "doneWith": "Done with Warmd - Carbon footprint calculator"
 };
 static const Map<String,dynamic> it = {

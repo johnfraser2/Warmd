@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:markup_text/markup_text.dart';
 
+import '../common/blue_card.dart';
 import '../common/common.dart';
 import '../common/screen_template.dart';
 
@@ -14,15 +16,11 @@ class AboutScreen extends StatelessWidget {
       body: Column(
         children: [
           SvgPicture.asset(
-            'assets/sky.svg',
+            'assets/splash.svg',
           ),
           Gaps.h48,
-          Text(
-            'About Warmd',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
-          ),
-          Gaps.h32,
+          _buildWarmdProjectCard(context),
+          _buildSourcesCard(context),
           Gaps.h48,
           Align(
             alignment: Alignment.bottomRight,
@@ -34,26 +32,48 @@ class AboutScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildWarmdProjectCard(BuildContext context) {
+    return BlueCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Warmd project',
+            style: Theme.of(context).textTheme.subtitle1.copyWith(
+                  color: warmdDarkBlue,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          Gaps.h16,
+          MarkupText(
+            'Warmd is a free and non-lucrative open-source project. You can contribute to it (a https://github.com/FredJul/Warmd)here(/a) or help translating it (a https://frju.crowdin.com/warmd)here(/a).\n\nWarmd design has been generously provided by (a https://mnstudio.net)mn studio(/a).',
+            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSourcesCard(BuildContext context) {
+    return BlueCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Sources',
+            style: Theme.of(context).textTheme.subtitle1.copyWith(
+                  color: warmdDarkBlue,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          Gaps.h16,
+          MarkupText(
+            "The carbone footprint calculator is mainly based on (a https://coolclimate.org)CoolClimate(/a) results, with the help of other data from (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) or (a https://riftapp.fr/)Rift(/a).\n\nDue to the complexity of the task, I do not expect this app to be very accurate, but it gives you an idea of your impact.\n\nIn addition, this app focuses only on the climate change, but we should not forget the other types of pollutions (plastics, pesticides, …).\n\nI'm not affiliated with any of the mentioned organizations.",
+            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+          ),
+        ],
+      ),
+    );
+  }
 }
-// showAboutDialog(
-//           context: context,
-//           children: [
-//             MarkupText('''
-// ${LocaleKeys.aboutPart1.tr()}
-
-// https://www.bbc.com/news/science-environment-49349566
-// https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf
-// http://www.fao.org/3/a-i3437e.pdf
-// https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full
-// https://www.energuide.be/en/questions-answers/is-electric-heating-polluting/1369/
-// https://theshiftproject.org/en/article/unsustainable-use-online-video/
-// https://en.wikipedia.org/wiki/Greenhouse_gas
-// https://fr.wikipedia.org/wiki/Population_mondiale
-// https://www.wwf.fr/sites/default/files/doc-2017-07/161027_rapport_planete_vivante.pdf
-// https://www.ewg.org/meateatersguide/frequently-asked-questions/
-
-// ${LocaleKeys.disclaimerTitle.tr()}
-// ${LocaleKeys.disclaimerExplanation.tr()}
-//                       '''),
-//           ],
-//         );

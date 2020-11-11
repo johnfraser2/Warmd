@@ -35,7 +35,7 @@ class _ScoreWidgetState extends State<ScoreWidget> {
         Container(
           height: 180,
           child: AspectRatio(
-            aspectRatio: 5 / 3,
+            aspectRatio: 16 / 10,
             child: CustomPaint(
               painter: _ScoreArcPainter(scoreRatio),
             ),
