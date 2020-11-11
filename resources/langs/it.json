@@ -5,7 +5,6 @@
     "electricityBillCriteriaTitle": "La tua bolletta della corrente elettrica",
     "electricityBillCriteriaExplanation": "Spesa annuale, in {}.",
     "cleanElectricityCriteriaTitle": "Percentuale di energia elettrica priva di carbonio",
-    "cleanElectricityCriteriaExplanation": "Incluse l'energia nucleare, eolica o idraulica.\n\nMaggiori informazioni su https://www.electricitymap.org",
     "cleanElectricityCriteriaAdvice": "Scegli il tuo fornitore di energia per pagare solamente energia rinnovabile o nucleare.",
     "waterCriteriaTitle": "Il tuo consumo di acqua",
     "waterCriteriaExplanation": "Inclusa l'acqua per le tue docce, bagni, sciacquoni e giardinaggio.",
