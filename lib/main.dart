@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:warmd/onboarding/welcome_screen.dart';
 
 import 'categories/criterias_screens.dart';
 import 'common/common.dart';
@@ -14,6 +13,7 @@ import 'common/delayable_state.dart';
 import 'generated/codegen_loader.g.dart';
 import 'onboarding/country_screen.dart';
 import 'onboarding/onboarding_screen.dart';
+import 'onboarding/welcome_screen.dart';
 import 'score/actions_screen.dart';
 import 'score/consequences_screen.dart';
 import 'score/score_screen.dart';

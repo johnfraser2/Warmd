@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smart_text_view/smart_text_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 const warmdLightBlue = Color(0xFFDFF3FE);
@@ -52,21 +51,6 @@ extension MapExtension<K, V> on Map<K, V> {
     entries.sort(compare);
     return Map<K, V>.fromEntries(entries);
   }
-}
-
-SmartText buildSmartText(BuildContext context, String text, {Color defaultColor, Color linkColor}) {
-  return SmartText(
-    linkStyle: Theme.of(context).textTheme.bodyText2.copyWith(
-          color: linkColor ?? warmdDarkBlue,
-          decoration: TextDecoration.underline,
-          fontWeight: FontWeight.w300,
-        ),
-    text: text,
-    style: Theme.of(context).textTheme.bodyText2.copyWith(color: defaultColor ?? Colors.grey[500], fontWeight: FontWeight.w300),
-    onOpen: (url) {
-      launchUrl(url);
-    },
-  );
 }
 
 Widget buildBackButton(BuildContext context) {

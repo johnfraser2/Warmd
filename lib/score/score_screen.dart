@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:markup_text/markup_text.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
@@ -233,7 +234,7 @@ class ScoreScreen extends StatelessWidget {
         showAboutDialog(
           context: context,
           children: [
-            buildSmartText(context, '''
+            MarkupText('''
 ${LocaleKeys.aboutPart1.tr()}
 
 https://www.bbc.com/news/science-environment-49349566

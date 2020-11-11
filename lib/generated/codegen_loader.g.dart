@@ -60,7 +60,7 @@ static const Map<String,dynamic> en = {
   "electricityBillCriteriaTitle": "Your electricity bill",
   "electricityBillCriteriaExplanation": "Money spent each year, in {}.",
   "cleanElectricityCriteriaTitle": "Percent of carbon-free electricity",
-  "cleanElectricityCriteriaExplanation": "Including nuclear, wind, solar or hydraulic electricity.\n\nIf you don't know, you may be able to find some answers on https://www.electricitymap.org",
+  "cleanElectricityCriteriaExplanation": "Including nuclear, wind, solar or hydraulic electricity.\n\nIf you don't know, you may be able to find some answers on (a https://www.electricitymap.org)ElectricityMap(/a)",
   "cleanElectricityCriteriaAdvice": "Choose your electricity provider to only pay for renewable or nuclear electricity.",
   "utilitiesCategoryTitle": "Utilities",
   "flightsCriteriaTitle": "Distance travelled per year by airplane",

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
 
 import '../common/blue_card.dart';
@@ -134,7 +135,10 @@ class _CriteriasScreen extends StatelessWidget {
           if (c.explanation != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: buildSmartText(context, c.explanation),
+              child: MarkupText(
+                c.explanation,
+                style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.grey[500], fontWeight: FontWeight.w300),
+              ),
             ),
           Gaps.h8,
           if (c.labels != null)
