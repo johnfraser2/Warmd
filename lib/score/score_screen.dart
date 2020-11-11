@@ -236,13 +236,10 @@ class ScoreScreen extends StatelessWidget {
             buildSmartText(context, '''
 ${LocaleKeys.aboutPart1.tr()}
 
-https://www.ipcc.ch/site/assets/uploads/sites/2/2019/03/ST1.5_final_310119.pdf
-http://www.uhm.hawaii.edu/news/article.php?aId=8657
 https://www.bbc.com/news/science-environment-49349566
 https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf
 http://www.fao.org/3/a-i3437e.pdf
 https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full
-https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_full.pdf
 https://www.energuide.be/en/questions-answers/is-electric-heating-polluting/1369/
 https://theshiftproject.org/en/article/unsustainable-use-online-video/
 https://en.wikipedia.org/wiki/Greenhouse_gas
