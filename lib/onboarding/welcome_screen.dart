@@ -19,6 +19,7 @@ class WelcomeScreen extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: SvgPicture.asset(
               'assets/pinguins.svg',
+              height: MediaQuery.of(context).size.height / 6,
             ),
           ),
           Expanded(
@@ -61,6 +62,7 @@ class WelcomeScreen extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: SvgPicture.asset(
               'assets/ice.svg',
+              height: MediaQuery.of(context).size.height / 10,
             ),
           ),
         ],

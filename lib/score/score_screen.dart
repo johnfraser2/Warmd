@@ -39,16 +39,22 @@ class ScoreScreen extends StatelessWidget {
     final dataMap = temp.sort((a, b) => -a.value.compareTo(b.value));
 
     return Scaffold(
-      body: ListView(
-        children: [
-          _buildHeader(context, dataMap, state),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: _buildFootprintRepartition(context, state, dataMap),
+      backgroundColor: warmdLightBlue, // for iOS scrolling effect
+      body: SingleChildScrollView(
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            children: [
+              _buildHeader(context, dataMap, state),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: _buildFootprintRepartition(context, state, dataMap),
+              ),
+              Gaps.h64,
+              _buildGoToSourcesButton(context),
+            ],
           ),
-          Gaps.h64,
-          _buildGoToSourcesButton(context),
-        ],
+        ),
       ),
     );
   }
@@ -181,9 +187,9 @@ class ScoreScreen extends StatelessWidget {
           child: Center(
             child: PieChart(
               dataMap: dataMap,
-              chartValuesOptions: const ChartValuesOptions(
+              chartValuesOptions: ChartValuesOptions(
                 showChartValueBackground: false,
-                chartValueStyle: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                chartValueStyle: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -193,8 +199,8 @@ class ScoreScreen extends StatelessWidget {
   }
 
   Widget _buildGoToSourcesButton(BuildContext context) {
-    return InkWell(
-      child: Ink(
+    return GestureDetector(
+      child: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(topLeft: Radius.circular(36), topRight: Radius.circular(36)),
           color: warmdLightBlue,

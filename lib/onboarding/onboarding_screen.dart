@@ -50,6 +50,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                           children: [
                             SvgPicture.asset(
                               'assets/narwhal.svg',
+                              height: MediaQuery.of(context).size.height / 4,
                             ),
                             const Text(
                               'Understand your impact',
@@ -73,6 +74,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                           children: [
                             SvgPicture.asset(
                               'assets/pinguin.svg',
+                              height: MediaQuery.of(context).size.height / 4,
                             ),
                             const Text(
                               'Take action to reduce impact',
@@ -97,6 +99,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                   //         children: [
                   //           SvgPicture.asset(
                   //             'assets/seal.svg',
+                  //             height: MediaQuery.of(context).size.height / 4,
                   //           ),
                   //           const Text(
                   //             'A climate-conscious community',

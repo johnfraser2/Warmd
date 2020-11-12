@@ -103,6 +103,7 @@ class CountryScreen extends StatelessWidget {
           Gaps.h64,
           SvgPicture.asset(
             'assets/bear.svg',
+            height: MediaQuery.of(context).size.height / 6,
           ),
         ],
       ),
