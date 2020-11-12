@@ -148,7 +148,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && _stepsNum >= 2)
+                        if (_splashScreenSeen && _stepsNum == 2)
                           MaterialPage<CountryScreen>(
                             child: CountryScreen(
                               onCountrySelected: () {
