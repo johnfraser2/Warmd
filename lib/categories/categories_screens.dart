@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import '../common/blue_card.dart';
 import '../common/common.dart';
 import '../common/criterias.dart';
+import '../common/delayable_state.dart';
 import '../common/screen_template.dart';
 import '../generated/locale_keys.g.dart';
 
@@ -66,7 +67,7 @@ class GoodsCategoryScreen extends StatelessWidget {
   }
 }
 
-class _CriteriasScreen extends StatelessWidget {
+class _CriteriasScreen extends StatefulWidget {
   final CriteriaCategory criteriaCategory;
   final double progressValue;
   final Function onContinueTapped;
@@ -76,26 +77,34 @@ class _CriteriasScreen extends StatelessWidget {
       : super(key: key);
 
   @override
+  _CriteriasScreenState createState() => _CriteriasScreenState();
+}
+
+class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
+  final _scrollController = ScrollController();
+
+  @override
   Widget build(BuildContext context) {
     var state = context.watch<CriteriasState>();
 
     return ScreenTemplate(
-      progressValue: progressValue,
+      progressValue: widget.progressValue,
+      scrollController: _scrollController,
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: Column(
           children: [
             SvgPicture.asset(
-              'assets/${criteriaCategory.key}.svg',
+              'assets/${widget.criteriaCategory.key}.svg',
               height: 96,
             ),
             Gaps.h16,
             Text(
-              criteriaCategory.title,
+              widget.criteriaCategory.title,
               style: Theme.of(context).textTheme.headline5.copyWith(color: warmdGreen, fontWeight: FontWeight.bold),
             ),
             Gaps.h32,
-            for (Criteria crit in criteriaCategory.criterias) _buildCriteria(context, state, crit),
+            for (Criteria crit in widget.criteriaCategory.criterias) _buildCriteria(context, state, crit),
             Gaps.h32,
             Text(
               'You can always update the data later on.',
@@ -106,7 +115,10 @@ class _CriteriasScreen extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  onContinueTapped();
+                  // We want to scroll back to the top, so that the "REDO" button work as expected
+                  delay(const Duration(milliseconds: 500), () => _scrollController.jumpTo(0));
+
+                  widget.onContinueTapped();
                 },
                 child: const Text('CONTINUE'),
               ),

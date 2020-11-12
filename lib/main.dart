@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'categories/criterias_screens.dart';
+import 'categories/categories_screens.dart';
 import 'common/common.dart';
 import 'common/criterias.dart';
 import 'common/delayable_state.dart';
@@ -148,7 +148,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && _stepsNum == 2)
+                        if (_splashScreenSeen && _stepsNum >= 2)
                           MaterialPage<CountryScreen>(
                             child: CountryScreen(
                               onCountrySelected: () {
@@ -159,7 +159,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum)
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum)
                           MaterialPage<UtilitiesCategoryScreen>(
                             child: UtilitiesCategoryScreen(
                               onContinueTapped: () {
@@ -169,7 +169,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum + 1)
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 1)
                           MaterialPage<TravelCategoryScreen>(
                             child: TravelCategoryScreen(
                               onContinueTapped: () {
@@ -179,7 +179,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum + 2)
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 2)
                           MaterialPage<FoodCategoryScreen>(
                             child: FoodCategoryScreen(
                               onContinueTapped: () {
@@ -189,7 +189,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum + 3)
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 3)
                           MaterialPage<GoodsCategoryScreen>(
                             child: GoodsCategoryScreen(
                               onContinueTapped: () {
@@ -199,7 +199,7 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum == _firstCategoryScreenNum + 4)
+                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 4)
                           MaterialPage<ScoreScreen>(
                             child: ScoreScreen(
                               onSeeClimateChangeTapped: () {

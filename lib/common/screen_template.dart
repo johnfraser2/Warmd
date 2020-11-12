@@ -6,8 +6,9 @@ import 'steps_progress_indicator.dart';
 class ScreenTemplate extends StatelessWidget {
   final double progressValue;
   final Widget body;
+  final ScrollController scrollController;
 
-  const ScreenTemplate({this.progressValue, @required this.body, Key key}) : super(key: key);
+  const ScreenTemplate({this.progressValue, @required this.body, this.scrollController, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class ScreenTemplate extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         scrollDirection: Axis.vertical,
+        controller: scrollController,
         children: [
           Gaps.h16,
           if (progressValue != null) StepsProgressIndicator(value: progressValue) else Gaps.h12,
