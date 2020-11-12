@@ -21,13 +21,6 @@ import 'score/footprint_screen.dart';
 import 'splash_screen.dart';
 
 void main() async {
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle.dark.copyWith(
-      statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.transparent,
-    ),
-  );
-
   runApp(EasyLocalization(
     child: MyApp(),
     supportedLocales: [const Locale('en'), const Locale('fr')],
@@ -38,6 +31,7 @@ void main() async {
     useOnlyLangCode: true,
   ));
 
+  await SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 }
 
