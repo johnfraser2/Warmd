@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,6 +7,7 @@ import 'package:markup_text/markup_text.dart';
 import '../common/blue_card.dart';
 import '../common/common.dart';
 import '../common/screen_template.dart';
+import '../generated/locale_keys.g.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key key}) : super(key: key);
@@ -39,7 +41,7 @@ class AboutScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Warmd project',
+            LocaleKeys.aboutProjectTitle.tr(),
             style: Theme.of(context).textTheme.subtitle1.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
@@ -47,7 +49,7 @@ class AboutScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            'Warmd is a free and non-lucrative open-source project. You can contribute to it (a https://github.com/FredJul/Warmd)here(/a) or help translating it (a https://frju.crowdin.com/warmd)here(/a).\n\nWarmd design has been generously provided by (a https://mnstudio.net)mn studio(/a).',
+            LocaleKeys.aboutProjectDescription.tr(),
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
@@ -61,7 +63,7 @@ class AboutScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Sources',
+            LocaleKeys.aboutSourcesTitle.tr(),
             style: Theme.of(context).textTheme.subtitle1.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
@@ -69,7 +71,7 @@ class AboutScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            "The carbone footprint calculator is mainly based on (a https://coolclimate.org)CoolClimate(/a) results, with the help of other data from (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) or (a https://riftapp.fr/)Rift(/a).\n\nDue to the complexity of the task, I do not expect this app to be very accurate, but it gives you an idea of your impact.\n\nIn addition, this app focuses only on the climate change, but we should not forget the other types of pollutions (plastics, pesticides, …).\n\nI'm not affiliated with any of the mentioned organizations.",
+            LocaleKeys.aboutSourcesDescription.tr(),
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
           ),
         ],

@@ -107,7 +107,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             for (Criteria crit in widget.criteriaCategory.criterias) _buildCriteria(context, state, crit),
             Gaps.h32,
             Text(
-              'You can always update the data later on.',
+              LocaleKeys.continueActionExplanation.tr(),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
             ),
@@ -120,7 +120,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
 
                   widget.onContinueTapped();
                 },
-                child: const Text('CONTINUE'),
+                child: Text(LocaleKeys.continueAction.tr()),
               ),
             ),
             Gaps.h48,
@@ -149,7 +149,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: MarkupText(
                 c.explanation,
-                style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.grey[500], fontWeight: FontWeight.w300),
+                style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.grey[600], fontWeight: FontWeight.w300),
               ),
             ),
           Gaps.h8,

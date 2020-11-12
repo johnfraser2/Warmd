@@ -12,15 +12,15 @@ import '../common/criterias.dart';
 import '../generated/locale_keys.g.dart';
 import 'score_widget.dart';
 
-class ScoreScreen extends StatelessWidget {
+class FootprintScreen extends StatelessWidget {
   final Function onSeeClimateChangeTapped;
-  final Function onSeeActionsTapped;
+  final Function onSeeAdvisesTapped;
   final Function onRestartTapped;
   final Function onSeeAboutTapped;
 
-  const ScoreScreen(
+  const FootprintScreen(
       {@required this.onSeeClimateChangeTapped,
-      @required this.onSeeActionsTapped,
+      @required this.onSeeAdvisesTapped,
       @required this.onRestartTapped,
       @required this.onSeeAboutTapped,
       Key key})
@@ -33,7 +33,10 @@ class ScoreScreen extends StatelessWidget {
     var temp = <String, double>{};
     for (var cat in state.categories) {
       if (cat.co2EqTonsPerYear() > 0) {
-        temp.putIfAbsent('${cat.title} (${cat.co2EqTonsPerYear().toStringAsFixed(1)}t)', () => cat.co2EqTonsPerYear().toDouble());
+        temp.putIfAbsent(
+            LocaleKeys.category_short_footprint
+                .tr(namedArgs: {'cat': cat.title, 'tons': cat.co2EqTonsPerYear().toStringAsFixed(1)}),
+            () => cat.co2EqTonsPerYear().toDouble());
       }
     }
     final dataMap = temp.sort((a, b) => -a.value.compareTo(b.value));
@@ -96,12 +99,8 @@ class ScoreScreen extends StatelessWidget {
                     IconButton(
                         icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
                         onPressed: () {
-                          var footprint = state.getFormatedFootprint();
-
                           Share.share(
-                              "${LocaleKeys.footprintRepartitionTitle.tr(args: [
-                                footprint
-                              ])}\n\n${dataMap.keys.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
+                              "${LocaleKeys.footprintTitle.tr()}\n\n${dataMap.keys.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
                               subject: 'Warmd');
                         }),
                   ],
@@ -111,7 +110,7 @@ class ScoreScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 38),
                 child: Text(
-                  'Your carbon footprint is',
+                  LocaleKeys.footprintTitle.tr(),
                   style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -123,7 +122,7 @@ class ScoreScreen extends StatelessWidget {
                   child: TextButton(
                     onPressed: () => onSeeClimateChangeTapped(),
                     child: Text(
-                      "See what happens when you don't take action >",
+                      LocaleKeys.footprintWarning.tr(),
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                     ),
@@ -143,9 +142,9 @@ class ScoreScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () => onSeeActionsTapped(),
-                      child: const Text(
-                        'SEE WHAT YOU NEED TO DO',
+                      onPressed: () => onSeeAdvisesTapped(),
+                      child: Text(
+                        LocaleKeys.seeAdvises.tr(),
                         textAlign: TextAlign.center,
                       ),
                       style: greenButtonStyle,
@@ -156,7 +155,7 @@ class ScoreScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () => onRestartTapped(),
                       child: Text(
-                        'REDO QUESTIONNAIRE',
+                        LocaleKeys.redoQuestionnaire.tr(),
                         textAlign: TextAlign.center,
                         style:
                             Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: Colors.grey[600]),
@@ -178,7 +177,7 @@ class ScoreScreen extends StatelessWidget {
       children: [
         Gaps.h64,
         Text(
-          'FOOTPRINT ANALYSIS',
+          LocaleKeys.footprintAnalysisTitle.tr(),
           style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
         ),
         Gaps.h24,
@@ -212,7 +211,7 @@ class ScoreScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Understand how your carbon footprint is calculated and how you could help this project.',
+                  LocaleKeys.seeAbout.tr(),
                   style: Theme.of(context).textTheme.subtitle2.copyWith(
                         color: warmdDarkBlue,
                         fontWeight: FontWeight.bold,

@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../common/common.dart';
+import '../generated/locale_keys.g.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final Function onStartSelected;
@@ -29,19 +31,13 @@ class WelcomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Hello there,',
+                    LocaleKeys.welcomeTitle.tr(),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                   ),
                   Gaps.h64,
                   Text(
-                    'Thank you for downloading Warmd and taking the first step to making our future generations safer.',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue),
-                  ),
-                  Gaps.h32,
-                  Text(
-                    'Before you get started, we’ll ask you few questions to create personalized recommendations. Are you ready?',
+                    LocaleKeys.welcomeDescription.tr(),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue),
                   ),
@@ -54,7 +50,7 @@ class WelcomeScreen extends StatelessWidget {
               onPressed: () {
                 onStartSelected();
               },
-              child: const Text("LET'S GO"),
+              child: Text(LocaleKeys.welcomeAction.tr()),
             ),
           ),
           Gaps.h48,

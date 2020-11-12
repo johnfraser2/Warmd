@@ -22,7 +22,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h48,
           Text(
-            'What is climate change?',
+            LocaleKeys.climateChangeTitle.tr(),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
           ),
@@ -48,7 +48,7 @@ class ClimateChangeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Consequences of global warming',
+            LocaleKeys.consequencesTitle.tr(),
             style: Theme.of(context).textTheme.subtitle1.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
@@ -56,7 +56,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            'We already gained (b)+1°C(/b) from pre-industrial levels, with non-negligeable impacts.\n\nBy reaching (b)+2°C(/b) in 2100, (a https://www.wwf.org.uk/updates/our-warming-world-how-much-difference-will-half-degree-really-make)we will certainly suffer(/a) a major loss in our biodiversity (-18% insects, -16% plants, -8% vertebrates, -99% corals), 49 million people will be impacted by sea-level rise and 410 million people will suffer severe drought, leading to massive emigration, financial and political instabilities.\n\nAt (b)+4°C(/b) humans will not be able to live around the equator (a http://www.uhm.hawaii.edu/news/article.php?aId=8657)due to deadly heat(/a):',
+            LocaleKeys.consequencesPart1.tr(),
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
           ),
           Gaps.h16,
@@ -68,7 +68,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            'Billions of people will emigrate to other area with a very high risk of famines, wars and millions or billions of deaths.\n\n(b)+6°C(/b) is the same difference of average temperature between the previous (b)ice age(/b) and the (b)20th century(/b).',
+            LocaleKeys.consequencesPart2.tr(),
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
@@ -116,7 +116,7 @@ class ClimateChangeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'How should we start?',
+            LocaleKeys.globalActionsTitle.tr(),
             style: Theme.of(context).textTheme.subtitle1.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
@@ -124,7 +124,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            'Emissions essentially come from few main sectors (source: IPCC, 2014, global emissions).',
+            LocaleKeys.globalActionsPart1.tr(),
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
           ),
           Gaps.h16,
@@ -136,7 +136,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            '• The first thing to do is to (b)completely stop using fossil fuels(/b) (coal, oil, gas) and replace them with non-carbonated electricity ((a https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_chapter7.pdf)IPCC(/a) recommands an increased use of both nuclear and renewable energy).\n\n• Then there is a need for (b)better food management(/b), with less meat production and waste.\n\n• To finish, it could be necessary to start organizing a global degrowth and a birth rate control since it could be the only solution to reach a complete decarbonation.',
+            LocaleKeys.globalActionsPart2.tr(),
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
           ),
         ],

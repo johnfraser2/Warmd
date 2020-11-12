@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,6 +6,7 @@ import 'package:page_indicator/page_indicator.dart';
 
 import '../common/common.dart';
 import '../common/delayable_state.dart';
+import '../generated/locale_keys.g.dart';
 
 class OnboardingScreen extends StatefulWidget {
   final Function onOnboardingFinished;
@@ -52,13 +54,13 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                               'assets/narwhal.svg',
                               height: MediaQuery.of(context).size.height / 4,
                             ),
-                            const Text(
-                              'Understand your impact',
-                              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                            Text(
+                              LocaleKeys.onboardingStep1Title.tr(),
+                              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                             ),
                             Gaps.h32,
                             Text(
-                              'See how your activities impact planet, animals & more.',
+                              LocaleKeys.onboardingStep1Description.tr(),
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.grey[600], fontSize: 18),
                             ),
@@ -76,13 +78,13 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                               'assets/pinguin.svg',
                               height: MediaQuery.of(context).size.height / 4,
                             ),
-                            const Text(
-                              'Take action to reduce impact',
-                              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                            Text(
+                              LocaleKeys.onboardingStep2Title.tr(),
+                              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                             ),
                             Gaps.h32,
                             Text(
-                              'Taking small steps, everyday, are cornerstone to drive big changes for the future.',
+                              LocaleKeys.onboardingStep2Description.tr(),
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.grey[600], fontSize: 18),
                             ),
@@ -132,7 +134,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
               onPressed: () {
                 widget.onOnboardingFinished();
               },
-              child: const Text('GET STARTED'),
+              child: Text(LocaleKeys.onboardingAction.tr()),
             ),
           ),
           Gaps.h64,

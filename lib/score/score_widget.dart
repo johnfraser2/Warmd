@@ -1,9 +1,11 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../common/criterias.dart';
+import '../generated/locale_keys.g.dart';
 
 const _levelColors = [
   Color(0xFF00A31D),
@@ -56,11 +58,7 @@ class _ScoreWidgetState extends State<ScoreWidget> {
                         .copyWith(color: _scoreRatioToColor(scoreRatio), fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: 'tons',
-                    style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
-                  ),
-                  TextSpan(
-                    text: '\nCO₂e/year',
+                    text: LocaleKeys.scoreUnit.tr(),
                     style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                 ],

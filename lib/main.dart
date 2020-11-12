@@ -15,9 +15,9 @@ import 'onboarding/country_screen.dart';
 import 'onboarding/onboarding_screen.dart';
 import 'onboarding/welcome_screen.dart';
 import 'score/about_screen.dart';
-import 'score/actions_screen.dart';
+import 'score/advises_screen.dart';
 import 'score/climate_change_screen.dart';
-import 'score/score_screen.dart';
+import 'score/footprint_screen.dart';
 import 'splash_screen.dart';
 
 void main() async {
@@ -51,7 +51,7 @@ const _firstCategoryScreenNum = 3;
 class _MyAppState extends DelayableState<MyApp> {
   var _splashScreenSeen = false;
   var _stepsNum = _firstCategoryScreenNum;
-  var _showActionsScreen = false;
+  var _showAdvisesScreen = false;
   var _showClimateChangeScreen = false;
   var _showClimateChangeScreenFromActions = false;
   var _showAboutScreen = false;
@@ -200,16 +200,16 @@ class _MyAppState extends DelayableState<MyApp> {
                             ),
                           ),
                         if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 4)
-                          MaterialPage<ScoreScreen>(
-                            child: ScoreScreen(
+                          MaterialPage<FootprintScreen>(
+                            child: FootprintScreen(
                               onSeeClimateChangeTapped: () {
                                 setState(() {
                                   _showClimateChangeScreen = true;
                                 });
                               },
-                              onSeeActionsTapped: () {
+                              onSeeAdvisesTapped: () {
                                 setState(() {
-                                  _showActionsScreen = true;
+                                  _showAdvisesScreen = true;
                                 });
                               },
                               onRestartTapped: () {
@@ -224,9 +224,9 @@ class _MyAppState extends DelayableState<MyApp> {
                               },
                             ),
                           ),
-                        if (_splashScreenSeen && _showActionsScreen)
-                          MaterialPage<ActionsScreen>(
-                            child: ActionsScreen(
+                        if (_splashScreenSeen && _showAdvisesScreen)
+                          MaterialPage<AdvisesScreen>(
+                            child: AdvisesScreen(
                               onSeeClimateChangeTapped: () {
                                 setState(() {
                                   _showClimateChangeScreenFromActions = true;
@@ -263,8 +263,8 @@ class _MyAppState extends DelayableState<MyApp> {
     setState(() {
       if (_showClimateChangeScreenFromActions) {
         _showClimateChangeScreenFromActions = false;
-      } else if (_showActionsScreen) {
-        _showActionsScreen = false;
+      } else if (_showAdvisesScreen) {
+        _showAdvisesScreen = false;
       } else if (_showClimateChangeScreen) {
         _showClimateChangeScreen = false;
       } else if (_showAboutScreen) {

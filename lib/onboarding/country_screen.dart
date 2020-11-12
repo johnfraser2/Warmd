@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../common/common.dart';
 import '../common/criterias.dart';
 import '../common/steps_progress_indicator.dart';
+import '../generated/locale_keys.g.dart';
 
 class CountryScreen extends StatelessWidget {
   final Function onCountrySelected;
@@ -34,12 +36,12 @@ class CountryScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'COUNTRY',
+                    LocaleKeys.countrySelectionTitle.tr(),
                     style: Theme.of(context).textTheme.headline6.copyWith(color: warmdBlue, fontWeight: FontWeight.bold),
                   ),
                   Gaps.h32,
                   Text(
-                    'Which country do you reside in?',
+                    LocaleKeys.countrySelectionQuestion.tr(),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                   ),
@@ -85,7 +87,7 @@ class CountryScreen extends StatelessWidget {
                   ),
                   Gaps.h32,
                   Text(
-                    'This information allows us to correctly compute your carbon footprint.',
+                    LocaleKeys.countrySelectionExplanation.tr(),
                     style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
                   ),
                 ],
@@ -97,7 +99,7 @@ class CountryScreen extends StatelessWidget {
               onPressed: () {
                 onCountrySelected();
               },
-              child: const Text('CONTINUE'),
+              child: Text(LocaleKeys.continueAction.tr()),
             ),
           ),
           Gaps.h64,

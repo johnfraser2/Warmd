@@ -1,6 +1,19 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 abstract class  LocaleKeys {
+  static const onboardingStep1Title = 'onboardingStep1Title';
+  static const onboardingStep1Description = 'onboardingStep1Description';
+  static const onboardingStep2Title = 'onboardingStep2Title';
+  static const onboardingStep2Description = 'onboardingStep2Description';
+  static const onboardingAction = 'onboardingAction';
+  static const welcomeTitle = 'welcomeTitle';
+  static const welcomeDescription = 'welcomeDescription';
+  static const welcomeAction = 'welcomeAction';
+  static const countrySelectionTitle = 'countrySelectionTitle';
+  static const countrySelectionQuestion = 'countrySelectionQuestion';
+  static const countrySelectionExplanation = 'countrySelectionExplanation';
+  static const continueAction = 'continueAction';
+  static const continueActionExplanation = 'continueActionExplanation';
   static const politicalAdvice = 'politicalAdvice';
   static const heatingFuelCriteriaTitle = 'heatingFuelCriteriaTitle';
   static const heatingFuelCriteriaExplanation = 'heatingFuelCriteriaExplanation';
@@ -58,11 +71,29 @@ abstract class  LocaleKeys {
   static const goodsAndServicesCategoryTitle = 'goodsAndServicesCategoryTitle';
   static const valueWithMore = 'valueWithMore';
   static const valueWithLess = 'valueWithLess';
-  static const footprintRepartitionTitle = 'footprintRepartitionTitle';
+  static const category_short_footprint = 'category_short_footprint';
+  static const footprintTitle = 'footprintTitle';
+  static const footprintWarning = 'footprintWarning';
+  static const footprintAnalysisTitle = 'footprintAnalysisTitle';
+  static const seeAdvises = 'seeAdvises';
+  static const redoQuestionnaire = 'redoQuestionnaire';
+  static const seeAbout = 'seeAbout';
+  static const scoreUnit = 'scoreUnit';
   static const co2EqTonsValue = 'co2EqTonsValue';
+  static const climateChangeTitle = 'climateChangeTitle';
+  static const consequencesTitle = 'consequencesTitle';
+  static const consequencesPart1 = 'consequencesPart1';
+  static const consequencesPart2 = 'consequencesPart2';
   static const globalObjectivesTitle = 'globalObjectivesTitle';
   static const globalObjectivesPart1 = 'globalObjectivesPart1';
   static const globalObjectivesPart2 = 'globalObjectivesPart2';
+  static const globalActionsTitle = 'globalActionsTitle';
+  static const globalActionsPart1 = 'globalActionsPart1';
+  static const globalActionsPart2 = 'globalActionsPart2';
+  static const aboutProjectTitle = 'aboutProjectTitle';
+  static const aboutProjectDescription = 'aboutProjectDescription';
+  static const aboutSourcesTitle = 'aboutSourcesTitle';
+  static const aboutSourcesDescription = 'aboutSourcesDescription';
   static const doneWith = 'doneWith';
 
 }
