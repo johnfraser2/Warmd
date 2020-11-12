@@ -1,27 +1,4 @@
 {
-    "generalCategoryTitle": "Allgemein",
     "waterCriteriaTitle": "Dein Wasserverbrauch",
-    "waterCriteriaLabel2": "Normal",
-    "yourCarbonFootprint": "Dein CO2-Fußabdruck:",
-    "you": "Du",
-    "countryUSA": "USA",
-    "countryCanada": "Kanada",
-    "countryAustralia": "Australien",
-    "countrySaudiArabia": "Saudi-Arabien",
-    "countryChina": "China",
-    "countryIsrael": "Israel",
-    "countrySouthKorea": "Südkorea",
-    "countryJapan": "Japan",
-    "countryGermany": "Deutschland",
-    "countrySouthAfrica": "Südafrika",
-    "countryRussia": "Russland",
-    "countryGreece": "Griechenland",
-    "countryNorway": "Norwegen",
-    "countryIndia": "Indien",
-    "countryFrance": "Frankreich",
-    "countryMexico": "Mexiko",
-    "countryEgypt": "Ägypten",
-    "countryVietnam": "Vietnam",
-    "countryMorocco": "Marokko",
-    "countryPhilippines": "Philippinen"
+    "waterCriteriaLabel2": "Normal"
 }
