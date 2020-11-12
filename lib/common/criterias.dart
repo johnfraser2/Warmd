@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../generated/locale_keys.g.dart';
 import 'currencies.dart';
-import 'warmd_icons_icons.dart';
 
 abstract class Criteria {
   String key;
@@ -19,11 +18,11 @@ abstract class Criteria {
   double step;
   double currentValue;
   List<String> labels;
-  IconData leftIcon;
-  IconData rightIcon;
 
   double co2EqTonsPerYear();
   String advice();
+
+  String getFormatedFootprint() => LocaleKeys.co2EqTonsValue.tr(args: [co2EqTonsPerYear().toStringAsFixed(1)]);
 }
 
 abstract class CriteriaCategory {
@@ -46,17 +45,13 @@ class CountryCriteria extends Criteria {
   }
 
   @override
-  String get title => LocaleKeys.countryCriteriaTitle.tr();
-
-  @override
   List<String> get labels => countries.map((c) => c['name']).toList();
 
   @override
   double co2EqTonsPerYear() => 0;
 
   @override
-  String advice() =>
-      LocaleKeys.generalAdvice.tr(); // Well, not really the correct place to do so, but there is no obvious better one
+  String advice() => null;
 
   double getCurrencyRate() {
     return 1 / currencyRates[countries[currentValue.toInt()]['currency']];
@@ -97,46 +92,16 @@ class GeneralCategory extends CriteriaCategory {
     key = 'general';
     criterias = [CountryCriteria()];
   }
-
-  @override
-  String get title => LocaleKeys.generalCategoryTitle.tr();
-}
-
-class PeopleCriteria extends Criteria {
-  PeopleCriteria() {
-    key = 'people';
-    minValue = 1;
-    maxValue = 3;
-    step = 1;
-    currentValue = 1;
-    leftIcon = Icons.person;
-    rightIcon = WarmdIcons.account_group;
-  }
-
-  @override
-  String get title => LocaleKeys.peopleCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.peopleCriteriaExplanation.tr();
-
-  @override
-  double co2EqTonsPerYear() => 0;
-
-  @override
-  String advice() => null;
 }
 
 class HeatingFuelCriteria extends Criteria {
-  final PeopleCriteria _peopleCriteria;
   final CountryCriteria _countryCriteria;
 
-  HeatingFuelCriteria(this._peopleCriteria, this._countryCriteria) {
+  HeatingFuelCriteria(this._countryCriteria) {
     key = 'heating_fuel';
     minValue = 0;
     step = 100;
     currentValue = 0;
-    leftIcon = WarmdIcons.piggy_bank;
-    rightIcon = WarmdIcons.radiator;
   }
 
   @override
@@ -156,20 +121,17 @@ class HeatingFuelCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var peopleNumber = _peopleCriteria.currentValue;
-    var peopleFactor = peopleNumber > 1 ? peopleNumber / 1.3 : 1;
-
     var moneyChange = _countryCriteria.getCurrencyRate();
 
     var fuelBill = currentValue * moneyChange;
     var co2TonsPerFuelDollar = 0.005;
 
-    return (fuelBill * co2TonsPerFuelDollar) / peopleFactor;
+    return (fuelBill * co2TonsPerFuelDollar);
   }
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 3) {
+    if (co2EqTonsPerYear() > 2) {
       return LocaleKeys.heatingFuelCriteriaAdvice.tr();
     } else {
       return null;
@@ -178,17 +140,13 @@ class HeatingFuelCriteria extends Criteria {
 }
 
 class ElectricityBillCriteria extends Criteria {
-  final PeopleCriteria _peopleCriteria;
   final CountryCriteria _countryCriteria;
-  final CleanElectricityCriteria _cleanElectricityCriteria;
 
-  ElectricityBillCriteria(this._peopleCriteria, this._countryCriteria, this._cleanElectricityCriteria) {
+  ElectricityBillCriteria(this._countryCriteria) {
     key = 'electricity_bill';
     minValue = 0;
     step = 100;
     currentValue = 1000;
-    leftIcon = WarmdIcons.coin_outline;
-    rightIcon = WarmdIcons.cash_multiple;
   }
 
   @override
@@ -207,34 +165,23 @@ class ElectricityBillCriteria extends Criteria {
   String get unit => _countryCriteria.getCurrencyCode();
 
   @override
-  double co2EqTonsPerYear() {
-    var peopleNumber = _peopleCriteria.currentValue;
-    var peopleFactor = peopleNumber > 1 ? peopleNumber / 1.3 : 1;
-
-    var moneyChange = _countryCriteria.getCurrencyRate();
-
-    var electricityBill = currentValue * moneyChange;
-    var co2ElectricityPercent = min(100, 100 - _cleanElectricityCriteria.currentValue + 15); // +15% because nothing is 100% clean
-    var kWhPrice = 0.15; // in dollars
-    var co2TonsPerKWh = 0.00065;
-
-    return ((electricityBill / 100 * co2ElectricityPercent) / kWhPrice * co2TonsPerKWh) / peopleFactor;
-  }
+  double co2EqTonsPerYear() => 0;
 
   @override
   String advice() => null;
 }
 
 class CleanElectricityCriteria extends Criteria {
-  CleanElectricityCriteria() {
+  final CountryCriteria _countryCriteria;
+  final ElectricityBillCriteria _electricityBillCriteria;
+
+  CleanElectricityCriteria(this._countryCriteria, this._electricityBillCriteria) {
     key = 'clean_electricity';
     minValue = 0;
     maxValue = 100;
     step = 5;
     currentValue = 10;
     unit = '%';
-    leftIcon = WarmdIcons.fuel;
-    rightIcon = WarmdIcons.wind_turbine;
   }
 
   @override
@@ -244,12 +191,445 @@ class CleanElectricityCriteria extends Criteria {
   String get explanation => LocaleKeys.cleanElectricityCriteriaExplanation.tr();
 
   @override
-  double co2EqTonsPerYear() => 0;
+  double co2EqTonsPerYear() {
+    var moneyChange = _countryCriteria.getCurrencyRate();
+
+    var electricityBill = _electricityBillCriteria.currentValue * moneyChange;
+    var co2ElectricityPercent = min(100, 100 - currentValue + 15); // +15% because nothing is 100% clean
+    var kWhPrice = 0.15; // in dollars
+    var co2TonsPerKWh = 0.00065;
+
+    return ((electricityBill / 100 * co2ElectricityPercent) / kWhPrice * co2TonsPerKWh);
+  }
 
   @override
   String advice() {
-    if (currentValue < 80) {
+    if (co2EqTonsPerYear() > 0.5) {
       return LocaleKeys.cleanElectricityCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
+}
+
+class UtilitiesCategory extends CriteriaCategory {
+  UtilitiesCategory(CountryCriteria countryCriteria) {
+    key = 'utilities';
+
+    var electricityBillCriteria = ElectricityBillCriteria(countryCriteria);
+    criterias = [
+      HeatingFuelCriteria(countryCriteria),
+      electricityBillCriteria,
+      CleanElectricityCriteria(countryCriteria, electricityBillCriteria),
+    ];
+  }
+
+  @override
+  String get title => LocaleKeys.utilitiesCategoryTitle.tr();
+}
+
+class FlightsCriteria extends Criteria {
+  final CountryCriteria _countryCriteria;
+
+  FlightsCriteria(this._countryCriteria) {
+    key = 'flights';
+    minValue = 0;
+    maxValue = 100000;
+    step = 5000;
+    currentValue = 0;
+  }
+
+  @override
+  String get title => LocaleKeys.flightsCriteriaTitle.tr();
+
+  @override
+  String get explanation => LocaleKeys.flightsCriteriaExplanation.tr();
+
+  @override
+  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
+
+  @override
+  double co2EqTonsPerYear() {
+    var co2TonsPerKm = 0.00028;
+    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
+    return currentValue * milesToKmFactor * co2TonsPerKm;
+  }
+
+  @override
+  String advice() {
+    if (co2EqTonsPerYear() > 1) {
+      return LocaleKeys.flightsCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
+}
+
+class CarCriteria extends Criteria {
+  final CarConsumptionCriteria _carConsumptionCriteria;
+  final CountryCriteria _countryCriteria;
+
+  CarCriteria(this._carConsumptionCriteria, this._countryCriteria) {
+    key = 'car';
+    minValue = 0;
+    maxValue = 100000;
+    step = 5000;
+    currentValue = 0;
+  }
+
+  @override
+  String get title => LocaleKeys.carCriteriaTitle.tr();
+
+  @override
+  String get explanation => LocaleKeys.carCriteriaExplanation.tr();
+
+  @override
+  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
+
+  @override
+  double co2EqTonsPerYear() {
+    // We use -value for US/UK mpg because they are negative values (to have min < max)
+    var litersPerKm = (_countryCriteria.unitSystem() == UnitSystem.metric
+            ? _carConsumptionCriteria.currentValue
+            : _countryCriteria.unitSystem() == UnitSystem.us
+                ? 235.2 / -_carConsumptionCriteria.currentValue
+                : 282.5 / -_carConsumptionCriteria.currentValue) /
+        100;
+    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
+    var co2TonsPerLiter = 0.0033;
+    return currentValue * milesToKmFactor * litersPerKm * co2TonsPerLiter;
+  }
+
+  @override
+  String advice() {
+    if (co2EqTonsPerYear() > 1.5) {
+      return LocaleKeys.carCriteriaAdviceHigh.tr();
+    } else if (co2EqTonsPerYear() > 0.5) {
+      return LocaleKeys.carCriteriaAdviceLow.tr();
+    } else {
+      return null;
+    }
+  }
+}
+
+class CarConsumptionCriteria extends Criteria {
+  final CountryCriteria _countryCriteria;
+
+  CarConsumptionCriteria(this._countryCriteria) {
+    key = 'car_consumption';
+    minValue = 2;
+    maxValue = 20;
+    step = 1;
+    currentValue = 8;
+  }
+
+  @override
+  String get title => LocaleKeys.carConsumptionCriteriaTitle.tr();
+
+  @override
+  double get minValue =>
+      _countryCriteria.unitSystem() == UnitSystem.metric ? 2 : -141; // Minus to have a correct ordering (min < max)
+
+  @override
+  double get maxValue =>
+      _countryCriteria.unitSystem() == UnitSystem.metric ? 15 : -15; // Minus to have a correct ordering (min < max)
+
+  @override
+  double get currentValue => min(maxValue, max(minValue, super.currentValue));
+
+  @override
+  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'L/100km' : 'mpg';
+
+  @override
+  double co2EqTonsPerYear() => 0;
+
+  @override
+  String advice() => null;
+}
+
+class PublicTransportCriteria extends Criteria {
+  final CountryCriteria _countryCriteria;
+
+  PublicTransportCriteria(this._countryCriteria) {
+    key = 'public_transport';
+    minValue = 0;
+    maxValue = 100000;
+    step = 5000;
+    currentValue = 0;
+  }
+
+  @override
+  String get title => LocaleKeys.publicTransportCriteriaTitle.tr();
+
+  @override
+  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
+
+  @override
+  double co2EqTonsPerYear() {
+    var co2TonsPerKm = 0.00014;
+    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
+    return currentValue * milesToKmFactor * co2TonsPerKm;
+  }
+
+  @override
+  String advice() {
+    if (co2EqTonsPerYear() > 2) {
+      return LocaleKeys.publicTransportCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
+}
+
+class TravelCategory extends CriteriaCategory {
+  TravelCategory(CountryCriteria countryCriteria) {
+    key = 'travel';
+
+    var carConsumptionCriteria = CarConsumptionCriteria(countryCriteria);
+    criterias = [
+      FlightsCriteria(countryCriteria),
+      CarCriteria(carConsumptionCriteria, countryCriteria),
+      carConsumptionCriteria,
+      PublicTransportCriteria(countryCriteria)
+    ];
+  }
+
+  @override
+  String get title => LocaleKeys.travelCategoryTitle.tr();
+}
+
+class MeatCriteria extends Criteria {
+  MeatCriteria() {
+    key = 'meat';
+    minValue = 0;
+    maxValue = 20;
+    step = 1;
+    currentValue = 0;
+  }
+
+  @override
+  String get title => LocaleKeys.meatCriteriaTitle.tr();
+
+  @override
+  String get explanation => LocaleKeys.meatCriteriaExplanation.tr();
+
+  @override
+  double co2EqTonsPerYear() {
+    var co2TonsPerTimePerWeek = 0.18;
+    return currentValue * co2TonsPerTimePerWeek;
+  }
+
+  @override
+  String advice() {
+    if (co2EqTonsPerYear() > 1) {
+      return LocaleKeys.meatCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
+}
+
+class DairyCriteria extends Criteria {
+  DairyCriteria() {
+    key = 'dairy';
+    minValue = 0;
+    maxValue = 20;
+    step = 1;
+    currentValue = 0;
+  }
+
+  @override
+  String get title => LocaleKeys.dairyCriteriaTitle.tr();
+
+  @override
+  String get explanation => LocaleKeys.dairyCriteriaExplanation.tr();
+
+  @override
+  double co2EqTonsPerYear() {
+    var co2TonsPerTimePerWeek = 0.076;
+    return currentValue * co2TonsPerTimePerWeek;
+  }
+
+  @override
+  String advice() => null; // I don't know if I can advice to eat less, especially regarding children. Need to check.
+}
+
+class SnackCriteria extends Criteria {
+  SnackCriteria() {
+    key = 'snack';
+    minValue = 0;
+    maxValue = 20;
+    step = 1;
+    currentValue = 0;
+  }
+
+  @override
+  String get title => LocaleKeys.snacksCriteriaTitle.tr();
+
+  @override
+  String get explanation => LocaleKeys.snacksCriteriaExplanation.tr();
+
+  @override
+  double co2EqTonsPerYear() {
+    var co2TonsPerTimePerWeek = 0.071;
+    return currentValue * co2TonsPerTimePerWeek;
+  }
+
+  @override
+  String advice() {
+    if (co2EqTonsPerYear() > 0.5) {
+      return LocaleKeys.snacksCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
+}
+
+class OverweightCriteria extends Criteria {
+  final MeatCriteria _meatCriteria;
+  final DairyCriteria _dairyCriteria;
+  final SnackCriteria _snackCriteria;
+
+  OverweightCriteria(this._meatCriteria, this._dairyCriteria, this._snackCriteria) {
+    key = 'overweight';
+    minValue = 0;
+    maxValue = 2;
+    step = 1;
+    currentValue = 1;
+  }
+
+  @override
+  String get title => LocaleKeys.overweightCriteriaTitle.tr();
+
+  @override
+  String get explanation => LocaleKeys.overweightCriteriaExplanation.tr();
+
+  @override
+  List<String> get labels => [
+        LocaleKeys.overweightCriteriaLabel1.tr(),
+        LocaleKeys.overweightCriteriaLabel2.tr(),
+        LocaleKeys.overweightCriteriaLabel3.tr(),
+      ];
+
+  @override
+  double co2EqTonsPerYear() {
+    var overweightFactor = currentValue == 2 ? 0.5 : (currentValue == 1 ? 0.25 : 0);
+
+    return (_meatCriteria.co2EqTonsPerYear() + _dairyCriteria.co2EqTonsPerYear() + _snackCriteria.co2EqTonsPerYear()) *
+        overweightFactor;
+  }
+
+  @override
+  String advice() {
+    if (co2EqTonsPerYear() > 0.5) {
+      return LocaleKeys.overweightCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
+}
+
+class FoodCategory extends CriteriaCategory {
+  FoodCategory() {
+    key = 'food';
+
+    final meatCriteria = MeatCriteria();
+    final dairyCriteria = DairyCriteria();
+    final snackCriteria = SnackCriteria();
+
+    criterias = [
+      MeatCriteria(),
+      DairyCriteria(),
+      SnackCriteria(),
+      OverweightCriteria(meatCriteria, dairyCriteria, snackCriteria),
+    ];
+  }
+
+  @override
+  String get title => LocaleKeys.foodCategoryTitle.tr();
+}
+
+class MaterialGoodsCriteria extends Criteria {
+  final CountryCriteria _countryCriteria;
+
+  MaterialGoodsCriteria(this._countryCriteria) {
+    key = 'material_goods';
+    minValue = 0;
+    step = 100;
+    currentValue = 0;
+  }
+
+  @override
+  String get title => LocaleKeys.materialGoodsCriteriaTitle.tr();
+
+  @override
+  String get explanation => LocaleKeys.materialGoodsCriteriaExplanation.tr();
+
+  @override
+  double get maxValue => (((3000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+
+  @override
+  double get currentValue => min(maxValue, super.currentValue);
+
+  @override
+  String get unit => _countryCriteria.getCurrencyCode();
+
+  @override
+  double co2EqTonsPerYear() {
+    var moneyChange = _countryCriteria.getCurrencyRate();
+    var co2TonsPerDollar = 0.0062;
+    return currentValue * moneyChange * co2TonsPerDollar;
+  }
+
+  @override
+  String advice() {
+    if (co2EqTonsPerYear() > 1) {
+      return LocaleKeys.materialGoodsCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
+}
+
+class SavingsCriteria extends Criteria {
+  final CountryCriteria _countryCriteria;
+
+  SavingsCriteria(this._countryCriteria) {
+    key = 'savings';
+    minValue = 0;
+    step = 1000;
+    currentValue = 0;
+  }
+
+  @override
+  String get title => LocaleKeys.savingsCriteriaTitle.tr();
+
+  @override
+  String get explanation => LocaleKeys.savingsCriteriaExplanation.tr();
+
+  @override
+  double get maxValue => (((100000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+
+  @override
+  double get currentValue => min(maxValue, super.currentValue);
+
+  @override
+  String get unit => _countryCriteria.getCurrencyCode();
+
+  @override
+  double co2EqTonsPerYear() {
+    var moneyChange = _countryCriteria.getCurrencyRate();
+
+    // Based on Rift app's results, but reduced a lot because it is quite unsure due to lack of transparency
+    // and it greatly depends on bank/type of account/country, so I prefer to be safe here.
+    var co2TonsPerDollar = 0.00025;
+    return currentValue * moneyChange * co2TonsPerDollar;
+  }
+
+  @override
+  String advice() {
+    if (co2EqTonsPerYear() > 1) {
+      return LocaleKeys.savingsCriteriaAdvice.tr();
     } else {
       return null;
     }
@@ -293,400 +673,6 @@ class WaterCriteria extends Criteria {
   }
 }
 
-class HomeCategory extends CriteriaCategory {
-  HomeCategory(CountryCriteria CountryCriteria) {
-    key = 'home';
-
-    var peopleCriteria = PeopleCriteria();
-    var cleanElectricityCriteria = CleanElectricityCriteria();
-    criterias = [
-      peopleCriteria,
-      HeatingFuelCriteria(peopleCriteria, CountryCriteria),
-      ElectricityBillCriteria(peopleCriteria, CountryCriteria, cleanElectricityCriteria),
-      cleanElectricityCriteria,
-      WaterCriteria(),
-    ];
-  }
-
-  @override
-  String get title => LocaleKeys.homeCategoryTitle.tr();
-}
-
-class FlightsCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-
-  FlightsCriteria(this._countryCriteria) {
-    key = 'flights';
-    minValue = 0;
-    maxValue = 100000;
-    step = 5000;
-    currentValue = 0;
-    leftIcon = Icons.airplanemode_inactive;
-    rightIcon = Icons.airplanemode_active;
-  }
-
-  @override
-  String get title => LocaleKeys.flightsCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.flightsCriteriaExplanation.tr();
-
-  @override
-  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
-
-  @override
-  double co2EqTonsPerYear() {
-    var co2TonsPerKm = 0.00028;
-    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
-    return currentValue * milesToKmFactor * co2TonsPerKm;
-  }
-
-  @override
-  String advice() {
-    if (co2EqTonsPerYear() > 1) {
-      return LocaleKeys.flightsCriteriaAdvice.tr();
-    } else {
-      return null;
-    }
-  }
-}
-
-class CarCriteria extends Criteria {
-  final PeopleCriteria _peopleCriteria;
-  final CarConsumptionCriteria _carConsumptionCriteria;
-  final CountryCriteria _countryCriteria;
-
-  CarCriteria(this._peopleCriteria, this._carConsumptionCriteria, this._countryCriteria) {
-    key = 'car';
-    minValue = 0;
-    maxValue = 100000;
-    step = 5000;
-    currentValue = 0;
-    leftIcon = Icons.directions_bike;
-    rightIcon = WarmdIcons.car_sports;
-  }
-
-  @override
-  String get title => LocaleKeys.carCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.carCriteriaExplanation.tr();
-
-  @override
-  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
-
-  @override
-  double co2EqTonsPerYear() {
-    var peopleNumber = _peopleCriteria.currentValue;
-    var peopleFactor = peopleNumber > 1 ? peopleNumber / 1.8 : 1;
-
-    var litersPerKm = (_countryCriteria.unitSystem() == UnitSystem.metric
-            ? _carConsumptionCriteria.currentValue
-            : _countryCriteria.unitSystem() == UnitSystem.us
-                ? 235.2 / -_carConsumptionCriteria.currentValue
-                : 282.5 / -_carConsumptionCriteria.currentValue) /
-        100;
-    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
-    var co2TonsPerLiter = 0.0033;
-    return (currentValue / peopleFactor) * milesToKmFactor * litersPerKm * co2TonsPerLiter;
-  }
-
-  @override
-  String advice() {
-    if (co2EqTonsPerYear() > 1.5) {
-      return LocaleKeys.carCriteriaAdviceHigh.tr();
-    } else if (co2EqTonsPerYear() > 0.5) {
-      return LocaleKeys.carCriteriaAdviceLow.tr();
-    } else {
-      return null;
-    }
-  }
-}
-
-class CarConsumptionCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-
-  CarConsumptionCriteria(this._countryCriteria) {
-    key = 'car_consumption';
-    minValue = 2;
-    maxValue = 20;
-    step = 1;
-    currentValue = 8;
-    leftIcon = WarmdIcons.sprout;
-    rightIcon = WarmdIcons.gas_station;
-  }
-
-  @override
-  String get title => LocaleKeys.carConsumptionCriteriaTitle.tr();
-
-  @override
-  double get minValue => _countryCriteria.unitSystem() == UnitSystem.metric ? 2 : -140;
-
-  @override
-  double get maxValue => _countryCriteria.unitSystem() == UnitSystem.metric ? 20 : -11;
-
-  @override
-  double get currentValue => min(maxValue, max(minValue, super.currentValue));
-
-  @override
-  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'L/100km' : 'mpg';
-
-  @override
-  double co2EqTonsPerYear() => 0;
-
-  @override
-  String advice() => null;
-}
-
-class PublicTransportCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-
-  PublicTransportCriteria(this._countryCriteria) {
-    key = 'public_transport';
-    minValue = 0;
-    maxValue = 100000;
-    step = 5000;
-    currentValue = 0;
-    leftIcon = Icons.directions_bike;
-    rightIcon = Icons.train;
-  }
-
-  @override
-  String get title => LocaleKeys.publicTransportCriteriaTitle.tr();
-
-  @override
-  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
-
-  @override
-  double co2EqTonsPerYear() {
-    var co2TonsPerKm = 0.00014;
-    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
-    return currentValue * milesToKmFactor * co2TonsPerKm;
-  }
-
-  @override
-  String advice() {
-    if (co2EqTonsPerYear() > 3) {
-      return LocaleKeys.publicTransportCriteriaAdvice.tr();
-    } else {
-      return null;
-    }
-  }
-}
-
-class TravelCategory extends CriteriaCategory {
-  TravelCategory(PeopleCriteria peopleCriteria, CountryCriteria CountryCriteria) {
-    key = 'travel';
-
-    var carConsumptionCriteria = CarConsumptionCriteria(CountryCriteria);
-    criterias = [
-      FlightsCriteria(CountryCriteria),
-      CarCriteria(peopleCriteria, carConsumptionCriteria, CountryCriteria),
-      carConsumptionCriteria,
-      PublicTransportCriteria(CountryCriteria)
-    ];
-  }
-
-  @override
-  String get title => LocaleKeys.travelCategoryTitle.tr();
-}
-
-class MeatCriteria extends Criteria {
-  MeatCriteria() {
-    key = 'meat';
-    minValue = 0;
-    maxValue = 20;
-    step = 1;
-    currentValue = 0;
-    leftIcon = WarmdIcons.food_apple_outline;
-    rightIcon = WarmdIcons.cow;
-  }
-
-  @override
-  String get title => LocaleKeys.meatCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.meatCriteriaExplanation.tr();
-
-  @override
-  double co2EqTonsPerYear() {
-    var co2TonsPerTimePerWeek = 0.18;
-    return currentValue * co2TonsPerTimePerWeek;
-  }
-
-  @override
-  String advice() {
-    if (currentValue >= 0.7) {
-      return LocaleKeys.meatCriteriaAdvice.tr();
-    } else {
-      return null;
-    }
-  }
-}
-
-class DairyCriteria extends Criteria {
-  DairyCriteria() {
-    key = 'dairy';
-    minValue = 0;
-    maxValue = 20;
-    step = 1;
-    currentValue = 0;
-    leftIcon = WarmdIcons.food_apple_outline;
-    rightIcon = WarmdIcons.cheese;
-  }
-
-  @override
-  String get title => LocaleKeys.dairyCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.dairyCriteriaExplanation.tr();
-
-  @override
-  double co2EqTonsPerYear() {
-    var co2TonsPerTimePerWeek = 0.076;
-    return currentValue * co2TonsPerTimePerWeek;
-  }
-
-  @override
-  String advice() => null; // I can't advice to eat less
-}
-
-class SnackCriteria extends Criteria {
-  SnackCriteria() {
-    key = 'snack';
-    minValue = 0;
-    maxValue = 20;
-    step = 1;
-    currentValue = 0;
-    leftIcon = WarmdIcons.food_off;
-    rightIcon = WarmdIcons.food;
-  }
-
-  @override
-  String get title => LocaleKeys.snacksCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.snacksCriteriaExplanation.tr();
-
-  @override
-  double co2EqTonsPerYear() {
-    var co2TonsPerTimePerWeek = 0.071;
-    return currentValue * co2TonsPerTimePerWeek;
-  }
-
-  @override
-  String advice() {
-    if (currentValue > 3) {
-      return LocaleKeys.snacksCriteriaAdvice.tr();
-    } else {
-      return null;
-    }
-  }
-}
-
-class OverweightCriteria extends Criteria {
-  OverweightCriteria() {
-    key = 'overweight';
-    minValue = 0;
-    maxValue = 2;
-    step = 1;
-    currentValue = 1;
-  }
-
-  @override
-  String get title => LocaleKeys.overweightCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.overweightCriteriaExplanation.tr();
-
-  @override
-  List<String> get labels => [
-        LocaleKeys.overweightCriteriaLabel1.tr(),
-        LocaleKeys.overweightCriteriaLabel2.tr(),
-        LocaleKeys.overweightCriteriaLabel3.tr(),
-      ];
-
-  @override
-  double co2EqTonsPerYear() => 0;
-
-  @override
-  String advice() {
-    if (currentValue > 0) {
-      return LocaleKeys.overweightCriteriaAdvice.tr();
-    } else {
-      return null;
-    }
-  }
-}
-
-class FoodCategory extends CriteriaCategory {
-  FoodCategory() {
-    key = 'food';
-    criterias = [
-      MeatCriteria(),
-      DairyCriteria(),
-      SnackCriteria(),
-      OverweightCriteria(),
-    ];
-  }
-
-  @override
-  String get title => LocaleKeys.foodCategoryTitle.tr();
-
-  @override
-  double co2EqTonsPerYear() {
-    var overweightValue = criterias[3].currentValue;
-    var overweightFactor = overweightValue == 2 ? 1.5 : (overweightValue == 1 ? 1.25 : 1);
-
-    return (criterias[0].co2EqTonsPerYear() + criterias[1].co2EqTonsPerYear() + criterias[2].co2EqTonsPerYear()) *
-        overweightFactor;
-  }
-}
-
-class MaterialGoodsCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-
-  MaterialGoodsCriteria(this._countryCriteria) {
-    key = 'material_goods';
-    minValue = 0;
-    step = 100;
-    currentValue = 0;
-    leftIcon = WarmdIcons.piggy_bank;
-    rightIcon = WarmdIcons.cash_multiple;
-  }
-
-  @override
-  String get title => LocaleKeys.materialGoodsCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.materialGoodsCriteriaExplanation.tr();
-
-  @override
-  double get maxValue => (((3000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
-
-  @override
-  double get currentValue => min(maxValue, super.currentValue);
-
-  @override
-  String get unit => _countryCriteria.getCurrencyCode();
-
-  @override
-  double co2EqTonsPerYear() {
-    var moneyChange = _countryCriteria.getCurrencyRate();
-    var co2TonsPerDollar = 0.0062;
-    return currentValue * moneyChange * co2TonsPerDollar;
-  }
-
-  @override
-  String advice() {
-    if (co2EqTonsPerYear() > 2) {
-      return LocaleKeys.materialGoodsCriteriaAdvice.tr();
-    } else {
-      return null;
-    }
-  }
-}
-
 class InternetCriteria extends Criteria {
   InternetCriteria() {
     key = 'internet';
@@ -714,7 +700,7 @@ class InternetCriteria extends Criteria {
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 0.15) {
+    if (co2EqTonsPerYear() > 0.5) {
       return LocaleKeys.internetCriteriaAdvice.tr();
     } else {
       return null;
@@ -723,10 +709,12 @@ class InternetCriteria extends Criteria {
 }
 
 class GoodsCategory extends CriteriaCategory {
-  GoodsCategory(CountryCriteria CountryCriteria) {
+  GoodsCategory(CountryCriteria countryCriteria) {
     key = 'goods';
     criterias = [
-      MaterialGoodsCriteria(CountryCriteria),
+      MaterialGoodsCriteria(countryCriteria),
+      SavingsCriteria(countryCriteria),
+      WaterCriteria(),
       InternetCriteria(),
     ];
   }
@@ -735,41 +723,29 @@ class GoodsCategory extends CriteriaCategory {
   String get title => LocaleKeys.goodsAndServicesCategoryTitle.tr();
 }
 
-class CriteriaCategorySet {
-  List<CriteriaCategory> categories;
+class CriteriasState with ChangeNotifier {
+  List<CriteriaCategory> _categories;
+  List<CriteriaCategory> get categories => _categories;
 
-  CriteriaCategorySet() {
+  CriteriasState() {
     var generalCategory = GeneralCategory();
     var countryCriteria = generalCategory.criterias[0] as CountryCriteria;
-    var homeCategory = HomeCategory(countryCriteria);
+    var utilitiesCategory = UtilitiesCategory(countryCriteria);
 
-    categories = [
+    _categories = [
       generalCategory,
-      homeCategory,
-      TravelCategory(homeCategory.criterias[0] as PeopleCriteria, countryCriteria),
+      utilitiesCategory,
+      TravelCategory(countryCriteria),
       FoodCategory(),
       GoodsCategory(countryCriteria)
     ];
+
+    _loadState();
   }
 
-  double co2EqTonsPerYear() => categories.map((cat) => cat.co2EqTonsPerYear()).reduce((a, b) => a + b);
+  double co2EqTonsPerYear() => _categories.map((cat) => cat.co2EqTonsPerYear()).reduce((a, b) => a + b);
 
   String getFormatedFootprint() => LocaleKeys.co2EqTonsValue.tr(args: [co2EqTonsPerYear().toStringAsFixed(1)]);
-}
-
-class CriteriasState with ChangeNotifier {
-  CriteriaCategorySet _categorySet;
-  CriteriaCategorySet get categorySet => _categorySet;
-  set categorySet(CriteriaCategorySet newValue) {
-    _categorySet = newValue;
-    _loadFromPersistence().then((_) {
-      notifyListeners();
-    });
-  }
-
-  CriteriasState() {
-    categorySet = CriteriaCategorySet();
-  }
 
   void persist(Criteria c) {
     notifyListeners();
@@ -779,10 +755,10 @@ class CriteriasState with ChangeNotifier {
     });
   }
 
-  Future<void> _loadFromPersistence() async {
+  Future<void> _loadState() async {
     var prefs = await SharedPreferences.getInstance();
 
-    categorySet.categories.forEach((cat) {
+    _categories.forEach((cat) {
       cat.criterias.forEach((crit) {
         crit.currentValue = prefs.getDouble(crit.key) ?? crit.currentValue;
 
@@ -793,5 +769,7 @@ class CriteriasState with ChangeNotifier {
         }
       });
     });
+
+    notifyListeners();
   }
 }
