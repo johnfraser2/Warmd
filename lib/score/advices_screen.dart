@@ -11,10 +11,10 @@ import '../common/criterias.dart';
 import '../common/screen_template.dart';
 import '../generated/locale_keys.g.dart';
 
-class AdvisesScreen extends StatelessWidget {
+class AdvicesScreen extends StatelessWidget {
   final Function onSeeClimateChangeTapped;
 
-  const AdvisesScreen({@required this.onSeeClimateChangeTapped, Key key}) : super(key: key);
+  const AdvicesScreen({@required this.onSeeClimateChangeTapped, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

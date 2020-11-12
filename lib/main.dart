@@ -15,7 +15,7 @@ import 'onboarding/country_screen.dart';
 import 'onboarding/onboarding_screen.dart';
 import 'onboarding/welcome_screen.dart';
 import 'score/about_screen.dart';
-import 'score/advises_screen.dart';
+import 'score/advices_screen.dart';
 import 'score/climate_change_screen.dart';
 import 'score/footprint_screen.dart';
 import 'splash_screen.dart';
@@ -45,7 +45,7 @@ const _firstCategoryScreenNum = 3;
 class _MyAppState extends DelayableState<MyApp> {
   var _splashScreenSeen = false;
   var _stepsNum = _firstCategoryScreenNum;
-  var _showAdvisesScreen = false;
+  var _showAdvicesScreen = false;
   var _showClimateChangeScreen = false;
   var _showClimateChangeScreenFromActions = false;
   var _showAboutScreen = false;
@@ -94,160 +94,158 @@ class _MyAppState extends DelayableState<MyApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'VarelaRound',
       ),
-      home: SafeArea(
-        child: MultiProvider(
-          providers: [
-            ChangeNotifierProvider(create: (_) => InitState()),
-            ChangeNotifierProvider(create: (_) => CriteriasState()),
-          ],
-          child: Consumer<InitState>(
-            builder: (_, initState, __) => initState.countrySelected == null
-                ? Container()
-                : WillPopScope(
-                    onWillPop: () async {
-                      // If we are on the first category screen (or before), the system back button quit the app (contrary to the top-left back one)
-                      // That is a non-standard navigation.
-                      if (_stepsNum <= _firstCategoryScreenNum) {
-                        return true;
-                      } else {
-                        _onPopPage();
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => InitState()),
+          ChangeNotifierProvider(create: (_) => CriteriasState()),
+        ],
+        child: Consumer<InitState>(
+          builder: (_, initState, __) => initState.countrySelected == null
+              ? Container()
+              : WillPopScope(
+                  onWillPop: () async {
+                    // If we are on the first category screen (or before), the system back button quit the app (contrary to the top-left back one)
+                    // That is a non-standard navigation.
+                    if (_stepsNum <= _firstCategoryScreenNum) {
+                      return true;
+                    } else {
+                      _onPopPage();
+                      return false;
+                    }
+                  },
+                  // Screens are not stacked to not reset display when coming back to them.
+                  child: Navigator(
+                    key: _navigatorKey,
+                    pages: [
+                      if (!_splashScreenSeen)
+                        const MaterialPage<SplashScreen>(
+                          child: SplashScreen(),
+                        ),
+                      if (_splashScreenSeen && !initState.countrySelected && _stepsNum == _firstCategoryScreenNum)
+                        MaterialPage<OnboardingScreen>(
+                          child: OnboardingScreen(
+                            onOnboardingFinished: () {
+                              setState(() {
+                                _stepsNum = 1;
+                              });
+                            },
+                          ),
+                        ),
+                      if (_splashScreenSeen && _stepsNum == 1)
+                        MaterialPage<WelcomeScreen>(
+                          child: WelcomeScreen(
+                            onStartSelected: () {
+                              setState(() {
+                                _stepsNum++;
+                              });
+                            },
+                          ),
+                        ),
+                      if (_splashScreenSeen && _stepsNum == 2)
+                        MaterialPage<CountryScreen>(
+                          child: CountryScreen(
+                            onCountrySelected: () {
+                              initState.countrySelected = true;
+                              setState(() {
+                                _stepsNum++;
+                              });
+                            },
+                          ),
+                        ),
+                      if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum)
+                        MaterialPage<UtilitiesCategoryScreen>(
+                          child: UtilitiesCategoryScreen(
+                            onContinueTapped: () {
+                              setState(() {
+                                _stepsNum++;
+                              });
+                            },
+                          ),
+                        ),
+                      if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 1)
+                        MaterialPage<TravelCategoryScreen>(
+                          child: TravelCategoryScreen(
+                            onContinueTapped: () {
+                              setState(() {
+                                _stepsNum++;
+                              });
+                            },
+                          ),
+                        ),
+                      if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 2)
+                        MaterialPage<FoodCategoryScreen>(
+                          child: FoodCategoryScreen(
+                            onContinueTapped: () {
+                              setState(() {
+                                _stepsNum++;
+                              });
+                            },
+                          ),
+                        ),
+                      if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 3)
+                        MaterialPage<GoodsCategoryScreen>(
+                          child: GoodsCategoryScreen(
+                            onContinueTapped: () {
+                              setState(() {
+                                _stepsNum++;
+                              });
+                            },
+                          ),
+                        ),
+                      if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 4)
+                        MaterialPage<FootprintScreen>(
+                          child: FootprintScreen(
+                            onSeeClimateChangeTapped: () {
+                              setState(() {
+                                _showClimateChangeScreen = true;
+                              });
+                            },
+                            onSeeAdvicesTapped: () {
+                              setState(() {
+                                _showAdvicesScreen = true;
+                              });
+                            },
+                            onRestartTapped: () {
+                              setState(() {
+                                _stepsNum = _firstCategoryScreenNum;
+                              });
+                            },
+                            onSeeAboutTapped: () {
+                              setState(() {
+                                _showAboutScreen = true;
+                              });
+                            },
+                          ),
+                        ),
+                      if (_splashScreenSeen && _showAdvicesScreen)
+                        MaterialPage<AdvicesScreen>(
+                          child: AdvicesScreen(
+                            onSeeClimateChangeTapped: () {
+                              setState(() {
+                                _showClimateChangeScreenFromActions = true;
+                              });
+                            },
+                          ),
+                        ),
+                      if (_splashScreenSeen && (_showClimateChangeScreen || _showClimateChangeScreenFromActions))
+                        const MaterialPage<ClimateChangeScreen>(
+                          child: ClimateChangeScreen(),
+                        ),
+                      if (_splashScreenSeen && _showAboutScreen)
+                        const MaterialPage<AboutScreen>(
+                          child: AboutScreen(),
+                        ),
+                    ],
+                    onPopPage: (route, dynamic result) {
+                      if (!route.didPop(result)) {
                         return false;
                       }
-                    },
-                    // Screens are not stacked to not reset display when coming back to them.
-                    child: Navigator(
-                      key: _navigatorKey,
-                      pages: [
-                        if (!_splashScreenSeen)
-                          const MaterialPage<SplashScreen>(
-                            child: SplashScreen(),
-                          ),
-                        if (_splashScreenSeen && !initState.countrySelected && _stepsNum == _firstCategoryScreenNum)
-                          MaterialPage<OnboardingScreen>(
-                            child: OnboardingScreen(
-                              onOnboardingFinished: () {
-                                setState(() {
-                                  _stepsNum = 1;
-                                });
-                              },
-                            ),
-                          ),
-                        if (_splashScreenSeen && _stepsNum == 1)
-                          MaterialPage<WelcomeScreen>(
-                            child: WelcomeScreen(
-                              onStartSelected: () {
-                                setState(() {
-                                  _stepsNum++;
-                                });
-                              },
-                            ),
-                          ),
-                        if (_splashScreenSeen && _stepsNum == 2)
-                          MaterialPage<CountryScreen>(
-                            child: CountryScreen(
-                              onCountrySelected: () {
-                                initState.countrySelected = true;
-                                setState(() {
-                                  _stepsNum++;
-                                });
-                              },
-                            ),
-                          ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum)
-                          MaterialPage<UtilitiesCategoryScreen>(
-                            child: UtilitiesCategoryScreen(
-                              onContinueTapped: () {
-                                setState(() {
-                                  _stepsNum++;
-                                });
-                              },
-                            ),
-                          ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 1)
-                          MaterialPage<TravelCategoryScreen>(
-                            child: TravelCategoryScreen(
-                              onContinueTapped: () {
-                                setState(() {
-                                  _stepsNum++;
-                                });
-                              },
-                            ),
-                          ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 2)
-                          MaterialPage<FoodCategoryScreen>(
-                            child: FoodCategoryScreen(
-                              onContinueTapped: () {
-                                setState(() {
-                                  _stepsNum++;
-                                });
-                              },
-                            ),
-                          ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 3)
-                          MaterialPage<GoodsCategoryScreen>(
-                            child: GoodsCategoryScreen(
-                              onContinueTapped: () {
-                                setState(() {
-                                  _stepsNum++;
-                                });
-                              },
-                            ),
-                          ),
-                        if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 4)
-                          MaterialPage<FootprintScreen>(
-                            child: FootprintScreen(
-                              onSeeClimateChangeTapped: () {
-                                setState(() {
-                                  _showClimateChangeScreen = true;
-                                });
-                              },
-                              onSeeAdvisesTapped: () {
-                                setState(() {
-                                  _showAdvisesScreen = true;
-                                });
-                              },
-                              onRestartTapped: () {
-                                setState(() {
-                                  _stepsNum = _firstCategoryScreenNum;
-                                });
-                              },
-                              onSeeAboutTapped: () {
-                                setState(() {
-                                  _showAboutScreen = true;
-                                });
-                              },
-                            ),
-                          ),
-                        if (_splashScreenSeen && _showAdvisesScreen)
-                          MaterialPage<AdvisesScreen>(
-                            child: AdvisesScreen(
-                              onSeeClimateChangeTapped: () {
-                                setState(() {
-                                  _showClimateChangeScreenFromActions = true;
-                                });
-                              },
-                            ),
-                          ),
-                        if (_splashScreenSeen && (_showClimateChangeScreen || _showClimateChangeScreenFromActions))
-                          const MaterialPage<ClimateChangeScreen>(
-                            child: ClimateChangeScreen(),
-                          ),
-                        if (_splashScreenSeen && _showAboutScreen)
-                          const MaterialPage<AboutScreen>(
-                            child: AboutScreen(),
-                          ),
-                      ],
-                      onPopPage: (route, dynamic result) {
-                        if (!route.didPop(result)) {
-                          return false;
-                        }
 
-                        _onPopPage();
-                        return true;
-                      },
-                    ),
+                      _onPopPage();
+                      return true;
+                    },
                   ),
-          ),
+                ),
         ),
       ),
     );
@@ -257,8 +255,8 @@ class _MyAppState extends DelayableState<MyApp> {
     setState(() {
       if (_showClimateChangeScreenFromActions) {
         _showClimateChangeScreenFromActions = false;
-      } else if (_showAdvisesScreen) {
-        _showAdvisesScreen = false;
+      } else if (_showAdvicesScreen) {
+        _showAdvicesScreen = false;
       } else if (_showClimateChangeScreen) {
         _showClimateChangeScreen = false;
       } else if (_showAboutScreen) {

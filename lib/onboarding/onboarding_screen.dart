@@ -30,115 +30,117 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SvgPicture.asset(
-            'assets/sky.svg',
-          ),
-          Gaps.h64,
-          Expanded(
-            child: PageIndicatorContainer(
-              child: PageView.builder(
-                controller: _pageController,
-                physics: const BouncingScrollPhysics(),
-                itemCount: 2,
-                itemBuilder: (context, i) {
-                  if (i == 0) {
-                    return Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 350),
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/narwhal.svg',
-                              height: MediaQuery.of(context).size.height / 4,
-                            ),
-                            Text(
-                              LocaleKeys.onboardingStep1Title.tr(),
-                              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
-                            ),
-                            Gaps.h32,
-                            Text(
-                              LocaleKeys.onboardingStep1Description.tr(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.grey[600], fontSize: 18),
-                            ),
-                          ],
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SvgPicture.asset(
+              'assets/sky.svg',
+            ),
+            Gaps.h64,
+            Expanded(
+              child: PageIndicatorContainer(
+                child: PageView.builder(
+                  controller: _pageController,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: 2,
+                  itemBuilder: (context, i) {
+                    if (i == 0) {
+                      return Center(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 350),
+                          child: Column(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/narwhal.svg',
+                                height: MediaQuery.of(context).size.height / 4,
+                              ),
+                              Text(
+                                LocaleKeys.onboardingStep1Title.tr(),
+                                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                              ),
+                              Gaps.h32,
+                              Text(
+                                LocaleKeys.onboardingStep1Description.tr(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.grey[600], fontSize: 18),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  } else {
-                    return Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 350),
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/pinguin.svg',
-                              height: MediaQuery.of(context).size.height / 4,
-                            ),
-                            Text(
-                              LocaleKeys.onboardingStep2Title.tr(),
-                              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
-                            ),
-                            Gaps.h32,
-                            Text(
-                              LocaleKeys.onboardingStep2Description.tr(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.grey[600], fontSize: 18),
-                            ),
-                          ],
+                      );
+                    } else {
+                      return Center(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 350),
+                          child: Column(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/pinguin.svg',
+                                height: MediaQuery.of(context).size.height / 4,
+                              ),
+                              Text(
+                                LocaleKeys.onboardingStep2Title.tr(),
+                                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                              ),
+                              Gaps.h32,
+                              Text(
+                                LocaleKeys.onboardingStep2Description.tr(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.grey[600], fontSize: 18),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  }
-                  // else {
-                  //   return Center(
-                  //     child: ConstrainedBox(
-                  //       constraints: const BoxConstraints(maxWidth: 350),
-                  //       child: Column(
-                  //         children: [
-                  //           SvgPicture.asset(
-                  //             'assets/seal.svg',
-                  //             height: MediaQuery.of(context).size.height / 4,
-                  //           ),
-                  //           const Text(
-                  //             'A climate-conscious community',
-                  //             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
-                  //           ),
-                  //           Gaps.h32,
-                  //           Text(
-                  //             'Be part of a community to share your ideas, progress & much more.',
-                  //             textAlign: TextAlign.center,
-                  //             style: TextStyle(color: Colors.grey[600], fontSize: 18),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   );
-                  // }
-                },
+                      );
+                    }
+                    // else {
+                    //   return Center(
+                    //     child: ConstrainedBox(
+                    //       constraints: const BoxConstraints(maxWidth: 350),
+                    //       child: Column(
+                    //         children: [
+                    //           SvgPicture.asset(
+                    //             'assets/seal.svg',
+                    //             height: MediaQuery.of(context).size.height / 4,
+                    //           ),
+                    //           const Text(
+                    //             'A climate-conscious community',
+                    //             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                    //           ),
+                    //           Gaps.h32,
+                    //           Text(
+                    //             'Be part of a community to share your ideas, progress & much more.',
+                    //             textAlign: TextAlign.center,
+                    //             style: TextStyle(color: Colors.grey[600], fontSize: 18),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   );
+                    // }
+                  },
+                ),
+                align: IndicatorAlign.bottom,
+                length: 2,
+                padding: const EdgeInsets.all(10),
+                indicatorColor: Colors.grey[300],
+                indicatorSelectorColor: warmdDarkBlue,
+                shape: IndicatorShape.circle(),
               ),
-              align: IndicatorAlign.bottom,
-              length: 2,
-              padding: const EdgeInsets.all(10),
-              indicatorColor: Colors.grey[300],
-              indicatorSelectorColor: warmdDarkBlue,
-              shape: IndicatorShape.circle(),
             ),
-          ),
-          Gaps.h24,
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                widget.onOnboardingFinished();
-              },
-              child: Text(LocaleKeys.onboardingAction.tr()),
+            Gaps.h24,
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  widget.onOnboardingFinished();
+                },
+                child: Text(LocaleKeys.onboardingAction.tr()),
+              ),
             ),
-          ),
-          Gaps.h64,
-        ],
+            Gaps.h64,
+          ],
+        ),
       ),
     );
   }

@@ -2,7 +2,7 @@
 
 # Warmd - Personal carbon footprint calculator
 
-<img src="https://lh3.googleusercontent.com/XmXX4m877oLj9pgZSQjdGanJ8oVSca6K8yaY4WjI-5_EGMzIljBkrRIsN_u9wQvDlRyr=w1440-h620-rw"/>
+<img src="https://lh3.googleusercontent.com/6dyZai_3bw1rUcxHtuPNwkauoucm5peaBnviicXiCC0eXFB26WiXo8YSEDKA-Q1dlcY"/>
 
 Warmd is a personal carbon footprint calculator which gives you an idea of your own carbon impact and helps you to improve it with adapted advices.
 

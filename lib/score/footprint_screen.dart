@@ -14,13 +14,13 @@ import 'score_widget.dart';
 
 class FootprintScreen extends StatelessWidget {
   final Function onSeeClimateChangeTapped;
-  final Function onSeeAdvisesTapped;
+  final Function onSeeAdvicesTapped;
   final Function onRestartTapped;
   final Function onSeeAboutTapped;
 
   const FootprintScreen(
       {@required this.onSeeClimateChangeTapped,
-      @required this.onSeeAdvisesTapped,
+      @required this.onSeeAdvicesTapped,
       @required this.onRestartTapped,
       @required this.onSeeAboutTapped,
       Key key})
@@ -43,19 +43,21 @@ class FootprintScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: warmdLightBlue, // for iOS scrolling effect
-      body: SingleChildScrollView(
-        child: Container(
-          color: Colors.white,
-          child: Column(
-            children: [
-              _buildHeader(context, dataMap, state),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: _buildFootprintRepartition(context, state, dataMap),
-              ),
-              Gaps.h64,
-              _buildGoToSourcesButton(context),
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                _buildHeader(context, dataMap, state),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: _buildFootprintRepartition(context, state, dataMap),
+                ),
+                Gaps.h64,
+                _buildGoToSourcesButton(context),
+              ],
+            ),
           ),
         ),
       ),
@@ -142,9 +144,9 @@ class FootprintScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () => onSeeAdvisesTapped(),
+                      onPressed: () => onSeeAdvicesTapped(),
                       child: Text(
-                        LocaleKeys.seeAdvises.tr(),
+                        LocaleKeys.seeAdvices.tr(),
                         textAlign: TextAlign.center,
                       ),
                       style: greenButtonStyle,

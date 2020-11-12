@@ -13,20 +13,22 @@ class ScreenTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        scrollDirection: Axis.vertical,
-        controller: scrollController,
-        children: [
-          Gaps.h16,
-          if (progressValue != null) StepsProgressIndicator(value: progressValue) else Gaps.h12,
-          Gaps.h8,
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: buildBackButton(context),
-          ),
-          body,
-        ],
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          scrollDirection: Axis.vertical,
+          controller: scrollController,
+          children: [
+            Gaps.h16,
+            if (progressValue != null) StepsProgressIndicator(value: progressValue) else Gaps.h12,
+            Gaps.h8,
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: buildBackButton(context),
+            ),
+            body,
+          ],
+        ),
       ),
     );
   }

@@ -14,54 +14,56 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Gaps.h64,
-          Align(
-            alignment: Alignment.topLeft,
-            child: SvgPicture.asset(
-              'assets/pinguins.svg',
-              height: MediaQuery.of(context).size.height / 6,
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 48),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    LocaleKeys.welcomeTitle.tr(),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
-                  ),
-                  Gaps.h64,
-                  Text(
-                    LocaleKeys.welcomeDescription.tr(),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue),
-                  ),
-                ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            Gaps.h64,
+            Align(
+              alignment: Alignment.topLeft,
+              child: SvgPicture.asset(
+                'assets/pinguins.svg',
+                height: MediaQuery.of(context).size.height / 6,
               ),
             ),
-          ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                onStartSelected();
-              },
-              child: Text(LocaleKeys.welcomeAction.tr()),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 48),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      LocaleKeys.welcomeTitle.tr(),
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
+                    ),
+                    Gaps.h64,
+                    Text(
+                      LocaleKeys.welcomeDescription.tr(),
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-          Gaps.h48,
-          Align(
-            alignment: Alignment.bottomRight,
-            child: SvgPicture.asset(
-              'assets/ice.svg',
-              height: MediaQuery.of(context).size.height / 10,
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  onStartSelected();
+                },
+                child: Text(LocaleKeys.welcomeAction.tr()),
+              ),
             ),
-          ),
-        ],
+            Gaps.h48,
+            Align(
+              alignment: Alignment.bottomRight,
+              child: SvgPicture.asset(
+                'assets/ice.svg',
+                height: MediaQuery.of(context).size.height / 10,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
