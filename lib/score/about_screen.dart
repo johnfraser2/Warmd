@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,8 +61,13 @@ class AboutScreen extends StatelessWidget {
             child: TextButton(
               onPressed: () async {
                 final inAppReview = InAppReview.instance;
-                if (await inAppReview.isAvailable()) {
+
+                //TODO it seems the requestReview never works on Android, not sure why
+                // see https://github.com/britannio/in_app_review/issues/12
+                if (Platform.isIOS && await inAppReview.isAvailable()) {
                   await inAppReview.requestReview();
+                } else {
+                  await inAppReview.openStoreListing();
                 }
               },
               child: Text(
