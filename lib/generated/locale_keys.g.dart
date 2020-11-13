@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const onboardingStep1Title = 'onboardingStep1Title';
   static const onboardingStep1Description = 'onboardingStep1Description';
   static const onboardingStep2Title = 'onboardingStep2Title';
@@ -84,6 +84,10 @@ abstract class LocaleKeys {
   static const consequencesTitle = 'consequencesTitle';
   static const consequencesPart1 = 'consequencesPart1';
   static const consequencesPart2 = 'consequencesPart2';
+  static const advicesTitle = 'advicesTitle';
+  static const advicesExplanation = 'advicesExplanation';
+  static const advicesPoliticsCategory = 'advicesPoliticsCategory';
+  static const advicesSeeClimateChange = 'advicesSeeClimateChange';
   static const globalObjectivesTitle = 'globalObjectivesTitle';
   static const globalObjectivesPart1 = 'globalObjectivesPart1';
   static const globalObjectivesPart2 = 'globalObjectivesPart2';
@@ -92,7 +96,9 @@ abstract class LocaleKeys {
   static const globalActionsPart2 = 'globalActionsPart2';
   static const aboutProjectTitle = 'aboutProjectTitle';
   static const aboutProjectDescription = 'aboutProjectDescription';
+  static const aboutRateIt = 'aboutRateIt';
   static const aboutSourcesTitle = 'aboutSourcesTitle';
   static const aboutSourcesDescription = 'aboutSourcesDescription';
   static const doneWith = 'doneWith';
+
 }

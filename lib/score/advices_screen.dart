@@ -30,7 +30,7 @@ class AdvicesScreen extends StatelessWidget {
           ),
           Gaps.h48,
           Text(
-            'What should you do?',
+            LocaleKeys.advicesTitle.tr(),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
           ),
@@ -38,7 +38,7 @@ class AdvicesScreen extends StatelessWidget {
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 350),
             child: Text(
-              'Small acts are welcomed, but they should not hide the truth: they are not enough to face the climate emergency, we need to focus on the big ones.',
+              LocaleKeys.advicesExplanation.tr(),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
             ),
@@ -92,7 +92,7 @@ class AdvicesScreen extends StatelessWidget {
                 Gaps.w16,
                 Expanded(
                   child: Text(
-                    'Politics',
+                    LocaleKeys.advicesPoliticsCategory.tr(),
                     style: Theme.of(context).textTheme.headline6.copyWith(
                           fontWeight: FontWeight.bold,
                           color: warmdDarkBlue,
@@ -114,7 +114,7 @@ class AdvicesScreen extends StatelessWidget {
             child: TextButton(
               onPressed: () => onSeeClimateChangeTapped(),
               child: Text(
-                'See what they can do >',
+                LocaleKeys.advicesSeeClimateChange.tr(),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
               ),

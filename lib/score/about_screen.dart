@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:markup_text/markup_text.dart';
 
 import '../common/blue_card.dart';
@@ -51,6 +52,23 @@ class AboutScreen extends StatelessWidget {
           MarkupText(
             LocaleKeys.aboutProjectDescription.tr(),
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+          ),
+          Gaps.h16,
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: () async {
+                final inAppReview = InAppReview.instance;
+                if (await inAppReview.isAvailable()) {
+                  await inAppReview.requestReview();
+                }
+              },
+              child: Text(
+                LocaleKeys.aboutRateIt.tr(),
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+              ),
+            ),
           ),
         ],
       ),
