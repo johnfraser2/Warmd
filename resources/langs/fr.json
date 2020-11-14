@@ -15,6 +15,7 @@
     "politicalAdvice": "Votre propre impact est insignifiant par rapport à celui des gouvernement, et aujourd'hui leurs politiques écologiques sont loin d'être suffisantes.\n\nSi vous le pouvez, essayez d'influencer sur leurs décisions, via les élections ou par d'autres moyens.",
     "heatingFuelCriteriaTitle": "Votre facture de fioul/gaz de chauffage",
     "heatingFuelCriteriaExplanation": "L'argent dépensé chaque année, en {}.",
+    "heatingFuelCriteriaAdvice": "Essayez de mieux isoler votre maison et évitez de chauffer plus que nécessaire (les adultes ont une meilleure qualité de sommeil à 19°C). Des commandes intelligentes peuvent vous aider à éteindre le chauffage lorsque vous êtes à l'extérieur.\n\nPréférez également le chauffage avec une pompe à chaleur, avec de l'électricité neutre en carbone ou avec du bois provenant de forêts locales et durables.",
     "electricityBillCriteriaTitle": "Votre facture d'électricité",
     "electricityBillCriteriaExplanation": "L'argent dépensé chaque année, en {}.",
     "cleanElectricityCriteriaTitle": "Pourcentage d'électricité neutre en carbone",
