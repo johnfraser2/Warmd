@@ -2,9 +2,9 @@
 
 # Warmd - Personal carbon footprint calculator
 
-<img src="https://lh3.googleusercontent.com/6dyZai_3bw1rUcxHtuPNwkauoucm5peaBnviicXiCC0eXFB26WiXo8YSEDKA-Q1dlcY"/>
+![Banner](/raw_graphics/banner_full.png)
 
-Warmd is a personal carbon footprint calculator which gives you an idea of your own carbon impact and helps you to improve it with adapted advices.
+Warmd is a personal carbon footprint calculator which gives you an idea of your own impact and helps you to improve it with adapted advices.
 
 It is [free/open-source software](https://www.gnu.org/philosophy/free-sw.html) under the GPLv3 license. You're are free to modify it as long as you respect the license and keep it open-source.
 
