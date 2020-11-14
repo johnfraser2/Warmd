@@ -46,7 +46,7 @@ static const Map<String,dynamic> en = {
   "politicalAdvice": "Your own impact is insignificant compared to your government, and as of today their ecological policies are far from sufficient.\n\nIf you can, try to influence their decisions, by voting or via other means.",
   "heatingFuelCriteriaTitle": "Your heating fuel/gas bill",
   "heatingFuelCriteriaExplanation": "Money spent each year, in {}.",
-  "heatingFuelCriteriaAdvice": "Try to better insulate your home and avoid heating more than necessary (an adult sleep quality is best at 66°F/19°C). Smart controls can help you switching off the heating when you are outside.\n\nAlso prefer heating with heat pump, with carbon-free electricity or with wood pellets from local and sustainable forests.",
+  "heatingFuelCriteriaAdvice": "Try to better insulate your home and avoid heating more than necessary (an adult sleep quality is best at 66°F/19°C). Smart controls can help you switching off the heating when you are outside.\n\nAlso prefer heating with heat pump, with carbon-free electricity or with wood from local and sustainable forests.",
   "electricityBillCriteriaTitle": "Your electricity bill",
   "electricityBillCriteriaExplanation": "Money spent each year, in {}.",
   "cleanElectricityCriteriaTitle": "Percent of carbon-free electricity",
