@@ -47,42 +47,45 @@ class CountryScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                     ),
                     Gaps.h64,
-                    Container(
-                      color: Colors.grey[100],
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: DropdownButton<int>(
-                          isExpanded: true,
-                          selectedItemBuilder: (BuildContext context) {
-                            return c.labels.map((String item) {
-                              return Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    item,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: Theme.of(context).textTheme.bodyText2,
-                                  ),
-                                ],
-                              );
-                            }).toList();
-                          },
-                          value: c.currentValue.toInt(),
-                          underline: Container(),
-                          onChanged: (int value) {
-                            c.currentValue = value.toDouble();
-                            state.persist(c);
-                          },
-                          items: c.labels
-                              .mapIndexed((index, label) => DropdownMenuItem<int>(
-                                    value: index,
-                                    child: Text(
-                                      label,
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 500),
+                      child: Container(
+                        color: Colors.grey[100],
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: DropdownButton<int>(
+                            isExpanded: true,
+                            selectedItemBuilder: (BuildContext context) {
+                              return c.labels.map((String item) {
+                                return Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      item,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                       style: Theme.of(context).textTheme.bodyText2,
                                     ),
-                                  ))
-                              .toList(),
+                                  ],
+                                );
+                              }).toList();
+                            },
+                            value: c.currentValue.toInt(),
+                            underline: Container(),
+                            onChanged: (int value) {
+                              c.currentValue = value.toDouble();
+                              state.persist(c);
+                            },
+                            items: c.labels
+                                .mapIndexed((index, label) => DropdownMenuItem<int>(
+                                      value: index,
+                                      child: Text(
+                                        label,
+                                        style: Theme.of(context).textTheme.bodyText2,
+                                      ),
+                                    ))
+                                .toList(),
+                          ),
                         ),
                       ),
                     ),

@@ -74,113 +74,119 @@ class AdvicesScreen extends StatelessWidget {
   }
 
   Widget _buildPolicalAdviceCard(BuildContext context) {
-    return BlueCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.baseline,
-              children: [
-                Text(
-                  '1.',
-                  style: Theme.of(context).textTheme.headline2.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: warmdRed,
-                      ),
-                ),
-                Gaps.w16,
-                Expanded(
-                  child: Text(
-                    LocaleKeys.advicesPoliticsCategory.tr(),
-                    style: Theme.of(context).textTheme.headline6.copyWith(
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 600),
+      child: BlueCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                children: [
+                  Text(
+                    '1.',
+                    style: Theme.of(context).textTheme.headline2.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: warmdDarkBlue,
+                          color: warmdRed,
                         ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          Gaps.h8,
-          Text(
-            LocaleKeys.politicalAdvice.tr(),
-            style: Theme.of(context).textTheme.bodyText2.copyWith(
-                  fontWeight: FontWeight.w300,
-                ),
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: TextButton(
-              onPressed: () => onSeeClimateChangeTapped(),
-              child: Text(
-                LocaleKeys.advicesSeeClimateChange.tr(),
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                  Gaps.w16,
+                  Expanded(
+                    child: Text(
+                      LocaleKeys.advicesPoliticsCategory.tr(),
+                      style: Theme.of(context).textTheme.headline6.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: warmdDarkBlue,
+                          ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+            Gaps.h8,
+            Text(
+              LocaleKeys.politicalAdvice.tr(),
+              style: Theme.of(context).textTheme.bodyText2.copyWith(
+                    fontWeight: FontWeight.w300,
+                  ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: TextButton(
+                onPressed: () => onSeeClimateChangeTapped(),
+                child: Text(
+                  LocaleKeys.advicesSeeClimateChange.tr(),
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildAdviceCard(BuildContext context, int position, Criteria crit, CriteriaCategory category) {
-    return BlueCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  '${position + 2}.',
-                  style: Theme.of(context).textTheme.headline2.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: crit.co2EqTonsPerYear() > 1 ? warmdRed : warmdBlue,
-                      ),
-                ),
-                Gaps.w16,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        category.title,
-                        style: Theme.of(context).textTheme.headline6.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: warmdDarkBlue,
-                            ),
-                      ),
-                      if (crit.co2EqTonsPerYear() > 0)
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 600),
+      child: BlueCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '${position + 2}.',
+                    style: Theme.of(context).textTheme.headline2.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: crit.co2EqTonsPerYear() > 1 ? warmdRed : warmdBlue,
+                        ),
+                  ),
+                  Gaps.w16,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
                         Text(
-                          crit.getFormatedFootprint(),
-                          style: Theme.of(context).textTheme.bodyText1.copyWith(
+                          category.title,
+                          style: Theme.of(context).textTheme.headline6.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: warmdDarkBlue,
                               ),
                         ),
-                      Gaps.h12,
-                    ],
+                        if (crit.co2EqTonsPerYear() > 0)
+                          Text(
+                            crit.getFormatedFootprint(),
+                            style: Theme.of(context).textTheme.bodyText1.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: warmdDarkBlue,
+                                ),
+                          ),
+                        Gaps.h12,
+                      ],
+                    ),
                   ),
-                ),
-                SvgPicture.asset(
-                  'assets/${category.key}.svg',
-                  height: 48,
-                ),
-              ],
+                  SvgPicture.asset(
+                    'assets/${category.key}.svg',
+                    height: 48,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Gaps.h8,
-          Text(
-            crit.advice(),
-            style: Theme.of(context).textTheme.bodyText2.copyWith(
-                  fontWeight: FontWeight.w300,
-                ),
-          ),
-        ],
+            Gaps.h8,
+            Text(
+              crit.advice(),
+              style: Theme.of(context).textTheme.bodyText2.copyWith(
+                    fontWeight: FontWeight.w300,
+                  ),
+            ),
+          ],
+        ),
       ),
     );
   }

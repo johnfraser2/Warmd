@@ -140,32 +140,37 @@ class FootprintScreen extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () => onSeeAdvicesTapped(),
-                      child: Text(
-                        LocaleKeys.seeAdvices.tr(),
-                        textAlign: TextAlign.center,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () => onSeeAdvicesTapped(),
+                        child: Text(
+                          LocaleKeys.seeAdvices.tr(),
+                          textAlign: TextAlign.center,
+                        ),
+                        style: greenButtonStyle,
                       ),
-                      style: greenButtonStyle,
                     ),
-                  ),
-                  Gaps.w16,
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () => onRestartTapped(),
-                      child: Text(
-                        LocaleKeys.redoQuestionnaire.tr(),
-                        textAlign: TextAlign.center,
-                        style:
-                            Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: Colors.grey[600]),
+                    Gaps.w16,
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () => onRestartTapped(),
+                        child: Text(
+                          LocaleKeys.redoQuestionnaire.tr(),
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              .copyWith(fontWeight: FontWeight.bold, color: Colors.grey[600]),
+                        ),
+                        style: greyButtonStyle,
                       ),
-                      style: greyButtonStyle,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

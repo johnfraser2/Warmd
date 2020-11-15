@@ -131,36 +131,39 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
   }
 
   Widget _buildCriteria(BuildContext context, CriteriasState state, Criteria c) {
-    return BlueCard(
-      padding: const EdgeInsets.symmetric(vertical: 32),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Text(
-              c.title,
-              style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Gaps.h8,
-          if (c.explanation != null)
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 600),
+      child: BlueCard(
+        padding: const EdgeInsets.symmetric(vertical: 32),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: MarkupText(
-                c.explanation,
-                style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.grey[600], fontWeight: FontWeight.w300),
+              child: Text(
+                c.title,
+                style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
               ),
             ),
-          Gaps.h8,
-          if (c.labels != null)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: _buildDropdown(context, c, state),
-            )
-          else
-            _buildSlider(c, context, state),
-        ],
+            Gaps.h8,
+            if (c.explanation != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: MarkupText(
+                  c.explanation,
+                  style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.grey[600], fontWeight: FontWeight.w300),
+                ),
+              ),
+            Gaps.h8,
+            if (c.labels != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: _buildDropdown(context, c, state),
+              )
+            else
+              _buildSlider(c, context, state),
+          ],
+        ),
       ),
     );
   }

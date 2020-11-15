@@ -43,103 +43,112 @@ class ClimateChangeScreen extends StatelessWidget {
   }
 
   Widget _buildConsequencesCard(BuildContext context) {
-    return BlueCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            LocaleKeys.consequencesTitle.tr(),
-            style: Theme.of(context).textTheme.subtitle1.copyWith(
-                  color: warmdDarkBlue,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-          Gaps.h16,
-          MarkupText(
-            LocaleKeys.consequencesPart1.tr(),
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-          ),
-          Gaps.h16,
-          const Image(
-            image: AssetImage('assets/dead_zones_4deg.webp'),
-            fit: BoxFit.contain,
-            height: 180,
-            width: double.infinity,
-          ),
-          Gaps.h16,
-          MarkupText(
-            LocaleKeys.consequencesPart2.tr(),
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-          ),
-        ],
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 600),
+      child: BlueCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              LocaleKeys.consequencesTitle.tr(),
+              style: Theme.of(context).textTheme.subtitle1.copyWith(
+                    color: warmdDarkBlue,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            Gaps.h16,
+            MarkupText(
+              LocaleKeys.consequencesPart1.tr(),
+              style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            ),
+            Gaps.h16,
+            const Image(
+              image: AssetImage('assets/dead_zones_4deg.webp'),
+              fit: BoxFit.contain,
+              height: 180,
+              width: double.infinity,
+            ),
+            Gaps.h16,
+            MarkupText(
+              LocaleKeys.consequencesPart2.tr(),
+              style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildObjectivesCard(BuildContext context) {
-    return BlueCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            LocaleKeys.globalObjectivesTitle.tr(),
-            style: Theme.of(context).textTheme.subtitle1.copyWith(
-                  color: warmdDarkBlue,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-          Gaps.h16,
-          MarkupText(
-            LocaleKeys.globalObjectivesPart1.tr(),
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-          ),
-          Gaps.h16,
-          Center(
-            child: SvgPicture.asset(
-              'assets/graph_emissions.svg',
-              height: 200,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 600),
+      child: BlueCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              LocaleKeys.globalObjectivesTitle.tr(),
+              style: Theme.of(context).textTheme.subtitle1.copyWith(
+                    color: warmdDarkBlue,
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
-          ),
-          Gaps.h16,
-          MarkupText(
-            LocaleKeys.globalObjectivesPart2.tr(),
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-          ),
-        ],
+            Gaps.h16,
+            MarkupText(
+              LocaleKeys.globalObjectivesPart1.tr(),
+              style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            ),
+            Gaps.h16,
+            Center(
+              child: SvgPicture.asset(
+                'assets/graph_emissions.svg',
+                height: 200,
+              ),
+            ),
+            Gaps.h16,
+            MarkupText(
+              LocaleKeys.globalObjectivesPart2.tr(),
+              style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildActionsCard(BuildContext context) {
-    return BlueCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            LocaleKeys.globalActionsTitle.tr(),
-            style: Theme.of(context).textTheme.subtitle1.copyWith(
-                  color: warmdDarkBlue,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-          Gaps.h16,
-          MarkupText(
-            LocaleKeys.globalActionsPart1.tr(),
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-          ),
-          Gaps.h16,
-          Center(
-            child: SvgPicture.asset(
-              'assets/emissions_sectors.svg',
-              height: 250,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 600),
+      child: BlueCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              LocaleKeys.globalActionsTitle.tr(),
+              style: Theme.of(context).textTheme.subtitle1.copyWith(
+                    color: warmdDarkBlue,
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
-          ),
-          Gaps.h16,
-          MarkupText(
-            LocaleKeys.globalActionsPart2.tr(),
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
-          ),
-        ],
+            Gaps.h16,
+            MarkupText(
+              LocaleKeys.globalActionsPart1.tr(),
+              style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            ),
+            Gaps.h16,
+            Center(
+              child: SvgPicture.asset(
+                'assets/emissions_sectors.svg',
+                height: 250,
+              ),
+            ),
+            Gaps.h16,
+            MarkupText(
+              LocaleKeys.globalActionsPart2.tr(),
+              style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            ),
+          ],
+        ),
       ),
     );
   }

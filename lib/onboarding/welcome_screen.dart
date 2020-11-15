@@ -28,21 +28,24 @@ class WelcomeScreen extends StatelessWidget {
             Expanded(
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 48),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      LocaleKeys.welcomeTitle.tr(),
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
-                    ),
-                    Gaps.h64,
-                    Text(
-                      LocaleKeys.welcomeDescription.tr(),
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue),
-                    ),
-                  ],
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 500),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        LocaleKeys.welcomeTitle.tr(),
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
+                      ),
+                      Gaps.h64,
+                      Text(
+                        LocaleKeys.welcomeDescription.tr(),
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

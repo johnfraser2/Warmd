@@ -55,7 +55,7 @@ class _MyAppState extends DelayableState<MyApp> {
   void initState() {
     super.initState();
 
-    delay(const Duration(seconds: 4), () {
+    delay(const Duration(seconds: 2), () {
       setState(() {
         _splashScreenSeen = true;
       });
@@ -96,10 +96,10 @@ class _MyAppState extends DelayableState<MyApp> {
       ),
       home: MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => InitState()),
+          ChangeNotifierProvider(create: (_) => _InitState()),
           ChangeNotifierProvider(create: (_) => CriteriasState()),
         ],
-        child: Consumer<InitState>(
+        child: Consumer<_InitState>(
           builder: (_, initState, __) => initState.countrySelected == null
               ? Container()
               : WillPopScope(
@@ -268,7 +268,7 @@ class _MyAppState extends DelayableState<MyApp> {
   }
 }
 
-class InitState with ChangeNotifier {
+class _InitState with ChangeNotifier {
   static const _countrySelectedKey = 'COUNTRY_SELECTED';
   bool _countrySelected;
   bool get countrySelected => _countrySelected;
@@ -281,7 +281,7 @@ class InitState with ChangeNotifier {
     });
   }
 
-  InitState() {
+  _InitState() {
     _loadState();
   }
 
