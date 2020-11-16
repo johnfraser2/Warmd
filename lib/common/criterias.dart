@@ -538,9 +538,9 @@ class FoodCategory extends CriteriaCategory {
     final snackCriteria = SnackCriteria();
 
     criterias = [
-      MeatCriteria(),
-      DairyCriteria(),
-      SnackCriteria(),
+      meatCriteria,
+      dairyCriteria,
+      snackCriteria,
       OverweightCriteria(meatCriteria, dairyCriteria, snackCriteria),
     ];
   }

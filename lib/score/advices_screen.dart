@@ -86,7 +86,7 @@ class AdvicesScreen extends StatelessWidget {
                 children: [
                   Text(
                     '1.',
-                    style: Theme.of(context).textTheme.headline2.copyWith(
+                    style: Theme.of(context).textTheme.headline3.copyWith(
                           fontWeight: FontWeight.bold,
                           color: warmdRed,
                         ),
@@ -95,7 +95,7 @@ class AdvicesScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       LocaleKeys.advicesPoliticsCategory.tr(),
-                      style: Theme.of(context).textTheme.headline6.copyWith(
+                      style: Theme.of(context).textTheme.subtitle1.copyWith(
                             fontWeight: FontWeight.bold,
                             color: warmdDarkBlue,
                           ),
@@ -137,11 +137,11 @@ class AdvicesScreen extends StatelessWidget {
           children: [
             IntrinsicHeight(
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     '${position + 2}.',
-                    style: Theme.of(context).textTheme.headline2.copyWith(
+                    style: Theme.of(context).textTheme.headline3.copyWith(
                           fontWeight: FontWeight.bold,
                           color: crit.co2EqTonsPerYear() > 1 ? warmdRed : warmdBlue,
                         ),
@@ -153,21 +153,15 @@ class AdvicesScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          category.title,
-                          style: Theme.of(context).textTheme.headline6.copyWith(
+                          crit.title,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.subtitle1.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: warmdDarkBlue,
                               ),
                         ),
-                        if (crit.co2EqTonsPerYear() > 0)
-                          Text(
-                            crit.getFormatedFootprint(),
-                            style: Theme.of(context).textTheme.bodyText1.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: warmdDarkBlue,
-                                ),
-                          ),
-                        Gaps.h12,
+                        Gaps.h8,
                       ],
                     ),
                   ),
@@ -178,7 +172,15 @@ class AdvicesScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Gaps.h8,
+            if (crit.co2EqTonsPerYear() > 0) Gaps.h12,
+            if (crit.co2EqTonsPerYear() > 0)
+              Text(
+                crit.getFormatedFootprint(),
+                style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      color: warmdDarkBlue,
+                    ),
+              ),
+            Gaps.h16,
             Text(
               crit.advice(),
               style: Theme.of(context).textTheme.bodyText2.copyWith(
