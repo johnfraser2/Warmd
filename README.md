@@ -1,6 +1,6 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/fredericjulian)
 
-# Warmd - Personal carbon footprint calculator
+# Warmd - Fight climate change
 
 ![Banner](/raw_graphics/banner_full.png)
 
