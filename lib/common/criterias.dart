@@ -495,7 +495,7 @@ class OverweightCriteria extends Criteria {
     minValue = 0;
     maxValue = 2;
     step = 1;
-    currentValue = 1;
+    currentValue = 0;
   }
 
   @override
