@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
+import 'package:warmd/common/common.dart';
+import 'package:warmd/common/criterias.dart';
+import 'package:warmd/generated/locale_keys.g.dart';
 
-import '../common/common.dart';
-import '../common/criterias.dart';
-import '../generated/locale_keys.g.dart';
 import 'score_widget.dart';
 
 class FootprintScreen extends StatelessWidget {

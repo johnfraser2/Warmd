@@ -6,11 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:markup_text/markup_text.dart';
-
-import '../common/blue_card.dart';
-import '../common/common.dart';
-import '../common/screen_template.dart';
-import '../generated/locale_keys.g.dart';
+import 'package:warmd/common/blue_card.dart';
+import 'package:warmd/common/common.dart';
+import 'package:warmd/common/screen_template.dart';
+import 'package:warmd/generated/locale_keys.g.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key key}) : super(key: key);

@@ -4,12 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-
-import '../common/blue_card.dart';
-import '../common/common.dart';
-import '../common/criterias.dart';
-import '../common/screen_template.dart';
-import '../generated/locale_keys.g.dart';
+import 'package:warmd/common/blue_card.dart';
+import 'package:warmd/common/common.dart';
+import 'package:warmd/common/criterias.dart';
+import 'package:warmd/common/screen_template.dart';
+import 'package:warmd/generated/locale_keys.g.dart';
 
 class AdvicesScreen extends StatelessWidget {
   final Function onSeeClimateChangeTapped;

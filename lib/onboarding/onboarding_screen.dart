@@ -3,10 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_indicator/page_indicator.dart';
-
-import '../common/common.dart';
-import '../common/delayable_state.dart';
-import '../generated/locale_keys.g.dart';
+import 'package:warmd/common/common.dart';
+import 'package:warmd/common/delayable_state.dart';
+import 'package:warmd/generated/locale_keys.g.dart';
 
 class OnboardingScreen extends StatefulWidget {
   final Function onOnboardingFinished;
@@ -40,6 +39,11 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
             Gaps.h64,
             Expanded(
               child: PageIndicatorContainer(
+                length: 2,
+                padding: const EdgeInsets.all(10),
+                indicatorColor: Colors.grey[300],
+                indicatorSelectorColor: warmdDarkBlue,
+                shape: IndicatorShape.circle(),
                 child: PageView.builder(
                   controller: _pageController,
                   physics: const BouncingScrollPhysics(),
@@ -121,12 +125,6 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                     // }
                   },
                 ),
-                align: IndicatorAlign.bottom,
-                length: 2,
-                padding: const EdgeInsets.all(10),
-                indicatorColor: Colors.grey[300],
-                indicatorSelectorColor: warmdDarkBlue,
-                shape: IndicatorShape.circle(),
               ),
             ),
             Gaps.h24,

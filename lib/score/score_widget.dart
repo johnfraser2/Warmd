@@ -3,9 +3,8 @@ import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
-import '../common/criterias.dart';
-import '../generated/locale_keys.g.dart';
+import 'package:warmd/common/criterias.dart';
+import 'package:warmd/generated/locale_keys.g.dart';
 
 const _levelColors = [
   Color(0xFF00A31D),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 const warmdLightBlue = Color(0xFFDFF3FE);
 const warmdBlue = Color(0xFF00AAF2);
@@ -47,7 +46,7 @@ extension ListExtension<E> on List<E> {
 
 extension MapExtension<K, V> on Map<K, V> {
   Map<K, V> sort([int Function(MapEntry<K, V> a, MapEntry<K, V> b) compare]) {
-    var entries = this.entries.toList();
+    final entries = this.entries.toList();
     entries.sort(compare);
     return Map<K, V>.fromEntries(entries);
   }
@@ -58,18 +57,12 @@ Widget buildBackButton(BuildContext context) {
   return Row(
     children: [
       TextButton(
+        onPressed: () => Navigator.pop(context),
         child: Text(
           'Back',
           style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
         ),
-        onPressed: () => Navigator.pop(context),
       ),
     ],
   );
-}
-
-void launchUrl(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
-  }
 }

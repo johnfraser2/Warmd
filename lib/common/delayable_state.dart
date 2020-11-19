@@ -15,7 +15,9 @@ abstract class DelayableState<E extends StatefulWidget> extends State<E> with Wi
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    _subscriptions.forEach((f) => f.cancel());
+    for (final subscription in _subscriptions) {
+      subscription.cancel();
+    }
 
     super.dispose();
   }
@@ -23,9 +25,13 @@ abstract class DelayableState<E extends StatefulWidget> extends State<E> with Wi
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
-      _subscriptions.forEach((f) => f.pause());
+      for (final subscription in _subscriptions) {
+        subscription.pause();
+      }
     } else if (state == AppLifecycleState.resumed) {
-      _subscriptions.forEach((f) => f.resume());
+      for (final subscription in _subscriptions) {
+        subscription.resume();
+      }
     }
   }
 

@@ -16,7 +16,6 @@ class ScreenTemplate extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          scrollDirection: Axis.vertical,
           controller: scrollController,
           children: [
             Gaps.h16,

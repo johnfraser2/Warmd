@@ -4,8 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:warmd/generated/locale_keys.g.dart';
 
-import '../generated/locale_keys.g.dart';
 import 'currencies.dart';
 
 abstract class Criteria {
@@ -121,12 +121,12 @@ class HeatingFuelCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var moneyChange = _countryCriteria.getCurrencyRate();
+    final moneyChange = _countryCriteria.getCurrencyRate();
 
-    var fuelBill = currentValue * moneyChange;
-    var co2TonsPerFuelDollar = 0.005;
+    final fuelBill = currentValue * moneyChange;
+    const co2TonsPerFuelDollar = 0.005;
 
-    return (fuelBill * co2TonsPerFuelDollar);
+    return fuelBill * co2TonsPerFuelDollar;
   }
 
   @override
@@ -192,14 +192,14 @@ class CleanElectricityCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var moneyChange = _countryCriteria.getCurrencyRate();
+    final moneyChange = _countryCriteria.getCurrencyRate();
 
-    var electricityBill = _electricityBillCriteria.currentValue * moneyChange;
-    var co2ElectricityPercent = min(100, 100 - currentValue + 15); // +15% because nothing is 100% clean
-    var kWhPrice = 0.15; // in dollars
-    var co2TonsPerKWh = 0.00065;
+    final electricityBill = _electricityBillCriteria.currentValue * moneyChange;
+    final co2ElectricityPercent = min(100, 100 - currentValue + 15); // +15% because nothing is 100% clean
+    const kWhPrice = 0.15; // in dollars
+    const co2TonsPerKWh = 0.00065;
 
-    return ((electricityBill / 100 * co2ElectricityPercent) / kWhPrice * co2TonsPerKWh);
+    return (electricityBill / 100 * co2ElectricityPercent) / kWhPrice * co2TonsPerKWh;
   }
 
   @override
@@ -216,7 +216,7 @@ class UtilitiesCategory extends CriteriaCategory {
   UtilitiesCategory(CountryCriteria countryCriteria) {
     key = 'utilities';
 
-    var electricityBillCriteria = ElectricityBillCriteria(countryCriteria);
+    final electricityBillCriteria = ElectricityBillCriteria(countryCriteria);
     criterias = [
       HeatingFuelCriteria(countryCriteria),
       electricityBillCriteria,
@@ -250,8 +250,8 @@ class FlightsCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var co2TonsPerKm = 0.00028;
-    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
+    const co2TonsPerKm = 0.00028;
+    final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
     return currentValue * milesToKmFactor * co2TonsPerKm;
   }
 
@@ -289,14 +289,14 @@ class CarCriteria extends Criteria {
   @override
   double co2EqTonsPerYear() {
     // We use -value for US/UK mpg because they are negative values (to have min < max)
-    var litersPerKm = (_countryCriteria.unitSystem() == UnitSystem.metric
+    final litersPerKm = (_countryCriteria.unitSystem() == UnitSystem.metric
             ? _carConsumptionCriteria.currentValue
             : _countryCriteria.unitSystem() == UnitSystem.us
                 ? 235.2 / -_carConsumptionCriteria.currentValue
                 : 282.5 / -_carConsumptionCriteria.currentValue) /
         100;
-    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
-    var co2TonsPerLiter = 0.0033;
+    final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
+    const co2TonsPerLiter = 0.0033;
     return currentValue * milesToKmFactor * litersPerKm * co2TonsPerLiter;
   }
 
@@ -366,8 +366,8 @@ class PublicTransportCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var co2TonsPerKm = 0.00014;
-    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
+    const co2TonsPerKm = 0.00014;
+    final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
     return currentValue * milesToKmFactor * co2TonsPerKm;
   }
 
@@ -385,7 +385,7 @@ class TravelCategory extends CriteriaCategory {
   TravelCategory(CountryCriteria countryCriteria) {
     key = 'travel';
 
-    var carConsumptionCriteria = CarConsumptionCriteria(countryCriteria);
+    final carConsumptionCriteria = CarConsumptionCriteria(countryCriteria);
     criterias = [
       FlightsCriteria(countryCriteria),
       CarCriteria(carConsumptionCriteria, countryCriteria),
@@ -415,7 +415,7 @@ class MeatCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var co2TonsPerTimePerWeek = 0.18;
+    const co2TonsPerTimePerWeek = 0.18;
     return currentValue * co2TonsPerTimePerWeek;
   }
 
@@ -446,7 +446,7 @@ class DairyCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var co2TonsPerTimePerWeek = 0.076;
+    const co2TonsPerTimePerWeek = 0.076;
     return currentValue * co2TonsPerTimePerWeek;
   }
 
@@ -471,7 +471,7 @@ class SnackCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var co2TonsPerTimePerWeek = 0.071;
+    const co2TonsPerTimePerWeek = 0.071;
     return currentValue * co2TonsPerTimePerWeek;
   }
 
@@ -513,7 +513,7 @@ class OverweightCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var overweightFactor = currentValue == 2 ? 0.5 : (currentValue == 1 ? 0.25 : 0);
+    final overweightFactor = currentValue == 2 ? 0.5 : (currentValue == 1 ? 0.25 : 0);
 
     return (_meatCriteria.co2EqTonsPerYear() + _dairyCriteria.co2EqTonsPerYear() + _snackCriteria.co2EqTonsPerYear()) *
         overweightFactor;
@@ -576,8 +576,8 @@ class MaterialGoodsCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var moneyChange = _countryCriteria.getCurrencyRate();
-    var co2TonsPerDollar = 0.0062;
+    final moneyChange = _countryCriteria.getCurrencyRate();
+    const co2TonsPerDollar = 0.0062;
     return currentValue * moneyChange * co2TonsPerDollar;
   }
 
@@ -618,11 +618,11 @@ class SavingsCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var moneyChange = _countryCriteria.getCurrencyRate();
+    final moneyChange = _countryCriteria.getCurrencyRate();
 
     // Based on Rift app's results, but reduced a lot because it is quite unsure due to lack of transparency
     // and it greatly depends on bank/type of account/country, so I prefer to be safe here.
-    var co2TonsPerDollar = 0.00025;
+    const co2TonsPerDollar = 0.00025;
     return currentValue * moneyChange * co2TonsPerDollar;
   }
 
@@ -728,9 +728,9 @@ class CriteriasState with ChangeNotifier {
   List<CriteriaCategory> get categories => _categories;
 
   CriteriasState() {
-    var generalCategory = GeneralCategory();
-    var countryCriteria = generalCategory.criterias[0] as CountryCriteria;
-    var utilitiesCategory = UtilitiesCategory(countryCriteria);
+    final generalCategory = GeneralCategory();
+    final countryCriteria = generalCategory.criterias[0] as CountryCriteria;
+    final utilitiesCategory = UtilitiesCategory(countryCriteria);
 
     _categories = [
       generalCategory,
@@ -756,10 +756,10 @@ class CriteriasState with ChangeNotifier {
   }
 
   Future<void> _loadState() async {
-    var prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
-    _categories.forEach((cat) {
-      cat.criterias.forEach((crit) {
+    for (final cat in _categories) {
+      for (final crit in cat.criterias) {
         crit.currentValue = prefs.getDouble(crit.key) ?? crit.currentValue;
 
         if (crit.currentValue > crit.maxValue) {
@@ -767,8 +767,8 @@ class CriteriasState with ChangeNotifier {
         } else if (crit.currentValue < crit.minValue) {
           crit.currentValue = crit.minValue;
         }
-      });
-    });
+      }
+    }
 
     notifyListeners();
   }

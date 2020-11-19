@@ -7,13 +7,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
-
-import '../common/blue_card.dart';
-import '../common/common.dart';
-import '../common/criterias.dart';
-import '../common/delayable_state.dart';
-import '../common/screen_template.dart';
-import '../generated/locale_keys.g.dart';
+import 'package:warmd/common/blue_card.dart';
+import 'package:warmd/common/common.dart';
+import 'package:warmd/common/criterias.dart';
+import 'package:warmd/common/delayable_state.dart';
+import 'package:warmd/common/screen_template.dart';
+import 'package:warmd/generated/locale_keys.g.dart';
 
 class UtilitiesCategoryScreen extends StatelessWidget {
   final Function onContinueTapped;
@@ -22,7 +21,7 @@ class UtilitiesCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriasState>();
 
     return _CriteriasScreen(criteriaCategory: state.categories[1], progressValue: 0.2, onContinueTapped: onContinueTapped);
   }
@@ -35,7 +34,7 @@ class TravelCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriasState>();
 
     return _CriteriasScreen(criteriaCategory: state.categories[2], progressValue: 0.4, onContinueTapped: onContinueTapped);
   }
@@ -48,7 +47,7 @@ class FoodCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriasState>();
 
     return _CriteriasScreen(criteriaCategory: state.categories[3], progressValue: 0.6, onContinueTapped: onContinueTapped);
   }
@@ -61,7 +60,7 @@ class GoodsCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriasState>();
 
     return _CriteriasScreen(criteriaCategory: state.categories[4], progressValue: 0.8, onContinueTapped: onContinueTapped);
   }
@@ -85,7 +84,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriasState>();
 
     return ScreenTemplate(
       progressValue: widget.progressValue,
@@ -226,8 +225,8 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
   }
 
   Widget _buildSlider(Criteria c, BuildContext context, CriteriasState state) {
-    var unit = c.unit != null ? ' ' + c.unit : '';
-    var valueWithUnit = NumberFormat.decimalPattern().format(c.currentValue.abs()).toString() + unit;
+    final unit = c.unit != null ? ' ${c.unit}' : '';
+    final valueWithUnit = NumberFormat.decimalPattern().format(c.currentValue.abs()).toString() + unit;
 
     const valueTextStyle = TextStyle(color: warmdDarkBlue);
 
@@ -278,11 +277,11 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
   }
 
   String valueToShortString(double value) {
-    var intValue = value.abs().round();
+    final intValue = value.abs().round();
     if (intValue < 1000) {
       return intValue.toString();
     } else {
-      return (intValue ~/ 1000).toString() + 'K';
+      return '${intValue ~/ 1000}K';
     }
   }
 }
