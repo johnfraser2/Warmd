@@ -398,9 +398,9 @@ class TravelCategory extends CriteriaCategory {
   String get title => LocaleKeys.travelCategoryTitle.tr();
 }
 
-class MeatCriteria extends Criteria {
-  MeatCriteria() {
-    key = 'meat';
+class RuminantMeatCriteria extends Criteria {
+  RuminantMeatCriteria() {
+    key = 'ruminant_meat';
     minValue = 0;
     maxValue = 20;
     step = 1;
@@ -408,30 +408,30 @@ class MeatCriteria extends Criteria {
   }
 
   @override
-  String get title => LocaleKeys.meatCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.meatCriteriaExplanation.tr();
+  String get title => LocaleKeys.ruminantMeatCriteriaTitle.tr();
 
   @override
   double co2EqTonsPerYear() {
-    const co2TonsPerTimePerWeek = 0.18;
+    // Not CoolClimate results here, more like a mean from beek and lamb. I took 40kg CO2e per kg (a meal = 150g).
+    // formula = ( (x/10*1.5) * (365/7) ) / 1000
+    // See https://ourworldindata.org/food-choice-vs-eating-local
+    const co2TonsPerTimePerWeek = 0.31;
     return currentValue * co2TonsPerTimePerWeek;
   }
 
   @override
   String advice() {
     if (co2EqTonsPerYear() > 1) {
-      return LocaleKeys.meatCriteriaAdvice.tr();
+      return LocaleKeys.ruminantMeatCriteriaAdvice.tr();
     } else {
       return null;
     }
   }
 }
 
-class DairyCriteria extends Criteria {
-  DairyCriteria() {
-    key = 'dairy';
+class NonRuminantMeatCriteria extends Criteria {
+  NonRuminantMeatCriteria() {
+    key = 'non_ruminant_meat';
     minValue = 0;
     maxValue = 20;
     step = 1;
@@ -439,19 +439,56 @@ class DairyCriteria extends Criteria {
   }
 
   @override
-  String get title => LocaleKeys.dairyCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.dairyCriteriaExplanation.tr();
+  String get title => LocaleKeys.nonRuminantMeatCriteriaTitle.tr();
 
   @override
   double co2EqTonsPerYear() {
-    const co2TonsPerTimePerWeek = 0.076;
+    // Not CoolClimate results here, more like a mean from pork and fish. I took 6kg CO2e per kg (a meal = 150g).
+    // formula = ( (x/10*1.5) * (365/7) ) / 1000
+    // See https://ourworldindata.org/food-choice-vs-eating-local
+    const co2TonsPerTimePerWeek = 0.046;
     return currentValue * co2TonsPerTimePerWeek;
   }
 
   @override
-  String advice() => null; // I don't know if I can advice to eat less, especially regarding children. Need to check.
+  String advice() {
+    if (co2EqTonsPerYear() > 0.5) {
+      return LocaleKeys.nonRuminantMeatCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
+}
+
+class CheeseCriteria extends Criteria {
+  CheeseCriteria() {
+    key = 'cheese';
+    minValue = 0;
+    maxValue = 20;
+    step = 1;
+    currentValue = 0;
+  }
+
+  @override
+  String get title => LocaleKeys.cheeseCriteriaTitle.tr();
+
+  @override
+  double co2EqTonsPerYear() {
+    // Not CoolClimate results here, more like a mean from pork and fish. I took 20kg CO2e per kg (a portion = 50g).
+    // formula = ( (x/10*0.5) * (365/7) ) / 1000
+    // See https://ourworldindata.org/food-choice-vs-eating-local
+    const co2TonsPerTimePerWeek = 0.05;
+    return currentValue * co2TonsPerTimePerWeek;
+  }
+
+  @override
+  String advice() {
+    if (co2EqTonsPerYear() > 0.5) {
+      return LocaleKeys.cheeseCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
 }
 
 class SnackCriteria extends Criteria {
@@ -465,9 +502,6 @@ class SnackCriteria extends Criteria {
 
   @override
   String get title => LocaleKeys.snacksCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.snacksCriteriaExplanation.tr();
 
   @override
   double co2EqTonsPerYear() {
@@ -486,11 +520,12 @@ class SnackCriteria extends Criteria {
 }
 
 class OverweightCriteria extends Criteria {
-  final MeatCriteria _meatCriteria;
-  final DairyCriteria _dairyCriteria;
+  final RuminantMeatCriteria _ruminantMeatCriteria;
+  final NonRuminantMeatCriteria _nonRuminantMeatCriteria;
+  final CheeseCriteria _dairyCriteria;
   final SnackCriteria _snackCriteria;
 
-  OverweightCriteria(this._meatCriteria, this._dairyCriteria, this._snackCriteria) {
+  OverweightCriteria(this._ruminantMeatCriteria, this._nonRuminantMeatCriteria, this._dairyCriteria, this._snackCriteria) {
     key = 'overweight';
     minValue = 0;
     maxValue = 2;
@@ -515,7 +550,10 @@ class OverweightCriteria extends Criteria {
   double co2EqTonsPerYear() {
     final overweightFactor = currentValue == 2 ? 0.5 : (currentValue == 1 ? 0.25 : 0);
 
-    return (_meatCriteria.co2EqTonsPerYear() + _dairyCriteria.co2EqTonsPerYear() + _snackCriteria.co2EqTonsPerYear()) *
+    return (_ruminantMeatCriteria.co2EqTonsPerYear() +
+            _nonRuminantMeatCriteria.co2EqTonsPerYear() +
+            _dairyCriteria.co2EqTonsPerYear() +
+            _snackCriteria.co2EqTonsPerYear()) *
         overweightFactor;
   }
 
@@ -533,20 +571,29 @@ class FoodCategory extends CriteriaCategory {
   FoodCategory() {
     key = 'food';
 
-    final meatCriteria = MeatCriteria();
-    final dairyCriteria = DairyCriteria();
+    final ruminantMeatCriteria = RuminantMeatCriteria();
+    final nonRuminantMeatCriteria = NonRuminantMeatCriteria();
+    final dairyCriteria = CheeseCriteria();
     final snackCriteria = SnackCriteria();
 
     criterias = [
-      meatCriteria,
+      ruminantMeatCriteria,
+      nonRuminantMeatCriteria,
       dairyCriteria,
       snackCriteria,
-      OverweightCriteria(meatCriteria, dairyCriteria, snackCriteria),
+      OverweightCriteria(ruminantMeatCriteria, nonRuminantMeatCriteria, dairyCriteria, snackCriteria),
     ];
   }
 
   @override
   String get title => LocaleKeys.foodCategoryTitle.tr();
+
+  @override
+  double co2EqTonsPerYear() {
+    // I add 2 tons to everyone since we all eat vegetables, fruits, ... which I do not ask for quantity.
+    // Of course it is not precise.
+    return super.co2EqTonsPerYear() + 2;
+  }
 }
 
 class MaterialGoodsCriteria extends Criteria {

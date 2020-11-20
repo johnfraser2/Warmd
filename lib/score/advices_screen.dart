@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
 import 'package:warmd/common/blue_card.dart';
 import 'package:warmd/common/common.dart';
@@ -17,7 +18,7 @@ class AdvicesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriasState>();
 
     final orderedAdvices = _getOrderedAdvices(state).asMap();
 
@@ -61,11 +62,11 @@ class AdvicesScreen extends StatelessWidget {
 
   List<Criteria> _getOrderedAdvices(CriteriasState state) {
     final orderedAdvices = <Criteria>[];
-    state.categories.forEach((cat) {
-      cat.criterias.forEach((crit) {
+    for (final cat in state.categories) {
+      for (final crit in cat.criterias) {
         if (crit.advice() != null) orderedAdvices.add(crit);
-      });
-    });
+      }
+    }
 
     orderedAdvices.sort((a, b) => a.co2EqTonsPerYear().compareTo(b.co2EqTonsPerYear()) * -1);
 
@@ -180,7 +181,7 @@ class AdvicesScreen extends StatelessWidget {
                     ),
               ),
             Gaps.h16,
-            Text(
+            MarkupText(
               crit.advice(),
               style: Theme.of(context).textTheme.bodyText2.copyWith(
                     fontWeight: FontWeight.w300,
