@@ -25,10 +25,8 @@ abstract class  LocaleKeys {
   static const cleanElectricityCriteriaAdvice = 'cleanElectricityCriteriaAdvice';
   static const utilitiesCategoryTitle = 'utilitiesCategoryTitle';
   static const flightsCriteriaTitle = 'flightsCriteriaTitle';
-  static const flightsCriteriaExplanation = 'flightsCriteriaExplanation';
   static const flightsCriteriaAdvice = 'flightsCriteriaAdvice';
   static const carCriteriaTitle = 'carCriteriaTitle';
-  static const carCriteriaExplanation = 'carCriteriaExplanation';
   static const carCriteriaAdviceHigh = 'carCriteriaAdviceHigh';
   static const carCriteriaAdviceLow = 'carCriteriaAdviceLow';
   static const carConsumptionCriteriaTitle = 'carConsumptionCriteriaTitle';
@@ -44,7 +42,6 @@ abstract class  LocaleKeys {
   static const snacksCriteriaTitle = 'snacksCriteriaTitle';
   static const snacksCriteriaAdvice = 'snacksCriteriaAdvice';
   static const overweightCriteriaTitle = 'overweightCriteriaTitle';
-  static const overweightCriteriaExplanation = 'overweightCriteriaExplanation';
   static const overweightCriteriaLabel1 = 'overweightCriteriaLabel1';
   static const overweightCriteriaLabel2 = 'overweightCriteriaLabel2';
   static const overweightCriteriaLabel3 = 'overweightCriteriaLabel3';
@@ -63,7 +60,6 @@ abstract class  LocaleKeys {
   static const waterCriteriaLabel3 = 'waterCriteriaLabel3';
   static const waterCriteriaAdvice = 'waterCriteriaAdvice';
   static const internetCriteriaTitle = 'internetCriteriaTitle';
-  static const internetCriteriaExplanation = 'internetCriteriaExplanation';
   static const internetCriteriaLabel1 = 'internetCriteriaLabel1';
   static const internetCriteriaLabel2 = 'internetCriteriaLabel2';
   static const internetCriteriaLabel3 = 'internetCriteriaLabel3';

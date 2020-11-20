@@ -243,9 +243,6 @@ class FlightsCriteria extends Criteria {
   String get title => LocaleKeys.flightsCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.flightsCriteriaExplanation.tr();
-
-  @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
 
   @override
@@ -279,9 +276,6 @@ class CarCriteria extends Criteria {
 
   @override
   String get title => LocaleKeys.carCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.carCriteriaExplanation.tr();
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
@@ -537,9 +531,6 @@ class OverweightCriteria extends Criteria {
   String get title => LocaleKeys.overweightCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.overweightCriteriaExplanation.tr();
-
-  @override
   List<String> get labels => [
         LocaleKeys.overweightCriteriaLabel1.tr(),
         LocaleKeys.overweightCriteriaLabel2.tr(),
@@ -731,9 +722,6 @@ class InternetCriteria extends Criteria {
 
   @override
   String get title => LocaleKeys.internetCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.internetCriteriaExplanation.tr();
 
   @override
   List<String> get labels => [
