@@ -4,8 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:warmd/generated/locale_keys.g.dart';
 
-import '../generated/locale_keys.g.dart';
 import 'currencies.dart';
 
 abstract class Criteria {
@@ -121,12 +121,12 @@ class HeatingFuelCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var moneyChange = _countryCriteria.getCurrencyRate();
+    final moneyChange = _countryCriteria.getCurrencyRate();
 
-    var fuelBill = currentValue * moneyChange;
-    var co2TonsPerFuelDollar = 0.005;
+    final fuelBill = currentValue * moneyChange;
+    const co2TonsPerFuelDollar = 0.005;
 
-    return (fuelBill * co2TonsPerFuelDollar);
+    return fuelBill * co2TonsPerFuelDollar;
   }
 
   @override
@@ -192,14 +192,14 @@ class CleanElectricityCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var moneyChange = _countryCriteria.getCurrencyRate();
+    final moneyChange = _countryCriteria.getCurrencyRate();
 
-    var electricityBill = _electricityBillCriteria.currentValue * moneyChange;
-    var co2ElectricityPercent = min(100, 100 - currentValue + 15); // +15% because nothing is 100% clean
-    var kWhPrice = 0.15; // in dollars
-    var co2TonsPerKWh = 0.00065;
+    final electricityBill = _electricityBillCriteria.currentValue * moneyChange;
+    final co2ElectricityPercent = min(100, 100 - currentValue + 15); // +15% because nothing is 100% clean
+    const kWhPrice = 0.15; // in dollars
+    const co2TonsPerKWh = 0.00065;
 
-    return ((electricityBill / 100 * co2ElectricityPercent) / kWhPrice * co2TonsPerKWh);
+    return (electricityBill / 100 * co2ElectricityPercent) / kWhPrice * co2TonsPerKWh;
   }
 
   @override
@@ -216,7 +216,7 @@ class UtilitiesCategory extends CriteriaCategory {
   UtilitiesCategory(CountryCriteria countryCriteria) {
     key = 'utilities';
 
-    var electricityBillCriteria = ElectricityBillCriteria(countryCriteria);
+    final electricityBillCriteria = ElectricityBillCriteria(countryCriteria);
     criterias = [
       HeatingFuelCriteria(countryCriteria),
       electricityBillCriteria,
@@ -243,15 +243,12 @@ class FlightsCriteria extends Criteria {
   String get title => LocaleKeys.flightsCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.flightsCriteriaExplanation.tr();
-
-  @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
 
   @override
   double co2EqTonsPerYear() {
-    var co2TonsPerKm = 0.00028;
-    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
+    const co2TonsPerKm = 0.00028;
+    final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
     return currentValue * milesToKmFactor * co2TonsPerKm;
   }
 
@@ -281,22 +278,19 @@ class CarCriteria extends Criteria {
   String get title => LocaleKeys.carCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.carCriteriaExplanation.tr();
-
-  @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
 
   @override
   double co2EqTonsPerYear() {
     // We use -value for US/UK mpg because they are negative values (to have min < max)
-    var litersPerKm = (_countryCriteria.unitSystem() == UnitSystem.metric
+    final litersPerKm = (_countryCriteria.unitSystem() == UnitSystem.metric
             ? _carConsumptionCriteria.currentValue
             : _countryCriteria.unitSystem() == UnitSystem.us
                 ? 235.2 / -_carConsumptionCriteria.currentValue
                 : 282.5 / -_carConsumptionCriteria.currentValue) /
         100;
-    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
-    var co2TonsPerLiter = 0.0033;
+    final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
+    const co2TonsPerLiter = 0.0033;
     return currentValue * milesToKmFactor * litersPerKm * co2TonsPerLiter;
   }
 
@@ -366,8 +360,8 @@ class PublicTransportCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var co2TonsPerKm = 0.00014;
-    var milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
+    const co2TonsPerKm = 0.00014;
+    final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
     return currentValue * milesToKmFactor * co2TonsPerKm;
   }
 
@@ -385,7 +379,7 @@ class TravelCategory extends CriteriaCategory {
   TravelCategory(CountryCriteria countryCriteria) {
     key = 'travel';
 
-    var carConsumptionCriteria = CarConsumptionCriteria(countryCriteria);
+    final carConsumptionCriteria = CarConsumptionCriteria(countryCriteria);
     criterias = [
       FlightsCriteria(countryCriteria),
       CarCriteria(carConsumptionCriteria, countryCriteria),
@@ -398,9 +392,9 @@ class TravelCategory extends CriteriaCategory {
   String get title => LocaleKeys.travelCategoryTitle.tr();
 }
 
-class MeatCriteria extends Criteria {
-  MeatCriteria() {
-    key = 'meat';
+class RuminantMeatCriteria extends Criteria {
+  RuminantMeatCriteria() {
+    key = 'ruminant_meat';
     minValue = 0;
     maxValue = 20;
     step = 1;
@@ -408,30 +402,30 @@ class MeatCriteria extends Criteria {
   }
 
   @override
-  String get title => LocaleKeys.meatCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.meatCriteriaExplanation.tr();
+  String get title => LocaleKeys.ruminantMeatCriteriaTitle.tr();
 
   @override
   double co2EqTonsPerYear() {
-    var co2TonsPerTimePerWeek = 0.18;
+    // Not CoolClimate results here, more like a mean from beek and lamb. I took 40kg CO2e per kg (a meal = 150g).
+    // formula = ( (x/10*1.5) * (365/7) ) / 1000
+    // See https://ourworldindata.org/food-choice-vs-eating-local
+    const co2TonsPerTimePerWeek = 0.31;
     return currentValue * co2TonsPerTimePerWeek;
   }
 
   @override
   String advice() {
     if (co2EqTonsPerYear() > 1) {
-      return LocaleKeys.meatCriteriaAdvice.tr();
+      return LocaleKeys.ruminantMeatCriteriaAdvice.tr();
     } else {
       return null;
     }
   }
 }
 
-class DairyCriteria extends Criteria {
-  DairyCriteria() {
-    key = 'dairy';
+class NonRuminantMeatCriteria extends Criteria {
+  NonRuminantMeatCriteria() {
+    key = 'non_ruminant_meat';
     minValue = 0;
     maxValue = 20;
     step = 1;
@@ -439,19 +433,56 @@ class DairyCriteria extends Criteria {
   }
 
   @override
-  String get title => LocaleKeys.dairyCriteriaTitle.tr();
-
-  @override
-  String get explanation => LocaleKeys.dairyCriteriaExplanation.tr();
+  String get title => LocaleKeys.nonRuminantMeatCriteriaTitle.tr();
 
   @override
   double co2EqTonsPerYear() {
-    var co2TonsPerTimePerWeek = 0.076;
+    // Not CoolClimate results here, more like a mean from pork and fish. I took 6kg CO2e per kg (a meal = 150g).
+    // formula = ( (x/10*1.5) * (365/7) ) / 1000
+    // See https://ourworldindata.org/food-choice-vs-eating-local
+    const co2TonsPerTimePerWeek = 0.046;
     return currentValue * co2TonsPerTimePerWeek;
   }
 
   @override
-  String advice() => null; // I don't know if I can advice to eat less, especially regarding children. Need to check.
+  String advice() {
+    if (co2EqTonsPerYear() > 0.5) {
+      return LocaleKeys.nonRuminantMeatCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
+}
+
+class CheeseCriteria extends Criteria {
+  CheeseCriteria() {
+    key = 'cheese';
+    minValue = 0;
+    maxValue = 20;
+    step = 1;
+    currentValue = 0;
+  }
+
+  @override
+  String get title => LocaleKeys.cheeseCriteriaTitle.tr();
+
+  @override
+  double co2EqTonsPerYear() {
+    // Not CoolClimate results here, more like a mean from pork and fish. I took 20kg CO2e per kg (a portion = 50g).
+    // formula = ( (x/10*0.5) * (365/7) ) / 1000
+    // See https://ourworldindata.org/food-choice-vs-eating-local
+    const co2TonsPerTimePerWeek = 0.05;
+    return currentValue * co2TonsPerTimePerWeek;
+  }
+
+  @override
+  String advice() {
+    if (co2EqTonsPerYear() > 0.5) {
+      return LocaleKeys.cheeseCriteriaAdvice.tr();
+    } else {
+      return null;
+    }
+  }
 }
 
 class SnackCriteria extends Criteria {
@@ -467,11 +498,8 @@ class SnackCriteria extends Criteria {
   String get title => LocaleKeys.snacksCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.snacksCriteriaExplanation.tr();
-
-  @override
   double co2EqTonsPerYear() {
-    var co2TonsPerTimePerWeek = 0.071;
+    const co2TonsPerTimePerWeek = 0.071;
     return currentValue * co2TonsPerTimePerWeek;
   }
 
@@ -486,11 +514,12 @@ class SnackCriteria extends Criteria {
 }
 
 class OverweightCriteria extends Criteria {
-  final MeatCriteria _meatCriteria;
-  final DairyCriteria _dairyCriteria;
+  final RuminantMeatCriteria _ruminantMeatCriteria;
+  final NonRuminantMeatCriteria _nonRuminantMeatCriteria;
+  final CheeseCriteria _dairyCriteria;
   final SnackCriteria _snackCriteria;
 
-  OverweightCriteria(this._meatCriteria, this._dairyCriteria, this._snackCriteria) {
+  OverweightCriteria(this._ruminantMeatCriteria, this._nonRuminantMeatCriteria, this._dairyCriteria, this._snackCriteria) {
     key = 'overweight';
     minValue = 0;
     maxValue = 2;
@@ -502,9 +531,6 @@ class OverweightCriteria extends Criteria {
   String get title => LocaleKeys.overweightCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.overweightCriteriaExplanation.tr();
-
-  @override
   List<String> get labels => [
         LocaleKeys.overweightCriteriaLabel1.tr(),
         LocaleKeys.overweightCriteriaLabel2.tr(),
@@ -513,9 +539,12 @@ class OverweightCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var overweightFactor = currentValue == 2 ? 0.5 : (currentValue == 1 ? 0.25 : 0);
+    final overweightFactor = currentValue == 2 ? 0.5 : (currentValue == 1 ? 0.25 : 0);
 
-    return (_meatCriteria.co2EqTonsPerYear() + _dairyCriteria.co2EqTonsPerYear() + _snackCriteria.co2EqTonsPerYear()) *
+    return (_ruminantMeatCriteria.co2EqTonsPerYear() +
+            _nonRuminantMeatCriteria.co2EqTonsPerYear() +
+            _dairyCriteria.co2EqTonsPerYear() +
+            _snackCriteria.co2EqTonsPerYear()) *
         overweightFactor;
   }
 
@@ -533,20 +562,29 @@ class FoodCategory extends CriteriaCategory {
   FoodCategory() {
     key = 'food';
 
-    final meatCriteria = MeatCriteria();
-    final dairyCriteria = DairyCriteria();
+    final ruminantMeatCriteria = RuminantMeatCriteria();
+    final nonRuminantMeatCriteria = NonRuminantMeatCriteria();
+    final dairyCriteria = CheeseCriteria();
     final snackCriteria = SnackCriteria();
 
     criterias = [
-      meatCriteria,
+      ruminantMeatCriteria,
+      nonRuminantMeatCriteria,
       dairyCriteria,
       snackCriteria,
-      OverweightCriteria(meatCriteria, dairyCriteria, snackCriteria),
+      OverweightCriteria(ruminantMeatCriteria, nonRuminantMeatCriteria, dairyCriteria, snackCriteria),
     ];
   }
 
   @override
   String get title => LocaleKeys.foodCategoryTitle.tr();
+
+  @override
+  double co2EqTonsPerYear() {
+    // I add 2 tons to everyone since we all eat vegetables, fruits, ... which I do not ask for quantity.
+    // Of course it is not precise.
+    return super.co2EqTonsPerYear() + 2;
+  }
 }
 
 class MaterialGoodsCriteria extends Criteria {
@@ -576,8 +614,8 @@ class MaterialGoodsCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var moneyChange = _countryCriteria.getCurrencyRate();
-    var co2TonsPerDollar = 0.0062;
+    final moneyChange = _countryCriteria.getCurrencyRate();
+    const co2TonsPerDollar = 0.0062;
     return currentValue * moneyChange * co2TonsPerDollar;
   }
 
@@ -618,11 +656,11 @@ class SavingsCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    var moneyChange = _countryCriteria.getCurrencyRate();
+    final moneyChange = _countryCriteria.getCurrencyRate();
 
     // Based on Rift app's results, but reduced a lot because it is quite unsure due to lack of transparency
     // and it greatly depends on bank/type of account/country, so I prefer to be safe here.
-    var co2TonsPerDollar = 0.00025;
+    const co2TonsPerDollar = 0.00025;
     return currentValue * moneyChange * co2TonsPerDollar;
   }
 
@@ -686,9 +724,6 @@ class InternetCriteria extends Criteria {
   String get title => LocaleKeys.internetCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.internetCriteriaExplanation.tr();
-
-  @override
   List<String> get labels => [
         LocaleKeys.internetCriteriaLabel1.tr(),
         LocaleKeys.internetCriteriaLabel2.tr(),
@@ -728,9 +763,9 @@ class CriteriasState with ChangeNotifier {
   List<CriteriaCategory> get categories => _categories;
 
   CriteriasState() {
-    var generalCategory = GeneralCategory();
-    var countryCriteria = generalCategory.criterias[0] as CountryCriteria;
-    var utilitiesCategory = UtilitiesCategory(countryCriteria);
+    final generalCategory = GeneralCategory();
+    final countryCriteria = generalCategory.criterias[0] as CountryCriteria;
+    final utilitiesCategory = UtilitiesCategory(countryCriteria);
 
     _categories = [
       generalCategory,
@@ -756,10 +791,10 @@ class CriteriasState with ChangeNotifier {
   }
 
   Future<void> _loadState() async {
-    var prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
-    _categories.forEach((cat) {
-      cat.criterias.forEach((crit) {
+    for (final cat in _categories) {
+      for (final crit in cat.criterias) {
         crit.currentValue = prefs.getDouble(crit.key) ?? crit.currentValue;
 
         if (crit.currentValue > crit.maxValue) {
@@ -767,8 +802,8 @@ class CriteriasState with ChangeNotifier {
         } else if (crit.currentValue < crit.minValue) {
           crit.currentValue = crit.minValue;
         }
-      });
-    });
+      }
+    }
 
     notifyListeners();
   }

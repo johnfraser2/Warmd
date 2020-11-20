@@ -2,9 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../common/common.dart';
-import '../generated/locale_keys.g.dart';
+import 'package:warmd/common/common.dart';
+import 'package:warmd/generated/locale_keys.g.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final Function onStartSelected;

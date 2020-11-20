@@ -1,14 +1,7 @@
-include: package:pedantic/analysis_options.yaml
-
-linter:
-  rules:
-    - prefer_const_constructors
-    - prefer_const_declarations
-    - prefer_relative_imports
+include: package:lint/analysis_options.yaml
 
 analyzer:
   strong-mode:
-    implicit-casts: false
     implicit-dynamic: false
   exclude:
     - build/**
