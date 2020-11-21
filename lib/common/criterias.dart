@@ -108,7 +108,7 @@ class HeatingFuelCriteria extends Criteria {
   String get title => LocaleKeys.heatingFuelCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.heatingFuelCriteriaExplanation.tr(args: [_countryCriteria.getCurrencyCode()]);
+  String get explanation => LocaleKeys.unitPerYear.tr(args: [_countryCriteria.getCurrencyCode()]);
 
   @override
   double get maxValue => (((5000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -153,7 +153,7 @@ class ElectricityBillCriteria extends Criteria {
   String get title => LocaleKeys.electricityBillCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.electricityBillCriteriaExplanation.tr(args: [_countryCriteria.getCurrencyCode()]);
+  String get explanation => LocaleKeys.unitPerYear.tr(args: [_countryCriteria.getCurrencyCode()]);
 
   @override
   double get maxValue => (((5000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -243,6 +243,9 @@ class FlightsCriteria extends Criteria {
   String get title => LocaleKeys.flightsCriteriaTitle.tr();
 
   @override
+  String get explanation => LocaleKeys.unitPerYear.tr(args: [unit]);
+
+  @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
 
   @override
@@ -276,6 +279,9 @@ class CarCriteria extends Criteria {
 
   @override
   String get title => LocaleKeys.carCriteriaTitle.tr();
+
+  @override
+  String get explanation => LocaleKeys.unitPerYear.tr(args: [unit]);
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
@@ -356,6 +362,9 @@ class PublicTransportCriteria extends Criteria {
   String get title => LocaleKeys.publicTransportCriteriaTitle.tr();
 
   @override
+  String get explanation => LocaleKeys.unitPerYear.tr(args: [unit]);
+
+  @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
 
   @override
@@ -405,6 +414,9 @@ class RuminantMeatCriteria extends Criteria {
   String get title => LocaleKeys.ruminantMeatCriteriaTitle.tr();
 
   @override
+  String get explanation => LocaleKeys.perWeek.tr();
+
+  @override
   double co2EqTonsPerYear() {
     // Not CoolClimate results here, more like a mean from beek and lamb. I took 40kg CO2e per kg (a meal = 150g).
     // formula = ( (x/10*1.5) * (365/7) ) / 1000
@@ -434,6 +446,9 @@ class NonRuminantMeatCriteria extends Criteria {
 
   @override
   String get title => LocaleKeys.nonRuminantMeatCriteriaTitle.tr();
+
+  @override
+  String get explanation => LocaleKeys.perWeek.tr();
 
   @override
   double co2EqTonsPerYear() {
@@ -467,6 +482,9 @@ class CheeseCriteria extends Criteria {
   String get title => LocaleKeys.cheeseCriteriaTitle.tr();
 
   @override
+  String get explanation => LocaleKeys.perWeek.tr();
+
+  @override
   double co2EqTonsPerYear() {
     // Not CoolClimate results here, more like a mean from pork and fish. I took 20kg CO2e per kg (a portion = 50g).
     // formula = ( (x/10*0.5) * (365/7) ) / 1000
@@ -498,8 +516,11 @@ class SnackCriteria extends Criteria {
   String get title => LocaleKeys.snacksCriteriaTitle.tr();
 
   @override
+  String get explanation => LocaleKeys.perWeek.tr();
+
+  @override
   double co2EqTonsPerYear() {
-    const co2TonsPerTimePerWeek = 0.071;
+    const co2TonsPerTimePerWeek = 0.068; // CoolClimate numbers, I didn't find any other source which confirm that
     return currentValue * co2TonsPerTimePerWeek;
   }
 
@@ -601,7 +622,7 @@ class MaterialGoodsCriteria extends Criteria {
   String get title => LocaleKeys.materialGoodsCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.materialGoodsCriteriaExplanation.tr();
+  String get explanation => LocaleKeys.materialGoodsCriteriaExplanation.tr(args: [unit]);
 
   @override
   double get maxValue => (((3000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();

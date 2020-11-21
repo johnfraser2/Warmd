@@ -14,12 +14,12 @@ abstract class  LocaleKeys {
   static const countrySelectionExplanation = 'countrySelectionExplanation';
   static const continueAction = 'continueAction';
   static const continueActionExplanation = 'continueActionExplanation';
+  static const perWeek = 'perWeek';
+  static const unitPerYear = 'unitPerYear';
   static const politicalAdvice = 'politicalAdvice';
   static const heatingFuelCriteriaTitle = 'heatingFuelCriteriaTitle';
-  static const heatingFuelCriteriaExplanation = 'heatingFuelCriteriaExplanation';
   static const heatingFuelCriteriaAdvice = 'heatingFuelCriteriaAdvice';
   static const electricityBillCriteriaTitle = 'electricityBillCriteriaTitle';
-  static const electricityBillCriteriaExplanation = 'electricityBillCriteriaExplanation';
   static const cleanElectricityCriteriaTitle = 'cleanElectricityCriteriaTitle';
   static const cleanElectricityCriteriaExplanation = 'cleanElectricityCriteriaExplanation';
   static const cleanElectricityCriteriaAdvice = 'cleanElectricityCriteriaAdvice';
