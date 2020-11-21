@@ -15,7 +15,8 @@ abstract class  LocaleKeys {
   static const continueAction = 'continueAction';
   static const continueActionExplanation = 'continueActionExplanation';
   static const perWeek = 'perWeek';
-  static const unitPerYear = 'unitPerYear';
+  static const inUnit = 'inUnit';
+  static const inUnitPerYear = 'inUnitPerYear';
   static const politicalAdvice = 'politicalAdvice';
   static const heatingFuelCriteriaTitle = 'heatingFuelCriteriaTitle';
   static const heatingFuelCriteriaAdvice = 'heatingFuelCriteriaAdvice';

@@ -108,7 +108,7 @@ class HeatingFuelCriteria extends Criteria {
   String get title => LocaleKeys.heatingFuelCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.unitPerYear.tr(args: [_countryCriteria.getCurrencyCode()]);
+  String get explanation => LocaleKeys.inUnitPerYear.tr(args: [_countryCriteria.getCurrencyCode()]);
 
   @override
   double get maxValue => (((5000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -153,7 +153,7 @@ class ElectricityBillCriteria extends Criteria {
   String get title => LocaleKeys.electricityBillCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.unitPerYear.tr(args: [_countryCriteria.getCurrencyCode()]);
+  String get explanation => LocaleKeys.inUnitPerYear.tr(args: [_countryCriteria.getCurrencyCode()]);
 
   @override
   double get maxValue => (((5000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -243,7 +243,7 @@ class FlightsCriteria extends Criteria {
   String get title => LocaleKeys.flightsCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.unitPerYear.tr(args: [unit]);
+  String get explanation => LocaleKeys.inUnitPerYear.tr(args: [unit]);
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
@@ -281,7 +281,7 @@ class CarCriteria extends Criteria {
   String get title => LocaleKeys.carCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.unitPerYear.tr(args: [unit]);
+  String get explanation => LocaleKeys.inUnitPerYear.tr(args: [unit]);
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
@@ -327,6 +327,9 @@ class CarConsumptionCriteria extends Criteria {
   String get title => LocaleKeys.carConsumptionCriteriaTitle.tr();
 
   @override
+  String get explanation => LocaleKeys.inUnit.tr(args: [unit]);
+
+  @override
   double get minValue =>
       _countryCriteria.unitSystem() == UnitSystem.metric ? 2 : -141; // Minus to have a correct ordering (min < max)
 
@@ -362,7 +365,7 @@ class PublicTransportCriteria extends Criteria {
   String get title => LocaleKeys.publicTransportCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.unitPerYear.tr(args: [unit]);
+  String get explanation => LocaleKeys.inUnitPerYear.tr(args: [unit]);
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
@@ -664,7 +667,7 @@ class SavingsCriteria extends Criteria {
   String get title => LocaleKeys.savingsCriteriaTitle.tr();
 
   @override
-  String get explanation => LocaleKeys.savingsCriteriaExplanation.tr();
+  String get explanation => '${LocaleKeys.inUnit.tr(args: [unit])}\n\n${LocaleKeys.savingsCriteriaExplanation.tr()}';
 
   @override
   double get maxValue => (((100000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
