@@ -1,8 +1,6 @@
 {
     "heatingFuelCriteriaTitle": "La tua bolletta del riscaldamento",
-    "heatingFuelCriteriaExplanation": "Spesa annuale, in {}.",
     "electricityBillCriteriaTitle": "La tua bolletta della corrente elettrica",
-    "electricityBillCriteriaExplanation": "Spesa annuale, in {}.",
     "cleanElectricityCriteriaTitle": "Percentuale di energia elettrica priva di carbonio",
     "cleanElectricityCriteriaAdvice": "Scegli il tuo fornitore di energia per pagare solamente energia rinnovabile o nucleare.",
     "waterCriteriaTitle": "Il tuo consumo di acqua",
