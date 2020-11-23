@@ -6,7 +6,7 @@ import 'package:warmd/common/common.dart';
 import 'package:warmd/generated/locale_keys.g.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  final Function onStartSelected;
+  final Function(BuildContext) onStartSelected;
 
   const WelcomeScreen({@required this.onStartSelected, Key key}) : super(key: key);
 
@@ -51,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  onStartSelected();
+                  onStartSelected(context);
                 },
                 child: Text(LocaleKeys.welcomeAction.tr()),
               ),

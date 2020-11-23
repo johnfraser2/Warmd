@@ -2,10 +2,26 @@ import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../generated/locale_keys.g.dart';
 import 'criterias.dart';
+
+part 'states.freezed.dart';
+
+@freezed
+abstract class NavState with _$NavState {
+  factory NavState({
+    @Default(false) bool splashScreenSeen,
+    @Default(0) int onboardingStepsNum,
+    @Default(false) bool showAdvicesScreen,
+    @Default(false) bool showClimateChangeScreen,
+    @Default(false) bool showClimateChangeScreenFromActions,
+    @Default(false) bool showAboutScreen,
+    @Default(0) int questionnaireStepsNum,
+  }) = _NavState;
+}
 
 class CriteriasState with ChangeNotifier {
   List<CriteriaCategory> _categories;
@@ -60,11 +76,12 @@ class CriteriasState with ChangeNotifier {
 
 class HistoryState with ChangeNotifier {
   static const _scoresKey = 'SCORES_KEY';
-  Map<DateTime, double> _scores;
-  Map<DateTime, double> get scores => _scores != null ? Map.unmodifiable(_scores) : null;
+  Map<String, double> _scores;
+  Map<DateTime, double> get scores =>
+      _scores?.map((key, value) => MapEntry(DateTime.fromMillisecondsSinceEpoch(int.parse(key)), value));
 
   void addScore(DateTime date, double score) {
-    _scores[date] = score;
+    _scores[date.millisecondsSinceEpoch.toString()] = score;
 
     notifyListeners();
 
@@ -79,7 +96,10 @@ class HistoryState with ChangeNotifier {
 
   Future<void> _loadState() async {
     final prefs = await SharedPreferences.getInstance();
-    _scores = prefs.containsKey(_scoresKey) ? json.decode(prefs.getString(_scoresKey)) as Map<DateTime, double> : {};
+    _scores = prefs.containsKey(_scoresKey)
+        ? (json.decode(prefs.getString(_scoresKey)) as Map<String, dynamic>)
+            .map((key, dynamic value) => MapEntry(key, value as double))
+        : {};
 
     notifyListeners();
   }

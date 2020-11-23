@@ -16,7 +16,7 @@ import 'package:warmd/common/states.dart';
 import 'package:warmd/generated/locale_keys.g.dart';
 
 class UtilitiesCategoryScreen extends StatelessWidget {
-  final Function onContinueTapped;
+  final Function(BuildContext) onContinueTapped;
 
   const UtilitiesCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
 
@@ -29,7 +29,7 @@ class UtilitiesCategoryScreen extends StatelessWidget {
 }
 
 class TravelCategoryScreen extends StatelessWidget {
-  final Function onContinueTapped;
+  final Function(BuildContext) onContinueTapped;
 
   const TravelCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
 
@@ -42,7 +42,7 @@ class TravelCategoryScreen extends StatelessWidget {
 }
 
 class FoodCategoryScreen extends StatelessWidget {
-  final Function onContinueTapped;
+  final Function(BuildContext) onContinueTapped;
 
   const FoodCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
 
@@ -55,7 +55,7 @@ class FoodCategoryScreen extends StatelessWidget {
 }
 
 class GoodsCategoryScreen extends StatelessWidget {
-  final Function onContinueTapped;
+  final Function(BuildContext) onContinueTapped;
 
   const GoodsCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
 
@@ -70,7 +70,7 @@ class GoodsCategoryScreen extends StatelessWidget {
 class _CriteriasScreen extends StatefulWidget {
   final CriteriaCategory criteriaCategory;
   final double progressValue;
-  final Function onContinueTapped;
+  final Function(BuildContext) onContinueTapped;
 
   const _CriteriasScreen(
       {@required this.criteriaCategory, @required this.progressValue, @required this.onContinueTapped, Key key})
@@ -118,7 +118,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                   // We want to scroll back to the top, so that the "REDO" button work as expected
                   delay(const Duration(milliseconds: 500), () => _scrollController.jumpTo(0));
 
-                  widget.onContinueTapped();
+                  widget.onContinueTapped(context);
                 },
                 child: Text(LocaleKeys.continueAction.tr()),
               ),

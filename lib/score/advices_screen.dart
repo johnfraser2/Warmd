@@ -13,7 +13,7 @@ import 'package:warmd/common/states.dart';
 import 'package:warmd/generated/locale_keys.g.dart';
 
 class AdvicesScreen extends StatelessWidget {
-  final Function onSeeClimateChangeTapped;
+  final Function(BuildContext) onSeeClimateChangeTapped;
 
   const AdvicesScreen({@required this.onSeeClimateChangeTapped, Key key}) : super(key: key);
 
@@ -115,7 +115,7 @@ class AdvicesScreen extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: TextButton(
-                onPressed: () => onSeeClimateChangeTapped(),
+                onPressed: () => onSeeClimateChangeTapped(context),
                 child: Text(
                   LocaleKeys.advicesSeeClimateChange.tr(),
                   textAlign: TextAlign.center,

@@ -9,7 +9,7 @@ import 'package:warmd/common/steps_progress_indicator.dart';
 import 'package:warmd/generated/locale_keys.g.dart';
 
 class CountryScreen extends StatelessWidget {
-  final Function onCountrySelected;
+  final Function(BuildContext) onCountrySelected;
 
   const CountryScreen({@required this.onCountrySelected, Key key}) : super(key: key);
 
@@ -106,7 +106,7 @@ class CountryScreen extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  onCountrySelected();
+                  onCountrySelected(context);
                 },
                 child: Text(LocaleKeys.continueAction.tr()),
               ),

@@ -16,10 +16,10 @@ import 'package:warmd/generated/locale_keys.g.dart';
 import 'score_widget.dart';
 
 class FootprintScreen extends StatelessWidget {
-  final Function onSeeClimateChangeTapped;
-  final Function onSeeAdvicesTapped;
-  final Function onRestartTapped;
-  final Function onSeeAboutTapped;
+  final Function(BuildContext) onSeeClimateChangeTapped;
+  final Function(BuildContext) onSeeAdvicesTapped;
+  final Function(BuildContext) onRestartTapped;
+  final Function(BuildContext) onSeeAboutTapped;
 
   const FootprintScreen(
       {@required this.onSeeClimateChangeTapped,
@@ -123,7 +123,7 @@ class FootprintScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: Center(
                   child: TextButton(
-                    onPressed: () => onSeeClimateChangeTapped(),
+                    onPressed: () => onSeeClimateChangeTapped(context),
                     child: Text(
                       LocaleKeys.footprintWarning.tr(),
                       textAlign: TextAlign.center,
@@ -147,7 +147,7 @@ class FootprintScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () => onSeeAdvicesTapped(),
+                        onPressed: () => onSeeAdvicesTapped(context),
                         style: greenButtonStyle,
                         child: Text(
                           LocaleKeys.seeAdvices.tr(),
@@ -158,7 +158,7 @@ class FootprintScreen extends StatelessWidget {
                     Gaps.w16,
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () => onRestartTapped(),
+                        onPressed: () => onRestartTapped(context),
                         style: greyButtonStyle,
                         child: Text(
                           LocaleKeys.redoQuestionnaire.tr(),
@@ -276,7 +276,7 @@ class FootprintScreen extends StatelessWidget {
 
   Widget _buildGoToSourcesButton(BuildContext context) {
     return GestureDetector(
-      onTap: () => onSeeAboutTapped(),
+      onTap: () => onSeeAboutTapped(context),
       child: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(topLeft: Radius.circular(36), topRight: Radius.circular(36)),

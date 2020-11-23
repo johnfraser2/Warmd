@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key key}) : super(key: key);
+import 'common/delayable_state.dart';
+
+class SplashScreen extends StatefulWidget {
+  final Function(BuildContext) onFinished;
+
+  const SplashScreen({@required this.onFinished, Key key}) : super(key: key);
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends DelayableState<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    delay(const Duration(seconds: 2), () => widget.onFinished(context));
+  }
 
   @override
   Widget build(BuildContext context) {

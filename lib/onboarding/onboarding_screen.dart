@@ -8,7 +8,7 @@ import 'package:warmd/common/delayable_state.dart';
 import 'package:warmd/generated/locale_keys.g.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  final Function onOnboardingFinished;
+  final Function(BuildContext) onOnboardingFinished;
 
   const OnboardingScreen({@required this.onOnboardingFinished, Key key}) : super(key: key);
 
@@ -131,7 +131,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  widget.onOnboardingFinished();
+                  widget.onOnboardingFinished(context);
                 },
                 child: Text(LocaleKeys.onboardingAction.tr()),
               ),
