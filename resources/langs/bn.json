@@ -14,5 +14,20 @@
     "continueActionExplanation": "তুমি এই তথ্য পরে পাল্টাতে পারবে।",
     "perWeek": "প্রতি সপ্তাহে।",
     "politicalAdvice": "সংস্থাগুলি বা সরকারগুলির তুলনায় তোমার নিজস্ব প্রভাব তাৎপর্যপূর্ণ নয় এবং এই মুহুর্তে তাদের পরিবেশগত নীতিগুলি যথেষ্ট নয়।\nভোটদানের মাধ্যমে, তোমার প্রতিনিধিদের কাছে লিখিতভাবে, জলবায়ু অ্যাকশন গ্রুপে যোগদান করে বা অন্য উপায়ে তাদের সিদ্ধান্তকে প্রভাবিত করার চেষ্টা করো।\n\nযদি কিছ করার থাকে তবে তা অবশ্যই এটি।",
-    "heatingFuelCriteriaTitle": "তোমার জ্বালানি/গ্যাস বিল"
+    "heatingFuelCriteriaTitle": "তোমার জ্বালানি/গ্যাস বিল",
+    "heatingFuelCriteriaAdvice": "তোমার বাড়ির তাপ রক্ষার চেষ্টা করো এবং প্রয়োজনের চেয়ে বেশি গরম করা এড়াতে চেষ্টা করো (প্রাপ্ত বয়স্কের ঘুমের মান ৬৬° ফা/১৯° সে তাপমাত্রা সেরা)। স্মার্ট কন্ট্রোল দিয়ে তুমি বাইরে থাকাকালীন গরম করার যন্ত্র বন্ধ করতে সহায়তা করতে পারে।\n\nকার্বন-মুক্ত বিদ্যুতের সাথে বা স্থানীয় এবং টেকসই বন থেকে কাঠ, হিট পাম্প দিয়ে গরম করাও চলবে।",
+    "electricityBillCriteriaTitle": "তোমার বিদ্যুত বিল",
+    "utilitiesCategoryTitle": "উপযোগী বস্তু",
+    "overweightCriteriaLabel1": "আমি স্বাভাবিক",
+    "overweightCriteriaLabel3": "আমি স্থূল",
+    "foodCategoryTitle": "খাদ্য",
+    "waterCriteriaLabel2": "স্বাভাবিক",
+    "valueWithMore": "{} অথবা বেশি",
+    "valueWithLess": "{} অথবা কম",
+    "footprintEvolutionTonsAxis": "টন CO₂e(কার্বন ডাই অক্সাইড)",
+    "footprintEvolutionYearAxis": "বছর",
+    "shortCo2EqTonsValue": "{} টন",
+    "advicesPoliticsCategory": "রাজনীতি",
+    "globalObjectivesTitle": "বৈশ্বিক উদ্দেশ্য",
+    "aboutSourcesTitle": "উৎস"
 }
