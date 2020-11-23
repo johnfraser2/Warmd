@@ -97,7 +97,7 @@ static const Map<String,dynamic> en = {
   "goodsAndServicesCategoryTitle": "Goods and services",
   "valueWithMore": "{} or more",
   "valueWithLess": "{} or less",
-  "footprintTitle": "Your carbon footprint is",
+  "footprintTitle": "Your total carbon footprint is",
   "footprintWarning": "See what happens when you don't take action >",
   "footprintRepartitionTitle": "FOOTPRINT REPARTITION",
   "footprintEvolutionTitle": "FOOTPRINT EVOLUTION",

@@ -52,7 +52,7 @@ class FootprintScreen extends StatelessWidget {
                     child: _buildFootprintAnalysis(context, state, sortedCategories),
                   ),
                 ),
-                Gaps.h64,
+                Gaps.h92,
                 _buildGoToSourcesButton(context),
               ],
             ),
@@ -63,21 +63,6 @@ class FootprintScreen extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context, List<CriteriaCategory> sortedCategories, CriteriasState state) {
-    final greenButtonStyle = ButtonStyle(
-      backgroundColor: MaterialStateProperty.all<Color>(warmdGreen),
-      shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      )),
-      textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2.copyWith(
-            fontWeight: FontWeight.bold,
-          )),
-      minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
-      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
-    );
-    final greyButtonStyle = greenButtonStyle.copyWith(
-      backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
-    );
-
     return Stack(
       children: [
         Container(
@@ -112,9 +97,16 @@ class FootprintScreen extends StatelessWidget {
               Gaps.h16,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 38),
-                child: Text(
-                  LocaleKeys.footprintTitle.tr(),
-                  style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
+                child: Row(
+                  children: [
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 220),
+                      child: Text(
+                        LocaleKeys.footprintTitle.tr(),
+                        style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Center(child: ScoreWidget(state)),
@@ -142,35 +134,27 @@ class FootprintScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 600),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () => onSeeAdvicesTapped(context),
-                        style: greenButtonStyle,
-                        child: Text(
-                          LocaleKeys.seeAdvices.tr(),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
+                constraints: const BoxConstraints(maxWidth: 200),
+                child: Expanded(
+                  child: ElevatedButton(
+                    onPressed: () => onSeeAdvicesTapped(context),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(warmdGreen),
+                      shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      )),
+                      textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2.copyWith(
+                            fontWeight: FontWeight.bold,
+                          )),
+                      minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
+                      padding:
+                          MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
                     ),
-                    Gaps.w16,
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () => onRestartTapped(context),
-                        style: greyButtonStyle,
-                        child: Text(
-                          LocaleKeys.redoQuestionnaire.tr(),
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              .copyWith(fontWeight: FontWeight.bold, color: Colors.grey[600]),
-                        ),
-                      ),
+                    child: Text(
+                      LocaleKeys.seeAdvices.tr(),
+                      textAlign: TextAlign.center,
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -251,23 +235,42 @@ class FootprintScreen extends StatelessWidget {
           LocaleKeys.footprintEvolutionTitle.tr(),
           style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
         ),
-        Gaps.h24,
-        Padding(
-          padding: const EdgeInsets.only(left: 16, right: 48),
-          child: Builder(
-            builder: (context) {
-              final scores = context.watch<HistoryState>().scores;
-              // FOR TEST PURPOSE ONLY
-              // final firstScoreDate = DateTime.utc(2020, 4);
-              // final scores = {
-              //   firstScoreDate: 30.0,
-              //   DateTime.utc(firstScoreDate.year + 1, firstScoreDate.month): 20.0,
-              //   DateTime.utc(firstScoreDate.year + 2, firstScoreDate.month): 48.0,
-              //   DateTime.utc(firstScoreDate.year + 3, firstScoreDate.month): 18.0
-              // };
-
-              return _FootprintChart(scores: scores, improvementPercent: 6);
-            },
+        Gaps.h32,
+        Text(
+          'Compute your footprint every month and see your evolution.\n\nThe world must reduce its emissions by at least 6% per year. What about you?',
+          textAlign: TextAlign.start,
+          style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
+        ),
+        Gaps.h32,
+        const Padding(
+          padding: EdgeInsets.only(left: 16, right: 48),
+          child: _FootprintChart(),
+        ),
+        Gaps.h48,
+        Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 300),
+            child: ElevatedButton(
+              onPressed: () {
+                onRestartTapped(context);
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
+                shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                )),
+                textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2.copyWith(
+                      fontWeight: FontWeight.bold,
+                    )),
+                minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
+                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
+              ),
+              child: Text(
+                LocaleKeys.redoQuestionnaire.tr(),
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: Colors.grey[600]),
+              ),
+            ),
           ),
         ),
       ],
@@ -374,127 +377,190 @@ class _PieIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-      child: Row(
-        children: [
-          Container(
-            width: size,
-            height: size,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: color,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 42),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+        child: Row(
+          children: [
+            Container(
+              width: size,
+              height: size,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: color,
+              ),
             ),
-          ),
-          Gaps.w4,
-          Expanded(
-            child: Text(
-              text,
-              style: Theme.of(context).textTheme.bodyText2.copyWith(color: textColor),
-            ),
-          )
-        ],
+            Gaps.w4,
+            Expanded(
+              child: Text(
+                text,
+                style: Theme.of(context).textTheme.bodyText2.copyWith(color: textColor),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 }
 
 class _FootprintChart extends StatelessWidget {
-  final Map<DateTime, double> scores;
-  final int improvementPercent;
-
-  const _FootprintChart({@required this.scores, @required this.improvementPercent, Key key}) : super(key: key);
+  const _FootprintChart({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final historyState = context.watch<HistoryState>();
+    final scores = historyState.scores;
+    // FOR TEST PURPOSE ONLY
+    // final firstScoreDate = DateTime.utc(2020, 4);
+    // final scores = {
+    //   firstScoreDate: 30.0,
+    //   DateTime.utc(firstScoreDate.year, firstScoreDate.month + 1): 29.0,
+    //   DateTime.utc(firstScoreDate.year, firstScoreDate.month + 2): 30.0,
+    //   DateTime.utc(firstScoreDate.year + 1, firstScoreDate.month): 18.0
+    // };
+    final improvementPercent = historyState.improvementPercent;
+
     final years = scores.keys.map((d) => d.year);
-    final numYears = max(years.last - years.first + 2, 3);
-    final minMonth = scores.entries.first.key.month;
+    final numYears = max(years.last - years.first + 1, 2);
 
     final maxX = numYears * 12.0; // each month is represented
     final maxY = scores.values.reduce(max) + 5;
 
+    int previousTitleYear;
+
     return AspectRatio(
       aspectRatio: 1.23,
-      child: LineChart(
-        LineChartData(
-          lineTouchData: LineTouchData(
-            touchTooltipData: LineTouchTooltipData(
-              tooltipBgColor: Colors.white.withOpacity(0.9),
-            ),
-            touchCallback: (LineTouchResponse touchResponse) {},
-            handleBuiltInTouches: true,
-          ),
-          gridData: FlGridData(
-            show: false,
-          ),
-          titlesData: FlTitlesData(
-            bottomTitles: SideTitles(
-              showTitles: true,
-              getTitles: (value) {
-                if (value % 12 == 12 - minMonth) {
-                  return (years.first + 1 + value ~/ 12).toString();
-                }
-                return '';
-              },
-              getTextStyles: (value) => Theme.of(context).textTheme.bodyText2.copyWith(color: warmdDarkBlue),
-            ),
-            leftTitles: SideTitles(
-              showTitles: true,
-              getTitles: (value) {
-                if (value > 0 && value % 5 == 0) {
-                  return value.toInt().toString();
-                }
-                return '';
-              },
-              getTextStyles: (value) => Theme.of(context).textTheme.bodyText2.copyWith(color: warmdDarkBlue),
-            ),
-          ),
-          borderData: FlBorderData(
-            show: true,
-            border: const Border(
-              bottom: BorderSide(
-                width: 2,
-                color: Colors.black12,
+      child: Stack(
+        children: [
+          LineChart(
+            LineChartData(
+              lineTouchData: LineTouchData(
+                touchTooltipData: LineTouchTooltipData(
+                  tooltipBgColor: Colors.white.withOpacity(0.9),
+                ),
+                touchCallback: (LineTouchResponse touchResponse) {},
+                handleBuiltInTouches: true,
               ),
-              left: BorderSide(
-                width: 2,
-                color: Colors.black12,
+              gridData: FlGridData(
+                show: false,
               ),
-              right: BorderSide(
-                color: Colors.transparent,
+              titlesData: FlTitlesData(
+                bottomTitles: SideTitles(
+                  showTitles: true,
+                  getTitles: (value) {
+                    final year = years.first + 1 + value ~/ 12;
+
+                    //TODO Allow to always display all years but not very precise and may be ugly on small devices
+                    if (previousTitleYear != year) {
+                      if (previousTitleYear != null) {
+                        previousTitleYear = year;
+                        return year.toString();
+                      } else {
+                        previousTitleYear = year;
+                      }
+                    }
+                    return '';
+                  },
+                  getTextStyles: (value) => Theme.of(context).textTheme.caption.copyWith(color: warmdDarkBlue),
+                ),
+                leftTitles: SideTitles(
+                  showTitles: true,
+                  getTitles: (value) {
+                    if (value > 0 && value % 5 == 0) {
+                      return value.toInt().toString();
+                    }
+                    return '';
+                  },
+                  getTextStyles: (value) => Theme.of(context).textTheme.caption.copyWith(color: warmdDarkBlue),
+                ),
               ),
-              top: BorderSide(
-                color: Colors.transparent,
+              borderData: FlBorderData(
+                show: true,
+                border: const Border(
+                  bottom: BorderSide(
+                    width: 2,
+                    color: Colors.black12,
+                  ),
+                  left: BorderSide(
+                    width: 2,
+                    color: Colors.black12,
+                  ),
+                  right: BorderSide(
+                    color: Colors.transparent,
+                  ),
+                  top: BorderSide(
+                    color: Colors.transparent,
+                  ),
+                ),
+              ),
+              minX: 0,
+              maxX: maxX,
+              maxY: maxY,
+              minY: 0,
+              lineBarsData: [
+                _buildGoalLine(scores, improvementPercent, maxX),
+                _buildScoresLine(numYears, scores),
+              ],
+              axisTitleData: FlAxisTitleData(
+                leftTitle: AxisTitle(
+                  showTitle: true,
+                  titleText: LocaleKeys.footprintEvolutionTonsAxis.tr(),
+                  textStyle: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                ),
+                bottomTitle: AxisTitle(
+                  showTitle: true,
+                  titleText: LocaleKeys.footprintEvolutionYearAxis.tr(),
+                  textStyle: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                ),
               ),
             ),
           ),
-          minX: 0,
-          maxX: maxX,
-          maxY: maxY,
-          minY: 0,
-          lineBarsData: [
-            _buildGoalLine(maxX),
-            _buildScoresLine(numYears, scores),
-          ],
-          axisTitleData: FlAxisTitleData(
-            leftTitle: AxisTitle(
-              showTitle: true,
-              titleText: LocaleKeys.footprintEvolutionTonsAxis.tr(),
-              textStyle: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                onTap: () {
+                  switch (improvementPercent) {
+                    case 6:
+                      historyState.improvementPercent = 8;
+                      break;
+                    case 8:
+                      historyState.improvementPercent = 10;
+                      break;
+                    case 10:
+                      historyState.improvementPercent = 12;
+                      break;
+                    case 12:
+                      historyState.improvementPercent = 14;
+                      break;
+                    case 14:
+                      historyState.improvementPercent = 6;
+                      break;
+                  }
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: warmdGreen.withOpacity(.1),
+                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  ),
+                  child: Text(
+                    '$improvementPercent% ▼',
+                    style: Theme.of(context).textTheme.caption.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
             ),
-            bottomTitle: AxisTitle(
-              showTitle: true,
-              titleText: LocaleKeys.footprintEvolutionYearAxis.tr(),
-              textStyle: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
-            ),
-          ),
-        ),
+          )
+        ],
       ),
     );
   }
 
-  LineChartBarData _buildGoalLine(double maxX) {
+  LineChartBarData _buildGoalLine(Map<DateTime, double> scores, int improvementPercent, double maxX) {
     var goalValue = scores.entries.first.value;
 
     return LineChartBarData(
@@ -523,7 +589,9 @@ class _FootprintChart extends StatelessWidget {
     final minYear = scores.entries.first.key.year;
     final minMonth = scores.entries.first.key.month;
 
-    final spots = scores.entries.map((e) => FlSpot((((e.key.year - minYear) * 12.0) + e.key.month) - minMonth, e.value)).toList();
+    final spots = scores.entries
+        .map((e) => FlSpot((((e.key.year - minYear) * 12.0) + e.key.month) - minMonth, (e.value * 10).round() / 10))
+        .toList();
 
     return LineChartBarData(
       spots: spots,
@@ -532,6 +600,9 @@ class _FootprintChart extends StatelessWidget {
         warmdBlue,
       ],
       barWidth: 4,
+      dotData: FlDotData(
+        getDotPainter: (spot, d, data, i) => FlDotCirclePainter(radius: 4, color: warmdBlue, strokeColor: Colors.transparent),
+      ),
       isStrokeCapRound: true,
     );
   }

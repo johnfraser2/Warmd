@@ -75,6 +75,19 @@ class CriteriasState with ChangeNotifier {
 }
 
 class HistoryState with ChangeNotifier {
+  static const _improvementPercentKey = 'IMPROVEMENT_PERCENT_KEY';
+  int _improvementPercent = 6;
+  int get improvementPercent => _improvementPercent;
+  set improvementPercent(int newValue) {
+    _improvementPercent = newValue;
+
+    notifyListeners();
+
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setInt(_improvementPercentKey, _improvementPercent);
+    });
+  }
+
   static const _scoresKey = 'SCORES_KEY';
   Map<String, double> _scores;
   Map<DateTime, double> get scores =>
@@ -100,6 +113,10 @@ class HistoryState with ChangeNotifier {
         ? (json.decode(prefs.getString(_scoresKey)) as Map<String, dynamic>)
             .map((key, dynamic value) => MapEntry(key, value as double))
         : {};
+
+    if (prefs.containsKey(_improvementPercentKey)) {
+      _improvementPercent = prefs.getInt(_improvementPercentKey);
+    }
 
     notifyListeners();
   }
