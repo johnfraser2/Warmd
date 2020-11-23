@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:warmd/common/common.dart';
 import 'package:warmd/common/criterias.dart';
+import 'package:warmd/common/states.dart';
 import 'package:warmd/generated/locale_keys.g.dart';
 
 import 'score_widget.dart';
@@ -93,7 +94,6 @@ class FootprintScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
                   children: [
-                    buildBackButton(context),
                     Expanded(child: Container()),
                     IconButton(
                         icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
@@ -188,14 +188,6 @@ class FootprintScreen extends StatelessWidget {
       GoodsCategory: warmdBlue,
     };
 
-    final firstScoreDate = DateTime.utc(2020, 4);
-    final testScores = {
-      firstScoreDate: 30.0,
-      DateTime.utc(firstScoreDate.year + 1, firstScoreDate.month): 20.0,
-      DateTime.utc(firstScoreDate.year + 2, firstScoreDate.month): 48.0,
-      DateTime.utc(firstScoreDate.year + 3, firstScoreDate.month): 18.0
-    };
-
     return Column(
       children: [
         Gaps.h64,
@@ -262,7 +254,21 @@ class FootprintScreen extends StatelessWidget {
         Gaps.h24,
         Padding(
           padding: const EdgeInsets.only(left: 16, right: 48),
-          child: _FootprintChart(scores: testScores, improvementPercent: 6),
+          child: Builder(
+            builder: (context) {
+              final scores = context.watch<HistoryState>().scores;
+              // FOR TEST PURPOSE ONLY
+              // final firstScoreDate = DateTime.utc(2020, 4);
+              // final scores = {
+              //   firstScoreDate: 30.0,
+              //   DateTime.utc(firstScoreDate.year + 1, firstScoreDate.month): 20.0,
+              //   DateTime.utc(firstScoreDate.year + 2, firstScoreDate.month): 48.0,
+              //   DateTime.utc(firstScoreDate.year + 3, firstScoreDate.month): 18.0
+              // };
+
+              return _FootprintChart(scores: scores, improvementPercent: 6);
+            },
+          ),
         ),
       ],
     );

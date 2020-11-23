@@ -4,12 +4,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'categories/categories_screens.dart';
 import 'common/common.dart';
-import 'common/criterias.dart';
 import 'common/delayable_state.dart';
+import 'common/states.dart';
 import 'generated/codegen_loader.g.dart';
 import 'onboarding/country_screen.dart';
 import 'onboarding/onboarding_screen.dart';
@@ -40,15 +39,14 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-const _firstCategoryScreenNum = 3;
-
 class _MyAppState extends DelayableState<MyApp> {
   var _splashScreenSeen = false;
-  var _stepsNum = _firstCategoryScreenNum;
+  var _onboardingStepsNum = 0;
   var _showAdvicesScreen = false;
   var _showClimateChangeScreen = false;
   var _showClimateChangeScreenFromActions = false;
   var _showAboutScreen = false;
+  var _questionnaireStepsNum = 0;
   final _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
@@ -96,156 +94,158 @@ class _MyAppState extends DelayableState<MyApp> {
       ),
       home: MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => _InitState()),
+          ChangeNotifierProvider(create: (_) => HistoryState()),
           ChangeNotifierProvider(create: (_) => CriteriasState()),
         ],
-        child: Consumer<_InitState>(
-          builder: (_, initState, __) => initState.countrySelected == null
-              ? Container()
-              : WillPopScope(
-                  onWillPop: () async {
-                    // If we are on the first category screen (or before), the system back button quit the app (contrary to the top-left back one)
-                    // That is a non-standard navigation.
-                    if (_stepsNum <= _firstCategoryScreenNum) {
-                      return true;
-                    } else {
+        child: Builder(
+          builder: (context) {
+            final historyState = context.watch<HistoryState>();
+
+            return historyState.scores == null
+                ? Container()
+                : WillPopScope(
+                    onWillPop: () async {
                       _onPopPage();
                       return false;
-                    }
-                  },
-                  // Screens are not stacked to not reset display when coming back to them.
-                  child: Navigator(
-                    key: _navigatorKey,
-                    pages: [
-                      if (!_splashScreenSeen)
-                        const MaterialPage<SplashScreen>(
-                          child: SplashScreen(),
-                        ),
-                      if (_splashScreenSeen && !initState.countrySelected && _stepsNum == _firstCategoryScreenNum)
-                        MaterialPage<OnboardingScreen>(
-                          child: OnboardingScreen(
-                            onOnboardingFinished: () {
-                              setState(() {
-                                _stepsNum = 1;
-                              });
-                            },
-                          ),
-                        ),
-                      if (_splashScreenSeen && _stepsNum == 1)
-                        MaterialPage<WelcomeScreen>(
-                          child: WelcomeScreen(
-                            onStartSelected: () {
-                              setState(() {
-                                _stepsNum++;
-                              });
-                            },
-                          ),
-                        ),
-                      if (_splashScreenSeen && _stepsNum == 2)
-                        MaterialPage<CountryScreen>(
-                          child: CountryScreen(
-                            onCountrySelected: () {
-                              initState.countrySelected = true;
-                              setState(() {
-                                _stepsNum++;
-                              });
-                            },
-                          ),
-                        ),
-                      if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum)
-                        MaterialPage<UtilitiesCategoryScreen>(
-                          child: UtilitiesCategoryScreen(
-                            onContinueTapped: () {
-                              setState(() {
-                                _stepsNum++;
-                              });
-                            },
-                          ),
-                        ),
-                      if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 1)
-                        MaterialPage<TravelCategoryScreen>(
-                          child: TravelCategoryScreen(
-                            onContinueTapped: () {
-                              setState(() {
-                                _stepsNum++;
-                              });
-                            },
-                          ),
-                        ),
-                      if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 2)
-                        MaterialPage<FoodCategoryScreen>(
-                          child: FoodCategoryScreen(
-                            onContinueTapped: () {
-                              setState(() {
-                                _stepsNum++;
-                              });
-                            },
-                          ),
-                        ),
-                      if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 3)
-                        MaterialPage<GoodsCategoryScreen>(
-                          child: GoodsCategoryScreen(
-                            onContinueTapped: () {
-                              setState(() {
-                                _stepsNum++;
-                              });
-                            },
-                          ),
-                        ),
-                      if (_splashScreenSeen && initState.countrySelected && _stepsNum >= _firstCategoryScreenNum + 4)
-                        MaterialPage<FootprintScreen>(
-                          child: FootprintScreen(
-                            onSeeClimateChangeTapped: () {
-                              setState(() {
-                                _showClimateChangeScreen = true;
-                              });
-                            },
-                            onSeeAdvicesTapped: () {
-                              setState(() {
-                                _showAdvicesScreen = true;
-                              });
-                            },
-                            onRestartTapped: () {
-                              setState(() {
-                                _stepsNum = _firstCategoryScreenNum;
-                              });
-                            },
-                            onSeeAboutTapped: () {
-                              setState(() {
-                                _showAboutScreen = true;
-                              });
-                            },
-                          ),
-                        ),
-                      if (_splashScreenSeen && _showAdvicesScreen)
-                        MaterialPage<AdvicesScreen>(
-                          child: AdvicesScreen(
-                            onSeeClimateChangeTapped: () {
-                              setState(() {
-                                _showClimateChangeScreenFromActions = true;
-                              });
-                            },
-                          ),
-                        ),
-                      if (_splashScreenSeen && (_showClimateChangeScreen || _showClimateChangeScreenFromActions))
-                        const MaterialPage<ClimateChangeScreen>(
-                          child: ClimateChangeScreen(),
-                        ),
-                      if (_splashScreenSeen && _showAboutScreen)
-                        const MaterialPage<AboutScreen>(
-                          child: AboutScreen(),
-                        ),
-                    ],
-                    onPopPage: (route, dynamic result) {
-                      if (!route.didPop(result)) {
-                        return false;
-                      }
-
-                      _onPopPage();
-                      return true;
                     },
-                  ),
-                ),
+                    child: Navigator(
+                      key: _navigatorKey,
+                      pages: [
+                        if (!_splashScreenSeen)
+                          const MaterialPage<SplashScreen>(
+                            child: SplashScreen(),
+                          ),
+                        if (_splashScreenSeen && historyState.scores.isEmpty && _onboardingStepsNum == 0)
+                          MaterialPage<OnboardingScreen>(
+                            child: OnboardingScreen(
+                              onOnboardingFinished: () {
+                                setState(() {
+                                  _onboardingStepsNum++;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && historyState.scores.isEmpty && _onboardingStepsNum == 1)
+                          MaterialPage<WelcomeScreen>(
+                            child: WelcomeScreen(
+                              onStartSelected: () {
+                                setState(() {
+                                  _onboardingStepsNum++; // Will remove all onboarding screens from stack
+                                  _questionnaireStepsNum = 1; // We start the questionnaire
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && historyState.scores.isNotEmpty)
+                          MaterialPage<FootprintScreen>(
+                            child: FootprintScreen(
+                              onSeeClimateChangeTapped: () {
+                                setState(() {
+                                  _showClimateChangeScreen = true;
+                                });
+                              },
+                              onSeeAdvicesTapped: () {
+                                setState(() {
+                                  _showAdvicesScreen = true;
+                                });
+                              },
+                              onRestartTapped: () {
+                                setState(() {
+                                  _questionnaireStepsNum = 1;
+                                });
+                              },
+                              onSeeAboutTapped: () {
+                                setState(() {
+                                  _showAboutScreen = true;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && _showAdvicesScreen)
+                          MaterialPage<AdvicesScreen>(
+                            child: AdvicesScreen(
+                              onSeeClimateChangeTapped: () {
+                                setState(() {
+                                  _showClimateChangeScreenFromActions = true;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && (_showClimateChangeScreen || _showClimateChangeScreenFromActions))
+                          const MaterialPage<ClimateChangeScreen>(
+                            child: ClimateChangeScreen(),
+                          ),
+                        if (_splashScreenSeen && _showAboutScreen)
+                          const MaterialPage<AboutScreen>(
+                            child: AboutScreen(),
+                          ),
+                        if (_splashScreenSeen && _questionnaireStepsNum >= 1)
+                          MaterialPage<CountryScreen>(
+                            child: CountryScreen(
+                              onCountrySelected: () {
+                                setState(() {
+                                  _questionnaireStepsNum++;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && _questionnaireStepsNum >= 2)
+                          MaterialPage<UtilitiesCategoryScreen>(
+                            child: UtilitiesCategoryScreen(
+                              onContinueTapped: () {
+                                setState(() {
+                                  _questionnaireStepsNum++;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && _questionnaireStepsNum >= 3)
+                          MaterialPage<TravelCategoryScreen>(
+                            child: TravelCategoryScreen(
+                              onContinueTapped: () {
+                                setState(() {
+                                  _questionnaireStepsNum++;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && _questionnaireStepsNum >= 4)
+                          MaterialPage<FoodCategoryScreen>(
+                            child: FoodCategoryScreen(
+                              onContinueTapped: () {
+                                setState(() {
+                                  _questionnaireStepsNum++;
+                                });
+                              },
+                            ),
+                          ),
+                        if (_splashScreenSeen && _questionnaireStepsNum >= 5)
+                          MaterialPage<GoodsCategoryScreen>(
+                            child: GoodsCategoryScreen(
+                              onContinueTapped: () {
+                                setState(() {
+                                  final now = DateTime.now();
+                                  historyState.addScore(
+                                    DateTime.utc(now.year, now.month),
+                                    context.read<CriteriasState>().co2EqTonsPerYear(),
+                                  );
+                                  _questionnaireStepsNum = 0;
+                                });
+                              },
+                            ),
+                          ),
+                      ],
+                      onPopPage: (route, dynamic result) {
+                        if (!route.didPop(result)) {
+                          return false;
+                        }
+
+                        _onPopPage();
+                        return true;
+                      },
+                    ),
+                  );
+          },
         ),
       ),
     );
@@ -261,34 +261,11 @@ class _MyAppState extends DelayableState<MyApp> {
         _showClimateChangeScreen = false;
       } else if (_showAboutScreen) {
         _showAboutScreen = false;
-      } else {
-        _stepsNum--;
+      } else if (_questionnaireStepsNum > 0) {
+        _questionnaireStepsNum--;
+      } else if (_onboardingStepsNum > 0) {
+        _onboardingStepsNum--;
       }
     });
-  }
-}
-
-class _InitState with ChangeNotifier {
-  static const _countrySelectedKey = 'COUNTRY_SELECTED';
-  bool _countrySelected;
-  bool get countrySelected => _countrySelected;
-  set countrySelected(bool newValue) {
-    _countrySelected = newValue;
-    notifyListeners();
-
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setBool(_countrySelectedKey, _countrySelected);
-    });
-  }
-
-  _InitState() {
-    _loadState();
-  }
-
-  Future<void> _loadState() async {
-    var prefs = await SharedPreferences.getInstance();
-    _countrySelected = prefs.getBool(_countrySelectedKey) ?? false;
-
-    notifyListeners();
   }
 }

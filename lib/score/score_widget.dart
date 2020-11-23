@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:warmd/common/criterias.dart';
+import 'package:warmd/common/states.dart';
 import 'package:warmd/generated/locale_keys.g.dart';
 
 const _levelColors = [
@@ -33,7 +33,7 @@ class _ScoreWidgetState extends State<ScoreWidget> {
 
     return Stack(
       children: [
-        Container(
+        SizedBox(
           height: 180,
           child: AspectRatio(
             aspectRatio: 16 / 10,
@@ -50,7 +50,7 @@ class _ScoreWidgetState extends State<ScoreWidget> {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: widget.state.co2EqTonsPerYear().toStringAsFixed(1) + ' ',
+                    text: '${widget.state.co2EqTonsPerYear().toStringAsFixed(1)} ',
                     style: Theme.of(context)
                         .textTheme
                         .headline3
@@ -77,17 +77,17 @@ class _ScoreArcPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var paint = Paint()
+    final paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = size.width / 50;
 
-    var startPoint = Offset(size.width / 10, size.height / 1.1);
-    var controlPoint1 = Offset(size.width / 15, 0);
-    var controlPoint2 = Offset(size.width - size.width / 15, 0);
-    var endPoint = Offset(size.width - size.width / 10, size.height / 1.1);
+    final startPoint = Offset(size.width / 10, size.height / 1.1);
+    final controlPoint1 = Offset(size.width / 15, 0);
+    final controlPoint2 = Offset(size.width - size.width / 15, 0);
+    final endPoint = Offset(size.width - size.width / 10, size.height / 1.1);
 
-    var completePath = Path()
+    final completePath = Path()
       ..moveTo(startPoint.dx, startPoint.dy)
       ..cubicTo(controlPoint1.dx, controlPoint1.dy, controlPoint2.dx, controlPoint2.dy, endPoint.dx, endPoint.dy);
 

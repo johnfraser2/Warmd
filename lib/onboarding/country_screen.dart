@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:warmd/common/common.dart';
-import 'package:warmd/common/criterias.dart';
+import 'package:warmd/common/states.dart';
 import 'package:warmd/common/steps_progress_indicator.dart';
 import 'package:warmd/generated/locale_keys.g.dart';
 
@@ -15,6 +15,7 @@ class CountryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final historyState = context.watch<HistoryState>();
     final state = context.watch<CriteriasState>();
     final c = state.categories[0].criterias[0];
 
@@ -28,7 +29,12 @@ class CountryScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: StepsProgressIndicator(value: 0.1),
             ),
-            Gaps.h64,
+            if (historyState.scores.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                child: buildBackButton(context),
+              ),
+            Gaps.h48,
             Expanded(
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 48),
@@ -45,7 +51,7 @@ class CountryScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                     ),
-                    Gaps.h64,
+                    Gaps.h48,
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 500),
                       child: Container(
@@ -105,7 +111,7 @@ class CountryScreen extends StatelessWidget {
                 child: Text(LocaleKeys.continueAction.tr()),
               ),
             ),
-            Gaps.h64,
+            Gaps.h48,
             SvgPicture.asset(
               'assets/bear.svg',
               height: MediaQuery.of(context).size.height / 6,
