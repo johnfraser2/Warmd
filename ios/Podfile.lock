@@ -4,7 +4,9 @@ PODS:
     - Flutter
   - package_info (0.0.1):
     - Flutter
-  - share (0.0.1):
+  - path_provider (0.0.1):
+    - Flutter
+  - share_files_and_screenshot_widgets (0.0.1):
     - Flutter
   - shared_preferences (0.0.1):
     - Flutter
@@ -15,7 +17,8 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - in_app_review (from `.symlinks/plugins/in_app_review/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
-  - share (from `.symlinks/plugins/share/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - share_files_and_screenshot_widgets (from `.symlinks/plugins/share_files_and_screenshot_widgets/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
@@ -26,8 +29,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/in_app_review/ios"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
-  share:
-    :path: ".symlinks/plugins/share/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  share_files_and_screenshot_widgets:
+    :path: ".symlinks/plugins/share_files_and_screenshot_widgets/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
   url_launcher:
@@ -37,7 +42,8 @@ SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   in_app_review: 4a97249f7a2f539a0f294c2d9196b7fe35e49541
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
-  share: 0b2c3e82132f5888bccca3351c504d0003b3b410
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  share_files_and_screenshot_widgets: 11063d06810f086eade3c1170946f8599e276adb
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 

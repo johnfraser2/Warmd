@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:share/share.dart';
+import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
 import 'package:warmd/common/common.dart';
 import 'package:warmd/common/criterias.dart';
 import 'package:warmd/common/states.dart';
@@ -36,25 +36,30 @@ class FootprintScreen extends StatelessWidget {
     final sortedCategories = state.categories.where((cat) => cat.co2EqTonsPerYear() > 0).toList();
     sortedCategories.sort((a, b) => -a.co2EqTonsPerYear().compareTo(b.co2EqTonsPerYear()));
 
+    final shareContainer = GlobalKey();
+
     return Scaffold(
       backgroundColor: warmdLightBlue, // for iOS scrolling effect
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              children: [
-                _buildHeader(context, sortedCategories, state),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 600),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: _buildFootprintAnalysis(context, state, sortedCategories),
+          child: RepaintBoundary(
+            key: shareContainer,
+            child: Container(
+              color: Colors.white,
+              child: Column(
+                children: [
+                  _buildHeader(context, sortedCategories, state, shareContainer),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 600),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: _buildFootprintAnalysis(context, state, sortedCategories),
+                    ),
                   ),
-                ),
-                Gaps.h92,
-                _buildGoToSourcesButton(context),
-              ],
+                  Gaps.h92,
+                  _buildGoToSourcesButton(context),
+                ],
+              ),
             ),
           ),
         ),
@@ -62,7 +67,8 @@ class FootprintScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context, List<CriteriaCategory> sortedCategories, CriteriasState state) {
+  Widget _buildHeader(
+      BuildContext context, List<CriteriaCategory> sortedCategories, CriteriasState state, GlobalKey shareContainer) {
     return Stack(
       children: [
         Container(
@@ -76,36 +82,30 @@ class FootprintScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 44),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 38),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: Container()),
+                    Expanded(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 220),
+                        child: Text(
+                          LocaleKeys.footprintTitle.tr(),
+                          style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
                     IconButton(
                         icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
                         onPressed: () {
-                          final catStrings = sortedCategories.map((cat) => '${cat.title} (${LocaleKeys.co2EqTonsValue.tr(args: [
-                                cat.co2EqTonsPerYear().toStringAsFixed(1)
-                              ])})');
-
-                          Share.share(
-                              "${LocaleKeys.footprintTitle.tr()}\n\n${catStrings.join("\n")}\n\n${LocaleKeys.doneWith.tr()}\nAndroid app: https://play.google.com/store/apps/details?id=net.frju.verdure\niOS app: https://apps.apple.com/fr/app/warmd/id1487848837",
-                              subject: 'Warmd');
+                          ShareFilesAndScreenshotWidgets().shareScreenshot(
+                            shareContainer,
+                            800,
+                            'Warmd',
+                            "warmd_carbon_footprint.png",
+                            "image/png",
+                          );
                         }),
-                  ],
-                ),
-              ),
-              Gaps.h16,
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 38),
-                child: Row(
-                  children: [
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 220),
-                      child: Text(
-                        LocaleKeys.footprintTitle.tr(),
-                        style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                    ),
                   ],
                 ),
               ),
