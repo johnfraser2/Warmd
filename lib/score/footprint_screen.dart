@@ -84,36 +84,34 @@ class FootprintScreen extends StatelessWidget {
           key: hiddenShareWidgetContainer,
           child: Container(
             color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  Gaps.h32,
-                  SvgPicture.asset(
-                    'assets/splash.svg',
-                  ),
-                  Gaps.h48,
-                  Text(
-                    LocaleKeys.footprintShareTitle.tr(),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  Center(child: ScoreWidget(state)),
-                  Gaps.h64,
-                  _buildFootprintAnalysis(context, state, sortedCategories),
-                  Gaps.h64,
-                  SvgPicture.asset(
-                    'assets/play_store.svg',
-                    width: 148,
-                  ),
-                  Gaps.h8,
-                  SvgPicture.asset(
-                    'assets/app_store.svg',
-                    width: 150,
-                  ),
-                  Gaps.h32,
-                ],
-              ),
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Gaps.h32,
+                SvgPicture.asset(
+                  'assets/splash.svg',
+                ),
+                Gaps.h48,
+                Text(
+                  LocaleKeys.footprintShareTitle.tr(),
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
+                ),
+                Center(child: ScoreWidget(state)),
+                Gaps.h64,
+                _buildFootprintAnalysis(context, state, sortedCategories),
+                Gaps.h64,
+                SvgPicture.asset(
+                  'assets/play_store.svg',
+                  width: 148,
+                ),
+                Gaps.h8,
+                SvgPicture.asset(
+                  'assets/app_store.svg',
+                  width: 150,
+                ),
+                Gaps.h32,
+              ],
             ),
           ),
         ),

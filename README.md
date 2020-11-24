@@ -1,12 +1,10 @@
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/fredericjulian)
-
 # Warmd - Fight climate change
 
 ![Banner](/raw_graphics/banner_full.png)
 
-Warmd is a personal carbon footprint calculator which gives you an idea of your own impact and helps you to improve it with adapted advices.
+Warmd is a personal carbon footprint calculator which gives you an idea of your own impact and helps you to improve it with adapted advices. My only goal is to reduce a bit the human impact and to leave a habitable planet to our children.
 
-It is [free/open-source software](https://www.gnu.org/philosophy/free-sw.html) under the GPLv3 license. You're are free to modify it as long as you respect the license and keep it open-source.
+It is a free and [open-source](https://www.gnu.org/philosophy/free-sw.html) mobile application without any ads or paid features. You're are free to modify it as long as you respect the license and keep it open-source.
 
 ## Contact and Assistance
 Please write to [warmd_app@icloud.com](mailto:warmd_app@icloud.com) or create a ticket [here](https://github.com/FredJul/Warmd/issues/new) for any bug report or suggestion.
@@ -23,9 +21,8 @@ Please write to [warmd_app@icloud.com](mailto:warmd_app@icloud.com) or create a 
 Warmd does everything on your phone and does not need access to Internet. It doesn't try to steal any data or use them for commercial purposes.
 
 ## Contribution and donation
-As previously said, Warmd is an free open-source software without any ads or paid features. My only goal is to reduce a bit the human impact on our planet.
-
 You can help Warmd development by:
-- developing features and bugfixes
 - improving or adding translations on [Crowdin](https://frju.crowdin.com/warmd)
-- donating via [PayPal](https://www.paypal.me/fredericjulian) or via Bitcoin: `3DprwFMg5bXGz8QimyiaoEE7mmCkj2DGf5`
+- opening [tickets](https://github.com/FredJul/Warmd/issues/new) for bug reports or new ideas
+- developing features and bugfixes
+- offering me a coffer via [BuyMeACoffee](https://www.buymeacoffee.com/frju) or [PayPal](https://www.paypal.me/fredericjulian)
