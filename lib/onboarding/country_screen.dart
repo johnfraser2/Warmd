@@ -34,12 +34,12 @@ class CountryScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 child: buildBackButton(context),
               ),
-            Gaps.h48,
             Expanded(
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 48),
                 alignment: Alignment.center,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       LocaleKeys.countrySelectionTitle.tr(),

@@ -46,6 +46,7 @@ class FootprintScreen extends StatelessWidget {
             // This widget will never been shown, it is only use to get an image to share.
             // There may be a better solution.
             _buildHiddenShareWidget(hiddenShareWidgetContainer, context, sortedCategories, state),
+            Container(color: warmdLightBlue), // for iOS scrolling effect
             SingleChildScrollView(
               child: Container(
                 color: Colors.white,
@@ -167,7 +168,7 @@ class FootprintScreen extends StatelessWidget {
                     child: Text(
                       LocaleKeys.footprintWarning.tr(),
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                      style: Theme.of(context).textTheme.caption.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                     ),
                   ),
                 ),

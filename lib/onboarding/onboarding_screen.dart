@@ -36,7 +36,6 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
             SvgPicture.asset(
               'assets/sky.svg',
             ),
-            Gaps.h64,
             Expanded(
               child: PageIndicatorContainer(
                 length: 2,
@@ -54,6 +53,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                         child: ConstrainedBox(
                           constraints: const BoxConstraints(maxWidth: 350),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SvgPicture.asset(
                                 'assets/narwhal.svg',
@@ -78,6 +78,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                         child: ConstrainedBox(
                           constraints: const BoxConstraints(maxWidth: 350),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SvgPicture.asset(
                                 'assets/pinguin.svg',

@@ -3,9 +3,9 @@ description: Wanna save the earth?
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+publish_to: "none"
 
-version: 1.2.2+21
+version: 1.3.0+22
 
 environment:
   sdk: ">=2.10.0 <3.0.0"
