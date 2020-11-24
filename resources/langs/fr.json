@@ -68,12 +68,8 @@
     "valueWithLess": "{} ou moins",
     "footprintTitle": "Votre empreinte carbone est de",
     "footprintWarning": "Voyez ce qui se passera si vous ne faites rien >",
-    "footprintRepartitionTitle": "RÉPARTITION DE L'EMPREINTE CARBONE",
-    "footprintEvolutionTitle": "ÉVOLUTION DE L'EMPREINTE CARBONE",
-    "footprintEvolutionExplanation": "Calculez votre empreinte carbone chaque mois et voyez votre évolution.\n\nLe monde doit réduire ses émissions d'au moins 6 % par an. Et vous ?",
     "footprintEvolutionTonsAxis": "Tonnes CO2e",
     "footprintEvolutionYearAxis": "Année",
-    "footprintShareTitle": "Warmd - Mon empreinte carbone",
     "seeAdvices": "VOIR CE QUE VOUS DEVEZ FAIRE",
     "redoQuestionnaire": "REFAIRE LE QUESTIONNAIRE",
     "seeAbout": "Comprendre comment votre empreinte carbone est calculée et comment vous pourriez aider ce projet.",
@@ -98,6 +94,5 @@
     "aboutProjectDescription": "Warmd est un projet open-source à but non-lucratif. Vous pouvez y contribuer (a https://github.com/FredJul/Warmd)ici(/a) ou aider à le traduire (a https://frju.crowdin.com/warmd)ici(/a).\n\nLe design a été généreusement fourni par (a https://mnstudio.net)mn studio(/a).\n\nNotre seul objectif est de réduire un peu l'impact de l'homme sur notre planète.",
     "aboutRateIt": "Aidez-nous en notant l'appli 5 étoiles >",
     "aboutSourcesTitle": "Sources",
-    "aboutSourcesDescription": "Ce calculateur d'empreinte carbone est principalement basée sur les résultats de (a https://coolclimate.org)CoolClimate(/a) avec l'aide d'autres sources comme (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) ou (a https://riftapp.fr/)Rift(/a).\n\nEn raison de la complexité de la tâche, Je ne m'attends pas à ce que cette application soit très exacte, mais elle vous donne une idée de votre impact.\n\nEn outre, cette application se concentre uniquement sur le changement climatique, mais il ne faut pas oublier les autres types de pollution (plastiques, pesticides, …).\n\nJe ne suis affilié à aucune des organisations mentionnées.",
-    "doneWith": "Fait avec Warmd - Calculateur d'empreinte carbone"
+    "aboutSourcesDescription": "Ce calculateur d'empreinte carbone est principalement basée sur les résultats de (a https://coolclimate.org)CoolClimate(/a) avec l'aide d'autres sources comme (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) ou (a https://riftapp.fr/)Rift(/a).\n\nEn raison de la complexité de la tâche, Je ne m'attends pas à ce que cette application soit très exacte, mais elle vous donne une idée de votre impact.\n\nEn outre, cette application se concentre uniquement sur le changement climatique, mais il ne faut pas oublier les autres types de pollution (plastiques, pesticides, …).\n\nJe ne suis affilié à aucune des organisations mentionnées."
 }
