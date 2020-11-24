@@ -17,7 +17,39 @@ class CodegenLoader extends AssetLoader{
   static const Map<String,dynamic> zh = {};
 static const Map<String,dynamic> tr = {};
 static const Map<String,dynamic> hu = {};
-static const Map<String,dynamic> bn = {};
+static const Map<String,dynamic> bn = {
+  "onboardingStep1Title": "তোমার প্রভাব বুঝো",
+  "onboardingStep1Description": "দেখো কিভাবে তোমার কাজ পরিবেশ, প্রাণি আর অন্যসবে প্রভাব ফেলে।",
+  "onboardingStep2Title": "প্রভাব কমাতে উদ্যোগ নাও",
+  "onboardingStep2Description": "প্রতিদিন ছোট ছোট ধাপই ভবিষ্যতের বড় পরিবর্তনের ভিত্তি।",
+  "onboardingAction": "এখনই শুরু করো",
+  "welcomeTitle": "হ্যালো,",
+  "welcomeDescription": "ওয়ার্মডি ডাউনলোড করার জন্য এবং আমাদের ভবিষ্যত প্রজন্মকে আরও সুরক্ষিত করার জন্য প্রথম পদক্ষেপ গ্রহণ করার জন্য তোমাকে ধন্যবাদ।\n\n\nতুমি শুরু করার আগে, আমরা তোমাকে ব্যক্তিগতকৃত প্রস্তাবনা তৈরি করতে কয়েকটি প্রশ্ন জিজ্ঞাসা করব। তুমি কী তৈরি?",
+  "welcomeAction": "শুরু করি",
+  "countrySelectionTitle": "দেশ",
+  "countrySelectionQuestion": "তুমি কোন দেশে থাকো?",
+  "countrySelectionExplanation": "এই তথ্য দ্বারা তোমার সঠিক কার্বন প্রভাব আমরা বের করতে পারব।",
+  "continueAction": "আগাই",
+  "continueActionExplanation": "তুমি এই তথ্য পরে পাল্টাতে পারবে।",
+  "perWeek": "প্রতি সপ্তাহে।",
+  "politicalAdvice": "সংস্থাগুলি বা সরকারগুলির তুলনায় তোমার নিজস্ব প্রভাব তাৎপর্যপূর্ণ নয় এবং এই মুহুর্তে তাদের পরিবেশগত নীতিগুলি যথেষ্ট নয়।\nভোটদানের মাধ্যমে, তোমার প্রতিনিধিদের কাছে লিখিতভাবে, জলবায়ু অ্যাকশন গ্রুপে যোগদান করে বা অন্য উপায়ে তাদের সিদ্ধান্তকে প্রভাবিত করার চেষ্টা করো।\n\nযদি কিছ করার থাকে তবে তা অবশ্যই এটি।",
+  "heatingFuelCriteriaTitle": "তোমার জ্বালানি/গ্যাস বিল",
+  "heatingFuelCriteriaAdvice": "তোমার বাড়ির তাপ রক্ষার চেষ্টা করো এবং প্রয়োজনের চেয়ে বেশি গরম করা এড়াতে চেষ্টা করো (প্রাপ্ত বয়স্কের ঘুমের মান ৬৬° ফা/১৯° সে তাপমাত্রা সেরা)। স্মার্ট কন্ট্রোল দিয়ে তুমি বাইরে থাকাকালীন গরম করার যন্ত্র বন্ধ করতে সহায়তা করতে পারে।\n\nকার্বন-মুক্ত বিদ্যুতের সাথে বা স্থানীয় এবং টেকসই বন থেকে কাঠ, হিট পাম্প দিয়ে গরম করাও চলবে।",
+  "electricityBillCriteriaTitle": "তোমার বিদ্যুত বিল",
+  "utilitiesCategoryTitle": "উপযোগী বস্তু",
+  "overweightCriteriaLabel1": "আমি স্বাভাবিক",
+  "overweightCriteriaLabel3": "আমি স্থূল",
+  "foodCategoryTitle": "খাদ্য",
+  "waterCriteriaLabel2": "স্বাভাবিক",
+  "valueWithMore": "{} অথবা বেশি",
+  "valueWithLess": "{} অথবা কম",
+  "footprintEvolutionTonsAxis": "টন CO₂e(কার্বন ডাই অক্সাইড)",
+  "footprintEvolutionYearAxis": "বছর",
+  "shortCo2EqTonsValue": "{} টন",
+  "advicesPoliticsCategory": "রাজনীতি",
+  "globalObjectivesTitle": "বৈশ্বিক উদ্দেশ্য",
+  "aboutSourcesTitle": "উৎস"
+};
 static const Map<String,dynamic> nl = {};
 static const Map<String,dynamic> ja = {};
 static const Map<String,dynamic> de = {
@@ -99,12 +131,13 @@ static const Map<String,dynamic> en = {
   "valueWithLess": "{} or less",
   "footprintTitle": "Your total carbon footprint is",
   "footprintWarning": "See what happens when you don't take action >",
-  "footprintRepartitionTitle": "FOOTPRINT REPARTITION",
-  "footprintEvolutionTitle": "FOOTPRINT EVOLUTION",
-  "footprintEvolutionExplanation": "Compute your footprint every month and see your evolution.\n\nThe world must reduce its emissions by at least 6% per year. What about you?",
+  "footprintRepartitionTitle": "CARBON FOOTPRINT REPARTITION",
+  "footprintEvolutionTitle": "CARBON FOOTPRINT EVOLUTION",
+  "footprintEvolutionExplanation": "Compute your carbon footprint every month and see your evolution.\n\nThe world must reduce its emissions by at least 6% per year. What about you?",
   "footprintEvolutionTonsAxis": "Tons CO₂e",
   "footprintEvolutionYearAxis": "Year",
-  "footprintShareTitle": "Warmd - Your carbon footprint",
+  "footprintShareTitle": "My carbon footprint",
+  "footprintShareLink": "Calculated with Warmd: https://fredjul.github.io/Warmd/",
   "seeAdvices": "SEE WHAT YOU NEED TO DO",
   "redoQuestionnaire": "REDO QUESTIONNAIRE",
   "seeAbout": "Understand how your carbon footprint is calculated and how you could help this project.",
@@ -129,8 +162,7 @@ static const Map<String,dynamic> en = {
   "aboutProjectDescription": "Warmd is a non-lucrative open-source project. You can contribute to it (a https://github.com/FredJul/Warmd)here(/a) or help translating it (a https://frju.crowdin.com/warmd)here(/a).\n\nWarmd's design has been generously provided by (a https://mnstudio.net)mn studio(/a).\n\nOur only goal is to reduce a bit the human impact on our planet.",
   "aboutRateIt": "Help us by rating it 5 stars >",
   "aboutSourcesTitle": "Sources",
-  "aboutSourcesDescription": "This carbon footprint calculator is mainly based on (a https://coolclimate.org)CoolClimate(/a) results, with the help of other sources like (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) or (a https://riftapp.fr/)Rift(/a).\n\nDue to the complexity of the task, I do not expect this app to be very accurate, but it gives you an idea of your impact.\n\nIn addition, this app focuses only on the climate change, but we should not forget the other types of pollutions (plastics, pesticides, …).\n\nI'm not affiliated with any of the mentioned organizations.",
-  "doneWith": "Done with Warmd - Carbon footprint calculator"
+  "aboutSourcesDescription": "This carbon footprint calculator is mainly based on (a https://coolclimate.org)CoolClimate(/a) results, with the help of other sources like (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) or (a https://riftapp.fr/)Rift(/a).\n\nDue to the complexity of the task, I do not expect this app to be very accurate, but it gives you an idea of your impact.\n\nIn addition, this app focuses only on the climate change, but we should not forget the other types of pollutions (plastics, pesticides, …).\n\nI'm not affiliated with any of the mentioned organizations."
 };
 static const Map<String,dynamic> it = {
   "heatingFuelCriteriaTitle": "La tua bolletta del riscaldamento",
@@ -159,7 +191,8 @@ static const Map<String,dynamic> fr = {
   "continueAction": "CONTINUER",
   "continueActionExplanation": "Vous pouvez toujours mettre à jour les données plus tard.",
   "perWeek": "Par semaine.",
-  "unitPerYear": "En {} par an.",
+  "inUnit": "En {}.",
+  "inUnitPerYear": "En {} par an.",
   "politicalAdvice": "Votre propre impact est insignifiant par rapport à celui des entreprises ou gouvernements et, à l'heure actuelle, leurs politiques écologiques sont loin d'être suffisantes.\nEssayez d'influencer leurs décisions en votant, en écrivant à vos représentants, en joignant un groupe d'action pour le climat ou par d'autres moyens.\n\nS'il y a une chose à faire c'est certainement celle-ci.",
   "heatingFuelCriteriaTitle": "Votre facture de fioul/gaz de chauffage",
   "heatingFuelCriteriaAdvice": "Essayez de mieux isoler votre maison et évitez de chauffer plus que nécessaire (les adultes ont une meilleure qualité de sommeil à 19°C). Des commandes intelligentes peuvent vous aider à éteindre le chauffage lorsque vous êtes à l'extérieur.\n\nPréférez également le chauffage avec une pompe à chaleur, avec de l'électricité neutre en carbone ou avec du bois provenant de forêts locales et durables.",
@@ -194,7 +227,7 @@ static const Map<String,dynamic> fr = {
   "materialGoodsCriteriaTitle": "Argent dépensé en biens matériels",
   "materialGoodsCriteriaExplanation": "En {} par mois.\n\nConcerne le mobilier, les appareils ménagers et électroniques, les vêtements, les médicaments, …",
   "materialGoodsCriteriaAdvice": "Vous achetez trop de biens matériels et devriez certainement les limiter.\n\nSi vous avez vraiment besoin d'en acheter, trouvez-en d'occasion et vendez (ou donnez) les précédents.",
-  "savingsCriteriaTitle": "Quantité d'argent dormant sur un compte bancaire non décarboné",
+  "savingsCriteriaTitle": "Argent dormant sur un compte bancaire non décarboné",
   "savingsCriteriaExplanation": "Si vous ne le savez pas, vous pouvez considérer que 90% de vos économies sont concernées.",
   "savingsCriteriaAdvice": "La plupart des banques d'aujourd'hui investissent encore la majorité de vos économies dans des entreprises ayant un impact important sur le carbone. Heureusement, certaines banques vous permettent de choisir des investissements à faible émission de carbone.",
   "waterCriteriaTitle": "Votre consommation d'eau",
@@ -211,14 +244,19 @@ static const Map<String,dynamic> fr = {
   "goodsAndServicesCategoryTitle": "Biens et services",
   "valueWithMore": "{} ou plus",
   "valueWithLess": "{} ou moins",
-  "category_short_footprint": "{cat} ({tons}t)",
-  "footprintTitle": "Votre empreinte carbone est",
+  "footprintTitle": "Votre empreinte carbone est de",
   "footprintWarning": "Voyez ce qui se passera si vous ne faites rien >",
-  "footprintAnalysisTitle": "ANALYSE DE VOTRE EMPREINTE",
+  "footprintRepartitionTitle": "RÉPARTITION DE L'EMPREINTE CARBONE",
+  "footprintEvolutionTitle": "ÉVOLUTION DE L'EMPREINTE CARBONE",
+  "footprintEvolutionExplanation": "Calculez votre empreinte carbone chaque mois et voyez votre évolution.\n\nLe monde doit réduire ses émissions d'au moins 6% par an. Et vous ?",
+  "footprintEvolutionTonsAxis": "Tonnes CO2e",
+  "footprintEvolutionYearAxis": "Année",
+  "footprintShareTitle": "Warmd - Mon empreinte carbone",
   "seeAdvices": "VOIR CE QUE VOUS DEVEZ FAIRE",
   "redoQuestionnaire": "REFAIRE LE QUESTIONNAIRE",
   "seeAbout": "Comprendre comment votre empreinte carbone est calculée et comment vous pourriez aider ce projet.",
   "scoreUnit": "tonnes\nde CO₂e/an",
+  "shortCo2EqTonsValue": "{} t",
   "co2EqTonsValue": "{} tonnes de CO₂e/an",
   "climateChangeTitle": "Qu'est-ce que le changement climatique?",
   "consequencesTitle": "Conséquences du réchauffement climatique",
@@ -238,8 +276,7 @@ static const Map<String,dynamic> fr = {
   "aboutProjectDescription": "Warmd est un projet open-source à but non-lucratif. Vous pouvez y contribuer (a https://github.com/FredJul/Warmd)ici(/a) ou aider à le traduire (a https://frju.crowdin.com/warmd)ici(/a).\n\nLe design a été généreusement fourni par (a https://mnstudio.net)mn studio(/a).\n\nNotre seul objectif est de réduire un peu l'impact de l'homme sur notre planète.",
   "aboutRateIt": "Aidez-nous en notant l'appli 5 étoiles >",
   "aboutSourcesTitle": "Sources",
-  "aboutSourcesDescription": "Ce calculateur d'empreinte carbone est principalement basée sur les résultats de (a https://coolclimate.org)CoolClimate(/a) avec l'aide d'autres sources comme (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) ou (a https://riftapp.fr/)Rift(/a).\n\nEn raison de la complexité de la tâche, Je ne m'attends pas à ce que cette application soit très exacte, mais elle vous donne une idée de votre impact.\n\nEn outre, cette application se concentre uniquement sur le changement climatique, mais il ne faut pas oublier les autres types de pollution (plastiques, pesticides, …).\n\nJe ne suis affilié à aucune des organisations mentionnées.",
-  "doneWith": "Fait avec Warmd - Calculateur d'empreinte carbone"
+  "aboutSourcesDescription": "Ce calculateur d'empreinte carbone est principalement basée sur les résultats de (a https://coolclimate.org)CoolClimate(/a) avec l'aide d'autres sources comme (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) ou (a https://riftapp.fr/)Rift(/a).\n\nEn raison de la complexité de la tâche, Je ne m'attends pas à ce que cette application soit très exacte, mais elle vous donne une idée de votre impact.\n\nEn outre, cette application se concentre uniquement sur le changement climatique, mais il ne faut pas oublier les autres types de pollution (plastiques, pesticides, …).\n\nJe ne suis affilié à aucune des organisations mentionnées."
 };
 static const Map<String,dynamic> el = {};
 static const Map<String,dynamic> ro = {};

@@ -84,29 +84,36 @@ class FootprintScreen extends StatelessWidget {
           key: hiddenShareWidgetContainer,
           child: Container(
             color: Colors.white,
-            child: Column(
-              children: [
-                Gaps.h32,
-                SvgPicture.asset(
-                  'assets/splash.svg',
-                ),
-                Gaps.h32,
-                Center(child: ScoreWidget(state)),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 64),
-                  child: _buildFootprintAnalysis(context, state, sortedCategories),
-                ),
-                SvgPicture.asset(
-                  'assets/play_store.svg',
-                  width: 148,
-                ),
-                Gaps.h8,
-                SvgPicture.asset(
-                  'assets/app_store.svg',
-                  width: 150,
-                ),
-                Gaps.h32,
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Gaps.h32,
+                  SvgPicture.asset(
+                    'assets/splash.svg',
+                  ),
+                  Gaps.h48,
+                  Text(
+                    LocaleKeys.footprintShareTitle.tr(),
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  Center(child: ScoreWidget(state)),
+                  Gaps.h64,
+                  _buildFootprintAnalysis(context, state, sortedCategories),
+                  Gaps.h64,
+                  SvgPicture.asset(
+                    'assets/play_store.svg',
+                    width: 148,
+                  ),
+                  Gaps.h8,
+                  SvgPicture.asset(
+                    'assets/app_store.svg',
+                    width: 150,
+                  ),
+                  Gaps.h32,
+                ],
+              ),
             ),
           ),
         ),
@@ -151,7 +158,7 @@ class FootprintScreen extends StatelessWidget {
                               LocaleKeys.footprintShareTitle.tr(),
                               'warmd_carbon_footprint.png',
                               'image/png',
-                              text: 'https://fredjul.github.io/Warmd/',
+                              text: LocaleKeys.footprintShareLink.tr(),
                             );
                           }),
                     ),

@@ -76,6 +76,7 @@ abstract class  LocaleKeys {
   static const footprintEvolutionTonsAxis = 'footprintEvolutionTonsAxis';
   static const footprintEvolutionYearAxis = 'footprintEvolutionYearAxis';
   static const footprintShareTitle = 'footprintShareTitle';
+  static const footprintShareLink = 'footprintShareLink';
   static const seeAdvices = 'seeAdvices';
   static const redoQuestionnaire = 'redoQuestionnaire';
   static const seeAbout = 'seeAbout';
@@ -101,6 +102,5 @@ abstract class  LocaleKeys {
   static const aboutRateIt = 'aboutRateIt';
   static const aboutSourcesTitle = 'aboutSourcesTitle';
   static const aboutSourcesDescription = 'aboutSourcesDescription';
-  static const doneWith = 'doneWith';
 
 }
