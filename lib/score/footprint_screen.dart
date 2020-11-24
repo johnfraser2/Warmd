@@ -36,30 +36,76 @@ class FootprintScreen extends StatelessWidget {
     final sortedCategories = state.categories.where((cat) => cat.co2EqTonsPerYear() > 0).toList();
     sortedCategories.sort((a, b) => -a.co2EqTonsPerYear().compareTo(b.co2EqTonsPerYear()));
 
-    final shareContainer = GlobalKey();
+    final hiddenShareWidgetContainer = GlobalKey();
 
     return Scaffold(
       backgroundColor: warmdLightBlue, // for iOS scrolling effect
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: RepaintBoundary(
-            key: shareContainer,
-            child: Container(
-              color: Colors.white,
-              child: Column(
-                children: [
-                  _buildHeader(context, sortedCategories, state, shareContainer),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 600),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: _buildFootprintAnalysis(context, state, sortedCategories),
+        child: Stack(
+          children: [
+            // This widget will never been shown, it is only use to get an image to share.
+            // There may be a better solution.
+            _buildHiddenShareWidget(hiddenShareWidgetContainer, context, sortedCategories, state),
+            SingleChildScrollView(
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    _buildHeader(context, sortedCategories, state, hiddenShareWidgetContainer),
+                    Gaps.h64,
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 600),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: _buildFootprintAnalysis(context, state, sortedCategories),
+                      ),
                     ),
-                  ),
-                  Gaps.h92,
-                  _buildGoToSourcesButton(context),
-                ],
+                    Gaps.h48,
+                    _buildRedoQuestionnaireButton(context),
+                    Gaps.h92,
+                    _buildGoToSourcesButton(context),
+                  ],
+                ),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHiddenShareWidget(GlobalKey<State<StatefulWidget>> hiddenShareWidgetContainer, BuildContext context,
+      List<CriteriaCategory> sortedCategories, CriteriasState state) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 400),
+      child: SingleChildScrollView(
+        child: RepaintBoundary(
+          key: hiddenShareWidgetContainer,
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                Gaps.h32,
+                SvgPicture.asset(
+                  'assets/splash.svg',
+                ),
+                Gaps.h32,
+                Center(child: ScoreWidget(state)),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 64),
+                  child: _buildFootprintAnalysis(context, state, sortedCategories),
+                ),
+                SvgPicture.asset(
+                  'assets/play_store.svg',
+                  width: 148,
+                ),
+                Gaps.h8,
+                SvgPicture.asset(
+                  'assets/app_store.svg',
+                  width: 150,
+                ),
+                Gaps.h32,
+              ],
             ),
           ),
         ),
@@ -68,7 +114,7 @@ class FootprintScreen extends StatelessWidget {
   }
 
   Widget _buildHeader(
-      BuildContext context, List<CriteriaCategory> sortedCategories, CriteriasState state, GlobalKey shareContainer) {
+      BuildContext context, List<CriteriaCategory> sortedCategories, CriteriasState state, GlobalKey hiddenShareWidgetContainer) {
     return Stack(
       children: [
         Container(
@@ -86,26 +132,28 @@ class FootprintScreen extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 220),
-                        child: Text(
-                          LocaleKeys.footprintTitle.tr(),
-                          style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
-                        ),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 220),
+                      child: Text(
+                        LocaleKeys.footprintTitle.tr(),
+                        style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    IconButton(
-                        icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
-                        onPressed: () {
-                          ShareFilesAndScreenshotWidgets().shareScreenshot(
-                            shareContainer,
-                            800,
-                            'Warmd',
-                            "warmd_carbon_footprint.png",
-                            "image/png",
-                          );
-                        }),
+                    Expanded(
+                      child: IconButton(
+                          alignment: Alignment.topRight,
+                          icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
+                          onPressed: () {
+                            ShareFilesAndScreenshotWidgets().shareScreenshot(
+                              hiddenShareWidgetContainer,
+                              1024,
+                              LocaleKeys.footprintShareTitle.tr(),
+                              'warmd_carbon_footprint.png',
+                              'image/png',
+                              text: 'https://fredjul.github.io/Warmd/',
+                            );
+                          }),
+                    ),
                   ],
                 ),
               ),
@@ -133,29 +181,32 @@ class FootprintScreen extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 200),
-                child: Expanded(
-                  child: ElevatedButton(
-                    onPressed: () => onSeeAdvicesTapped(context),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(warmdGreen),
-                      shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      )),
-                      textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2.copyWith(
-                            fontWeight: FontWeight.bold,
-                          )),
-                      minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
-                      padding:
-                          MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
-                    ),
-                    child: Text(
-                      LocaleKeys.seeAdvices.tr(),
-                      textAlign: TextAlign.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 200),
+                    child: ElevatedButton(
+                      onPressed: () => onSeeAdvicesTapped(context),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(warmdGreen),
+                        shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        )),
+                        textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2.copyWith(
+                              fontWeight: FontWeight.bold,
+                            )),
+                        minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
+                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                            const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
+                      ),
+                      child: Text(
+                        LocaleKeys.seeAdvices.tr(),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
           ),
@@ -174,7 +225,6 @@ class FootprintScreen extends StatelessWidget {
 
     return Column(
       children: [
-        Gaps.h64,
         Text(
           LocaleKeys.footprintRepartitionTitle.tr(),
           style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
@@ -235,45 +285,48 @@ class FootprintScreen extends StatelessWidget {
           LocaleKeys.footprintEvolutionTitle.tr(),
           style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
         ),
-        Gaps.h32,
-        Text(
-          'Compute your footprint every month and see your evolution.\n\nThe world must reduce its emissions by at least 6% per year. What about you?',
-          textAlign: TextAlign.start,
-          style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
+        Padding(
+          padding: const EdgeInsets.all(32),
+          child: Text(
+            LocaleKeys.footprintEvolutionExplanation.tr(),
+            textAlign: TextAlign.start,
+            style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
+          ),
         ),
-        Gaps.h32,
         const Padding(
           padding: EdgeInsets.only(left: 16, right: 48),
           child: _FootprintChart(),
         ),
-        Gaps.h48,
-        Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 300),
-            child: ElevatedButton(
-              onPressed: () {
-                onRestartTapped(context);
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
-                shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+      ],
+    );
+  }
+
+  Center _buildRedoQuestionnaireButton(BuildContext context) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 300),
+        child: ElevatedButton(
+          onPressed: () {
+            onRestartTapped(context);
+          },
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
+            shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            )),
+            textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2.copyWith(
+                  fontWeight: FontWeight.bold,
                 )),
-                textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2.copyWith(
-                      fontWeight: FontWeight.bold,
-                    )),
-                minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
-                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
-              ),
-              child: Text(
-                LocaleKeys.redoQuestionnaire.tr(),
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: Colors.grey[600]),
-              ),
-            ),
+            minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
+            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
+          ),
+          child: Text(
+            LocaleKeys.redoQuestionnaire.tr(),
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: Colors.grey[600]),
           ),
         ),
-      ],
+      ),
     );
   }
 

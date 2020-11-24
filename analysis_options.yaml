@@ -1,5 +1,9 @@
 include: package:lint/analysis_options.yaml
 
+linter:
+  rules:
+    prefer_single_quotes: true # I don't like when things are mixed
+
 analyzer:
   strong-mode:
     implicit-dynamic: false

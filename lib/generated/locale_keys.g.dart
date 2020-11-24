@@ -72,8 +72,10 @@ abstract class  LocaleKeys {
   static const footprintWarning = 'footprintWarning';
   static const footprintRepartitionTitle = 'footprintRepartitionTitle';
   static const footprintEvolutionTitle = 'footprintEvolutionTitle';
+  static const footprintEvolutionExplanation = 'footprintEvolutionExplanation';
   static const footprintEvolutionTonsAxis = 'footprintEvolutionTonsAxis';
   static const footprintEvolutionYearAxis = 'footprintEvolutionYearAxis';
+  static const footprintShareTitle = 'footprintShareTitle';
   static const seeAdvices = 'seeAdvices';
   static const redoQuestionnaire = 'redoQuestionnaire';
   static const seeAbout = 'seeAbout';
