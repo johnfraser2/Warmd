@@ -468,7 +468,7 @@ class _PieIndicator extends StatelessWidget {
                 text,
                 style: Theme.of(context).textTheme.bodyText2.copyWith(color: textColor),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:warmd/generated/locale_keys.g.dart';
 
 const warmdLightBlue = Color(0xFFDFF3FE);
 const warmdBlue = Color(0xFF00AAF2);
@@ -32,8 +34,6 @@ class Gaps {
 }
 
 extension ListExtension<E> on List<E> {
-  List<E> clone() => List.from(this);
-
   Iterable<T> mapIndexed<T>(T Function(int idx, E element) f) => asMap()
       .map(
         (idx, element) => MapEntry(
@@ -44,14 +44,6 @@ extension ListExtension<E> on List<E> {
       .values;
 }
 
-extension MapExtension<K, V> on Map<K, V> {
-  Map<K, V> sort([int Function(MapEntry<K, V> a, MapEntry<K, V> b) compare]) {
-    final entries = this.entries.toList();
-    entries.sort(compare);
-    return Map<K, V>.fromEntries(entries);
-  }
-}
-
 Widget buildBackButton(BuildContext context) {
   // TODO: find a better way than a Row to left-align the back button
   return Row(
@@ -59,7 +51,7 @@ Widget buildBackButton(BuildContext context) {
       TextButton(
         onPressed: () => Navigator.pop(context),
         child: Text(
-          'Back',
+          LocaleKeys.back.tr(),
           style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
         ),
       ),

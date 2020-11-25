@@ -1,6 +1,7 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 abstract class  LocaleKeys {
+  static const back = 'back';
   static const onboardingStep1Title = 'onboardingStep1Title';
   static const onboardingStep1Description = 'onboardingStep1Description';
   static const onboardingStep2Title = 'onboardingStep2Title';

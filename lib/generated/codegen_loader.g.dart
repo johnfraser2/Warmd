@@ -62,6 +62,7 @@ static const Map<String,dynamic> uk = {};
 static const Map<String,dynamic> fi = {};
 static const Map<String,dynamic> pt = {};
 static const Map<String,dynamic> en = {
+  "back": "Back",
   "onboardingStep1Title": "Understand your impact",
   "onboardingStep1Description": "See how your activities impact planet, animals & more.",
   "onboardingStep2Title": "Take action to reduce impact",
