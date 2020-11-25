@@ -115,7 +115,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // We want to scroll back to the top, so that the "REDO" button work as expected
+                  // We want to scroll back to the top, so that we can clearly see in what category we arrive
                   delay(const Duration(milliseconds: 500), () => _scrollController.jumpTo(0));
 
                   widget.onContinueTapped(context);

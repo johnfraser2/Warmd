@@ -10,12 +10,13 @@ import 'package:provider/provider.dart';
 import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
 import 'package:warmd/common/common.dart';
 import 'package:warmd/common/criterias.dart';
+import 'package:warmd/common/delayable_state.dart';
 import 'package:warmd/common/states.dart';
 import 'package:warmd/generated/locale_keys.g.dart';
 
 import 'score_widget.dart';
 
-class FootprintScreen extends StatelessWidget {
+class FootprintScreen extends StatefulWidget {
   final Function(BuildContext) onSeeClimateChangeTapped;
   final Function(BuildContext) onSeeAdvicesTapped;
   final Function(BuildContext) onRestartTapped;
@@ -28,6 +29,13 @@ class FootprintScreen extends StatelessWidget {
       @required this.onSeeAboutTapped,
       Key key})
       : super(key: key);
+
+  @override
+  _FootprintScreenState createState() => _FootprintScreenState();
+}
+
+class _FootprintScreenState extends DelayableState<FootprintScreen> {
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +56,7 @@ class FootprintScreen extends StatelessWidget {
             _buildHiddenShareWidget(hiddenShareWidgetContainer, context, sortedCategories, state),
             Container(color: warmdLightBlue), // for iOS scrolling effect
             SingleChildScrollView(
+              controller: _scrollController,
               child: Container(
                 color: Colors.white,
                 child: Column(
@@ -169,7 +178,7 @@ class FootprintScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: Center(
                   child: TextButton(
-                    onPressed: () => onSeeClimateChangeTapped(context),
+                    onPressed: () => widget.onSeeClimateChangeTapped(context),
                     child: Text(
                       LocaleKeys.footprintWarning.tr(),
                       textAlign: TextAlign.center,
@@ -193,7 +202,7 @@ class FootprintScreen extends StatelessWidget {
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 200),
                     child: ElevatedButton(
-                      onPressed: () => onSeeAdvicesTapped(context),
+                      onPressed: () => widget.onSeeAdvicesTapped(context),
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(warmdGreen),
                         shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
@@ -313,7 +322,10 @@ class FootprintScreen extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 300),
         child: ElevatedButton(
           onPressed: () {
-            onRestartTapped(context);
+            // We want to scroll back to the top, I want to see the score after a "Redo questionnaire"
+            delay(const Duration(milliseconds: 500), () => _scrollController.jumpTo(0));
+
+            widget.onRestartTapped(context);
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
@@ -338,7 +350,7 @@ class FootprintScreen extends StatelessWidget {
 
   Widget _buildGoToSourcesButton(BuildContext context) {
     return GestureDetector(
-      onTap: () => onSeeAboutTapped(context),
+      onTap: () => widget.onSeeAboutTapped(context),
       child: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(topLeft: Radius.circular(36), topRight: Radius.circular(36)),
