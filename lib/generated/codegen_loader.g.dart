@@ -178,6 +178,7 @@ static const Map<String,dynamic> it = {
 };
 static const Map<String,dynamic> sr = {};
 static const Map<String,dynamic> fr = {
+  "back": "Retour",
   "onboardingStep1Title": "Connaissez votre impact",
   "onboardingStep1Description": "Voyez comment vos activités ont un impact sur la planète, les animaux et autres espèces.",
   "onboardingStep2Title": "Prenez des mesures pour réduire votre impact",
