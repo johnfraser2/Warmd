@@ -484,22 +484,26 @@ class _FootprintChart extends StatelessWidget {
     final historyState = context.watch<HistoryState>();
     final scores = historyState.scores;
     // FOR TEST PURPOSE ONLY
-    // final firstScoreDate = DateTime.utc(2020, 4);
+    // final firstScoreDate = DateTime.utc(2020, 7);
     // final scores = {
-    //   firstScoreDate: 30.0,
-    //   DateTime.utc(firstScoreDate.year, firstScoreDate.month + 1): 29.0,
-    //   DateTime.utc(firstScoreDate.year, firstScoreDate.month + 2): 30.0,
-    //   DateTime.utc(firstScoreDate.year + 1, firstScoreDate.month): 18.0
+    //   firstScoreDate: 16.2,
+    //   DateTime.utc(firstScoreDate.year, firstScoreDate.month + 2): 15.3,
+    //   DateTime.utc(firstScoreDate.year, firstScoreDate.month + 3): 15.7,
+    //   DateTime.utc(firstScoreDate.year, firstScoreDate.month + 5): 14.7
     // };
     final improvementPercent = historyState.improvementPercent;
 
     final years = scores.keys.map((d) => d.year);
     final numYears = max(years.last - years.first + 1, 2);
+    final startMonth = scores.keys.first.month;
 
     final maxX = numYears * 12.0; // each month is represented
     final maxY = scores.values.reduce(max) + 5;
 
-    int previousTitleYear;
+    int previousYearForTitle;
+    int previousYearForVerticalLine;
+
+    int xValueToYear(double value) => years.first + (value + startMonth - 1) ~/ 12;
 
     return AspectRatio(
       aspectRatio: 1.23,
@@ -515,22 +519,28 @@ class _FootprintChart extends StatelessWidget {
                 handleBuiltInTouches: true,
               ),
               gridData: FlGridData(
-                show: false,
+                drawHorizontalLine: false,
+                drawVerticalLine: true,
+                checkToShowVerticalLine: (value) {
+                  final year = xValueToYear(value);
+
+                  if (year != years.first && previousYearForVerticalLine != year) {
+                    previousYearForVerticalLine = year;
+                    return true;
+                  }
+                  return false;
+                },
               ),
               titlesData: FlTitlesData(
                 bottomTitles: SideTitles(
                   showTitles: true,
                   getTitles: (value) {
-                    final year = years.first + 1 + value ~/ 12;
+                    final year = xValueToYear(value);
 
-                    //TODO Allow to always display all years but not very precise and may be ugly on small devices
-                    if (previousTitleYear != year) {
-                      if (previousTitleYear != null) {
-                        previousTitleYear = year;
-                        return year.toString();
-                      } else {
-                        previousTitleYear = year;
-                      }
+                    //TODO Allow to always display all years but may be ugly on small devices when there is several years
+                    if (year != years.first && previousYearForTitle != year) {
+                      previousYearForTitle = year;
+                      return year.toString();
                     }
                     return '';
                   },

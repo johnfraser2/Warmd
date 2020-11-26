@@ -1,6 +1,6 @@
 #!/bin/sh
 
-flutter pub run build_runner build
+flutter pub run build_runner build --delete-conflicting-outputs
 
 flutter pub run easy_localization:generate
 flutter pub run easy_localization:generate -f keys -s en.json -o locale_keys.g.dart
