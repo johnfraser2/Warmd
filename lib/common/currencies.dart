@@ -91,7 +91,7 @@ List<Map<String, String>> countries = [
   {'name': 'Honduras', 'code': 'HN', 'currency': 'HNL'},
   {'name': '香港', 'code': 'HK', 'currency': 'HKD'},
   {'name': 'Ísland', 'code': 'IS', 'currency': 'ISK'},
-  {'name': 'भारत', 'code': 'IN', 'currency': 'INR'},
+  {'name': 'India', 'code': 'IN', 'currency': 'INR'},
   {'name': 'Indonesia', 'code': 'ID', 'currency': 'IDR'},
   {'name': 'ایران', 'code': 'IR', 'currency': 'IRR'},
   {'name': 'العراق', 'code': 'IQ', 'currency': 'IQD'},
