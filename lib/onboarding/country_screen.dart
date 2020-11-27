@@ -1,3 +1,4 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class CountryScreen extends StatelessWidget {
     final c = state.categories[0].criterias[0];
 
     return Scaffold(
+      resizeToAvoidBottomInset: false, // Usefull to have a better display when the keyboard is up
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,46 +53,38 @@ class CountryScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                     ),
-                    Gaps.h48,
+                    Gaps.h32,
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 500),
-                      child: Container(
-                        color: Colors.grey[100],
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: DropdownButton<int>(
-                            isExpanded: true,
-                            selectedItemBuilder: (BuildContext context) {
-                              return c.labels.map((String item) {
-                                return Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      item,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context).textTheme.bodyText2,
-                                    ),
-                                  ],
-                                );
-                              }).toList();
-                            },
-                            value: c.currentValue.toInt(),
-                            underline: Container(),
-                            onChanged: (int value) {
-                              c.currentValue = value.toDouble();
-                              state.persist(c);
-                            },
-                            items: c.labels
-                                .mapIndexed((index, label) => DropdownMenuItem<int>(
-                                      value: index,
-                                      child: Text(
-                                        label,
-                                        style: Theme.of(context).textTheme.bodyText2,
-                                      ),
-                                    ))
-                                .toList(),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
+                        child: DropdownSearch<int>(
+                          mode: Mode.BOTTOM_SHEET,
+                          showSearchBox: true,
+                          showSelectedItem: true,
+                          items: List.generate(c.maxValue.toInt() + 1, (i) => i),
+                          maxHeight: 400,
+                          compareFn: (int i, int j) => i == j,
+                          itemAsString: (item) => c.labels[item],
+                          onChanged: (int value) {
+                            c.currentValue = value.toDouble();
+                            state.persist(c);
+                          },
+                          autoFocusSearchBox: true,
+                          emptyBuilder: (context, searchEntry) => Center(
+                            child: Text(LocaleKeys.countrySelectionNotFound.tr()),
                           ),
+                          dropdownSearchDecoration: const InputDecoration(
+                            filled: false,
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: warmdBlue, width: 2),
+                            ),
+                          ),
+                          searchBoxDecoration: InputDecoration(
+                            border: const OutlineInputBorder(),
+                            labelText: LocaleKeys.countrySelectionSearchHint.tr(),
+                          ),
+                          selectedItem: c.currentValue.toInt(),
                         ),
                       ),
                     ),

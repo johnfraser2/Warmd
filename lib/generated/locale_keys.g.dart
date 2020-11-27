@@ -13,6 +13,8 @@ abstract class  LocaleKeys {
   static const countrySelectionTitle = 'countrySelectionTitle';
   static const countrySelectionQuestion = 'countrySelectionQuestion';
   static const countrySelectionExplanation = 'countrySelectionExplanation';
+  static const countrySelectionSearchHint = 'countrySelectionSearchHint';
+  static const countrySelectionNotFound = 'countrySelectionNotFound';
   static const continueAction = 'continueAction';
   static const continueActionExplanation = 'continueActionExplanation';
   static const perWeek = 'perWeek';

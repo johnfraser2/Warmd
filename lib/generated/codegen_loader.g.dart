@@ -74,6 +74,8 @@ static const Map<String,dynamic> en = {
   "countrySelectionTitle": "COUNTRY",
   "countrySelectionQuestion": "Which country do you reside in?",
   "countrySelectionExplanation": "This information allows us to correctly compute your carbon footprint.",
+  "countrySelectionSearchHint": "Search a country",
+  "countrySelectionNotFound": "We didn't recognize that country, please try to write it in the country official language or select it in the list.",
   "continueAction": "CONTINUE",
   "continueActionExplanation": "You can always update the data later on.",
   "perWeek": "Per week.",
