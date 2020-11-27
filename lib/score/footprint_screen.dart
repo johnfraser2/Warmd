@@ -530,6 +530,11 @@ class _FootprintChart extends StatelessWidget {
                   }
                   return false;
                 },
+                getDrawingVerticalLine: (value) => FlLine(
+                  color: Colors.black12,
+                  strokeWidth: 1,
+                  dashArray: const [5],
+                ),
               ),
               titlesData: FlTitlesData(
                 bottomTitles: SideTitles(
