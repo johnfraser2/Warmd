@@ -63,7 +63,6 @@ class CountryScreen extends StatelessWidget {
                           showSearchBox: true,
                           showSelectedItem: true,
                           items: List.generate(c.maxValue.toInt() + 1, (i) => i),
-                          maxHeight: 400,
                           compareFn: (int i, int j) => i == j,
                           itemAsString: (item) => c.labels[item],
                           onChanged: (int value) {

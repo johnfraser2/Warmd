@@ -192,6 +192,8 @@ static const Map<String,dynamic> fr = {
   "countrySelectionTitle": "PAYS",
   "countrySelectionQuestion": "Dans quel pays vivez-vous ?",
   "countrySelectionExplanation": "Cette information nous permet de correctement calculer votre empreinte carbone.",
+  "countrySelectionSearchHint": "Rechercher un pays",
+  "countrySelectionNotFound": "Nous n'avons pas reconnu ce pays, veuillez essayer de l'écrire dans la langue officielle du pays ou sélectionnez-le dans la liste.",
   "continueAction": "CONTINUER",
   "continueActionExplanation": "Vous pouvez toujours mettre à jour les données plus tard.",
   "perWeek": "Par semaine.",
