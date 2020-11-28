@@ -186,7 +186,7 @@ class CleanElectricityCriteria extends Criteria {
     final moneyChange = _countryCriteria.getCurrencyRate();
 
     final electricityBill = _electricityBillCriteria.currentValue * moneyChange;
-    final co2ElectricityPercent = min(100, 100 - currentValue + 15); // +15% because nothing is 100% clean
+    final co2ElectricityPercent = min(100, 100 - currentValue + 5); // +5% because nothing is 100% clean
     const kWhPrice = 0.15; // in dollars
     const co2TonsPerKWh = 0.00065;
 
@@ -195,7 +195,7 @@ class CleanElectricityCriteria extends Criteria {
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 0.5) {
+    if (co2EqTonsPerYear() > 1) {
       return LocaleKeys.cleanElectricityCriteriaAdvice.tr();
     } else {
       return null;
@@ -225,8 +225,8 @@ class FlightsCriteria extends Criteria {
   FlightsCriteria(this._countryCriteria) {
     key = 'flights';
     minValue = 0;
-    maxValue = 100000;
-    step = 5000;
+    maxValue = 50000;
+    step = 2500;
     currentValue = 0;
   }
 
@@ -263,8 +263,8 @@ class CarCriteria extends Criteria {
   CarCriteria(this._carConsumptionCriteria, this._countryCriteria) {
     key = 'car';
     minValue = 0;
-    maxValue = 100000;
-    step = 5000;
+    maxValue = 80000;
+    step = 2500;
     currentValue = 0;
   }
 
@@ -341,8 +341,8 @@ class PublicTransportCriteria extends Criteria {
   PublicTransportCriteria(this._countryCriteria) {
     key = 'public_transport';
     minValue = 0;
-    maxValue = 100000;
-    step = 5000;
+    maxValue = 30000;
+    step = 1000;
     currentValue = 0;
   }
 

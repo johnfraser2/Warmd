@@ -270,7 +270,8 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             if (!shouldDisplayOnlyThreeValues) Expanded(child: Center(child: Text(valueText2, style: valueTextStyle))),
             Expanded(child: Center(child: Text(valueText3, style: valueTextStyle))),
             if (!shouldDisplayOnlyThreeValues) Expanded(child: Center(child: Text(valueText4, style: valueTextStyle))),
-            Expanded(child: Center(child: Text(valueText5 + (c.minValue < 0 ? '' : '+'), style: valueTextStyle))),
+            Expanded(
+                child: Center(child: Text(valueText5 + (c.minValue < 0 || c.unit == '%' ? '' : '+'), style: valueTextStyle))),
           ],
         )
       ],

@@ -72,7 +72,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                     ),
                     Gaps.h48,
                     _buildRedoQuestionnaireButton(context),
-                    Gaps.h92,
+                    Gaps.h64,
                     _buildGoToSourcesButton(context),
                   ],
                 ),
@@ -327,21 +327,15 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
 
             widget.onRestartTapped(context);
           },
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
-            shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            )),
-            textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2.copyWith(
-                  fontWeight: FontWeight.bold,
-                )),
-            minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
-            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
-          ),
+          style: Theme.of(context).elevatedButtonTheme.style.copyWith(
+                textStyle: MaterialStateProperty.all<TextStyle>(
+                    Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold)),
+                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
+              ),
           child: Text(
             LocaleKeys.redoQuestionnaire.tr(),
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: Colors.grey[600]),
+            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
       ),

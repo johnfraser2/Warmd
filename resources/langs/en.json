@@ -24,7 +24,7 @@
     "electricityBillCriteriaTitle": "Your electricity bill",
     "cleanElectricityCriteriaTitle": "Percent of carbon-free electricity",
     "cleanElectricityCriteriaExplanation": "Including nuclear, wind, solar or hydraulic electricity.\n\nIf you don't know, you may be able to find some answers on (a https://www.electricitymap.org)ElectricityMap(/a).",
-    "cleanElectricityCriteriaAdvice": "Choose your electricity provider to only pay for renewable or nuclear electricity.",
+    "cleanElectricityCriteriaAdvice": "Choose your electricity provider to only pay for renewable or nuclear electricity.\n\nIf you cannot use more carbon-free electricity, then consider reducing your use of electric car or electric heater.",
     "utilitiesCategoryTitle": "Utilities",
     "flightsCriteriaTitle": "Distance travelled by airplane",
     "flightsCriteriaAdvice": "An airplane produces between 6x and 40x more greenhouse gas per passenger than a train.\n\nAsk yourself: do you really need these airplane trips? Consider having holidays in your own country and take the train.",
