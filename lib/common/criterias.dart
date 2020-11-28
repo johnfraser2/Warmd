@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:warmd/generated/locale_keys.g.dart';
 
-import 'currencies.dart';
+import 'countries.dart';
 
 abstract class Criteria {
   String key;
@@ -17,8 +17,9 @@ abstract class Criteria {
   double currentValue;
   List<String> labels;
 
-  double co2EqTonsPerYear();
-  String advice();
+  double co2EqTonsPerYear() => 0;
+  String advice() => null;
+  Map<String, Map<String, String>> links() => null;
 
   String getFormatedFootprint() => LocaleKeys.co2EqTonsValue.tr(args: [co2EqTonsPerYear().toStringAsFixed(1)]);
 }
@@ -45,14 +46,12 @@ class CountryCriteria extends Criteria {
   @override
   List<String> get labels => countries.map((c) => c['name']).toList();
 
-  @override
-  double co2EqTonsPerYear() => 0;
-
-  @override
-  String advice() => null;
-
   double getCurrencyRate() {
     return 1 / currencyRates[countries[currentValue.toInt()]['currency']];
+  }
+
+  String getCountryCode() {
+    return countries[currentValue.toInt()]['code'];
   }
 
   String getCurrencyCode() {
@@ -161,12 +160,6 @@ class ElectricityBillCriteria extends Criteria {
 
   @override
   String get unit => _countryCriteria.getCurrencyCode();
-
-  @override
-  double co2EqTonsPerYear() => 0;
-
-  @override
-  String advice() => null;
 }
 
 class CleanElectricityCriteria extends Criteria {
@@ -340,12 +333,6 @@ class CarConsumptionCriteria extends Criteria {
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'L/100km' : 'mpg';
-
-  @override
-  double co2EqTonsPerYear() => 0;
-
-  @override
-  String advice() => null;
 }
 
 class PublicTransportCriteria extends Criteria {
@@ -402,6 +389,14 @@ class TravelCategory extends CriteriaCategory {
   String get title => LocaleKeys.travelCategoryTitle.tr();
 }
 
+const _foodLinks = {
+  'FR': {
+    'Karbon scanner': 'https://www.karbon.earth/',
+    'TooGoodToGo Anti-Gaspi': 'https://toogoodtogo.fr/',
+    'Phenix Anti-Gaspi': 'https://phenixapp.page.link/open-app',
+  },
+};
+
 class RuminantMeatCriteria extends Criteria {
   RuminantMeatCriteria() {
     key = 'ruminant_meat';
@@ -434,6 +429,9 @@ class RuminantMeatCriteria extends Criteria {
       return null;
     }
   }
+
+  @override
+  Map<String, Map<String, String>> links() => _foodLinks;
 }
 
 class NonRuminantMeatCriteria extends Criteria {
@@ -468,6 +466,9 @@ class NonRuminantMeatCriteria extends Criteria {
       return null;
     }
   }
+
+  @override
+  Map<String, Map<String, String>> links() => _foodLinks;
 }
 
 class CheeseCriteria extends Criteria {
@@ -502,6 +503,9 @@ class CheeseCriteria extends Criteria {
       return null;
     }
   }
+
+  @override
+  Map<String, Map<String, String>> links() => _foodLinks;
 }
 
 class SnackCriteria extends Criteria {
@@ -533,6 +537,9 @@ class SnackCriteria extends Criteria {
       return null;
     }
   }
+
+  @override
+  Map<String, Map<String, String>> links() => _foodLinks;
 }
 
 class OverweightCriteria extends Criteria {
@@ -649,6 +656,17 @@ class MaterialGoodsCriteria extends Criteria {
       return null;
     }
   }
+
+  @override
+  Map<String, Map<String, String>> links() => const {
+        'FR': {
+          'BackMarket': 'https://www.backmarket.fr/',
+          'LeBonCoin': 'https://www.leboncoin.fr/',
+          'Vinted': 'https://www.vinted.fr/',
+          'Geev': 'https://www.geev.com/fr',
+          'Emmaüs': 'https://www.label-emmaus.co/fr/nos-boutiques/',
+        },
+      };
 }
 
 class SavingsCriteria extends Criteria {
@@ -694,6 +712,14 @@ class SavingsCriteria extends Criteria {
       return null;
     }
   }
+
+  @override
+  Map<String, Map<String, String>> links() => const {
+        'FR': {
+          'Calculateur Rift': 'https://riftapp.fr/',
+          'Banque mobile Helios': 'https://www.helios.do/',
+        },
+      };
 }
 
 class WaterCriteria extends Criteria {
@@ -731,6 +757,16 @@ class WaterCriteria extends Criteria {
       return null;
     }
   }
+
+  @override
+  Map<String, Map<String, String>> links() => const {
+        'FR': {
+          "Douchette à réduction d'eau Hansgrohe":
+              'https://www.hansgrohe.fr/articledetail-crometta-douchette-a-main-vario-green-6l-min-26336400',
+          "Mousseurs robinet à réduction d'eau Hansgrohe":
+              'https://www.hansgrohe.fr/articledetail-2-mousseurs-ecosmart-lavabo-et-bidet-sous-blister-13958002',
+        },
+      };
 }
 
 class InternetCriteria extends Criteria {
@@ -763,6 +799,16 @@ class InternetCriteria extends Criteria {
       return null;
     }
   }
+
+  @override
+  Map<String, Map<String, String>> links() => const {
+        // All countries
+        '': {
+          'Ecosia': 'https://www.ecosia.org/',
+          'Cleanfox mail cleaner': 'https://www.cleanfox.io/',
+          'Mobile Carbonalyser': 'https://primezone.orange.com/app/Mobile-Carbonalyser/367',
+        },
+      };
 }
 
 class GoodsCategory extends CriteriaCategory {

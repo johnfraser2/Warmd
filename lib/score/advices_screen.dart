@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:warmd/common/blue_card.dart';
 import 'package:warmd/common/common.dart';
 import 'package:warmd/common/criterias.dart';
@@ -47,8 +48,12 @@ class AdvicesScreen extends StatelessWidget {
           Gaps.h32,
           _buildPolicalAdviceCard(context),
           for (int position in orderedAdvices.keys)
-            _buildAdviceCard(context, position, orderedAdvices[position],
-                state.categories.firstWhere((cat) => cat.criterias.contains(orderedAdvices[position]))),
+            _buildAdviceCard(
+                context,
+                position,
+                orderedAdvices[position],
+                state.categories.firstWhere((cat) => cat.criterias.contains(orderedAdvices[position])),
+                state.categories[0].criterias[0] as CountryCriteria),
           Gaps.h128,
           Align(
             alignment: Alignment.bottomRight,
@@ -118,7 +123,7 @@ class AdvicesScreen extends StatelessWidget {
                 onPressed: () => onSeeClimateChangeTapped(context),
                 child: Text(
                   LocaleKeys.advicesSeeClimateChange.tr(),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.right,
                   style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                 ),
               ),
@@ -129,7 +134,15 @@ class AdvicesScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAdviceCard(BuildContext context, int position, Criteria crit, CriteriaCategory category) {
+  Widget _buildAdviceCard(
+      BuildContext context, int position, Criteria crit, CriteriaCategory category, CountryCriteria countryCriteria) {
+    final allCountriesLinks = crit.links();
+
+    // We merge current country and international links
+    final Map<String, String> links = allCountriesLinks != null
+        ? ({}..addAll(allCountriesLinks[countryCriteria.getCountryCode()] ?? const {})..addAll(allCountriesLinks[''] ?? const {}))
+        : const {};
+
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 600),
       child: BlueCard(
@@ -188,9 +201,60 @@ class AdvicesScreen extends StatelessWidget {
                     fontWeight: FontWeight.w300,
                   ),
             ),
+            if (links.isNotEmpty)
+              Align(
+                alignment: Alignment.topRight,
+                child: TextButton(
+                  onPressed: () => _showLinksBottomSheet(context, links),
+                  child: Text(
+                    'Some links that might help you >',
+                    textAlign: TextAlign.right,
+                    style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                  ),
+                ),
+              ),
           ],
         ),
       ),
     );
+  }
+
+  void _showLinksBottomSheet(BuildContext context, Map<String, String> links) {
+    showModalBottomSheet<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            padding: const EdgeInsets.all(32.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  spacing: 4,
+                  runSpacing: 4,
+                  children: [
+                    for (MapEntry<String, String> link in links.entries)
+                      ActionChip(
+                        backgroundColor: warmdLightBlue,
+                        shadowColor: Colors.grey[100],
+                        label: Text(
+                          link.key,
+                          style: Theme.of(context).textTheme.bodyText1.copyWith(color: warmdDarkBlue),
+                        ),
+                        onPressed: () async {
+                          if (await canLaunch(link.value)) launch(link.value);
+                        },
+                      ),
+                  ],
+                ),
+                Gaps.h24,
+                MarkupText(
+                  LocaleKeys.advicesLinksExplanation.tr(),
+                  style: Theme.of(context).textTheme.caption.copyWith(color: warmdDarkBlue),
+                ),
+              ],
+            ),
+          );
+        });
   }
 }

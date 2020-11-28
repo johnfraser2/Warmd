@@ -155,6 +155,7 @@ static const Map<String,dynamic> en = {
   "advicesExplanation": "Small acts are welcomed, but they should not hide the truth: they are not significative enough to face the climate emergency, we need to focus on the big ones.",
   "advicesPoliticsCategory": "Politics",
   "advicesSeeClimateChange": "See what they can do >",
+  "advicesLinksExplanation": "This list is non-exhaustive and has not be sponsored, it is simply links I believe to be helpful.\nIf you have any suggestion or remark, (a mailto:warmd_app@icloud.com)please tell me(/a).",
   "globalObjectivesTitle": "Global goals",
   "globalObjectivesPart1": "To stay below +2°C, greenhouse gas emissions must be (a https://folk.universitetetioslo.no/roberan/t/global_mitigation_curves.shtml)divided by 3 by 2050(/a), i.e. about (b)-6% per year(/b) starting from 2020.",
   "globalObjectivesPart2": "So far, it is unlikely to happen. Until now we constantly increased our emissions and there is still no clear sign of reduction.\n\nWith the current trend and without effective efforts, we will end up with at least (b)+4°C by 2100(/b).",
