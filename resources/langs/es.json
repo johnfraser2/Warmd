@@ -13,5 +13,6 @@
     "countrySelectionExplanation": "Esta información nos va a permitir calcular correctamente tu huella de carbono.",
     "countrySelectionSearchHint": "Elige un país",
     "countrySelectionNotFound": "No reconocemos ese país, por favor trata de escribirlo en el idioma oficial del país o eligelo de la lista.",
-    "continueAction": "CONTINÚA"
+    "continueAction": "CONTINÚA",
+    "cleanElectricityCriteriaAdvice": "Elija su proveedor de electricidad para que sólo pague por energía renovable o nuclear.\n\nSi no puede utilizar más electricidad sin carbono, considere reducir el uso de un vehículo eléctrico o de un calentador eléctrico."
 }
