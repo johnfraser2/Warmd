@@ -308,10 +308,8 @@ class CarConsumptionCriteria extends Criteria {
 
   CarConsumptionCriteria(this._countryCriteria) {
     key = 'car_consumption';
-    minValue = 2;
-    maxValue = 20;
     step = 1;
-    currentValue = 8;
+    currentValue = 7;
   }
 
   @override
@@ -332,7 +330,9 @@ class CarConsumptionCriteria extends Criteria {
   double get currentValue => min(maxValue, max(minValue, super.currentValue));
 
   @override
-  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'L/100km' : 'mpg';
+  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric
+      ? 'L/100km'
+      : 'mpg'; // Actually there is 2 different mpg, we mix them two here and will do the diff in carbon calculation
 }
 
 class PublicTransportCriteria extends Criteria {
