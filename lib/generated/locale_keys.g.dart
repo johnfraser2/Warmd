@@ -94,6 +94,7 @@ abstract class  LocaleKeys {
   static const advicesExplanation = 'advicesExplanation';
   static const advicesPoliticsCategory = 'advicesPoliticsCategory';
   static const advicesSeeClimateChange = 'advicesSeeClimateChange';
+  static const advicesSeeLinks = 'advicesSeeLinks';
   static const advicesLinksExplanation = 'advicesLinksExplanation';
   static const globalObjectivesTitle = 'globalObjectivesTitle';
   static const globalObjectivesPart1 = 'globalObjectivesPart1';

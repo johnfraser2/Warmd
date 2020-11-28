@@ -207,7 +207,7 @@ class AdvicesScreen extends StatelessWidget {
                 child: TextButton(
                   onPressed: () => _showLinksBottomSheet(context, links),
                   child: Text(
-                    'Some links that might help you >',
+                    LocaleKeys.advicesSeeLinks.tr(),
                     textAlign: TextAlign.right,
                     style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                   ),
