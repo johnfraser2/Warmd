@@ -173,7 +173,6 @@ static const Map<String,dynamic> it = {
   "heatingFuelCriteriaTitle": "La tua bolletta del riscaldamento",
   "electricityBillCriteriaTitle": "La tua bolletta della corrente elettrica",
   "cleanElectricityCriteriaTitle": "Percentuale di energia elettrica priva di carbonio",
-  "cleanElectricityCriteriaAdvice": "Scegli il tuo fornitore di energia per pagare solamente energia rinnovabile o nucleare.",
   "waterCriteriaTitle": "Il tuo consumo di acqua",
   "waterCriteriaExplanation": "Inclusa l'acqua per le tue docce, bagni, sciacquoni e giardinaggio.",
   "waterCriteriaLabel1": "Basso (docce veloci, senza giardino)",
@@ -207,7 +206,7 @@ static const Map<String,dynamic> fr = {
   "electricityBillCriteriaTitle": "Votre facture d'électricité",
   "cleanElectricityCriteriaTitle": "Pourcentage d'électricité neutre en carbone",
   "cleanElectricityCriteriaExplanation": "Cela comprend l'électricité nucléaire, éolienne, solaire ou hydraulique.\n\nSi vous ne savez pas, vous pourrez peut-être trouver des réponses sur (a https://www.electricitymap.org)ElectricityMap(/a).",
-  "cleanElectricityCriteriaAdvice": "Choisissez votre fournisseur d'électricité pour ne payer que pour de l'énergie renouvelable ou nucléaire.",
+  "cleanElectricityCriteriaAdvice": "Choisissez votre fournisseur d'électricité pour ne payer que pour l'électricité renouvelable ou nucléaire.\n\nSi vous ne pouvez pas utiliser plus d'électricité neutre en carbone, alors pensez à réduire votre utilisation de voiture électrique ou de chauffage électrique.",
   "utilitiesCategoryTitle": "Energie",
   "flightsCriteriaTitle": "Distance parcourue en avion",
   "flightsCriteriaAdvice": "Un avion produit entre 6 et 40 fois plus de gaz à effet de serre par passager qu'un train.\n\nDemandez-vous : avez-vous vraiment besoin de ces voyages en avion ? Envisagez de partir en vacances dans votre propre pays et de prendre le train.",
@@ -275,6 +274,8 @@ static const Map<String,dynamic> fr = {
   "advicesExplanation": "Les petits actes sont les bienvenus, mais ils ne doivent pas cacher la vérité : ils ne sont pas assez significatifs pour faire face à l'urgence climatique, nous devons nous concentrer sur les plus importants.",
   "advicesPoliticsCategory": "Politique",
   "advicesSeeClimateChange": "Voir ce qu'ils peuvent faire >",
+  "advicesSeeLinks": "Quelques liens qui pourraient vous aider >",
+  "advicesLinksExplanation": "Cette liste est non exhaustive et n'a pas été sponsorisée, il s'agit simplement de liens que je pense utiles.\nSi vous avez une suggestion ou une remarque, (a mailto:warmd_app@icloud.com)n'hésitez pas à me le dire (/a).",
   "globalObjectivesTitle": "Objectifs mondiaux",
   "globalObjectivesPart1": "Pour rester en dessous de +2°C, les émissions de gaz à effet de serre doivent être (a https://folk.universitetetioslo.no/roberan/t/global_mitigation_curves.shtml)divisées par 3 d'ici 2050(/a), soit (b)-6% par an(/b) à partir de 2020.",
   "globalObjectivesPart2": "Pour l'instant, il est peu probable que cela se produise. Jusqu'à présent, nous avons constamment augmenté nos émissions et il n'y a pas encore de signe visible de réduction.\n\nAvec la tendance actuelle et sans efforts efficaces, nous nous retrouverons avec au minimum (b)+4°C d'ici 2100(/b).",
@@ -298,7 +299,24 @@ static const Map<String,dynamic> no = {};
 static const Map<String,dynamic> af = {};
 static const Map<String,dynamic> da = {};
 static const Map<String,dynamic> sv = {};
-static const Map<String,dynamic> es = {};
+static const Map<String,dynamic> es = {
+  "back": "Volver",
+  "onboardingStep1Title": "Entiende tu impacto",
+  "onboardingStep1Description": "Aprende cómo tu actividad impact en el planeta los animales y más.",
+  "onboardingStep2Title": "Ponte en marcha para reducir el impacto",
+  "onboardingStep2Description": "Con pequeños pasos, todos los días, son los hitos para llegar a grandes cambios en el futuro.",
+  "onboardingAction": "EMPIEZA",
+  "welcomeTitle": "Hola,",
+  "welcomeDescription": "Gracias por descargar Warmd y por dar el primer paso para la hacer más seguro el futuro de nuestras próximas generaciones.\n\nAntes de que empieces, te vamos a hacer unas cuantas preguntas para hacerte recomendaciones personalizadas. ¿Estás preparado?",
+  "welcomeAction": "VAMOS A ELLO",
+  "countrySelectionTitle": "PAÍS",
+  "countrySelectionQuestion": "¿En qué país vives?",
+  "countrySelectionExplanation": "Esta información nos va a permitir calcular correctamente tu huella de carbono.",
+  "countrySelectionSearchHint": "Elige un país",
+  "countrySelectionNotFound": "No reconocemos ese país, por favor trata de escribirlo en el idioma oficial del país o eligelo de la lista.",
+  "continueAction": "CONTINÚA",
+  "cleanElectricityCriteriaAdvice": "Elija su proveedor de electricidad para que sólo pague por energía renovable o nuclear.\n\nSi no puede utilizar más electricidad sin carbono, considere reducir el uso de un vehículo eléctrico o de un calentador eléctrico."
+};
 static const Map<String,dynamic> ar = {};
 static const Map<String, Map<String,dynamic>> mapLocales = {"zh": zh, "tr": tr, "hu": hu, "bn": bn, "nl": nl, "ja": ja, "de": de, "ru": ru, "pl": pl, "uk": uk, "fi": fi, "pt": pt, "en": en, "it": it, "sr": sr, "fr": fr, "el": el, "ro": ro, "ca": ca, "ko": ko, "he": he, "vi": vi, "cs": cs, "no": no, "af": af, "da": da, "sv": sv, "es": es, "ar": ar};
 }
