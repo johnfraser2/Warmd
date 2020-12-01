@@ -1,5 +1,5 @@
 The IPCC and COP21 told us that the global warming still can stay below +35°F/+2°C and leave a troubled but still habitable planet to futur generations. However we need to act fast.
 
-This app allows you to calculate your carbon footprint, compare it with the average and get an idea on how you can improve it and why you should.
+This app allows you to calculate your carbon footprint and get an idea on how you can improve it and why you should.
 
 Any question or suggestion ? Please go to https://fredjul.github.io/Warmd/
