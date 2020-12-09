@@ -220,13 +220,11 @@ class UtilitiesCategory extends CriteriaCategory {
 }
 
 class FlightsCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-
-  FlightsCriteria(this._countryCriteria) {
+  FlightsCriteria() {
     key = 'flights';
     minValue = 0;
-    maxValue = 50000;
-    step = 2500;
+    maxValue = 60;
+    step = 1;
     currentValue = 0;
   }
 
@@ -237,13 +235,17 @@ class FlightsCriteria extends Criteria {
   String get explanation => LocaleKeys.inUnitPerYear.tr(args: [unit]);
 
   @override
-  String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
+  String get unit => 'h';
+
+  @override
+  double get currentValue => super.currentValue > maxValue
+      ? super.currentValue / 800
+      : super.currentValue; // Necessary since I switched from km to hours
 
   @override
   double co2EqTonsPerYear() {
     const co2TonsPerKm = 0.00028;
-    final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
-    return currentValue * milesToKmFactor * co2TonsPerKm;
+    return currentValue * 800 * co2TonsPerKm; // An airliner is generally above 800km/h
   }
 
   @override
@@ -378,7 +380,7 @@ class TravelCategory extends CriteriaCategory {
 
     final carConsumptionCriteria = CarConsumptionCriteria(countryCriteria);
     criterias = [
-      FlightsCriteria(countryCriteria),
+      FlightsCriteria(),
       CarCriteria(carConsumptionCriteria, countryCriteria),
       carConsumptionCriteria,
       PublicTransportCriteria(countryCriteria)

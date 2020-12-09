@@ -26,7 +26,7 @@
     "cleanElectricityCriteriaExplanation": "Including nuclear, wind, solar or hydraulic electricity.\n\nIf you don't know, you may be able to find some answers on (a https://www.electricitymap.org)ElectricityMap(/a).",
     "cleanElectricityCriteriaAdvice": "Choose your electricity provider to only pay for renewable or nuclear electricity.\n\nIf you cannot use more carbon-free electricity, then consider reducing your use of electric car or electric heater.",
     "utilitiesCategoryTitle": "Utilities",
-    "flightsCriteriaTitle": "Distance travelled by airplane",
+    "flightsCriteriaTitle": "Hours spent in an airplane",
     "flightsCriteriaAdvice": "An airplane produces between 6x and 40x more greenhouse gas per passenger than a train.\n\nAsk yourself: do you really need these airplane trips? Consider having holidays in your own country and take the train.",
     "carCriteriaTitle": "Distance travelled with a gasoline/diesel car",
     "carCriteriaAdviceHigh": "You should reduce your car usage by moving house, adopting remote work or using the train/subway/bus for most of your transport.\n\nIf you can't do this and have access to carbon-free electricity, consider buying a small electric car (always avoid big or sport cars).",
