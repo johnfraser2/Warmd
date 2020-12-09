@@ -9,7 +9,7 @@ import 'package:warmd/generated/locale_keys.g.dart';
 const _levelColors = [
   Color(0xFF00A31D),
   Color(0xFF00CD51),
-  Color(0xFFD7F617),
+  Color(0xFFC8E412),
   Color(0xFFF9A500),
   Color(0xFFF95A00),
   Color(0xFFFB464A),

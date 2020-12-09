@@ -244,7 +244,7 @@ class FlightsCriteria extends Criteria {
 
   @override
   double co2EqTonsPerYear() {
-    const co2TonsPerKm = 0.00028;
+    const co2TonsPerKm = 0.00016; // Around 0.8t per 5000km if we believe the CoolClimate's advanced air traval results
     return currentValue * 800 * co2TonsPerKm; // An airliner is generally above 800km/h
   }
 

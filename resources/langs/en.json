@@ -70,6 +70,7 @@
     "valueWithMore": "{} or more",
     "valueWithLess": "{} or less",
     "footprintTitle": "Your total carbon footprint is",
+    "footprintFlightsEquivalent": "Or (b){}(/b) Paris ⬌ New York return trips",
     "footprintWarning": "See what happens when you don't take action >",
     "footprintRepartitionTitle": "CARBON FOOTPRINT REPARTITION",
     "footprintEvolutionTitle": "CARBON FOOTPRINT EVOLUTION",

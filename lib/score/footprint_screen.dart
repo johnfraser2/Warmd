@@ -6,6 +6,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
 import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
 import 'package:warmd/common/common.dart';
@@ -173,18 +174,31 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 ),
               ),
               Center(child: ScoreWidget(state)),
-              Gaps.h32,
+              Gaps.h24,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: Center(
-                  child: TextButton(
-                    onPressed: () => widget.onSeeClimateChangeTapped(context),
-                    child: Text(
-                      LocaleKeys.footprintWarning.tr(),
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.caption.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(CupertinoIcons.airplane),
+                        Gaps.w12,
+                        MarkupText(
+                            LocaleKeys.footprintFlightsEquivalent.tr(args: [(state.co2EqTonsPerYear() ~/ 1.6).toString()])),
+                      ],
                     ),
-                  ),
+                    Center(
+                      child: TextButton(
+                        onPressed: () => widget.onSeeClimateChangeTapped(context),
+                        child: Text(
+                          LocaleKeys.footprintWarning.tr(),
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.caption.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Gaps.h48,
