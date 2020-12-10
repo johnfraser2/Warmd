@@ -220,6 +220,8 @@ class UtilitiesCategory extends CriteriaCategory {
 }
 
 class FlightsCriteria extends Criteria {
+  static const _airlinerKmsPerHour = 800;
+
   FlightsCriteria() {
     key = 'flights';
     minValue = 0;
@@ -239,13 +241,13 @@ class FlightsCriteria extends Criteria {
 
   @override
   double get currentValue => super.currentValue > maxValue
-      ? super.currentValue / 800
+      ? super.currentValue / _airlinerKmsPerHour
       : super.currentValue; // Necessary since I switched from km to hours
 
   @override
   double co2EqTonsPerYear() {
     const co2TonsPerKm = 0.00016; // Around 0.8t per 5000km if we believe the CoolClimate's advanced air traval results
-    return currentValue * 800 * co2TonsPerKm; // An airliner is generally above 800km/h
+    return currentValue * _airlinerKmsPerHour * co2TonsPerKm;
   }
 
   @override

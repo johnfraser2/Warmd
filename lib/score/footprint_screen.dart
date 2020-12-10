@@ -108,6 +108,8 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                   style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Center(child: ScoreWidget(state)),
+                Gaps.h16,
+                _buildFlightsEquivalent(state),
                 Gaps.h64,
                 _buildFootprintAnalysis(context, state, sortedCategories),
                 Gaps.h64,
@@ -126,6 +128,17 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Row _buildFlightsEquivalent(CriteriasState state) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(CupertinoIcons.airplane),
+        Gaps.w12,
+        MarkupText(LocaleKeys.footprintFlightsEquivalent.tr(args: [(state.co2EqTonsPerYear() / 1.6).round().toString()])),
+      ],
     );
   }
 
@@ -179,15 +192,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(CupertinoIcons.airplane),
-                        Gaps.w12,
-                        MarkupText(
-                            LocaleKeys.footprintFlightsEquivalent.tr(args: [(state.co2EqTonsPerYear() ~/ 1.6).toString()])),
-                      ],
-                    ),
+                    _buildFlightsEquivalent(state),
                     Center(
                       child: TextButton(
                         onPressed: () => widget.onSeeClimateChangeTapped(context),
