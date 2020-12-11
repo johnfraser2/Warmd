@@ -219,7 +219,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 200),
+                    constraints: const BoxConstraints(maxWidth: 212),
                     child: ElevatedButton(
                       onPressed: () => widget.onSeeAdvicesTapped(context),
                       style: ButtonStyle(
