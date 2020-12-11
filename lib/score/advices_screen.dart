@@ -179,6 +179,7 @@ class AdvicesScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  Gaps.w4,
                   SvgPicture.asset(
                     'assets/${category.key}.svg',
                     height: 48,
