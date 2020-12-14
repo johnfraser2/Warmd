@@ -195,7 +195,7 @@ class CleanElectricityCriteria extends Criteria {
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 1) {
+    if (co2EqTonsPerYear() > 0.5) {
       return LocaleKeys.cleanElectricityCriteriaAdvice.tr();
     } else {
       return null;
@@ -252,7 +252,7 @@ class FlightsCriteria extends Criteria {
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 1) {
+    if (co2EqTonsPerYear() > 0.5) {
       return LocaleKeys.flightsCriteriaAdvice.tr();
     } else {
       return null;
@@ -427,7 +427,7 @@ class RuminantMeatCriteria extends Criteria {
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 1) {
+    if (co2EqTonsPerYear() > 0.5) {
       return LocaleKeys.ruminantMeatCriteriaAdvice.tr();
     } else {
       return null;
@@ -654,7 +654,7 @@ class MaterialGoodsCriteria extends Criteria {
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 1) {
+    if (co2EqTonsPerYear() > 0.5) {
       return LocaleKeys.materialGoodsCriteriaAdvice.tr();
     } else {
       return null;
@@ -664,11 +664,13 @@ class MaterialGoodsCriteria extends Criteria {
   @override
   Map<String, Map<String, String>> links() => const {
         'FR': {
-          'BackMarket': 'https://www.backmarket.fr/',
-          'LeBonCoin': 'https://www.leboncoin.fr/',
-          'Vinted': 'https://www.vinted.fr/',
-          'Geev': 'https://www.geev.com/fr',
-          'Emmaüs': 'https://www.label-emmaus.co/fr/nos-boutiques/',
+          'BackMarket : produits reconditionnés': 'https://www.backmarket.fr/',
+          'LeBonCoin : petites annonces': 'https://www.leboncoin.fr/',
+          'Vinted : vêtements de seconde main': 'https://www.vinted.fr/',
+          "Geev : dons d'objets": 'https://www.geev.com/fr',
+          "Emmaüs : dons/achat d'occasions": 'https://www.label-emmaus.co/fr/nos-boutiques/',
+          'Zack : revend/donne/répare/recycle vos produits électroniques': 'https://www.zack.eco/',
+          'Murphy : réparation électroménager': 'https://murfy.fr/',
         },
       };
 }
@@ -710,7 +712,7 @@ class SavingsCriteria extends Criteria {
 
   @override
   String advice() {
-    if (co2EqTonsPerYear() > 1) {
+    if (co2EqTonsPerYear() > 0.5) {
       return LocaleKeys.savingsCriteriaAdvice.tr();
     } else {
       return null;
