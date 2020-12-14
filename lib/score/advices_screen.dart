@@ -223,6 +223,7 @@ class AdvicesScreen extends StatelessWidget {
   void _showLinksBottomSheet(BuildContext context, Map<String, String> links) {
     showModalBottomSheet<void>(
         context: context,
+        isScrollControlled: true,
         builder: (BuildContext context) {
           return Container(
             padding: const EdgeInsets.all(32.0),

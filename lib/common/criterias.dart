@@ -669,7 +669,7 @@ class MaterialGoodsCriteria extends Criteria {
           'Vinted : vêtements de seconde main': 'https://www.vinted.fr/',
           "Geev : dons d'objets": 'https://www.geev.com/fr',
           "Emmaüs : dons/achat d'occasions": 'https://www.label-emmaus.co/fr/nos-boutiques/',
-          'Zack : revend/donne/répare/recycle vos produits électroniques': 'https://www.zack.eco/',
+          "Zack : revend/répare/recycle l'électronique": 'https://www.zack.eco/',
           'Murphy : réparation électroménager': 'https://murfy.fr/',
         },
       };
