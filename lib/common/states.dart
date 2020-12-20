@@ -1,11 +1,9 @@
 import 'dart:convert';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../generated/locale_keys.g.dart';
 import 'criterias.dart';
 
 part 'states.freezed.dart';
@@ -44,8 +42,6 @@ class CriteriasState with ChangeNotifier {
   }
 
   double co2EqTonsPerYear() => _categories.map((cat) => cat.co2EqTonsPerYear()).reduce((a, b) => a + b);
-
-  String getFormatedFootprint() => LocaleKeys.co2EqTonsValue.tr(args: [co2EqTonsPerYear().toStringAsFixed(1)]);
 
   void persist(Criteria c) {
     notifyListeners();

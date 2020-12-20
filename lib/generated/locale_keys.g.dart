@@ -86,7 +86,7 @@ abstract class  LocaleKeys {
   static const seeAbout = 'seeAbout';
   static const scoreUnit = 'scoreUnit';
   static const shortCo2EqTonsValue = 'shortCo2EqTonsValue';
-  static const co2EqTonsValue = 'co2EqTonsValue';
+  static const co2EqPercentValue = 'co2EqPercentValue';
   static const climateChangeTitle = 'climateChangeTitle';
   static const consequencesTitle = 'consequencesTitle';
   static const consequencesPart1 = 'consequencesPart1';

@@ -20,8 +20,6 @@ abstract class Criteria {
   double co2EqTonsPerYear() => 0;
   String advice() => null;
   Map<String, Map<String, String>> links() => null;
-
-  String getFormatedFootprint() => LocaleKeys.co2EqTonsValue.tr(args: [co2EqTonsPerYear().toStringAsFixed(1)]);
 }
 
 abstract class CriteriaCategory {
@@ -637,7 +635,7 @@ class MaterialGoodsCriteria extends Criteria {
   String get explanation => LocaleKeys.materialGoodsCriteriaExplanation.tr(args: [unit]);
 
   @override
-  double get maxValue => (((3000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+  double get maxValue => (((50000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
 
   @override
   double get currentValue => min(maxValue, super.currentValue);
@@ -648,8 +646,8 @@ class MaterialGoodsCriteria extends Criteria {
   @override
   double co2EqTonsPerYear() {
     final moneyChange = _countryCriteria.getCurrencyRate();
-    const co2TonsPerDollar = 0.0062;
-    return currentValue * moneyChange * co2TonsPerDollar;
+    const co2TonsPerDollarPerMonth = 0.0062; // CoolClimate provides a value per month
+    return (currentValue / 12) * moneyChange * co2TonsPerDollarPerMonth;
   }
 
   @override
@@ -671,6 +669,7 @@ class MaterialGoodsCriteria extends Criteria {
           "Emmaüs : dons/achat d'occasions": 'https://www.label-emmaus.co/fr/nos-boutiques/',
           "Zack : revend/répare/recycle l'électronique": 'https://www.zack.eco/',
           'Murphy : réparation électroménager': 'https://murfy.fr/',
+          "Bricolib : location d'outils": 'https://www.bricolib.net/',
         },
       };
 }

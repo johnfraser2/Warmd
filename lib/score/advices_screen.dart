@@ -47,13 +47,7 @@ class AdvicesScreen extends StatelessWidget {
           ),
           Gaps.h32,
           _buildPolicalAdviceCard(context),
-          for (int position in orderedAdvices.keys)
-            _buildAdviceCard(
-                context,
-                position,
-                orderedAdvices[position],
-                state.categories.firstWhere((cat) => cat.criterias.contains(orderedAdvices[position])),
-                state.categories[0].criterias[0] as CountryCriteria),
+          for (int position in orderedAdvices.keys) _buildAdviceCard(context, position, state, orderedAdvices[position]),
           Gaps.h128,
           Align(
             alignment: Alignment.bottomRight,
@@ -134,10 +128,11 @@ class AdvicesScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAdviceCard(
-      BuildContext context, int position, Criteria crit, CriteriaCategory category, CountryCriteria countryCriteria) {
-    final allCountriesLinks = crit.links();
+  Widget _buildAdviceCard(BuildContext context, int position, CriteriasState state, Criteria crit) {
+    final category = state.categories.firstWhere((cat) => cat.criterias.contains(crit));
+    final countryCriteria = state.categories[0].criterias[0] as CountryCriteria;
 
+    final allCountriesLinks = crit.links();
     // We merge current country and international links
     final Map<String, String> links = allCountriesLinks != null
         ? ({}..addAll(allCountriesLinks[countryCriteria.getCountryCode()] ?? const {})..addAll(allCountriesLinks[''] ?? const {}))
@@ -190,7 +185,10 @@ class AdvicesScreen extends StatelessWidget {
             if (crit.co2EqTonsPerYear() > 0) Gaps.h12,
             if (crit.co2EqTonsPerYear() > 0)
               Text(
-                crit.getFormatedFootprint(),
+                LocaleKeys.co2EqPercentValue.tr(namedArgs: {
+                  'co2EqTons': crit.co2EqTonsPerYear().toStringAsFixed(1),
+                  'percent': (100 ~/ (state.co2EqTonsPerYear() / crit.co2EqTonsPerYear())).toString()
+                }),
                 style: Theme.of(context).textTheme.subtitle2.copyWith(
                       color: warmdDarkBlue,
                     ),
