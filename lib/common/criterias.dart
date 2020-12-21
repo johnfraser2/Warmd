@@ -168,8 +168,8 @@ class CleanElectricityCriteria extends Criteria {
     key = 'clean_electricity';
     minValue = 0;
     maxValue = 100;
-    step = 5;
-    currentValue = 10;
+    step = 1;
+    currentValue = 30;
     unit = '%';
   }
 
@@ -178,6 +178,23 @@ class CleanElectricityCriteria extends Criteria {
 
   @override
   String get explanation => LocaleKeys.cleanElectricityCriteriaExplanation.tr();
+
+  @override
+  double get minValue {
+    switch (_countryCriteria.getCountryCode()) {
+      case 'IS':
+      case 'NO':
+        return 100;
+      case 'FR':
+      case 'SE':
+        return 90;
+      default:
+        return 30;
+    }
+  }
+
+  @override
+  double get currentValue => min(maxValue, max(minValue, super.currentValue));
 
   @override
   double co2EqTonsPerYear() {

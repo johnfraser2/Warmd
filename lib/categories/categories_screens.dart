@@ -104,7 +104,9 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               style: Theme.of(context).textTheme.headline5.copyWith(color: warmdGreen, fontWeight: FontWeight.bold),
             ),
             Gaps.h32,
-            for (Criteria crit in widget.criteriaCategory.criterias) _buildCriteria(context, state, crit),
+            // We display all criterias, except the one that are necessarily at a specific value (like clean energy percent for some countries)
+            for (Criteria crit in widget.criteriaCategory.criterias)
+              if (crit.maxValue > crit.minValue) _buildCriteria(context, state, crit),
             Gaps.h32,
             Text(
               LocaleKeys.continueActionExplanation.tr(),
