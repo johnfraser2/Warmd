@@ -166,10 +166,9 @@ class CleanElectricityCriteria extends Criteria {
 
   CleanElectricityCriteria(this._countryCriteria, this._electricityBillCriteria) {
     key = 'clean_electricity';
-    minValue = 0;
     maxValue = 100;
     step = 1;
-    currentValue = 30;
+    currentValue = 15;
     unit = '%';
   }
 
@@ -189,7 +188,7 @@ class CleanElectricityCriteria extends Criteria {
       case 'SE':
         return 90;
       default:
-        return 30;
+        return 0;
     }
   }
 
