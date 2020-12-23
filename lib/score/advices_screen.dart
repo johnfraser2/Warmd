@@ -101,6 +101,15 @@ class AdvicesScreen extends StatelessWidget {
                           ),
                     ),
                   ),
+                  Gaps.w4,
+                  Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxHeight: 42, maxWidth: 42),
+                      child: SvgPicture.asset(
+                        'assets/vote.svg',
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -129,7 +138,6 @@ class AdvicesScreen extends StatelessWidget {
   }
 
   Widget _buildAdviceCard(BuildContext context, int position, CriteriasState state, Criteria crit) {
-    final category = state.categories.firstWhere((cat) => cat.criterias.contains(crit));
     final countryCriteria = state.categories[0].criterias[0] as CountryCriteria;
 
     final allCountriesLinks = crit.links();
@@ -175,9 +183,13 @@ class AdvicesScreen extends StatelessWidget {
                     ),
                   ),
                   Gaps.w4,
-                  SvgPicture.asset(
-                    'assets/${category.key}.svg',
-                    height: 48,
+                  Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxHeight: 42, maxWidth: 42),
+                      child: SvgPicture.asset(
+                        'assets/${crit.key}.svg',
+                      ),
+                    ),
                   ),
                 ],
               ),
