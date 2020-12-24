@@ -51,7 +51,6 @@
     "foodCategoryTitle": "Nourriture",
     "materialGoodsCriteriaTitle": "Argent dépensé en biens matériels",
     "materialGoodsCriteriaExplanation": "En {} par an.\n\nConcerne les meubles, appareils électroménagers, vêtements, appareils électroniques, outils, véhicules, pièces de véhicules, médicaments, …",
-    "materialGoodsCriteriaAdvice": "Leur construction, en particulier pour les appareils électroniques et les véhicules, est généralement très polluante.\n\nVous pouvez réduire considérablement votre empreinte en les gardant plus longtemps ou en limitant simplement vos achats. De plus, il y a souvent plusieurs solutions disponibles pour réparer/vendre/donner vos biens actuels, trouver des biens d'occasion ou les louer.",
     "savingsCriteriaTitle": "Argent dormant sur un compte bancaire non décarboné",
     "savingsCriteriaExplanation": "Si vous ne le savez pas, vous pouvez considérer que 90% de vos économies sont concernées.",
     "savingsCriteriaAdvice": "La plupart des banques investissent encore la majorité de vos économies dans des entreprises ayant un impact carbone important. Heureusement, certaines banques vous permettent de choisir des investissements à faible émission de carbone.",
@@ -91,10 +90,6 @@
     "consequencesPart2": "Des milliards de personnes vont émigrer dans d'autres régions, avec un risque très élevé de famines, de guerres et des millions ou milliards de morts.\n\n(b)+6°C(/b) est la même différence de température moyenne entre le dernier (b)âge de glace(/b) et le (b)20e siècle(/b).",
     "advicesTitle": "Que devriez-vous faire ?",
     "advicesExplanation": "Les petits actes sont les bienvenus, mais ils ne doivent pas cacher la vérité : ils ne sont pas assez significatifs pour faire face à l'urgence climatique, nous devons nous concentrer sur les plus importants.",
-    "advicesPoliticsCategory": "Politique",
-    "advicesSeeClimateChange": "Voir ce qu'ils peuvent faire >",
-    "advicesSeeLinks": "Quelques liens qui pourraient vous aider >",
-    "advicesLinksExplanation": "Cette liste est non exhaustive et n'a pas été sponsorisée, il s'agit simplement de liens que je pense utiles.\nSi vous avez une suggestion ou une remarque, (a mailto:warmd_app@icloud.com)n'hésitez pas à me le dire (/a).",
     "globalObjectivesTitle": "Objectifs mondiaux",
     "globalObjectivesPart1": "Pour rester en dessous de +2°C, les émissions de gaz à effet de serre doivent être (a https://folk.universitetetioslo.no/roberan/t/global_mitigation_curves.shtml)divisées par 3 d'ici 2050(/a), soit (b)-6% par an(/b) à partir de 2020.",
     "globalObjectivesPart2": "Pour l'instant, il est peu probable que cela se produise. Jusqu'à présent, nous avons constamment augmenté nos émissions et il n'y a pas encore de signe vraiment visible de réduction.\n\nAvec la tendance actuelle et sans efforts efficaces, nous nous retrouverons avec au minimum (b)+3.2°C d'ici 2100(/b), et cela continuera d'augmenter par la suite.",
@@ -104,6 +99,5 @@
     "aboutProjectTitle": "Le projet Warmd",
     "aboutProjectDescription": "Warmd est un projet open-source à but non-lucratif. Vous pouvez y contribuer (a https://github.com/FredJul/Warmd)ici(/a) ou aider à le traduire (a https://frju.crowdin.com/warmd)ici(/a).\n\nLe design a été généreusement fourni par (a https://mnstudio.net)mn studio(/a).\n\nNotre seul objectif est de réduire un peu l'impact de l'homme sur notre planète.",
     "aboutRateIt": "Aidez-nous en notant l'appli 5 étoiles >",
-    "aboutSourcesTitle": "Sources",
-    "aboutSourcesDescription": "Ce calculateur d'empreinte carbone est principalement basée sur les résultats de (a https://coolclimate.org)CoolClimate(/a) avec l'aide d'autres sources comme (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) ou (a https://riftapp.fr/)Rift(/a).\n\nEn raison de la complexité de la tâche, je ne m'attends pas à ce que cette application soit très exacte, mais elle vous donne une idée de votre impact.\n\nEn outre, cette application se concentre uniquement sur le changement climatique, mais il ne faut pas oublier les autres types de pollution (plastiques, pesticides, …).\n\nJe ne suis affilié à aucune des organisations mentionnées."
+    "aboutSourcesTitle": "Sources"
 }
