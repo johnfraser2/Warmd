@@ -48,7 +48,8 @@ class AdvicesScreen extends StatelessWidget {
           Gaps.h32,
           _buildPolicalAdviceCard(context),
           for (int position in orderedAdvices.keys) _buildAdviceCard(context, position, state, orderedAdvices[position]),
-          Gaps.h128,
+          _buildOtherPollutionTypesCard(context),
+          Gaps.h92,
           Align(
             alignment: Alignment.bottomRight,
             child: SvgPicture.asset(
@@ -225,6 +226,18 @@ class AdvicesScreen extends StatelessWidget {
                 ),
               ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildOtherPollutionTypesCard(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 600),
+      child: BlueCard(
+        child: Text(
+          LocaleKeys.advicesOtherPolutionTypes.tr(),
+          style: Theme.of(context).textTheme.bodyText2,
         ),
       ),
     );

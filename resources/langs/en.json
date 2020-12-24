@@ -51,7 +51,7 @@
     "foodCategoryTitle": "Food",
     "materialGoodsCriteriaTitle": "Money spent in material goods",
     "materialGoodsCriteriaExplanation": "In {} per year.\n\nConcerns furnitures, appliances, clothes, electronic devices, tools, vehicles, vehicles parts, medicines, …",
-    "materialGoodsCriteriaAdvice": "Their construction, especially for electronic devices and vehicles, is generally very polluting.\n\nYou can greatly reduce your footprint by keeping them longer or by simply limiting your purchases. Moreover, there is often several solutions available to repair/sell/give your current goods, find second-hand ones or rent them.",
+    "materialGoodsCriteriaAdvice": "Their construction, especially for electronic devices and appliances, is generally very polluting.\n\nYou can greatly reduce your footprint by keeping them longer or by simply limiting your purchases. Moreover, there is often several solutions available to repair/sell/give your current goods, find second-hand ones or rent them.",
     "savingsCriteriaTitle": "Money sleeping on a non-decarbonated bank account",
     "savingsCriteriaExplanation": "If you don't know, you can consider 90% of your savings are concerned.",
     "savingsCriteriaAdvice": "Most of today's banks still invest the majority of your savings on companies with big carbon impact. Fortunately, some banks now allow you to choose for low-carbon investments.",
@@ -91,10 +91,11 @@
     "consequencesPart2": "Billions of people will emigrate to other area with a very high risk of famines, wars and millions or billions of deaths.\n\n(b)+6°C(/b) is the same difference of average temperature between the previous (b)ice age(/b) and the (b)20th century(/b).",
     "advicesTitle": "What should you do?",
     "advicesExplanation": "Small acts are welcomed, but they should not hide the truth: they are not significative enough to face the climate emergency, we need to focus on the big ones.",
-    "advicesPoliticsCategory": "Politics",
-    "advicesSeeClimateChange": "See what they can do >",
-    "advicesSeeLinks": "Some links that might help you >",
-    "advicesLinksExplanation": "This list is non-exhaustive and has not be sponsored, it is simply links I believe to be helpful.\nIf you have any suggestion or remark, (a mailto:warmd_app@icloud.com)please tell me(/a).",
+    "advicesOtherPolutionTypes": "Please note that this app only focuses on climate change, but we should not forget the other types of pollution (air, water, land, noise and light pollution) since they also greatly deserve our attention.",
+    "advicesPoliticsCategory": "Express your concerns",
+    "advicesSeeClimateChange": "Understand what is at stake >",
+    "advicesSeeLinks": "See some solutions >",
+    "advicesLinksExplanation": "This list is non-exhaustive and has not be sponsored, it is simply links we believe to be helpful.\nIf you have any suggestion or remark, (a mailto:warmd_app@icloud.com)please tell us(/a).",
     "globalObjectivesTitle": "Global goals",
     "globalObjectivesPart1": "To stay below +2°C, greenhouse gas emissions must be (a https://folk.universitetetioslo.no/roberan/t/global_mitigation_curves.shtml)divided by 3 by 2050(/a), i.e. about (b)-6% per year(/b) starting from 2020.",
     "globalObjectivesPart2": "So far, it is unlikely to happen. Until now we constantly increased our emissions and there is still no clear sign of reduction.\n\nWith the current trend and without effective efforts, we will end up with at least (b)+3.2°C by 2100(/b), and it will continue to increase thereafter.",
@@ -105,5 +106,5 @@
     "aboutProjectDescription": "Warmd is a non-lucrative open-source project. You can contribute to it (a https://github.com/FredJul/Warmd)here(/a) or help translating it (a https://frju.crowdin.com/warmd)here(/a).\n\nWarmd's design has been generously provided by (a https://mnstudio.net)mn studio(/a).\n\nOur only goal is to reduce a bit the human impact on our planet.",
     "aboutRateIt": "Help us by rating it 5 stars >",
     "aboutSourcesTitle": "Sources",
-    "aboutSourcesDescription": "This carbon footprint calculator is mainly based on (a https://coolclimate.org)CoolClimate(/a) results, with the help of other sources like (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) or (a https://riftapp.fr/)Rift(/a).\n\nDue to the complexity of the task, I do not expect this app to be very accurate, but it gives you an idea of your impact.\n\nIn addition, this app focuses only on the climate change, but we should not forget the other types of pollutions (plastics, pesticides, …).\n\nI'm not affiliated with any of the mentioned organizations."
+    "aboutSourcesDescription": "This carbon footprint calculator is mainly based on (a https://coolclimate.org)CoolClimate(/a) results, with the help of other sources like (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) or (a https://riftapp.fr/)Rift(/a).\n\nDue to the complexity of the task, we do not expect this app to be very accurate, but it gives you an idea of your impact.\n\nI'm not affiliated with any of the mentioned organizations."
 }
