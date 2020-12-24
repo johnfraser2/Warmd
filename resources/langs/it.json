@@ -1,7 +1,6 @@
 {
     "heatingFuelCriteriaTitle": "La tua bolletta del riscaldamento",
     "electricityBillCriteriaTitle": "La tua bolletta della corrente elettrica",
-    "cleanElectricityCriteriaTitle": "Percentuale di energia elettrica priva di carbonio",
     "waterCriteriaTitle": "Il tuo consumo di acqua",
     "waterCriteriaExplanation": "Inclusa l'acqua per le tue docce, bagni, sciacquoni e giardinaggio.",
     "waterCriteriaLabel1": "Basso (docce veloci, senza giardino)",
