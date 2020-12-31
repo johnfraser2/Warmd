@@ -1,11 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_indicator/page_indicator.dart';
 import 'package:warmd/common/common.dart';
 import 'package:warmd/common/delayable_state.dart';
-import 'package:warmd/generated/locale_keys.g.dart';
 
 class OnboardingScreen extends StatefulWidget {
   final Function(BuildContext) onOnboardingFinished;
@@ -60,12 +59,12 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                                 height: MediaQuery.of(context).size.height / 4,
                               ),
                               Text(
-                                LocaleKeys.onboardingStep1Title.tr(),
+                                AppLocalizations.of(context).onboardingStep1Title,
                                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                               ),
                               Gaps.h32,
                               Text(
-                                LocaleKeys.onboardingStep1Description.tr(),
+                                AppLocalizations.of(context).onboardingStep1Description,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.grey[600], fontSize: 18),
                               ),
@@ -85,12 +84,12 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                                 height: MediaQuery.of(context).size.height / 4,
                               ),
                               Text(
-                                LocaleKeys.onboardingStep2Title.tr(),
+                                AppLocalizations.of(context).onboardingStep2Title,
                                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                               ),
                               Gaps.h32,
                               Text(
-                                LocaleKeys.onboardingStep2Description.tr(),
+                                AppLocalizations.of(context).onboardingStep2Description,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.grey[600], fontSize: 18),
                               ),
@@ -134,7 +133,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                 onPressed: () {
                   widget.onOnboardingFinished(context);
                 },
-                child: Text(LocaleKeys.onboardingAction.tr()),
+                child: Text(AppLocalizations.of(context).onboardingAction),
               ),
             ),
             Gaps.h64,

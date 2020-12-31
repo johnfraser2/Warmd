@@ -1,6 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:warmd/generated/locale_keys.g.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 const warmdLightBlue = Color(0xFFDFF3FE);
 const warmdBlue = Color(0xFF00AAF2);
@@ -51,7 +50,7 @@ Widget buildBackButton(BuildContext context) {
       TextButton(
         onPressed: () => Navigator.pop(context),
         child: Text(
-          LocaleKeys.back.tr(),
+          AppLocalizations.of(context).back,
           style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
         ),
       ),

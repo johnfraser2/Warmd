@@ -1,110 +1,270 @@
 {
     "back": "Back",
+    "@back": {},
     "onboardingStep1Title": "Understand your impact",
+    "@onboardingStep1Title": {},
     "onboardingStep1Description": "See how your activities impact planet, animals & more.",
+    "@onboardingStep1Description": {},
     "onboardingStep2Title": "Take action to reduce impact",
+    "@onboardingStep2Title": {},
     "onboardingStep2Description": "Taking small steps, everyday, are cornerstone to drive big changes for the future.",
+    "@onboardingStep2Description": {},
     "onboardingAction": "GET STARTED",
+    "@onboardingAction": {},
     "welcomeTitle": "Hello there,",
+    "@welcomeTitle": {},
     "welcomeDescription": "Thank you for downloading Warmd and taking the first step to making our future generations safer.\n\n\nBefore you get started, we’ll ask you few questions to create personalized recommendations. Are you ready?",
+    "@welcomeDescription": {},
     "welcomeAction": "LET'S GO",
+    "@welcomeAction": {},
     "countrySelectionTitle": "COUNTRY",
+    "@countrySelectionTitle": {},
     "countrySelectionQuestion": "Which country do you reside in?",
+    "@countrySelectionQuestion": {},
     "countrySelectionExplanation": "This information allows us to correctly compute your carbon footprint.",
+    "@countrySelectionExplanation": {},
     "countrySelectionSearchHint": "Search a country",
+    "@countrySelectionSearchHint": {},
     "countrySelectionNotFound": "We didn't recognize that country, please try to write it in the country official language or select it in the list.",
+    "@countrySelectionNotFound": {},
     "continueAction": "CONTINUE",
+    "@continueAction": {},
     "continueActionExplanation": "You can always update the data later on.",
+    "@continueActionExplanation": {},
     "perWeek": "Per week.",
+    "@perWeek": {},
     "inUnit": "In {}.",
-    "inUnitPerYear": "In {} per year.",
+    "@inUnit": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "inUnitPerYear": "In {unit} per year.",
+    "@inUnitPerYear": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
     "politicalAdvice": "Your own impact is insignificant compared to that of companies or governments, and for the moment their ecological policies are far from sufficient.\nTry to influence their decisions by voting, by writing to your representatives, by joigning a climate action group or via other means.\n\nIf there is one thing to do it is certainly this one.",
+    "@politicalAdvice": {},
     "heatingFuelCriteriaTitle": "Your heating fuel/gas bill",
+    "@heatingFuelCriteriaTitle": {},
     "heatingFuelCriteriaAdvice": "Try to better insulate your home and avoid heating more than necessary (an adult sleep quality is best at 66°F/19°C). Smart controls can help you switching off the heating when you are outside.\n\nAlso prefer heating with heat pump, with low-carbon electricity, with wood from local and sustainable forests or with biogas.",
+    "@heatingFuelCriteriaAdvice": {},
     "electricityBillCriteriaTitle": "Your electricity bill",
+    "@electricityBillCriteriaTitle": {},
     "cleanElectricityCriteriaTitle": "Percent of low-carbon electricity",
+    "@cleanElectricityCriteriaTitle": {},
     "cleanElectricityCriteriaExplanation": "Including nuclear, wind, solar or hydraulic electricity.\n\nIf you don't know, you may be able to find some answers on (a https://www.electricitymap.org)ElectricityMap(/a).",
+    "@cleanElectricityCriteriaExplanation": {},
     "cleanElectricityCriteriaAdvice": "Choose your electricity provider to only pay for renewable or nuclear electricity.\n\nIf you cannot use more low-carbon electricity, then consider reducing your use of electric car or electric heater.",
+    "@cleanElectricityCriteriaAdvice": {},
     "utilitiesCategoryTitle": "Utilities",
+    "@utilitiesCategoryTitle": {},
     "flightsCriteriaTitle": "Hours spent in an airplane",
+    "@flightsCriteriaTitle": {},
     "flightsCriteriaAdvice": "An airplane produces between 6x and 40x more greenhouse gas per passenger than a train.\n\nAsk yourself: do you really need these airplane trips? Consider having holidays in your own country and take the train.",
+    "@flightsCriteriaAdvice": {},
     "carCriteriaTitle": "Distance travelled with a gasoline/diesel car",
+    "@carCriteriaTitle": {},
     "carCriteriaAdviceHigh": "You should reduce your car usage by moving house, adopting remote work or using the train/subway/bus for most of your transport.\n\nIf you can't do this and have access to low-carbon electricity, consider buying a small electric car (always avoid big or sport cars).",
+    "@carCriteriaAdviceHigh": {},
     "carCriteriaAdviceLow": "You may further improve your car impact by learning eco-driving or by using train/subway/bus (don't buy an new car, its construction will pollutes more than using your current one).",
+    "@carCriteriaAdviceLow": {},
     "carConsumptionCriteriaTitle": "Your car's fuel consumption",
+    "@carConsumptionCriteriaTitle": {},
     "publicTransportCriteriaTitle": "Distance travelled in bus, train or subway",
+    "@publicTransportCriteriaTitle": {},
     "publicTransportCriteriaAdvice": "Consider doing remote work to reduce your transport carbon footprint.",
+    "@publicTransportCriteriaAdvice": {},
     "travelCategoryTitle": "Transportation",
+    "@travelCategoryTitle": {},
     "ruminantMeatCriteriaTitle": "Number of beef, lamb or mutton meal",
+    "@ruminantMeatCriteriaTitle": {},
     "ruminantMeatCriteriaAdvice": "Ruminant meat production is (a https://ourworldindata.org/uploads/2020/02/Environmental-impact-of-food-by-life-cycle-stage-1536x1380.png)a major greenhouse gas emiter(/a) since it requires a large land use and emits methane, a powerful greenhouse gas. It emits more than 4 times more greenhouse gas than chicken production and at least 10 times more than most fruit and vegetable production, even if we add transport cost to bring them from distant countries.\n\nAdults don't need more than 3 meat meals per week (slightly more for kids). You should not exceed that number and should consider buying chicken instead or even becoming vegetarian.",
+    "@ruminantMeatCriteriaAdvice": {},
     "nonRuminantMeatCriteriaTitle": "Number of pig, chicken, fish or egg meal",
+    "@nonRuminantMeatCriteriaTitle": {},
     "nonRuminantMeatCriteriaAdvice": "Although less polluting than ruminant meat production, non-ruminant meat production still emits (a https://ourworldindata.org/uploads/2020/02/Environmental-impact-of-food-by-life-cycle-stage-1536x1380.png)at least 4 times more(/a) greenhouse gas than most fruit and vegetable production.\n\nAdults don't need more than 3 meat meals per week (slightly more for kids). You should not exceed that number and could even consider becoming vegetarian.",
+    "@nonRuminantMeatCriteriaAdvice": {},
     "cheeseCriteriaTitle": "Number of cheese portion",
+    "@cheeseCriteriaTitle": {},
     "cheeseCriteriaAdvice": "If you want or need dairy product, you can take milk or yogurt instead, which are 5 to 8 times less polluting than cheese.",
+    "@cheeseCriteriaAdvice": {},
     "snacksCriteriaTitle": "Number of snacks, drinks or other highly transformed foods",
+    "@snacksCriteriaTitle": {},
     "snacksCriteriaAdvice": "Prefer fruits and vegetables over snacks, chocolate or transformed foods. Also prefer water or home-made drinks over sodas or store-bought juices.",
+    "@snacksCriteriaAdvice": {},
     "overweightCriteriaTitle": "Overweight and obesity",
+    "@overweightCriteriaTitle": {},
     "overweightCriteriaLabel1": "I am normal",
+    "@overweightCriteriaLabel1": {},
     "overweightCriteriaLabel2": "I am overweight",
+    "@overweightCriteriaLabel2": {},
     "overweightCriteriaLabel3": "I am obese",
+    "@overweightCriteriaLabel3": {},
     "overweightCriteriaAdvice": "Being overweight basically means you absorb more energy than your body needs. Each year, humanity consumes an unnecessary 140 billions of tons of food.\n\nTry to increase the share of fruits and vegetables in your diet, or simply reduce the amount of ingested food.",
+    "@overweightCriteriaAdvice": {},
     "foodCategoryTitle": "Food",
+    "@foodCategoryTitle": {},
     "materialGoodsCriteriaTitle": "Money spent in material goods",
-    "materialGoodsCriteriaExplanation": "In {} per year.\n\nConcerns furnitures, appliances, clothes, electronic devices, tools, vehicles, vehicles parts, medicines, …",
+    "@materialGoodsCriteriaTitle": {},
+    "materialGoodsCriteriaExplanation": "In {unit} per year.\n\nConcerns furnitures, appliances, clothes, electronic devices, tools, vehicles, vehicles parts, medicines, …",
+    "@materialGoodsCriteriaExplanation": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
     "materialGoodsCriteriaAdvice": "Their construction, especially for electronic and mechanical devices, is generally very polluting.\n\nYou can greatly reduce your footprint by keeping them longer or by simply limiting your purchases. Moreover, there is often several solutions available to repair/sell/give your current goods, find second-hand ones or rent them.",
+    "@materialGoodsCriteriaAdvice": {},
     "savingsCriteriaTitle": "Money sleeping on a non-decarbonated bank account",
+    "@savingsCriteriaTitle": {},
     "savingsCriteriaExplanation": "If you don't know, you can consider 90% of your savings are concerned.",
+    "@savingsCriteriaExplanation": {},
     "savingsCriteriaAdvice": "Most of today's banks still invest the majority of your savings on companies with big carbon impact. Fortunately, some banks now allow you to choose for low-carbon investments.",
+    "@savingsCriteriaAdvice": {},
     "waterCriteriaTitle": "Your water consumption",
+    "@waterCriteriaTitle": {},
     "waterCriteriaExplanation": "Including the water you use for showers, baths, toilet flushes and gardening.",
+    "@waterCriteriaExplanation": {},
     "waterCriteriaLabel1": "Low (quick showers, no garden)",
+    "@waterCriteriaLabel1": {},
     "waterCriteriaLabel2": "Normal",
+    "@waterCriteriaLabel2": {},
     "waterCriteriaLabel3": "High (long showers or baths, big garden, …)",
+    "@waterCriteriaLabel3": {},
     "waterCriteriaAdvice": "You can easily limit your water consumption by taking short showers (avoid baths) with a water reduction showerhead (up to -70% water).\n\nYou can also put a plastic bottle in the water tank of your toilet to limit its capacity and buy a water recuperator for your garden.",
+    "@waterCriteriaAdvice": {},
     "internetCriteriaTitle": "Amount of Internet data used",
+    "@internetCriteriaTitle": {},
     "internetCriteriaLabel1": "Only few emails or search per week",
+    "@internetCriteriaLabel1": {},
     "internetCriteriaLabel2": "I use some websites or cloud services at least once per day",
+    "@internetCriteriaLabel2": {},
     "internetCriteriaLabel3": "I watch lot of streaming video (> 30 min / day)",
+    "@internetCriteriaLabel3": {},
     "internetCriteriaAdvice": "Internet is already responsible for about 4% of total carbon emissions, more than aviation, and it could double before 2025. This is mostly due to a increasing use of high resolution video.\n\nTry to limit the use of video streaming or simply reduce the video streaming quality to 480p maximum (SD).",
+    "@internetCriteriaAdvice": {},
     "goodsAndServicesCategoryTitle": "Goods and services",
-    "valueWithMore": "{} or more",
-    "valueWithLess": "{} or less",
+    "@goodsAndServicesCategoryTitle": {},
+    "valueWithMore": "{value} or more",
+    "@valueWithMore": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "valueWithLess": "{value} or less",
+    "@valueWithLess": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
     "footprintTitle": "Your total carbon footprint is",
-    "footprintFlightsEquivalent": "Or (b){}(/b) Paris - New York return flights",
+    "@footprintTitle": {},
+    "footprintFlightsEquivalent": "Or (b){number}(/b) Paris - New York return flights",
+    "@footprintFlightsEquivalent": {
+        "placeholders": {
+            "number": {
+                "type": "int",
+                "format": "compact"
+            }
+        }
+    },
     "footprintWarning": "See what happens when you don't take action >",
+    "@footprintWarning": {},
     "footprintRepartitionTitle": "CARBON FOOTPRINT REPARTITION",
+    "@footprintRepartitionTitle": {},
     "footprintEvolutionTitle": "CARBON FOOTPRINT EVOLUTION",
+    "@footprintEvolutionTitle": {},
     "footprintEvolutionExplanation": "Compute your carbon footprint every month and see your evolution.\n\nThe world must reduce its emissions by at least 6% per year. What about you?",
+    "@footprintEvolutionExplanation": {},
     "footprintEvolutionTonsAxis": "Tons CO₂e",
+    "@footprintEvolutionTonsAxis": {},
     "footprintEvolutionYearAxis": "Year",
+    "@footprintEvolutionYearAxis": {},
     "footprintShareTitle": "My carbon footprint",
+    "@footprintShareTitle": {},
     "footprintShareLink": "Done with Warmd: https://fredjul.github.io/Warmd/",
+    "@footprintShareLink": {},
     "seeAdvices": "SEE WHAT YOU COULD DO",
+    "@seeAdvices": {},
     "redoQuestionnaire": "REDO QUESTIONNAIRE",
+    "@redoQuestionnaire": {},
     "seeAbout": "Understand how your carbon footprint is calculated and how you could help this project.",
+    "@seeAbout": {},
     "scoreUnit": "tons\nCO₂e/year",
-    "shortCo2EqTonsValue": "{} t",
+    "@scoreUnit": {},
+    "shortCo2EqTonsValue": "{value} t",
+    "@shortCo2EqTonsValue": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
     "co2EqPercentValue": "{percent}% ({co2EqTons} tons CO₂e/year)",
+    "@co2EqPercentValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqTons": {
+                "type": "String"
+            }
+        }
+    },
     "climateChangeTitle": "What is climate change?",
+    "@climateChangeTitle": {},
     "consequencesTitle": "Consequences of global warming",
+    "@consequencesTitle": {},
     "consequencesPart1": "We already gained (b)+1°C(/b) (in average) from pre-industrial levels, with an already visible increase in the number of heat waves, droughts, fires or cyclones. Despite what some climate skeptics say, scientists (a https://climate.nasa.gov/evidence/)are over 95% sure(/a) that this is due to greenhouse gas emissions from human activities (CO₂, CH₄, N₂O). Nature cannot absorb such a amount of greenhouse gases and, as if that were not enough, we keep adding more to the atmosphere every year.\n\nBy reaching (b)+2°C(/b) in 2100, (a https://www.wwf.org.uk/updates/our-warming-world-how-much-difference-will-half-degree-really-make)we will certainly suffer(/a) a major loss in our biodiversity (-18% insects, -16% plants, -8% vertebrates, -99% corals), 49 million people will be impacted by sea-level rise and 410 million people will suffer severe droughts, leading to massive emigration, financial and political instabilities.\n\nAt (b)+4°C(/b) humans will not be able to live around the equator (a http://www.uhm.hawaii.edu/news/article.php?aId=8657)due to deadly heat(/a):",
+    "@consequencesPart1": {},
     "consequencesPart2": "Billions of people will emigrate to other area with a very high risk of famines, wars and millions or billions of deaths.\n\n(b)+6°C(/b) is the same difference of average temperature between the previous (b)ice age(/b) and the (b)20th century(/b).",
+    "@consequencesPart2": {},
     "advicesTitle": "What should you do?",
+    "@advicesTitle": {},
     "advicesExplanation": "Small acts are welcomed, but they should not hide the truth: they are not significative enough to face the climate emergency, we need to focus on the big ones.",
+    "@advicesExplanation": {},
     "advicesOtherPolutionTypes": "Please note that this app only focuses on climate change, but we should not forget the other types of pollution (air, water, land, noise and light pollution) since they also greatly deserve our attention.",
+    "@advicesOtherPolutionTypes": {},
     "advicesPoliticsCategory": "Express your concerns",
+    "@advicesPoliticsCategory": {},
     "advicesSeeClimateChange": "Understand what is at stake >",
+    "@advicesSeeClimateChange": {},
     "advicesSeeLinks": "See some solutions >",
+    "@advicesSeeLinks": {},
     "advicesLinksExplanation": "This list is non-exhaustive and has not be sponsored, it is simply links we believe to be helpful.\nIf you have any suggestion or remark, (a mailto:warmd_app@icloud.com)please tell us(/a).",
+    "@advicesLinksExplanation": {},
     "globalObjectivesTitle": "Global goals",
+    "@globalObjectivesTitle": {},
     "globalObjectivesPart1": "To stay below +2°C, greenhouse gas emissions must be (a https://folk.universitetetioslo.no/roberan/t/global_mitigation_curves.shtml)divided by 3 by 2050(/a), i.e. about (b)-6% per year(/b) starting from 2020.",
+    "@globalObjectivesPart1": {},
     "globalObjectivesPart2": "So far, it is unlikely to happen. Until now we constantly increased our emissions and there is still no clear sign of reduction.\n\nWith the current trend and without effective efforts, we will end up with at least (b)+3.2°C by 2100(/b), and it will continue to increase thereafter.",
+    "@globalObjectivesPart2": {},
     "globalActionsTitle": "Where should we start?",
+    "@globalActionsTitle": {},
     "globalActionsPart1": "Emissions essentially come from few main sectors (source: IPCC, 2014, global emissions).",
+    "@globalActionsPart1": {},
     "globalActionsPart2": "• The first thing to do is to (b)completely stop using fossil fuels(/b) (coal, oil, gas) and replace them with low-carbon electricity ((a https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_chapter7.pdf)IPCC(/a) recommands an increased use of both nuclear and renewable energy).\n\n• Then there is a need for (b)better food management(/b), with less meat production and waste.\n\n• To finish, it could be necessary to start organizing a global degrowth and a birth rate control since it could be the only solution to reach a complete decarbonization.",
+    "@globalActionsPart2": {},
     "aboutProjectTitle": "Warmd project",
+    "@aboutProjectTitle": {},
     "aboutProjectDescription": "Warmd is a non-lucrative open-source project. You can contribute to it (a https://github.com/FredJul/Warmd)here(/a) or help translating it (a https://frju.crowdin.com/warmd)here(/a).\n\nWarmd's design has been generously provided by (a https://mnstudio.net)mn studio(/a).\n\nOur only goal is to reduce a bit the human impact on our planet.",
+    "@aboutProjectDescription": {},
     "aboutRateIt": "Help us by rating it 5 stars >",
+    "@aboutRateIt": {},
     "aboutSourcesTitle": "Sources",
-    "aboutSourcesDescription": "This carbon footprint calculator is mainly based on (a https://coolclimate.org)CoolClimate(/a) results, with the help of other sources like (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) or (a https://riftapp.fr/)Rift(/a).\n\nDue to the complexity of the task, we do not expect this app to be very accurate, but it gives you an idea of your impact.\n\nI'm not affiliated with any of the mentioned organizations."
+    "@aboutSourcesTitle": {},
+    "aboutSourcesDescription": "This carbon footprint calculator is mainly based on (a https://coolclimate.org)CoolClimate(/a) results, with the help of other sources like (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) or (a https://riftapp.fr/)Rift(/a).\n\nDue to the complexity of the task, we do not expect this app to be very accurate, but it gives you an idea of your impact.\n\nI'm not affiliated with any of the mentioned organizations.",
+    "@aboutSourcesDescription": {}
 }

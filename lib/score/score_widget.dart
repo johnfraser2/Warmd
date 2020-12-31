@@ -1,10 +1,9 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:warmd/common/states.dart';
-import 'package:warmd/generated/locale_keys.g.dart';
 
 const _levelColors = [
   Color(0xFF00A31D),
@@ -57,7 +56,7 @@ class _ScoreWidgetState extends State<ScoreWidget> {
                         .copyWith(color: _scoreRatioToColor(scoreRatio), fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: LocaleKeys.scoreUnit.tr(),
+                    text: AppLocalizations.of(context).scoreUnit,
                     style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                 ],

@@ -1,15 +1,15 @@
 import 'dart:ui';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'categories/categories_screens.dart';
 import 'common/common.dart';
 import 'common/states.dart';
-import 'generated/codegen_loader.g.dart';
 import 'onboarding/country_screen.dart';
 import 'onboarding/onboarding_screen.dart';
 import 'onboarding/welcome_screen.dart';
@@ -20,15 +20,7 @@ import 'score/footprint_screen.dart';
 import 'splash_screen.dart';
 
 void main() {
-  runApp(EasyLocalization(
-    supportedLocales: const [Locale('en'), Locale('fr')],
-    fallbackLocale: const Locale('en'),
-    saveLocale: false,
-    path: 'resources/langs',
-    assetLoader: const CodegenLoader(),
-    useOnlyLangCode: true,
-    child: MyApp(),
-  ));
+  runApp(MyApp());
 
   SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -39,8 +31,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Warmd',
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('fr', ''),
+      ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        brightness: Brightness.light,
         scaffoldBackgroundColor: Colors.white,
         sliderTheme: SliderTheme.of(context).copyWith(
           activeTrackColor: warmdRed,

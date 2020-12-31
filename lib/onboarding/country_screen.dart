@@ -1,13 +1,12 @@
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:warmd/common/common.dart';
 import 'package:warmd/common/states.dart';
 import 'package:warmd/common/steps_progress_indicator.dart';
-import 'package:warmd/generated/locale_keys.g.dart';
 
 class CountryScreen extends StatelessWidget {
   final Function(BuildContext) onCountrySelected;
@@ -19,6 +18,7 @@ class CountryScreen extends StatelessWidget {
     final historyState = context.watch<HistoryState>();
     final state = context.watch<CriteriasState>();
     final c = state.categories[0].criterias[0];
+    final labels = c.labels(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: false, // Usefull to have a better display when the keyboard is up
@@ -44,12 +44,12 @@ class CountryScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      LocaleKeys.countrySelectionTitle.tr(),
+                      AppLocalizations.of(context).countrySelectionTitle,
                       style: Theme.of(context).textTheme.headline6.copyWith(color: warmdBlue, fontWeight: FontWeight.bold),
                     ),
                     Gaps.h32,
                     Text(
-                      LocaleKeys.countrySelectionQuestion.tr(),
+                      AppLocalizations.of(context).countrySelectionQuestion,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                     ),
@@ -64,14 +64,14 @@ class CountryScreen extends StatelessWidget {
                           showSelectedItem: true,
                           items: List.generate(c.maxValue.toInt() + 1, (i) => i),
                           compareFn: (int i, int j) => i == j,
-                          itemAsString: (item) => c.labels[item],
+                          itemAsString: (item) => labels[item],
                           onChanged: (int value) {
                             c.currentValue = value.toDouble();
                             state.persist(c);
                           },
                           autoFocusSearchBox: true,
                           emptyBuilder: (context, searchEntry) => Center(
-                            child: Text(LocaleKeys.countrySelectionNotFound.tr()),
+                            child: Text(AppLocalizations.of(context).countrySelectionNotFound),
                           ),
                           dropdownSearchDecoration: const InputDecoration(
                             filled: false,
@@ -81,7 +81,7 @@ class CountryScreen extends StatelessWidget {
                           ),
                           searchBoxDecoration: InputDecoration(
                             border: const OutlineInputBorder(),
-                            labelText: LocaleKeys.countrySelectionSearchHint.tr(),
+                            labelText: AppLocalizations.of(context).countrySelectionSearchHint,
                           ),
                           selectedItem: c.currentValue.toInt(),
                         ),
@@ -89,7 +89,7 @@ class CountryScreen extends StatelessWidget {
                     ),
                     Gaps.h32,
                     Text(
-                      LocaleKeys.countrySelectionExplanation.tr(),
+                      AppLocalizations.of(context).countrySelectionExplanation,
                       style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
                     ),
                   ],
@@ -101,7 +101,7 @@ class CountryScreen extends StatelessWidget {
                 onPressed: () {
                   onCountrySelected(context);
                 },
-                child: Text(LocaleKeys.continueAction.tr()),
+                child: Text(AppLocalizations.of(context).continueAction),
               ),
             ),
             Gaps.h48,

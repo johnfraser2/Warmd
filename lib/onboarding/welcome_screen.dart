@@ -1,9 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:warmd/common/common.dart';
-import 'package:warmd/generated/locale_keys.g.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final Function(BuildContext) onStartSelected;
@@ -33,13 +32,13 @@ class WelcomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        LocaleKeys.welcomeTitle.tr(),
+                        AppLocalizations.of(context).welcomeTitle,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                       ),
                       Gaps.h64,
                       Text(
-                        LocaleKeys.welcomeDescription.tr(),
+                        AppLocalizations.of(context).welcomeDescription,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue),
                       ),
@@ -53,7 +52,7 @@ class WelcomeScreen extends StatelessWidget {
                 onPressed: () {
                   onStartSelected(context);
                 },
-                child: Text(LocaleKeys.welcomeAction.tr()),
+                child: Text(AppLocalizations.of(context).welcomeAction),
               ),
             ),
             Gaps.h48,

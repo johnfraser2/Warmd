@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:markup_text/markup_text.dart';
@@ -13,7 +13,6 @@ import 'package:warmd/common/criterias.dart';
 import 'package:warmd/common/delayable_state.dart';
 import 'package:warmd/common/screen_template.dart';
 import 'package:warmd/common/states.dart';
-import 'package:warmd/generated/locale_keys.g.dart';
 
 class UtilitiesCategoryScreen extends StatelessWidget {
   final Function(BuildContext) onContinueTapped;
@@ -100,7 +99,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             ),
             Gaps.h16,
             Text(
-              widget.criteriaCategory.title,
+              widget.criteriaCategory.title(context),
               style: Theme.of(context).textTheme.headline5.copyWith(color: warmdGreen, fontWeight: FontWeight.bold),
             ),
             Gaps.h32,
@@ -109,7 +108,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               if (crit.maxValue > crit.minValue) _buildCriteria(context, state, crit),
             Gaps.h32,
             Text(
-              LocaleKeys.continueActionExplanation.tr(),
+              AppLocalizations.of(context).continueActionExplanation,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
             ),
@@ -122,7 +121,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
 
                   widget.onContinueTapped(context);
                 },
-                child: Text(LocaleKeys.continueAction.tr()),
+                child: Text(AppLocalizations.of(context).continueAction),
               ),
             ),
             Gaps.h48,
@@ -133,6 +132,8 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
   }
 
   Widget _buildCriteria(BuildContext context, CriteriasState state, Criteria c) {
+    final explanation = c.explanation(context);
+
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 600),
       child: BlueCard(
@@ -146,7 +147,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                 children: [
                   Expanded(
                     child: Text(
-                      c.title,
+                      c.title(context),
                       style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -161,16 +162,16 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               ),
             ),
             Gaps.h12,
-            if (c.explanation != null)
+            if (explanation != null)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: MarkupText(
-                  c.explanation,
+                  explanation,
                   style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.grey[600], fontWeight: FontWeight.w300),
                 ),
               ),
             Gaps.h8,
-            if (c.labels != null)
+            if (c.labels(context) != null)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: _buildDropdown(context, c, state),
@@ -184,6 +185,8 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
   }
 
   Widget _buildDropdown(BuildContext context, Criteria c, CriteriasState state) {
+    final labels = c.labels(context);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -193,7 +196,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
           child: DropdownButton<int>(
             isExpanded: true,
             selectedItemBuilder: (BuildContext context) {
-              return c.labels.map((String item) {
+              return labels.map((String item) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -213,7 +216,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               c.currentValue = value.toDouble();
               state.persist(c);
             },
-            items: c.labels
+            items: labels
                 .mapIndexed((index, label) => DropdownMenuItem<int>(
                       value: index,
                       child: Text(
@@ -256,6 +259,8 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
     final shouldDisplayOnlyThreeValues =
         valueText2 == valueText1 || valueText2 == valueText3 || valueText4 == valueText3 || valueText4 == valueText5;
 
+    final labels = c.labels(context);
+
     return Column(
       children: [
         FractionallySizedBox(
@@ -265,13 +270,13 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             min: c.minValue,
             max: c.maxValue,
             divisions: (c.maxValue - c.minValue) ~/ c.step,
-            label: c.labels != null
-                ? c.labels[c.currentValue.toInt()]
+            label: labels != null
+                ? labels[c.currentValue.toInt()]
                 : c.currentValue != c.maxValue || c.unit == '%' // We can't go above 100% so we don't display "or more"
                     ? valueWithUnit
                     : c.minValue < 0 // Some values are negatives because more is better (like mpg)
-                        ? LocaleKeys.valueWithLess.tr(args: [valueWithUnit])
-                        : LocaleKeys.valueWithMore.tr(args: [valueWithUnit]),
+                        ? AppLocalizations.of(context).valueWithLess(valueWithUnit)
+                        : AppLocalizations.of(context).valueWithMore(valueWithUnit),
             value: c.currentValue,
             onChanged: (double value) {
               c.currentValue = value;

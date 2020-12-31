@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +13,6 @@ import 'package:warmd/common/common.dart';
 import 'package:warmd/common/criterias.dart';
 import 'package:warmd/common/delayable_state.dart';
 import 'package:warmd/common/states.dart';
-import 'package:warmd/generated/locale_keys.g.dart';
 
 import 'score_widget.dart';
 
@@ -103,7 +102,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 ),
                 Gaps.h48,
                 Text(
-                  LocaleKeys.footprintShareTitle.tr(),
+                  AppLocalizations.of(context).footprintShareTitle,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -137,7 +136,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
       children: [
         const Icon(CupertinoIcons.airplane),
         Gaps.w12,
-        MarkupText(LocaleKeys.footprintFlightsEquivalent.tr(args: [(state.co2EqTonsPerYear() / 1.6).round().toString()])),
+        MarkupText(AppLocalizations.of(context).footprintFlightsEquivalent((state.co2EqTonsPerYear() / 1.6).round())),
       ],
     );
   }
@@ -164,7 +163,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 220),
                       child: Text(
-                        LocaleKeys.footprintTitle.tr(),
+                        AppLocalizations.of(context).footprintTitle,
                         style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -176,10 +175,10 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                             ShareFilesAndScreenshotWidgets().shareScreenshot(
                               hiddenShareWidgetContainer,
                               1024,
-                              LocaleKeys.footprintShareTitle.tr(),
+                              AppLocalizations.of(context).footprintShareTitle,
                               'warmd_carbon_footprint.png',
                               'image/png',
-                              text: LocaleKeys.footprintShareLink.tr(),
+                              text: AppLocalizations.of(context).footprintShareLink,
                             );
                           }),
                     ),
@@ -197,7 +196,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                       child: TextButton(
                         onPressed: () => widget.onSeeClimateChangeTapped(context),
                         child: Text(
-                          LocaleKeys.footprintWarning.tr(),
+                          AppLocalizations.of(context).footprintWarning,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.caption.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                         ),
@@ -235,7 +234,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                             const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
                       ),
                       child: Text(
-                        LocaleKeys.seeAdvices.tr(),
+                        AppLocalizations.of(context).seeAdvices,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -260,7 +259,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
     return Column(
       children: [
         Text(
-          LocaleKeys.footprintRepartitionTitle.tr(),
+          AppLocalizations.of(context).footprintRepartitionTitle,
           style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
         ),
         Gaps.h24,
@@ -280,7 +279,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                         .map((cat) => PieChartSectionData(
                               color: colors[cat.runtimeType],
                               value: cat.co2EqTonsPerYear(),
-                              title: LocaleKeys.shortCo2EqTonsValue.tr(args: [cat.co2EqTonsPerYear().toStringAsFixed(1)]),
+                              title: AppLocalizations.of(context).shortCo2EqTonsValue(cat.co2EqTonsPerYear().toStringAsFixed(1)),
                               radius: 85,
                               titleStyle: Theme.of(context)
                                   .textTheme
@@ -305,7 +304,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                   children: sortedCategories
                       .map((cat) => _PieIndicator(
                             color: colors[cat.runtimeType],
-                            text: cat.title,
+                            text: cat.title(context),
                             textColor: warmdDarkBlue,
                           ))
                       .toList(),
@@ -316,13 +315,13 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
         ),
         Gaps.h64,
         Text(
-          LocaleKeys.footprintEvolutionTitle.tr(),
+          AppLocalizations.of(context).footprintEvolutionTitle,
           style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
         ),
         Padding(
           padding: const EdgeInsets.all(32),
           child: Text(
-            LocaleKeys.footprintEvolutionExplanation.tr(),
+            AppLocalizations.of(context).footprintEvolutionExplanation,
             textAlign: TextAlign.start,
             style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
           ),
@@ -352,7 +351,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
               ),
           child: Text(
-            LocaleKeys.redoQuestionnaire.tr(),
+            AppLocalizations.of(context).redoQuestionnaire,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
           ),
@@ -375,7 +374,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
             children: [
               Expanded(
                 child: Text(
-                  LocaleKeys.seeAbout.tr(),
+                  AppLocalizations.of(context).seeAbout,
                   style: Theme.of(context).textTheme.subtitle2.copyWith(
                         color: warmdDarkBlue,
                         fontWeight: FontWeight.bold,
@@ -605,12 +604,12 @@ class _FootprintChart extends StatelessWidget {
               axisTitleData: FlAxisTitleData(
                 leftTitle: AxisTitle(
                   showTitle: true,
-                  titleText: LocaleKeys.footprintEvolutionTonsAxis.tr(),
+                  titleText: AppLocalizations.of(context).footprintEvolutionTonsAxis,
                   textStyle: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                 ),
                 bottomTitle: AxisTitle(
                   showTitle: true,
-                  titleText: LocaleKeys.footprintEvolutionYearAxis.tr(),
+                  titleText: AppLocalizations.of(context).footprintEvolutionYearAxis,
                   textStyle: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                 ),
               ),

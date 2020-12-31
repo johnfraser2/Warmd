@@ -1,15 +1,14 @@
 import 'dart:io';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:warmd/common/blue_card.dart';
 import 'package:warmd/common/common.dart';
 import 'package:warmd/common/screen_template.dart';
-import 'package:warmd/generated/locale_keys.g.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key key}) : super(key: key);
@@ -43,7 +42,7 @@ class AboutScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            LocaleKeys.aboutProjectTitle.tr(),
+            AppLocalizations.of(context).aboutProjectTitle,
             style: Theme.of(context).textTheme.subtitle1.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
@@ -51,7 +50,7 @@ class AboutScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            LocaleKeys.aboutProjectDescription.tr(),
+            AppLocalizations.of(context).aboutProjectDescription,
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
           ),
           Gaps.h16,
@@ -70,7 +69,7 @@ class AboutScreen extends StatelessWidget {
                 }
               },
               child: Text(
-                LocaleKeys.aboutRateIt.tr(),
+                AppLocalizations.of(context).aboutRateIt,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
               ),
@@ -87,7 +86,7 @@ class AboutScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            LocaleKeys.aboutSourcesTitle.tr(),
+            AppLocalizations.of(context).aboutSourcesTitle,
             style: Theme.of(context).textTheme.subtitle1.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
@@ -95,7 +94,7 @@ class AboutScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            LocaleKeys.aboutSourcesDescription.tr(),
+            AppLocalizations.of(context).aboutSourcesDescription,
             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
           ),
         ],

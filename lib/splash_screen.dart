@@ -22,9 +22,11 @@ class _SplashScreenState extends DelayableState<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SvgPicture.asset(
-        'assets/splash.svg',
+    return Material(
+      child: Center(
+        child: SvgPicture.asset(
+          'assets/splash.svg',
+        ),
       ),
     );
   }
