@@ -1,1 +1,16 @@
-{}
+{
+    "heatingFuelCriteriaTitle": "La tua bolletta del riscaldamento",
+    "@heatingFuelCriteriaTitle": {},
+    "electricityBillCriteriaTitle": "La tua bolletta della corrente elettrica",
+    "@electricityBillCriteriaTitle": {},
+    "waterCriteriaTitle": "Il tuo consumo di acqua",
+    "@waterCriteriaTitle": {},
+    "waterCriteriaExplanation": "Inclusa l'acqua per le tue docce, bagni, sciacquoni e giardinaggio.",
+    "@waterCriteriaExplanation": {},
+    "waterCriteriaLabel1": "Basso (docce veloci, senza giardino)",
+    "@waterCriteriaLabel1": {},
+    "waterCriteriaLabel2": "Normale",
+    "@waterCriteriaLabel2": {},
+    "waterCriteriaLabel3": "Alto (docce lunghe o bagni, giardini grandi, ...)",
+    "@waterCriteriaLabel3": {}
+}
