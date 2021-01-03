@@ -33,14 +33,6 @@
     "@continueActionExplanation": {},
     "perWeek": "Par semaine.",
     "@perWeek": {},
-    "inUnit": "En {unit}.",
-    "@inUnit": {
-        "placeholders": {
-            "unit": {
-                "type": "String"
-            }
-        }
-    },
     "inUnitPerYear": "En {unit} par an.",
     "@inUnitPerYear": {
         "placeholders": {
