@@ -78,7 +78,6 @@ class AdvicesScreen extends StatelessWidget {
       context: context,
       state: state,
       position: 0,
-      co2Tons: 0,
       title: AppLocalizations.of(context).advicesPoliticsCategory,
       iconName: 'vote',
       description: AppLocalizations.of(context).politicalAdvice,
@@ -154,7 +153,7 @@ class AdvicesScreen extends StatelessWidget {
                     '${position + 1}.',
                     style: Theme.of(context).textTheme.headline3.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: co2Tons > 1 ? warmdRed : warmdBlue,
+                          color: co2Tons == null || co2Tons > 1 ? warmdRed : warmdBlue,
                         ),
                   ),
                   Gaps.w16,
@@ -187,8 +186,8 @@ class AdvicesScreen extends StatelessWidget {
                 ],
               ),
             ),
-            if (co2Tons > 0) Gaps.h12,
-            if (co2Tons > 0)
+            if (co2Tons != null && co2Tons > 0) Gaps.h12,
+            if (co2Tons != null && co2Tons > 0)
               Text(
                 AppLocalizations.of(context).co2EqPercentValue(
                   (100 ~/ (state.co2EqTonsPerYear() / co2Tons)).toString(),
