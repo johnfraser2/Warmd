@@ -188,7 +188,7 @@
     "@footprintEvolutionTitle": {},
     "footprintEvolutionExplanation": "Calculez votre empreinte carbone chaque mois et voyez votre évolution.\n\nLe monde doit réduire ses émissions d'au moins 6% par an. Et vous ?",
     "@footprintEvolutionExplanation": {},
-    "footprintEvolutionTonsAxis": "Tonnes de CO2e",
+    "footprintEvolutionTonsAxis": "Tonnes de CO₂e",
     "@footprintEvolutionTonsAxis": {},
     "footprintEvolutionYearAxis": "Année",
     "@footprintEvolutionYearAxis": {},
