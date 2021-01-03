@@ -45,8 +45,8 @@ class AdvicesScreen extends StatelessWidget {
             ),
           ),
           Gaps.h32,
-          _buildPolicalAdviceCard(context),
-          for (int position in orderedAdvices.keys) _buildAdviceCard(context, position, state, orderedAdvices[position]),
+          _buildFirstAdviceCard(context, state),
+          for (int position in orderedAdvices.keys) _buildCriteriaAdviceCard(context, position, state, orderedAdvices[position]),
           _buildOtherPollutionTypesCard(context),
           Gaps.h92,
           Align(
@@ -73,71 +73,30 @@ class AdvicesScreen extends StatelessWidget {
     return orderedAdvices;
   }
 
-  Widget _buildPolicalAdviceCard(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 600),
-      child: BlueCard(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                children: [
-                  Text(
-                    '1.',
-                    style: Theme.of(context).textTheme.headline3.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: warmdRed,
-                        ),
-                  ),
-                  Gaps.w16,
-                  Expanded(
-                    child: Text(
-                      AppLocalizations.of(context).advicesPoliticsCategory,
-                      style: Theme.of(context).textTheme.subtitle1.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: warmdDarkBlue,
-                          ),
-                    ),
-                  ),
-                  Gaps.w4,
-                  Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxHeight: 42, maxWidth: 42),
-                      child: SvgPicture.asset(
-                        'assets/vote.svg',
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Gaps.h8,
-            Text(
-              AppLocalizations.of(context).politicalAdvice,
-              style: Theme.of(context).textTheme.bodyText2.copyWith(
-                    fontWeight: FontWeight.w300,
-                  ),
-            ),
-            Align(
-              alignment: Alignment.topRight,
-              child: TextButton(
-                onPressed: () => onSeeClimateChangeTapped(context),
-                child: Text(
-                  AppLocalizations.of(context).advicesSeeClimateChange,
-                  textAlign: TextAlign.right,
-                  style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
-                ),
-              ),
-            ),
-          ],
+  Widget _buildFirstAdviceCard(BuildContext context, CriteriasState state) {
+    return _buildGenericAdviceCard(
+      context: context,
+      state: state,
+      position: 0,
+      co2Tons: 0,
+      title: AppLocalizations.of(context).advicesPoliticsCategory,
+      iconName: 'vote',
+      description: AppLocalizations.of(context).politicalAdvice,
+      child: Align(
+        alignment: Alignment.topRight,
+        child: TextButton(
+          onPressed: () => onSeeClimateChangeTapped(context),
+          child: Text(
+            AppLocalizations.of(context).advicesSeeClimateChange,
+            textAlign: TextAlign.right,
+            style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildAdviceCard(BuildContext context, int position, CriteriasState state, Criteria crit) {
+  Widget _buildCriteriaAdviceCard(BuildContext context, int position, CriteriasState state, Criteria crit) {
     final countryCriteria = state.categories[0].criterias[0] as CountryCriteria;
 
     final allCountriesLinks = crit.links();
@@ -146,6 +105,41 @@ class AdvicesScreen extends StatelessWidget {
         ? ({}..addAll(allCountriesLinks[countryCriteria.getCountryCode()] ?? const {})..addAll(allCountriesLinks[''] ?? const {}))
         : const {};
 
+    final linksWidget = links.isNotEmpty
+        ? Align(
+            alignment: Alignment.topRight,
+            child: TextButton(
+              onPressed: () => _showLinksBottomSheet(context, links),
+              child: Text(
+                AppLocalizations.of(context).advicesSeeLinks,
+                textAlign: TextAlign.right,
+                style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+              ),
+            ),
+          )
+        : null;
+
+    return _buildGenericAdviceCard(
+      context: context,
+      state: state,
+      position: position + 1,
+      co2Tons: crit.co2EqTonsPerYear(),
+      title: crit.title(context),
+      iconName: crit.key,
+      description: crit.advice(context),
+      child: linksWidget,
+    );
+  }
+
+  Widget _buildGenericAdviceCard(
+      {BuildContext context,
+      CriteriasState state,
+      int position,
+      double co2Tons,
+      String title,
+      String iconName,
+      String description,
+      Widget child}) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 600),
       child: BlueCard(
@@ -157,20 +151,20 @@ class AdvicesScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${position + 2}.',
+                    '${position + 1}.',
                     style: Theme.of(context).textTheme.headline3.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: crit.co2EqTonsPerYear() > 1 ? warmdRed : warmdBlue,
+                          color: co2Tons > 1 ? warmdRed : warmdBlue,
                         ),
                   ),
                   Gaps.w16,
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          crit.title(context),
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          title,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.subtitle1.copyWith(
@@ -178,8 +172,7 @@ class AdvicesScreen extends StatelessWidget {
                                 color: warmdDarkBlue,
                               ),
                         ),
-                        Gaps.h8,
-                      ],
+                      ),
                     ),
                   ),
                   Gaps.w4,
@@ -187,19 +180,19 @@ class AdvicesScreen extends StatelessWidget {
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxHeight: 42, maxWidth: 42),
                       child: SvgPicture.asset(
-                        'assets/${crit.key}.svg',
+                        'assets/$iconName.svg',
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            if (crit.co2EqTonsPerYear() > 0) Gaps.h12,
-            if (crit.co2EqTonsPerYear() > 0)
+            if (co2Tons > 0) Gaps.h12,
+            if (co2Tons > 0)
               Text(
                 AppLocalizations.of(context).co2EqPercentValue(
-                  (100 ~/ (state.co2EqTonsPerYear() / crit.co2EqTonsPerYear())).toString(),
-                  crit.co2EqTonsPerYear().toStringAsFixed(1),
+                  (100 ~/ (state.co2EqTonsPerYear() / co2Tons)).toString(),
+                  co2Tons.toStringAsFixed(1),
                 ),
                 style: Theme.of(context).textTheme.subtitle2.copyWith(
                       color: warmdDarkBlue,
@@ -207,23 +200,12 @@ class AdvicesScreen extends StatelessWidget {
               ),
             Gaps.h16,
             MarkupText(
-              crit.advice(context),
+              description,
               style: Theme.of(context).textTheme.bodyText2.copyWith(
                     fontWeight: FontWeight.w300,
                   ),
             ),
-            if (links.isNotEmpty)
-              Align(
-                alignment: Alignment.topRight,
-                child: TextButton(
-                  onPressed: () => _showLinksBottomSheet(context, links),
-                  child: Text(
-                    AppLocalizations.of(context).advicesSeeLinks,
-                    textAlign: TextAlign.right,
-                    style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
-                  ),
-                ),
-              ),
+            if (child != null) child
           ],
         ),
       ),
