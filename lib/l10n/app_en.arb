@@ -33,7 +33,7 @@
     "@continueActionExplanation": {},
     "perWeek": "Per week.",
     "@perWeek": {},
-    "inUnit": "In {}.",
+    "inUnit": "In {unit}.",
     "@inUnit": {
         "placeholders": {
             "unit": {
