@@ -33,6 +33,14 @@
     "@continueActionExplanation": {},
     "perWeek": "Par semaine.",
     "@perWeek": {},
+    "inUnit": "En {unit}.",
+    "@inUnit": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
     "inUnitPerYear": "En {unit} par an.",
     "@inUnitPerYear": {
         "placeholders": {
@@ -117,6 +125,8 @@
     "@materialGoodsCriteriaAdvice": {},
     "savingsCriteriaTitle": "Argent dormant sur un compte bancaire non décarboné",
     "@savingsCriteriaTitle": {},
+    "savingsCriteriaExplanation": "Si vous ne savez pas, vous pouvez considérer que la plupart de vos économies sont concernées.",
+    "@savingsCriteriaExplanation": {},
     "savingsCriteriaAdvice": "La plupart des banques investissent encore la majorité de vos économies dans des entreprises ayant un impact carbone important. Heureusement, certaines banques vous permettent de choisir des investissements à faible émission de carbone.",
     "@savingsCriteriaAdvice": {},
     "waterCriteriaTitle": "Votre consommation d'eau",
