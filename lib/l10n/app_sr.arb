@@ -1,1 +1,10 @@
-{}
+{
+    "back": "Nazad",
+    "@back": {},
+    "onboardingStep1Title": "Razumeti svoj doprinos",
+    "@onboardingStep1Title": {},
+    "onboardingStep1Description": "Vidi kako tvoje aktivnosti doprinose planeti, životinjama i još.",
+    "@onboardingStep1Description": {},
+    "onboardingStep2Title": "Preduzeti akcije da se smanji doprinos",
+    "@onboardingStep2Title": {}
+}
