@@ -139,86 +139,80 @@ class AdvicesScreen extends StatelessWidget {
       String iconName,
       String description,
       Widget child}) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 600),
-      child: BlueCard(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '${position + 1}.',
-                    style: Theme.of(context).textTheme.headline3.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: co2Tons == null || co2Tons > 1 ? warmdRed : warmdBlue,
-                        ),
-                  ),
-                  Gaps.w16,
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Text(
-                          title,
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.subtitle1.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: warmdDarkBlue,
-                              ),
-                        ),
+    return BlueCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${position + 1}.',
+                  style: Theme.of(context).textTheme.headline3.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: co2Tons == null || co2Tons > 1 ? warmdRed : warmdBlue,
                       ),
-                    ),
-                  ),
-                  Gaps.w4,
-                  Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxHeight: 42, maxWidth: 42),
-                      child: SvgPicture.asset(
-                        'assets/$iconName.svg',
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            if (co2Tons != null && co2Tons > 0) Gaps.h12,
-            if (co2Tons != null && co2Tons > 0)
-              Text(
-                AppLocalizations.of(context).co2EqPercentValue(
-                  (100 ~/ (state.co2EqTonsPerYear() / co2Tons)).toString(),
-                  co2Tons.toStringAsFixed(1),
                 ),
-                style: Theme.of(context).textTheme.subtitle2.copyWith(
-                      color: warmdDarkBlue,
+                Gaps.w16,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        title,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.subtitle1.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: warmdDarkBlue,
+                            ),
+                      ),
                     ),
+                  ),
+                ),
+                Gaps.w4,
+                Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 42, maxWidth: 42),
+                    child: SvgPicture.asset(
+                      'assets/$iconName.svg',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (co2Tons != null && co2Tons > 0) Gaps.h12,
+          if (co2Tons != null && co2Tons > 0)
+            Text(
+              AppLocalizations.of(context).co2EqPercentValue(
+                (100 ~/ (state.co2EqTonsPerYear() / co2Tons)).toString(),
+                co2Tons.toStringAsFixed(1),
               ),
-            Gaps.h16,
-            MarkupText(
-              description,
-              style: Theme.of(context).textTheme.bodyText2.copyWith(
-                    fontWeight: FontWeight.w300,
+              style: Theme.of(context).textTheme.subtitle2.copyWith(
+                    color: warmdDarkBlue,
                   ),
             ),
-            if (child != null) child
-          ],
-        ),
+          Gaps.h16,
+          MarkupText(
+            description,
+            style: Theme.of(context).textTheme.bodyText2.copyWith(
+                  fontWeight: FontWeight.w300,
+                ),
+          ),
+          if (child != null) child
+        ],
       ),
     );
   }
 
   Widget _buildOtherPollutionTypesCard(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 600),
-      child: BlueCard(
-        child: Text(
-          AppLocalizations.of(context).advicesOtherPolutionTypes,
-          style: Theme.of(context).textTheme.bodyText2,
-        ),
+    return BlueCard(
+      child: Text(
+        AppLocalizations.of(context).advicesOtherPolutionTypes,
+        style: Theme.of(context).textTheme.bodyText2,
       ),
     );
   }

@@ -134,52 +134,49 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
   Widget _buildCriteria(BuildContext context, CriteriasState state, Criteria c) {
     final explanation = c.explanation(context);
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 600),
-      child: BlueCard(
-        padding: const EdgeInsets.only(top: 28, bottom: 36),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+    return BlueCard(
+      padding: const EdgeInsets.only(top: 28, bottom: 36),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    c.title(context),
+                    style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Gaps.w12,
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxHeight: 42, maxWidth: 42),
+                  child: SvgPicture.asset(
+                    'assets/${c.key}.svg',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Gaps.h12,
+          if (explanation != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      c.title(context),
-                      style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Gaps.w12,
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxHeight: 42, maxWidth: 42),
-                    child: SvgPicture.asset(
-                      'assets/${c.key}.svg',
-                    ),
-                  ),
-                ],
+              child: MarkupText(
+                explanation,
+                style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.grey[600], fontWeight: FontWeight.w300),
               ),
             ),
-            Gaps.h12,
-            if (explanation != null)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: MarkupText(
-                  explanation,
-                  style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.grey[600], fontWeight: FontWeight.w300),
-                ),
-              ),
-            Gaps.h8,
-            if (c.labels(context) != null)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: _buildDropdown(context, c, state),
-              )
-            else
-              _buildSlider(c, context, state),
-          ],
-        ),
+          Gaps.h8,
+          if (c.labels(context) != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: _buildDropdown(context, c, state),
+            )
+          else
+            _buildSlider(c, context, state),
+        ],
       ),
     );
   }

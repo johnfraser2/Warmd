@@ -10,14 +10,17 @@ class BlueCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(18)),
-        color: warmdLightBlue,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 600),
+      child: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(18)),
+          color: warmdLightBlue,
+        ),
+        margin: const EdgeInsets.only(bottom: 32),
+        padding: padding,
+        child: child,
       ),
-      margin: const EdgeInsets.only(bottom: 32),
-      padding: padding,
-      child: child,
     );
   }
 }
