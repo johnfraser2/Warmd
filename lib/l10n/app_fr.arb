@@ -190,8 +190,6 @@
     "@footprintEvolutionExplanation": {},
     "footprintEvolutionTonsAxis": "Tonnes de CO₂e",
     "@footprintEvolutionTonsAxis": {},
-    "footprintEvolutionYearAxis": "Année",
-    "@footprintEvolutionYearAxis": {},
     "footprintShareTitle": "Mon empreinte carbone",
     "@footprintShareTitle": {},
     "footprintShareLink": "Fait avec Warmd : https://fredjul.github.io/Warmd/",
