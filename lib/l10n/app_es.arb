@@ -41,6 +41,18 @@
             }
         }
     },
+    "inUnitPerYear": "En (unidad) por Año.",
+    "@inUnitPerYear": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "politicalAdvice": "Tu impacto es insignificante comparado con el de las compañías o gobiernos y por el momento sus políticas ambientales son muy insuficientes. Trata de influir en sus decisiones votando, escribiendo a tus representantes, uniéndote a un grupo de acción climática o por otros medios.\n\nSi hay alguna cosa que hacer, es precisamente esta.",
+    "@politicalAdvice": {},
+    "heatingFuelCriteriaTitle": "Tu factura del gas o fuel",
+    "@heatingFuelCriteriaTitle": {},
     "resetFootprintHistoryQuestion": "Reseteamos?",
     "@resetFootprintHistoryQuestion": {},
     "resetFootprintHistoryConfirmation": "? Estas seguro de que quieres resetear tu hisroria de huella de carbono?",
