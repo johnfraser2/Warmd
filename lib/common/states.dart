@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -99,6 +100,31 @@ class HistoryState with ChangeNotifier {
     });
   }
 
+  void resetHistory() {
+    final lastScore = _scores.entries.last;
+    _scores.clear();
+    _scores[lastScore.key] = lastScore.value;
+
+    notifyListeners();
+
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setString(_scoresKey, json.encode(_scores));
+    });
+  }
+
+  static const _isReminderEnabledKey = 'IS_REMINDER_ENABLED_KEY';
+  bool _isReminderEnabled = Platform.isAndroid; // Enable this feature by default for Android only (no runtime permission)
+  bool get isReminderEnable => _isReminderEnabled;
+  set isReminderEnable(bool newValue) {
+    _isReminderEnabled = newValue;
+
+    notifyListeners();
+
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setBool(_isReminderEnabledKey, _isReminderEnabled);
+    });
+  }
+
   HistoryState() {
     _loadState();
   }
@@ -112,6 +138,10 @@ class HistoryState with ChangeNotifier {
 
     if (prefs.containsKey(_improvementPercentKey)) {
       _improvementPercent = prefs.getInt(_improvementPercentKey);
+    }
+
+    if (prefs.containsKey(_isReminderEnabledKey)) {
+      _isReminderEnabled = prefs.getBool(_isReminderEnabledKey);
     }
 
     notifyListeners();
