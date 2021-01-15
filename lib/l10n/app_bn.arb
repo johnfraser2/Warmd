@@ -61,8 +61,6 @@
     },
     "footprintEvolutionTonsAxis": "টন CO₂e(কার্বন ডাই অক্সাইড)",
     "@footprintEvolutionTonsAxis": {},
-    "footprintEvolutionYearAxis": "বছর",
-    "@footprintEvolutionYearAxis": {},
     "shortCo2EqTonsValue": "{value} টন",
     "@shortCo2EqTonsValue": {
         "placeholders": {
