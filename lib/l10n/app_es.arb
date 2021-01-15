@@ -28,5 +28,15 @@
     "countrySelectionNotFound": "No reconocemos ese país, por favor trata de escribirlo en el idioma oficial del país o eligelo de la lista.",
     "@countrySelectionNotFound": {},
     "continueAction": "CONTINÚA",
-    "@continueAction": {}
+    "@continueAction": {},
+    "resetFootprintHistoryQuestion": "Reseteamos?",
+    "@resetFootprintHistoryQuestion": {},
+    "resetFootprintHistoryConfirmation": "? Estas seguro de que quieres resetear tu hisroria de huella de carbono?",
+    "@resetFootprintHistoryConfirmation": {},
+    "redoQuestionnaireReminder": "Recuérdame hacer el test dentro de 1 mes",
+    "@redoQuestionnaireReminder": {},
+    "reminderNotificationTitle": "Revisa tu ultima huella de carbono",
+    "@reminderNotificationTitle": {},
+    "reminderNotificationDescription": "Realiza tu nueva huella de carbono y valora tu progreso.",
+    "@reminderNotificationDescription": {}
 }
