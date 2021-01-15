@@ -29,6 +29,18 @@
     "@countrySelectionNotFound": {},
     "continueAction": "CONTINÚA",
     "@continueAction": {},
+    "continueActionExplanation": "Siempre puedes actualizar los datos más tarde.",
+    "@continueActionExplanation": {},
+    "perWeek": "Por semana.",
+    "@perWeek": {},
+    "inUnit": "En (unidad).",
+    "@inUnit": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
     "resetFootprintHistoryQuestion": "Reseteamos?",
     "@resetFootprintHistoryQuestion": {},
     "resetFootprintHistoryConfirmation": "? Estas seguro de que quieres resetear tu hisroria de huella de carbono?",
