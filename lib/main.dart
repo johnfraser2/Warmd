@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flow_builder/flow_builder.dart';
@@ -23,7 +24,12 @@ void main() {
   runApp(MyApp());
 
   SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  // Block rotation on small screens (smartphones) since current UI is not always adapted to small height
+  final windowSize = MediaQueryData.fromWindow(window).size;
+  if (min(windowSize.height, windowSize.width) < 600) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
 }
 
 class MyApp extends StatelessWidget {
