@@ -19,7 +19,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   dropdown_search: ^0.4.8
   fl_chart: ^0.12.2
-  flow_builder: 0.0.1-dev.9
+  flow_builder: 0.0.1-dev.9 # dev.10 to dev.13 seems to be buggy
   flutter_local_notifications: ^3.0.3
   flutter_native_timezone: ^1.0.4
   flutter_svg: ^0.19.1
