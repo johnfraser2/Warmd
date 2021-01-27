@@ -198,8 +198,6 @@
     "@seeAdvices": {},
     "resetFootprintHistoryQuestion": "Réinitialiser l'historique ?",
     "@resetFootprintHistoryQuestion": {},
-    "resetFootprintHistoryConfirmation": "Êtes-vous sûr de vouloir réinitialiser l'historique de votre empreinte carbone ?",
-    "@resetFootprintHistoryConfirmation": {},
     "redoQuestionnaireReminder": "Me rappeler de refaire le test dans 1 mois",
     "@redoQuestionnaireReminder": {},
     "reminderNotificationDescription": "Calculez votre nouvelle empreinte carbone et voyez votre progression.",
@@ -271,6 +269,6 @@
     "@aboutRateIt": {},
     "aboutSourcesTitle": "Sources",
     "@aboutSourcesTitle": {},
-    "aboutSourcesDescription": "Ce calculateur d'empreinte carbone est principalement basée sur les résultats de (a https://coolclimate.org)CoolClimate(/a) avec l'aide d'autres sources comme (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) ou (a https://riftapp.fr/)Rift(/a).\n\nEn raison de la complexité de la tâche, nous ne nous attendons pas à ce que cette application soit très exacte, mais elle permet de vous donner une idée de votre impact.\n\nJe ne suis affilié à aucune des organisations mentionnées.",
+    "aboutSourcesDescription": "Ce calculateur d'empreinte carbone est principalement basé sur les résultats de (a https://coolclimate.org)CoolClimate(/a) avec l'aide d'autres sources comme (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) ou (a https://riftapp.fr/)Rift(/a).\n\nEn raison de la complexité de la tâche, nous ne nous attendons pas à ce que cette application soit très exacte (d'autant plus que certaines estimations se basent sur des données américaines), mais elle permet de vous donner une idée de votre impact.\n\nJe ne suis affilié à aucune des organisations mentionnées.",
     "@aboutSourcesDescription": {}
 }
