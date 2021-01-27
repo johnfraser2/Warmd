@@ -55,12 +55,8 @@
     "@heatingFuelCriteriaTitle": {},
     "resetFootprintHistoryQuestion": "Reseteamos?",
     "@resetFootprintHistoryQuestion": {},
-    "resetFootprintHistoryConfirmation": "? Estas seguro de que quieres resetear tu hisroria de huella de carbono?",
-    "@resetFootprintHistoryConfirmation": {},
     "redoQuestionnaireReminder": "Recuérdame hacer el test dentro de 1 mes",
     "@redoQuestionnaireReminder": {},
-    "reminderNotificationTitle": "Revisa tu ultima huella de carbono",
-    "@reminderNotificationTitle": {},
     "reminderNotificationDescription": "Realiza tu nueva huella de carbono y valora tu progreso.",
     "@reminderNotificationDescription": {}
 }
