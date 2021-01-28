@@ -166,12 +166,21 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
   }
 
   Row _buildFlightsEquivalent(CriteriasState state) {
+    final countryCriteria = state.categories[0].criterias[0] as CountryCriteria;
+    final meanCarCriteria = CarCriteria(CarConsumptionCriteria(countryCriteria), countryCriteria)..currentValue = 1000;
+    final distanceForCurrentScore =
+        (state.co2EqTonsPerYear() / meanCarCriteria.co2EqTonsPerYear()) * meanCarCriteria.currentValue;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(CupertinoIcons.airplane),
+        SvgPicture.asset(
+          'assets/car.svg',
+          height: 16,
+        ),
         Gaps.w12,
-        MarkupText(AppLocalizations.of(context).footprintFlightsEquivalent((state.co2EqTonsPerYear() / 1.6).round())),
+        MarkupText(AppLocalizations.of(context)
+            .footprintCarKmEquivalent(distanceForCurrentScore.toInt().toString(), meanCarCriteria.unit)),
       ],
     );
   }
@@ -314,15 +323,14 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                         .map((cat) => PieChartSectionData(
                               color: colors[cat.runtimeType],
                               value: cat.co2EqTonsPerYear(),
-                              title: AppLocalizations.of(context).shortCo2EqTonsValue(cat.co2EqTonsPerYear().toStringAsFixed(1)),
-                              radius: 85,
-                              titleStyle: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+                              title: AppLocalizations.of(context)
+                                  .co2EqKgValue(((cat.co2EqTonsPerYear() / 12) * 1000).round().toString()),
+                              radius: 90,
+                              titleStyle:
+                                  Theme.of(context).textTheme.caption.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
                               badgeWidget: _PieBadge(
                                 'assets/${cat.key}.svg',
-                                size: 40,
+                                size: 35,
                                 borderColor: colors[cat.runtimeType],
                               ),
                               badgePositionPercentageOffset: .98,
@@ -331,6 +339,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                   ),
                 ),
               ),
+              Gaps.w8,
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 150),
                 child: Column(
@@ -608,7 +617,7 @@ class _FootprintChart extends StatelessWidget {
     final startMonth = scores.keys.first.month;
 
     final maxX = numYears * 12.0; // each month is represented
-    final maxY = scores.values.reduce(max) + 5;
+    final maxY = max(1.0, (scores.values.reduce(max) / 12) * 1.5);
 
     int previousYearForTitle;
     int previousYearForVerticalLine;
@@ -664,7 +673,7 @@ class _FootprintChart extends StatelessWidget {
                 leftTitles: SideTitles(
                   showTitles: true,
                   getTitles: (value) {
-                    if (value > 0 && value % 5 == 0) {
+                    if (value % 1 == 0) {
                       return value.toInt().toString();
                     }
                     return '';
@@ -783,14 +792,14 @@ class _FootprintChart extends StatelessWidget {
   }
 
   LineChartBarData _buildGoalLine(Map<DateTime, double> scores, int improvementPercent, double maxX) {
-    var goalValue = scores.entries.first.value;
+    var goalValue = scores.entries.first.value / 12;
 
     return LineChartBarData(
       spots: List.generate((maxX ~/ 12) + 1, (i) {
         if (i > 0) {
           goalValue = goalValue - (goalValue / 100 * improvementPercent);
         }
-        return FlSpot(i * 12.0, (goalValue * 10).round() / 10);
+        return FlSpot(i * 12.0, (goalValue * 100).round() / 100);
       }),
       isCurved: true,
       colors: [
@@ -812,7 +821,7 @@ class _FootprintChart extends StatelessWidget {
     final minMonth = scores.entries.first.key.month;
 
     final spots = scores.entries
-        .map((e) => FlSpot((((e.key.year - minYear) * 12.0) + e.key.month) - minMonth, (e.value * 10).round() / 10))
+        .map((e) => FlSpot((((e.key.year - minYear) * 12.0) + e.key.month) - minMonth, ((e.value / 12) * 100).round() / 100))
         .toList();
 
     return LineChartBarData(

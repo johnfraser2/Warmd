@@ -122,7 +122,7 @@ class AdvicesScreen extends StatelessWidget {
       context: context,
       state: state,
       position: position + 1,
-      co2Tons: crit.co2EqTonsPerYear(),
+      co2EqTonsPerYear: crit.co2EqTonsPerYear(),
       title: crit.title(context),
       iconName: crit.key,
       description: crit.advice(context),
@@ -134,11 +134,14 @@ class AdvicesScreen extends StatelessWidget {
       {BuildContext context,
       CriteriasState state,
       int position,
-      double co2Tons,
+      double co2EqTonsPerYear,
       String title,
       String iconName,
       String description,
       Widget child}) {
+    final percentValue = (100 ~/ (state.co2EqTonsPerYear() / (co2EqTonsPerYear ?? 1))).toString();
+    final co2EqTonsPerMonth = (co2EqTonsPerYear ?? 1) / 12;
+
     return BlueCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,7 +154,7 @@ class AdvicesScreen extends StatelessWidget {
                   '${position + 1}.',
                   style: Theme.of(context).textTheme.headline3.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: co2Tons == null || co2Tons > 1 ? warmdRed : warmdBlue,
+                        color: co2EqTonsPerYear == null || co2EqTonsPerYear > 1 ? warmdRed : warmdBlue,
                       ),
                 ),
                 Gaps.w16,
@@ -184,13 +187,12 @@ class AdvicesScreen extends StatelessWidget {
               ],
             ),
           ),
-          if (co2Tons != null && co2Tons > 0) Gaps.h12,
-          if (co2Tons != null && co2Tons > 0)
+          if (co2EqTonsPerYear != null) Gaps.h12,
+          if (co2EqTonsPerYear != null)
             Text(
-              AppLocalizations.of(context).co2EqPercentValue(
-                (100 ~/ (state.co2EqTonsPerYear() / co2Tons)).toString(),
-                co2Tons.toStringAsFixed(1),
-              ),
+              co2EqTonsPerMonth > 1
+                  ? AppLocalizations.of(context).co2EqPercentTonsValue(percentValue, co2EqTonsPerMonth.toShortString(1))
+                  : AppLocalizations.of(context).co2EqPercentKgValue(percentValue, (co2EqTonsPerMonth * 1000).round().toString()),
               style: Theme.of(context).textTheme.subtitle2.copyWith(
                     color: warmdDarkBlue,
                   ),

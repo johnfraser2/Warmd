@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 
 const warmdLightBlue = Color(0xFFDFF3FE);
 const warmdBlue = Color(0xFF00AAF2);
@@ -41,6 +42,15 @@ extension ListExtension<E> on List<E> {
         ),
       )
       .values;
+}
+
+extension DoubleExtension on double {
+  String toShortString(int maxFractionDigits) {
+    final formatter = NumberFormat()
+      ..minimumFractionDigits = 0
+      ..maximumFractionDigits = maxFractionDigits;
+    return formatter.format(this);
+  }
 }
 
 Widget buildBackButton(BuildContext context) {

@@ -100,7 +100,7 @@ class HeatingFuelCriteria extends Criteria {
   HeatingFuelCriteria(this._countryCriteria) {
     key = 'heating_fuel';
     minValue = 0;
-    step = 100;
+    step = 10;
     currentValue = 0;
   }
 
@@ -108,13 +108,15 @@ class HeatingFuelCriteria extends Criteria {
   String title(BuildContext context) => AppLocalizations.of(context).heatingFuelCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context).inUnitPerYear(_countryCriteria.getCurrencyCode());
+  String explanation(BuildContext context) => AppLocalizations.of(context).inUnitPerMonth(_countryCriteria.getCurrencyCode());
 
   @override
-  double get maxValue => (((5000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+  double get maxValue => (((300 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
 
   @override
-  double get currentValue => min(maxValue, super.currentValue);
+  double get currentValue => super.currentValue > maxValue
+      ? min(maxValue, super.currentValue / 12)
+      : super.currentValue; // Necessary since I switched from year to month
 
   @override
   String get unit => _countryCriteria.getCurrencyCode();
@@ -126,7 +128,7 @@ class HeatingFuelCriteria extends Criteria {
     final fuelBill = currentValue * moneyChange;
     const co2TonsPerFuelDollar = 0.005;
 
-    return fuelBill * co2TonsPerFuelDollar;
+    return fuelBill * co2TonsPerFuelDollar * 12; // x12 for the yearly value
   }
 
   @override
@@ -145,21 +147,23 @@ class ElectricityBillCriteria extends Criteria {
   ElectricityBillCriteria(this._countryCriteria) {
     key = 'electricity_bill';
     minValue = 0;
-    step = 100;
-    currentValue = 1000;
+    step = 10;
+    currentValue = 100;
   }
 
   @override
   String title(BuildContext context) => AppLocalizations.of(context).electricityBillCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context).inUnitPerYear(_countryCriteria.getCurrencyCode());
+  String explanation(BuildContext context) => AppLocalizations.of(context).inUnitPerMonth(_countryCriteria.getCurrencyCode());
 
   @override
-  double get maxValue => (((5000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+  double get maxValue => (((500 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
 
   @override
-  double get currentValue => min(maxValue, super.currentValue);
+  double get currentValue => super.currentValue > maxValue
+      ? min(maxValue, super.currentValue / 12)
+      : super.currentValue; // Necessary since I switched from year to month
 
   @override
   String get unit => _countryCriteria.getCurrencyCode();
@@ -204,12 +208,12 @@ class CleanElectricityCriteria extends Criteria {
   double co2EqTonsPerYear() {
     final moneyChange = _countryCriteria.getCurrencyRate();
 
-    final electricityBill = _electricityBillCriteria.currentValue * moneyChange;
+    final electricityBillPerYear = _electricityBillCriteria.currentValue * 12 * moneyChange;
     final co2ElectricityPercent = min(100, 100 - currentValue + 5); // +5% because nothing is 100% clean
     const kWhPrice = 0.15; // in dollars
     const co2TonsPerKWh = 0.00065;
 
-    return (electricityBill / 100 * co2ElectricityPercent) / kWhPrice * co2TonsPerKWh;
+    return (electricityBillPerYear / 100 * co2ElectricityPercent) / kWhPrice * co2TonsPerKWh;
   }
 
   @override
@@ -244,7 +248,7 @@ class FlightsCriteria extends Criteria {
   FlightsCriteria() {
     key = 'flights';
     minValue = 0;
-    maxValue = 60;
+    maxValue = 40;
     step = 1;
     currentValue = 0;
   }
@@ -253,20 +257,20 @@ class FlightsCriteria extends Criteria {
   String title(BuildContext context) => AppLocalizations.of(context).flightsCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context).inUnitPerYear(unit);
+  String explanation(BuildContext context) => AppLocalizations.of(context).inUnitPerMonth(unit);
 
   @override
   String get unit => 'h';
 
   @override
   double get currentValue => super.currentValue > maxValue
-      ? super.currentValue / _airlinerKmsPerHour
-      : super.currentValue; // Necessary since I switched from km to hours
+      ? min(maxValue, super.currentValue / 12)
+      : super.currentValue; // Necessary since I switched from year to month
 
   @override
   double co2EqTonsPerYear() {
     const co2TonsPerKm = 0.00016; // Around 0.8t per 5000km if we believe the CoolClimate's advanced air traval results
-    return currentValue * _airlinerKmsPerHour * co2TonsPerKm;
+    return currentValue * _airlinerKmsPerHour * co2TonsPerKm * 12; // x12 for the yearly value
   }
 
   @override
@@ -286,8 +290,8 @@ class CarCriteria extends Criteria {
   CarCriteria(this._carConsumptionCriteria, this._countryCriteria) {
     key = 'car';
     minValue = 0;
-    maxValue = 80000;
-    step = 2500;
+    maxValue = 5000;
+    step = 50;
     currentValue = 0;
   }
 
@@ -295,10 +299,15 @@ class CarCriteria extends Criteria {
   String title(BuildContext context) => AppLocalizations.of(context).carCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context).inUnitPerYear(unit);
+  String explanation(BuildContext context) => AppLocalizations.of(context).inUnitPerMonth(unit);
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
+
+  @override
+  double get currentValue => super.currentValue > maxValue
+      ? min(maxValue, super.currentValue / 12)
+      : super.currentValue; // Necessary since I switched from year to month
 
   @override
   double co2EqTonsPerYear() {
@@ -311,7 +320,7 @@ class CarCriteria extends Criteria {
         100;
     final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
     const co2TonsPerLiter = 0.0033;
-    return currentValue * milesToKmFactor * litersPerKm * co2TonsPerLiter;
+    return currentValue * milesToKmFactor * litersPerKm * co2TonsPerLiter * 12; // x12 for the yearly value
   }
 
   @override
@@ -332,7 +341,7 @@ class CarConsumptionCriteria extends Criteria {
   CarConsumptionCriteria(this._countryCriteria) {
     key = 'car_consumption';
     step = 1;
-    currentValue = 7;
+    currentValue = meanValue;
   }
 
   @override
@@ -350,12 +359,18 @@ class CarConsumptionCriteria extends Criteria {
       _countryCriteria.unitSystem() == UnitSystem.metric ? 15 : -15; // Minus to have a correct ordering (min < max)
 
   @override
-  double get currentValue => min(maxValue, max(minValue, super.currentValue));
+  double get currentValue => (super.currentValue > maxValue || super.currentValue < minValue) ? meanValue : super.currentValue;
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric
       ? 'L/100km'
       : 'mpg'; // Actually there is 2 different mpg, we mix them two here and will do the diff in carbon calculation
+
+  double get meanValue => _countryCriteria.unitSystem() == UnitSystem.metric
+      ? 6
+      : _countryCriteria.unitSystem() == UnitSystem.us
+          ? -40
+          : -50;
 }
 
 class PublicTransportCriteria extends Criteria {
@@ -364,8 +379,8 @@ class PublicTransportCriteria extends Criteria {
   PublicTransportCriteria(this._countryCriteria) {
     key = 'public_transport';
     minValue = 0;
-    maxValue = 30000;
-    step = 1000;
+    maxValue = 3000;
+    step = 50;
     currentValue = 0;
   }
 
@@ -373,16 +388,21 @@ class PublicTransportCriteria extends Criteria {
   String title(BuildContext context) => AppLocalizations.of(context).publicTransportCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context).inUnitPerYear(unit);
+  String explanation(BuildContext context) => AppLocalizations.of(context).inUnitPerMonth(unit);
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
 
   @override
+  double get currentValue => super.currentValue > maxValue
+      ? min(maxValue, super.currentValue / 12)
+      : super.currentValue; // Necessary since I switched from year to month
+
+  @override
   double co2EqTonsPerYear() {
     const co2TonsPerKm = 0.00014;
     final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
-    return currentValue * milesToKmFactor * co2TonsPerKm;
+    return currentValue * milesToKmFactor * co2TonsPerKm * 12; // x12 for the yearly value
   }
 
   @override
@@ -645,7 +665,7 @@ class MaterialGoodsCriteria extends Criteria {
   MaterialGoodsCriteria(this._countryCriteria) {
     key = 'material_goods';
     minValue = 0;
-    step = 100;
+    step = 10;
     currentValue = 0;
   }
 
@@ -656,10 +676,12 @@ class MaterialGoodsCriteria extends Criteria {
   String explanation(BuildContext context) => AppLocalizations.of(context).materialGoodsCriteriaExplanation(unit);
 
   @override
-  double get maxValue => (((50000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+  double get maxValue => (((10000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
 
   @override
-  double get currentValue => min(maxValue, super.currentValue);
+  double get currentValue => super.currentValue > maxValue
+      ? min(maxValue, super.currentValue / 12)
+      : super.currentValue; // Necessary since I switched from year to month
 
   @override
   String get unit => _countryCriteria.getCurrencyCode();
@@ -668,7 +690,7 @@ class MaterialGoodsCriteria extends Criteria {
   double co2EqTonsPerYear() {
     final moneyChange = _countryCriteria.getCurrencyRate();
     const co2TonsPerDollarPerMonth = 0.0062; // CoolClimate provides a value per month
-    return (currentValue / 12) * moneyChange * co2TonsPerDollarPerMonth;
+    return currentValue * moneyChange * co2TonsPerDollarPerMonth; // returns a yearly value
   }
 
   @override

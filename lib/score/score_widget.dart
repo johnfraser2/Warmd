@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:warmd/common/common.dart';
 import 'package:warmd/common/states.dart';
 
 const _levelColors = [
@@ -30,6 +31,10 @@ class _ScoreWidgetState extends State<ScoreWidget> {
   Widget build(BuildContext context) {
     final scoreRatio = min(1.0, widget.state.co2EqTonsPerYear() / 25);
 
+    final co2EqTonsPerMonth = widget.state.co2EqTonsPerYear() / 12;
+    final scoreToDisplay =
+        co2EqTonsPerMonth < 1 ? (co2EqTonsPerMonth * 1000).toInt().toString() : co2EqTonsPerMonth.toShortString(1);
+
     return Stack(
       children: [
         SizedBox(
@@ -49,14 +54,16 @@ class _ScoreWidgetState extends State<ScoreWidget> {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: '${widget.state.co2EqTonsPerYear().toStringAsFixed(1)} ',
+                    text: '$scoreToDisplay ',
                     style: Theme.of(context)
                         .textTheme
                         .headline3
                         .copyWith(color: _scoreRatioToColor(scoreRatio), fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: AppLocalizations.of(context).scoreUnit,
+                    text: co2EqTonsPerMonth < 1
+                        ? AppLocalizations.of(context).scoreKgUnit
+                        : AppLocalizations.of(context).scoreTonsUnit,
                     style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                 ],

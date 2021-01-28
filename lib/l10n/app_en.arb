@@ -41,8 +41,8 @@
             }
         }
     },
-    "inUnitPerYear": "In {unit} per year.",
-    "@inUnitPerYear": {
+    "inUnitPerMonth": "In {unit} for last month.",
+    "@inUnitPerMonth": {
         "placeholders": {
             "unit": {
                 "type": "String"
@@ -113,7 +113,7 @@
     "@foodCategoryTitle": {},
     "materialGoodsCriteriaTitle": "Money spent in material goods",
     "@materialGoodsCriteriaTitle": {},
-    "materialGoodsCriteriaExplanation": "In {unit} per year.\n\nConcerns furnitures, appliances, clothes, electronic devices, tools, vehicles, vehicles parts, medicines, …",
+    "materialGoodsCriteriaExplanation": "In {unit} for last month.\n\nConcerns furnitures, appliances, clothes, electronic devices, tools, vehicles, vehicles parts, medicines, …",
     "@materialGoodsCriteriaExplanation": {
         "placeholders": {
             "unit": {
@@ -171,12 +171,14 @@
     },
     "footprintTitle": "Your total carbon footprint is",
     "@footprintTitle": {},
-    "footprintFlightsEquivalent": "Or (b){number}(/b) Paris - New York return flights",
-    "@footprintFlightsEquivalent": {
+    "footprintCarKmEquivalent": "Or (b){number} {unit}(/b) with a typical petrol car",
+    "@footprintCarKmEquivalent": {
         "placeholders": {
             "number": {
-                "type": "int",
-                "format": "compact"
+                "type": "String"
+            },
+            "unit": {
+                "type": "String"
             }
         }
     },
@@ -188,7 +190,7 @@
     "@footprintEvolutionTitle": {},
     "footprintEvolutionExplanation": "Compute your carbon footprint every month and see your evolution.\n\nThe world must reduce its emissions by at least 6% per year. What about you?",
     "@footprintEvolutionExplanation": {},
-    "footprintEvolutionTonsAxis": "Tons CO₂e",
+    "footprintEvolutionTonsAxis": "Tons CO₂e / month",
     "@footprintEvolutionTonsAxis": {},
     "footprintShareTitle": "My carbon footprint",
     "@footprintShareTitle": {},
@@ -210,23 +212,36 @@
     "@redoQuestionnaire": {},
     "seeAbout": "Understand how your carbon footprint is calculated and how you could help this project.",
     "@seeAbout": {},
-    "scoreUnit": "tons\nCO₂e/year",
-    "@scoreUnit": {},
-    "shortCo2EqTonsValue": "{value} t",
-    "@shortCo2EqTonsValue": {
+    "scoreTonsUnit": "tons\nCO₂e / month",
+    "@scoreTonsUnit": {},
+    "scoreKgUnit": "kg\nCO₂e / month",
+    "@scoreKgUnit": {},
+    "co2EqKgValue": "{value} kg",
+    "@co2EqKgValue": {
         "placeholders": {
             "value": {
                 "type": "String"
             }
         }
     },
-    "co2EqPercentValue": "{percent}% ({co2EqTons} tons CO₂e/year)",
-    "@co2EqPercentValue": {
+    "co2EqPercentTonsValue": "{percent}% ({co2EqTons} tons CO₂e / month)",
+    "@co2EqPercentTonsValue": {
         "placeholders": {
             "percent": {
                 "type": "String"
             },
             "co2EqTons": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentKgValue": "{percent}% ({co2EqKg} kg CO₂e / month)",
+    "@co2EqPercentKgValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqKg": {
                 "type": "String"
             }
         }
