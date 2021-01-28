@@ -59,16 +59,6 @@
             }
         }
     },
-    "footprintEvolutionTonsAxis": "টন CO₂e(কার্বন ডাই অক্সাইড)",
-    "@footprintEvolutionTonsAxis": {},
-    "shortCo2EqTonsValue": "{value} টন",
-    "@shortCo2EqTonsValue": {
-        "placeholders": {
-            "value": {
-                "type": "String"
-            }
-        }
-    },
     "globalObjectivesTitle": "বৈশ্বিক উদ্দেশ্য",
     "@globalObjectivesTitle": {},
     "aboutSourcesTitle": "উৎস",
