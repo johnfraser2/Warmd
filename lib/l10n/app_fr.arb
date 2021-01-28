@@ -41,8 +41,8 @@
             }
         }
     },
-    "inUnitPerYear": "En {unit} par an.",
-    "@inUnitPerYear": {
+    "inUnitPerMonth": "En {unit} pour le mois dernier.",
+    "@inUnitPerMonth": {
         "placeholders": {
             "unit": {
                 "type": "String"
@@ -113,7 +113,7 @@
     "@foodCategoryTitle": {},
     "materialGoodsCriteriaTitle": "Argent dépensé en biens matériels",
     "@materialGoodsCriteriaTitle": {},
-    "materialGoodsCriteriaExplanation": "En {unit} par an.\n\nConcerne les meubles, appareils électroménagers, vêtements, appareils électroniques, outils, véhicules, pièces de véhicules, médicaments, …",
+    "materialGoodsCriteriaExplanation": "En {unit} pour le mois dernier.\n\nConcerne les meubles, appareils électroménagers, vêtements, appareils électroniques, outils, véhicules, pièces de véhicules, médicaments, …",
     "@materialGoodsCriteriaExplanation": {
         "placeholders": {
             "unit": {
@@ -171,12 +171,14 @@
     },
     "footprintTitle": "Votre empreinte carbone est de",
     "@footprintTitle": {},
-    "footprintFlightsEquivalent": "Soit (b){number}(/b) allers-retours Paris - New York",
-    "@footprintFlightsEquivalent": {
+    "footprintCarKmEquivalent": "Ou (b){number} {unit}(/b) avec une voiture essence",
+    "@footprintCarKmEquivalent": {
         "placeholders": {
             "number": {
-                "type": "int",
-                "format": "compact"
+                "type": "String"
+            },
+            "unit": {
+                "type": "String"
             }
         }
     },
@@ -188,37 +190,58 @@
     "@footprintEvolutionTitle": {},
     "footprintEvolutionExplanation": "Calculez votre empreinte carbone chaque mois et voyez votre évolution.\n\nLe monde doit réduire ses émissions d'au moins 6% par an. Et vous ?",
     "@footprintEvolutionExplanation": {},
-    "footprintEvolutionTonsAxis": "Tonnes de CO₂e",
+    "footprintEvolutionTonsAxis": "Tonnes CO₂e / mois",
     "@footprintEvolutionTonsAxis": {},
-    "footprintEvolutionYearAxis": "Année",
-    "@footprintEvolutionYearAxis": {},
     "footprintShareTitle": "Mon empreinte carbone",
     "@footprintShareTitle": {},
     "footprintShareLink": "Fait avec Warmd : https://fredjul.github.io/Warmd/",
     "@footprintShareLink": {},
     "seeAdvices": "VOYEZ CE QUE VOUS POUVEZ FAIRE",
     "@seeAdvices": {},
+    "resetFootprintHistoryQuestion": "Réinitialiser l'historique ?",
+    "@resetFootprintHistoryQuestion": {},
+    "resetFootprintHistoryConfirmation": "Êtes-vous sûr de vouloir réinitialiser l'historique de votre empreinte carbone ?",
+    "@resetFootprintHistoryConfirmation": {},
+    "redoQuestionnaireReminder": "Me rappeler de refaire le test dans 1 mois",
+    "@redoQuestionnaireReminder": {},
+    "reminderNotificationTitle": "Quelle est votre empreinte carbone ?",
+    "@reminderNotificationTitle": {},
+    "reminderNotificationDescription": "Calculez votre nouvelle empreinte carbone et voyez votre progression.",
+    "@reminderNotificationDescription": {},
     "redoQuestionnaire": "REFAIRE LE QUESTIONNAIRE",
     "@redoQuestionnaire": {},
     "seeAbout": "Comprendre comment votre empreinte carbone est calculée et comment vous pourriez aider ce projet.",
     "@seeAbout": {},
-    "scoreUnit": "tonnes\nde CO₂e/an",
-    "@scoreUnit": {},
-    "shortCo2EqTonsValue": "{value} t",
-    "@shortCo2EqTonsValue": {
+    "scoreTonsUnit": "tonnes\nCO₂e / mois",
+    "@scoreTonsUnit": {},
+    "scoreKgUnit": "kg\nCO₂e / mois",
+    "@scoreKgUnit": {},
+    "co2EqKgValue": "{value} kg",
+    "@co2EqKgValue": {
         "placeholders": {
             "value": {
                 "type": "String"
             }
         }
     },
-    "co2EqPercentValue": "{percent}% ({co2EqTons} tonnes de CO₂e/an)",
-    "@co2EqPercentValue": {
+    "co2EqPercentTonsValue": "{percent}% ({co2EqTons} tonnes CO₂e / mois)",
+    "@co2EqPercentTonsValue": {
         "placeholders": {
             "percent": {
                 "type": "String"
             },
             "co2EqTons": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentKgValue": "{percent}% ({co2EqKg} kg CO₂e / mois)",
+    "@co2EqPercentKgValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqKg": {
                 "type": "String"
             }
         }
@@ -265,6 +288,6 @@
     "@aboutRateIt": {},
     "aboutSourcesTitle": "Sources",
     "@aboutSourcesTitle": {},
-    "aboutSourcesDescription": "Ce calculateur d'empreinte carbone est principalement basée sur les résultats de (a https://coolclimate.org)CoolClimate(/a) avec l'aide d'autres sources comme (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) ou (a https://riftapp.fr/)Rift(/a).\n\nEn raison de la complexité de la tâche, nous ne nous attendons pas à ce que cette application soit très exacte, mais elle permet de vous donner une idée de votre impact.\n\nJe ne suis affilié à aucune des organisations mentionnées.",
+    "aboutSourcesDescription": "Ce calculateur d'empreinte carbone est principalement basé sur les résultats de (a https://coolclimate.org)CoolClimate(/a) avec l'aide d'autres sources comme (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bbc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www.frontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) ou (a https://riftapp.fr/)Rift(/a).\n\nEn raison de la complexité de la tâche, nous ne nous attendons pas à ce que cette application soit très exacte (d'autant plus que certaines estimations se basent sur des données américaines), mais elle permet de vous donner une idée de votre impact.\n\nJe ne suis affilié à aucune des organisations mentionnées.",
     "@aboutSourcesDescription": {}
 }

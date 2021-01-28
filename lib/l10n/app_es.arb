@@ -28,5 +28,27 @@
     "countrySelectionNotFound": "No reconocemos ese país, por favor trata de escribirlo en el idioma oficial del país o eligelo de la lista.",
     "@countrySelectionNotFound": {},
     "continueAction": "CONTINÚA",
-    "@continueAction": {}
+    "@continueAction": {},
+    "continueActionExplanation": "Siempre puedes actualizar los datos más tarde.",
+    "@continueActionExplanation": {},
+    "perWeek": "Por semana.",
+    "@perWeek": {},
+    "inUnit": "En (unidad).",
+    "@inUnit": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "politicalAdvice": "Tu impacto es insignificante comparado con el de las compañías o gobiernos y por el momento sus políticas ambientales son muy insuficientes. Trata de influir en sus decisiones votando, escribiendo a tus representantes, uniéndote a un grupo de acción climática o por otros medios.\n\nSi hay alguna cosa que hacer, es precisamente esta.",
+    "@politicalAdvice": {},
+    "heatingFuelCriteriaTitle": "Tu factura del gas o fuel",
+    "@heatingFuelCriteriaTitle": {},
+    "resetFootprintHistoryQuestion": "Reseteamos?",
+    "@resetFootprintHistoryQuestion": {},
+    "redoQuestionnaireReminder": "Recuérdame hacer el test dentro de 1 mes",
+    "@redoQuestionnaireReminder": {},
+    "reminderNotificationDescription": "Realiza tu nueva huella de carbono y valora tu progreso.",
+    "@reminderNotificationDescription": {}
 }
