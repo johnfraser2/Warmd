@@ -41,14 +41,6 @@
             }
         }
     },
-    "inUnitPerYear": "En {unit} par an.",
-    "@inUnitPerYear": {
-        "placeholders": {
-            "unit": {
-                "type": "String"
-            }
-        }
-    },
     "politicalAdvice": "Votre propre impact est insignifiant par rapport à celui des entreprises ou gouvernements et, à l'heure actuelle, leurs politiques écologiques sont loin d'être suffisantes.\nEssayez d'influencer leurs décisions en votant, en écrivant à vos représentants, en joignant un groupe d'action pour le climat ou par d'autres moyens.\n\nS'il y a une chose à faire c'est certainement celle-ci.",
     "@politicalAdvice": {},
     "heatingFuelCriteriaTitle": "Votre facture de fioul/gaz de chauffage",
@@ -113,14 +105,6 @@
     "@foodCategoryTitle": {},
     "materialGoodsCriteriaTitle": "Argent dépensé en biens matériels",
     "@materialGoodsCriteriaTitle": {},
-    "materialGoodsCriteriaExplanation": "En {unit} par an.\n\nConcerne les meubles, appareils électroménagers, vêtements, appareils électroniques, outils, véhicules, pièces de véhicules, médicaments, …",
-    "@materialGoodsCriteriaExplanation": {
-        "placeholders": {
-            "unit": {
-                "type": "String"
-            }
-        }
-    },
     "materialGoodsCriteriaAdvice": "Leur construction, en particulier pour les appareils électroniques et mécaniques, est généralement très polluante.\n\nVous pouvez réduire considérablement votre empreinte en les gardant plus longtemps ou en limitant simplement vos achats. De plus, il y a souvent plusieurs solutions disponibles pour réparer/vendre/donner vos biens actuels, trouver des biens d'occasion ou les louer.",
     "@materialGoodsCriteriaAdvice": {},
     "savingsCriteriaTitle": "Argent dormant sur un compte bancaire non décarboné",
@@ -171,15 +155,6 @@
     },
     "footprintTitle": "Votre empreinte carbone est de",
     "@footprintTitle": {},
-    "footprintFlightsEquivalent": "Soit (b){number}(/b) allers-retours Paris - New York",
-    "@footprintFlightsEquivalent": {
-        "placeholders": {
-            "number": {
-                "type": "int",
-                "format": "compact"
-            }
-        }
-    },
     "footprintWarning": "Voyez ce qui se passera si vous ne faites rien >",
     "@footprintWarning": {},
     "footprintRepartitionTitle": "RÉPARTITION DE L'EMPREINTE CARBONE",
@@ -188,8 +163,6 @@
     "@footprintEvolutionTitle": {},
     "footprintEvolutionExplanation": "Calculez votre empreinte carbone chaque mois et voyez votre évolution.\n\nLe monde doit réduire ses émissions d'au moins 6% par an. Et vous ?",
     "@footprintEvolutionExplanation": {},
-    "footprintEvolutionTonsAxis": "Tonnes de CO₂e",
-    "@footprintEvolutionTonsAxis": {},
     "footprintShareTitle": "Mon empreinte carbone",
     "@footprintShareTitle": {},
     "footprintShareLink": "Fait avec Warmd : https://fredjul.github.io/Warmd/",
@@ -206,27 +179,6 @@
     "@redoQuestionnaire": {},
     "seeAbout": "Comprendre comment votre empreinte carbone est calculée et comment vous pourriez aider ce projet.",
     "@seeAbout": {},
-    "scoreUnit": "tonnes\nde CO₂e/an",
-    "@scoreUnit": {},
-    "shortCo2EqTonsValue": "{value} t",
-    "@shortCo2EqTonsValue": {
-        "placeholders": {
-            "value": {
-                "type": "String"
-            }
-        }
-    },
-    "co2EqPercentValue": "{percent}% ({co2EqTons} tonnes de CO₂e/an)",
-    "@co2EqPercentValue": {
-        "placeholders": {
-            "percent": {
-                "type": "String"
-            },
-            "co2EqTons": {
-                "type": "String"
-            }
-        }
-    },
     "climateChangeTitle": "Qu'est-ce que le changement climatique?",
     "@climateChangeTitle": {},
     "consequencesTitle": "Conséquences du réchauffement climatique",
