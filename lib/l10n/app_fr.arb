@@ -41,6 +41,14 @@
             }
         }
     },
+    "inUnitPerMonth": "En {unit} pour le mois dernier.",
+    "@inUnitPerMonth": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
     "politicalAdvice": "Votre propre impact est insignifiant par rapport à celui des entreprises ou gouvernements et, à l'heure actuelle, leurs politiques écologiques sont loin d'être suffisantes.\nEssayez d'influencer leurs décisions en votant, en écrivant à vos représentants, en joignant un groupe d'action pour le climat ou par d'autres moyens.\n\nS'il y a une chose à faire c'est certainement celle-ci.",
     "@politicalAdvice": {},
     "heatingFuelCriteriaTitle": "Votre facture de fioul/gaz de chauffage",
@@ -105,6 +113,14 @@
     "@foodCategoryTitle": {},
     "materialGoodsCriteriaTitle": "Argent dépensé en biens matériels",
     "@materialGoodsCriteriaTitle": {},
+    "materialGoodsCriteriaExplanation": "En {unit} pour le mois dernier.\n\nConcerne les meubles, appareils électroménagers, vêtements, appareils électroniques, outils, véhicules, pièces de véhicules, médicaments, …",
+    "@materialGoodsCriteriaExplanation": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
     "materialGoodsCriteriaAdvice": "Leur construction, en particulier pour les appareils électroniques et mécaniques, est généralement très polluante.\n\nVous pouvez réduire considérablement votre empreinte en les gardant plus longtemps ou en limitant simplement vos achats. De plus, il y a souvent plusieurs solutions disponibles pour réparer/vendre/donner vos biens actuels, trouver des biens d'occasion ou les louer.",
     "@materialGoodsCriteriaAdvice": {},
     "savingsCriteriaTitle": "Argent dormant sur un compte bancaire non décarboné",
@@ -155,6 +171,17 @@
     },
     "footprintTitle": "Votre empreinte carbone est de",
     "@footprintTitle": {},
+    "footprintCarKmEquivalent": "Ou (b){number} {unit}(/b) avec une voiture essence",
+    "@footprintCarKmEquivalent": {
+        "placeholders": {
+            "number": {
+                "type": "String"
+            },
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
     "footprintWarning": "Voyez ce qui se passera si vous ne faites rien >",
     "@footprintWarning": {},
     "footprintRepartitionTitle": "RÉPARTITION DE L'EMPREINTE CARBONE",
@@ -163,6 +190,8 @@
     "@footprintEvolutionTitle": {},
     "footprintEvolutionExplanation": "Calculez votre empreinte carbone chaque mois et voyez votre évolution.\n\nLe monde doit réduire ses émissions d'au moins 6% par an. Et vous ?",
     "@footprintEvolutionExplanation": {},
+    "footprintEvolutionTonsAxis": "Tonnes CO₂e / mois",
+    "@footprintEvolutionTonsAxis": {},
     "footprintShareTitle": "Mon empreinte carbone",
     "@footprintShareTitle": {},
     "footprintShareLink": "Fait avec Warmd : https://fredjul.github.io/Warmd/",
@@ -171,14 +200,52 @@
     "@seeAdvices": {},
     "resetFootprintHistoryQuestion": "Réinitialiser l'historique ?",
     "@resetFootprintHistoryQuestion": {},
+    "resetFootprintHistoryConfirmation": "Êtes-vous sûr de vouloir réinitialiser l'historique de votre empreinte carbone ?",
+    "@resetFootprintHistoryConfirmation": {},
     "redoQuestionnaireReminder": "Me rappeler de refaire le test dans 1 mois",
     "@redoQuestionnaireReminder": {},
+    "reminderNotificationTitle": "Quelle est votre empreinte carbone ?",
+    "@reminderNotificationTitle": {},
     "reminderNotificationDescription": "Calculez votre nouvelle empreinte carbone et voyez votre progression.",
     "@reminderNotificationDescription": {},
     "redoQuestionnaire": "REFAIRE LE QUESTIONNAIRE",
     "@redoQuestionnaire": {},
     "seeAbout": "Comprendre comment votre empreinte carbone est calculée et comment vous pourriez aider ce projet.",
     "@seeAbout": {},
+    "scoreTonsUnit": "tonnes\nCO₂e / mois",
+    "@scoreTonsUnit": {},
+    "scoreKgUnit": "kg\nCO₂e / mois",
+    "@scoreKgUnit": {},
+    "co2EqKgValue": "{value} kg",
+    "@co2EqKgValue": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentTonsValue": "{percent}% ({co2EqTons} tonnes CO₂e / mois)",
+    "@co2EqPercentTonsValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqTons": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentKgValue": "{percent}% ({co2EqKg} kg CO₂e / mois)",
+    "@co2EqPercentKgValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqKg": {
+                "type": "String"
+            }
+        }
+    },
     "climateChangeTitle": "Qu'est-ce que le changement climatique?",
     "@climateChangeTitle": {},
     "consequencesTitle": "Conséquences du réchauffement climatique",
