@@ -4,15 +4,15 @@
 
 Warmd is a personal carbon footprint calculator which gives you an idea of your own impact and helps you to improve it with adapted advices. My only goal is to reduce a bit the human impact and to leave a habitable planet to our children.
 
-It is a free and [open-source](https://www.gnu.org/philosophy/free-sw.html) mobile application without any ads or paid features. You're are free to modify it as long as you respect the license and keep it open-source.
+It is a free and [open-source](LICENSE_CODE.txt) mobile application without any ads or paid features. However, graphics are under [Shutterstock Standard License](LICENSE_SVG.txt) and cannot be distributed outside Warmd.
 
 ## Installation
-<a href="https://play.google.com/store/apps/details?id=net.frju.verdure" target="_blank" class="is-slightly-elevated" rel="nofollow">
-  <img src="https://itsallwidgets.com/images/google.png" style="width:180px"/>
-</a>
-<a href="https://apps.apple.com/app/id1487848837" target="_blank" class="is-slightly-elevated" rel="nofollow">
-  <img src="https://itsallwidgets.com/images/apple.png" style="width:180px"/>
-</a>
+[<img src="https://itsallwidgets.com/images/google.png"
+     alt="Get the app"
+     height="70">](https://play.google.com/store/apps/details?id=net.frju.verdure)
+[<img src="https://itsallwidgets.com/images/apple.png"
+     alt="Get the app"
+     height="70">](https://apps.apple.com/app/id1487848837)
 
 ## Contact and Assistance
 Please write to [warmd_app@icloud.com](mailto:warmd_app@icloud.com) or create a ticket [here](https://github.com/FredJul/Warmd/issues/new) for any bug report or suggestion.
@@ -20,10 +20,14 @@ Please write to [warmd_app@icloud.com](mailto:warmd_app@icloud.com) or create a 
 ## Privacy Policy
 Warmd does everything on your phone and does not need access to Internet. It doesn't try to steal any data or use them for commercial purposes.
 
-## Contribution and donation
+## Contribute
 You can help Warmd development by:
 - improving or adding translations on [Crowdin](https://frju.crowdin.com/warmd)
 - providing links of popular products or services that can help reducing your carbon footprint in a specific country (like www.backmarket.com for France). I'll try to establish some acceptance criterias later, for now I may arbitrary refuse some proposals.
 - opening [tickets](https://github.com/FredJul/Warmd/issues/new) for bug reports or suggestions
 - developing features and bugfixes
-- offering me a coffer via [BuyMeACoffee](https://www.buymeacoffee.com/frju) or [PayPal](https://www.paypal.me/fredericjulian)
+
+## Donate
+<a href="https://www.buymeacoffee.com/frju" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-blue.png" width="174"></a>
+
+<a href="https://www.paypal.me/fredericjulian" target="_blank"><img src="https://raw.githubusercontent.com/aha999/DonateButtons/master/Paypal.png" width="174"></a>
