@@ -1,0 +1,44 @@
+diff --git a/lib/score/about_screen.dart b/lib/score/about_screen.dart
+index cad1dba..f9f3142 100644
+--- a/lib/score/about_screen.dart
++++ b/lib/score/about_screen.dart
+@@ -1,10 +1,7 @@
+-import 'dart:io';
+-
+ import 'package:flutter/cupertino.dart';
+ import 'package:flutter/material.dart';
+ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+ import 'package:flutter_svg/flutter_svg.dart';
+-import 'package:in_app_review/in_app_review.dart';
+ import 'package:markup_text/markup_text.dart';
+ import 'package:warmd/common/blue_card.dart';
+ import 'package:warmd/common/common.dart';
+@@ -53,28 +50,6 @@ class AboutScreen extends StatelessWidget {
+             AppLocalizations.of(context).aboutProjectDescription,
+             style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+           ),
+-          Gaps.h16,
+-          Align(
+-            alignment: Alignment.centerRight,
+-            child: TextButton(
+-              onPressed: () async {
+-                final inAppReview = InAppReview.instance;
+-
+-                //TODO it seems the requestReview never works on Android, not sure why
+-                // see https://github.com/britannio/in_app_review/issues/12
+-                if (Platform.isIOS && await inAppReview.isAvailable()) {
+-                  await inAppReview.requestReview();
+-                } else {
+-                  await inAppReview.openStoreListing();
+-                }
+-              },
+-              child: Text(
+-                AppLocalizations.of(context).aboutRateIt,
+-                textAlign: TextAlign.center,
+-                style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+-              ),
+-            ),
+-          ),
+         ],
+       ),
+     );
