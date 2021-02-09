@@ -5,7 +5,7 @@ description: Wanna save the earth?
 # pub.dev using `pub publish`. This is preferred for private packages.
 publish_to: "none"
 
-version: 1.4.0+28
+version: 1.4.1+29
 
 environment:
   sdk: ">=2.10.0 <3.0.0"
@@ -20,7 +20,7 @@ dependencies:
   dropdown_search: ^0.4.8
   fl_chart: ^0.12.2
   flow_builder: 0.0.1-dev.9 # dev.10 to dev.13 seems to be buggy
-  flutter_local_notifications: ^3.0.3
+  flutter_local_notifications: ^4.0.0
   flutter_native_timezone: ^1.0.4
   flutter_svg: ^0.19.1
   freezed: ^0.12.7
@@ -28,14 +28,14 @@ dependencies:
   intl: ^0.16.1
   markup_text: ^0.2.0
   page_indicator: ^0.3.0
-  provider: ^4.3.2+4
+  provider: ^4.3.3
   share_files_and_screenshot_widgets: ^1.0.3
   shared_preferences: ^0.5.12+4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^1.10.13
+  build_runner: ^1.11.1
   lint: ^1.3.0
 
 flutter:

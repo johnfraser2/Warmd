@@ -5,6 +5,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'countries.dart';
 
+const oneMileInKms = 1.61;
+
 abstract class Criteria {
   String key;
   double minValue;
@@ -18,6 +20,7 @@ abstract class Criteria {
   String title(BuildContext context);
   String explanation(BuildContext context) => null;
   String advice(BuildContext context) => null;
+  Map<String, double> shortcuts(BuildContext context) => null;
   Map<String, Map<String, String>> links() => null;
 }
 
@@ -139,6 +142,16 @@ class HeatingFuelCriteria extends Criteria {
       return null;
     }
   }
+
+  @override
+  Map<String, double> shortcuts(BuildContext context) {
+    return {
+      // People who don't know generally rent an apartment with common heating.
+      // After few searches, seems the average monthly cost is between 50$ and 80$ for fuel-based heating, let's arbitrary take 70$.
+      // Of course it will again depends of the country/city so it's not really precise.
+      AppLocalizations.of(context).shortcutUnknown: 70 / _countryCriteria.getCurrencyRate(),
+    };
+  }
 }
 
 class ElectricityBillCriteria extends Criteria {
@@ -177,7 +190,7 @@ class CleanElectricityCriteria extends Criteria {
     key = 'clean_electricity';
     maxValue = 100;
     step = 1;
-    currentValue = 15;
+    currentValue = _meanValue;
     unit = '%';
   }
 
@@ -224,6 +237,13 @@ class CleanElectricityCriteria extends Criteria {
       return null;
     }
   }
+
+  @override
+  Map<String, double> shortcuts(BuildContext context) {
+    return {AppLocalizations.of(context).shortcutUnknown: _meanValue};
+  }
+
+  double get _meanValue => max(15, minValue);
 }
 
 class UtilitiesCategory extends CriteriaCategory {
@@ -318,7 +338,7 @@ class CarCriteria extends Criteria {
                 ? 235.2 / -_carConsumptionCriteria.currentValue
                 : 282.5 / -_carConsumptionCriteria.currentValue) /
         100;
-    final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
+    final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : oneMileInKms;
     const co2TonsPerLiter = 0.0033;
     return currentValue * milesToKmFactor * litersPerKm * co2TonsPerLiter * 12; // x12 for the yearly value
   }
@@ -333,6 +353,17 @@ class CarCriteria extends Criteria {
       return null;
     }
   }
+
+  @override
+  Map<String, double> shortcuts(BuildContext context) {
+    final kmToMilesFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1.0 : oneMileInKms;
+
+    // I arbitrary took 50km/h as an average, I didn't find a viable source
+    return {
+      AppLocalizations.of(context).carCriteriaShortcutOneHourPerDay: (50 * 20) / kmToMilesFactor,
+      AppLocalizations.of(context).carCriteriaShortcutTwoHoursPerDay: (50 * 20 * 2) / kmToMilesFactor,
+    };
+  }
 }
 
 class CarConsumptionCriteria extends Criteria {
@@ -341,7 +372,7 @@ class CarConsumptionCriteria extends Criteria {
   CarConsumptionCriteria(this._countryCriteria) {
     key = 'car_consumption';
     step = 1;
-    currentValue = meanValue;
+    currentValue = _meanValue;
   }
 
   @override
@@ -359,14 +390,21 @@ class CarConsumptionCriteria extends Criteria {
       _countryCriteria.unitSystem() == UnitSystem.metric ? 15 : -15; // Minus to have a correct ordering (min < max)
 
   @override
-  double get currentValue => (super.currentValue > maxValue || super.currentValue < minValue) ? meanValue : super.currentValue;
+  double get currentValue => (super.currentValue > maxValue || super.currentValue < minValue) ? _meanValue : super.currentValue;
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric
       ? 'L/100km'
       : 'mpg'; // Actually there is 2 different mpg, we mix them two here and will do the diff in carbon calculation
 
-  double get meanValue => _countryCriteria.unitSystem() == UnitSystem.metric
+  @override
+  Map<String, double> shortcuts(BuildContext context) {
+    return {
+      AppLocalizations.of(context).shortcutUnknown: _meanValue,
+    };
+  }
+
+  double get _meanValue => _countryCriteria.unitSystem() == UnitSystem.metric
       ? 6
       : _countryCriteria.unitSystem() == UnitSystem.us
           ? -40
@@ -401,7 +439,7 @@ class PublicTransportCriteria extends Criteria {
   @override
   double co2EqTonsPerYear() {
     const co2TonsPerKm = 0.00014;
-    final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : 1.61;
+    final milesToKmFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1 : oneMileInKms;
     return currentValue * milesToKmFactor * co2TonsPerKm * 12; // x12 for the yearly value
   }
 
@@ -412,6 +450,20 @@ class PublicTransportCriteria extends Criteria {
     } else {
       return null;
     }
+  }
+
+  @override
+  Map<String, double> shortcuts(BuildContext context) {
+    final kmToMilesFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1.0 : oneMileInKms;
+
+    // The first number represents the average km/h for a type a transport, the 20 represents the number of typical working days in a month.
+    // Of course this is an approximation and will clearly depends of the place.
+    return {
+      AppLocalizations.of(context).publicTransportCriteriaShortcutBus: (18 * 20) / kmToMilesFactor,
+      AppLocalizations.of(context).publicTransportCriteriaShortcutSubway: (30 * 20) / kmToMilesFactor,
+      AppLocalizations.of(context).publicTransportCriteriaShortcutSuburbanTrain: (50 * 20) / kmToMilesFactor,
+      AppLocalizations.of(context).publicTransportCriteriaShortcutTrain: (100 * 20) / kmToMilesFactor,
+    };
   }
 }
 

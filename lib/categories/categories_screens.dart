@@ -176,6 +176,11 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             )
           else
             _buildSlider(c, context, state),
+          if (c.shortcuts(context) != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 12, left: 32, right: 32),
+              child: _buildShortcutChips(context, state, c),
+            ),
         ],
       ),
     );
@@ -246,6 +251,15 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
 
     const valueTextStyle = TextStyle(color: warmdDarkBlue);
 
+    String valueToShortString(double value) {
+      final intValue = value.abs().round();
+      if (intValue < 1000) {
+        return intValue.toString();
+      } else {
+        return '${intValue ~/ 1000}K';
+      }
+    }
+
     final quarter = (c.maxValue - c.minValue) / 4;
     final valueText1 = valueToShortString(c.minValue);
     final valueText2 = valueToShortString(c.minValue + quarter);
@@ -295,12 +309,29 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
     );
   }
 
-  String valueToShortString(double value) {
-    final intValue = value.abs().round();
-    if (intValue < 1000) {
-      return intValue.toString();
-    } else {
-      return '${intValue ~/ 1000}K';
-    }
+  Widget _buildShortcutChips(BuildContext context, CriteriasState state, Criteria c) {
+    final shortcuts = c.shortcuts(context);
+
+    return SizedBox(
+      width: double.infinity,
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 12,
+        children: [
+          ...shortcuts.entries.map((entry) => ActionChip(
+                label: Text(
+                  entry.key,
+                  style: const TextStyle(color: warmdDarkBlue),
+                ),
+                shape: const StadiumBorder(side: BorderSide(color: warmdDarkBlue)),
+                backgroundColor: warmdLightBlue,
+                onPressed: () {
+                  c.currentValue = entry.value;
+                  state.persist(c);
+                },
+              ))
+        ],
+      ),
+    );
   }
 }
