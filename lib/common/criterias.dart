@@ -486,9 +486,11 @@ class TravelCategory extends CriteriaCategory {
 
 const _foodLinks = {
   'FR': {
+    'OpenFoodFact scanner': 'https://fr.openfoodfacts.org/application-mobile-open-food-facts',
     'Karbon scanner': 'https://www.karbon.earth/',
     'TooGoodToGo Anti-Gaspi': 'https://toogoodtogo.fr/',
     'Phenix Anti-Gaspi': 'https://phenixapp.page.link/open-app',
+    'Etiquettable': 'https://etiquettable.eco2initiative.com/application/',
   },
 };
 
