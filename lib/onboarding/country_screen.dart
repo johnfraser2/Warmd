@@ -29,7 +29,7 @@ class CountryScreen extends StatelessWidget {
             Gaps.h16,
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: StepsProgressIndicator(value: 0.1),
+              child: StepsProgressIndicator(value: 0.2),
             ),
             if (historyState.scores.isNotEmpty)
               Padding(

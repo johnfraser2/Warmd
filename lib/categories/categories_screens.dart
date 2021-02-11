@@ -23,7 +23,7 @@ class UtilitiesCategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<CriteriasState>();
 
-    return _CriteriasScreen(criteriaCategory: state.categories[1], progressValue: 0.2, onContinueTapped: onContinueTapped);
+    return _CriteriasScreen(criteriaCategory: state.categories[1], progressValue: 0.3, onContinueTapped: onContinueTapped);
   }
 }
 
@@ -36,7 +36,7 @@ class TravelCategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<CriteriasState>();
 
-    return _CriteriasScreen(criteriaCategory: state.categories[2], progressValue: 0.4, onContinueTapped: onContinueTapped);
+    return _CriteriasScreen(criteriaCategory: state.categories[2], progressValue: 0.5, onContinueTapped: onContinueTapped);
   }
 }
 
@@ -49,7 +49,7 @@ class FoodCategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<CriteriasState>();
 
-    return _CriteriasScreen(criteriaCategory: state.categories[3], progressValue: 0.6, onContinueTapped: onContinueTapped);
+    return _CriteriasScreen(criteriaCategory: state.categories[3], progressValue: 0.7, onContinueTapped: onContinueTapped);
   }
 }
 
@@ -62,7 +62,7 @@ class GoodsCategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<CriteriasState>();
 
-    return _CriteriasScreen(criteriaCategory: state.categories[4], progressValue: 0.8, onContinueTapped: onContinueTapped);
+    return _CriteriasScreen(criteriaCategory: state.categories[4], progressValue: 0.9, onContinueTapped: onContinueTapped);
   }
 }
 
