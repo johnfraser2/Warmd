@@ -26,7 +26,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -39,7 +39,7 @@ android {
     defaultConfig {
         applicationId "net.frju.verdure"
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 29 // when using 30 url_launcher does not work anymore due to https://developer.android.com/training/basics/intents/package-visibility
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

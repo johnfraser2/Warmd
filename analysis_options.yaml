@@ -3,6 +3,7 @@ include: package:lint/analysis_options.yaml
 linter:
   rules:
     prefer_single_quotes: true # I don't like when things are mixed
+    sort_pub_dependencies: false # PubspecAssist does not respect this
 
 analyzer:
   strong-mode:
