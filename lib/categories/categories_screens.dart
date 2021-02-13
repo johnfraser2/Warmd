@@ -317,6 +317,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
       child: Wrap(
         alignment: WrapAlignment.center,
         spacing: 12,
+        runSpacing: 12,
         children: [
           ...shortcuts.entries.map((entry) => ActionChip(
                 label: Text(
