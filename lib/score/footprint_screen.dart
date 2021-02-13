@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -6,14 +5,11 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
 import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
-import 'package:timezone/data/latest.dart';
-import 'package:timezone/timezone.dart';
+import 'package:universal_io/io.dart';
 import 'package:warmd/common/common.dart';
 import 'package:warmd/common/criterias.dart';
 import 'package:warmd/common/delayable_state.dart';
@@ -41,34 +37,6 @@ class FootprintScreen extends StatefulWidget {
 
 class _FootprintScreenState extends DelayableState<FootprintScreen> {
   final _scrollController = ScrollController();
-  static final FlutterLocalNotificationsPlugin _localNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-  @override
-  void initState() {
-    super.initState();
-
-    initializeTimeZones();
-
-    _localNotificationsPlugin.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings('ic_notif'),
-        iOS: IOSInitializationSettings(
-          requestAlertPermission: false,
-          requestBadgePermission: false,
-          requestSoundPermission: false,
-        ),
-      ),
-      onSelectNotification: (String payload) async {
-        _scheduleReminder();
-
-        widget.onRestartTapped(context);
-      },
-    ).then((success) {
-      if (success && context.read<HistoryState>().isReminderEnable) {
-        _scheduleReminder();
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +71,6 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                         child: _buildFootprintAnalysis(context, state, sortedCategories),
                       ),
                     ),
-                    Gaps.h24,
-                    _buildReminderOption(context),
                     Gaps.h48,
                     _buildRedoQuestionnaireButton(context),
                     Gaps.h64,
@@ -378,47 +344,6 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
     );
   }
 
-  Widget _buildReminderOption(BuildContext context) {
-    final historyState = context.watch<HistoryState>();
-
-    void setReminderEnable({bool isOptionEnabled}) {
-      if (!isOptionEnabled) {
-        _localNotificationsPlugin.cancelAll();
-      } else {
-        _scheduleReminder();
-      }
-    }
-
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 250),
-      child: Center(
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(AppLocalizations.of(context).redoQuestionnaireReminder),
-            ),
-            Gaps.w8,
-            Switch.adaptive(
-                value: historyState.isReminderEnable,
-                onChanged: (bool newValue) {
-                  historyState.isReminderEnable = newValue;
-
-                  _localNotificationsPlugin
-                          .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
-                          ?.requestPermissions(
-                            alert: true,
-                            badge: true,
-                            sound: true,
-                          )
-                          ?.then((value) => setReminderEnable(isOptionEnabled: newValue)) ??
-                      setReminderEnable(isOptionEnabled: newValue);
-                }),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildRedoQuestionnaireButton(BuildContext context) {
     return Center(
       child: ConstrainedBox(
@@ -482,28 +407,6 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Future<void> _scheduleReminder() async {
-    _localNotificationsPlugin.cancelAll();
-
-    final String currentTimeZone = await FlutterNativeTimezone.getLocalTimezone();
-
-    _localNotificationsPlugin.zonedSchedule(
-      0,
-      AppLocalizations.of(context).reminderNotificationTitle,
-      AppLocalizations.of(context).reminderNotificationDescription,
-      TZDateTime.now(getLocation(currentTimeZone)).add(const Duration(days: 31)),
-      const NotificationDetails(
-          android: AndroidNotificationDetails(
-            'reminderChannelId',
-            'Carbon footprint reminder',
-            'Notifications to reminds you to calculate your new carbon footprint',
-          ),
-          iOS: IOSNotificationDetails()),
-      androidAllowWhileIdle: true,
-      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 }
