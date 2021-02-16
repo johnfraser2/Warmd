@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:markup_text/markup_text.dart';
@@ -107,7 +106,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               if (crit.maxValue > crit.minValue) _buildCriteria(context, state, crit),
             Gaps.h32,
             Text(
-              AppLocalizations.of(context)!.continueActionExplanation,
+              context.i18n.continueActionExplanation,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
             ),
@@ -120,7 +119,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
 
                   widget.onContinueTapped(context);
                 },
-                child: Text(AppLocalizations.of(context)!.continueAction),
+                child: Text(context.i18n.continueAction),
               ),
             ),
             Gaps.h48,
@@ -285,8 +284,8 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                 : c.currentValue != c.maxValue || c.unit == '%' // We can't go above 100% so we don't display "or more"
                     ? valueWithUnit
                     : c.minValue < 0 // Some values are negatives because more is better (like mpg)
-                        ? AppLocalizations.of(context)!.valueWithLess(valueWithUnit)
-                        : AppLocalizations.of(context)!.valueWithMore(valueWithUnit),
+                        ? context.i18n.valueWithLess(valueWithUnit)
+                        : context.i18n.valueWithMore(valueWithUnit),
             value: c.currentValue,
             onChanged: (double value) {
               c.currentValue = value;

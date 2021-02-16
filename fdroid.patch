@@ -14,7 +14,7 @@ index cad1dba..f9f3142 100644
  import 'package:warmd/common/blue_card.dart';
  import 'package:warmd/common/common.dart';
 @@ -53,28 +50,6 @@ class AboutScreen extends StatelessWidget {
-             AppLocalizations.of(context)!.aboutProjectDescription,
+             context.i18n.aboutProjectDescription,
              style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
            ),
 -          Gaps.h16,
@@ -33,7 +33,7 @@ index cad1dba..f9f3142 100644
 -                }
 -              },
 -              child: Text(
--                AppLocalizations.of(context)!.aboutRateIt,
+-                context.i18n.aboutRateIt,
 -                textAlign: TextAlign.center,
 -                style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
 -              ),

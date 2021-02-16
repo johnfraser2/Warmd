@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:warmd/common/common.dart';
 
@@ -32,13 +31,13 @@ class WelcomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        AppLocalizations.of(context)!.welcomeTitle,
+                        context.i18n.welcomeTitle,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                       ),
                       Gaps.h64,
                       Text(
-                        AppLocalizations.of(context)!.welcomeDescription,
+                        context.i18n.welcomeDescription,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.subtitle1?.copyWith(color: warmdDarkBlue),
                       ),
@@ -52,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
                 onPressed: () {
                   onStartSelected(context);
                 },
-                child: Text(AppLocalizations.of(context)!.welcomeAction),
+                child: Text(context.i18n.welcomeAction),
               ),
             ),
             Gaps.h48,

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_indicator/page_indicator.dart';
 import 'package:warmd/common/common.dart';
@@ -52,12 +51,12 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                                 height: MediaQuery.of(context).size.height / 4,
                               ),
                               Text(
-                                AppLocalizations.of(context)!.onboardingStep1Title,
+                                context.i18n.onboardingStep1Title,
                                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                               ),
                               Gaps.h32,
                               Text(
-                                AppLocalizations.of(context)!.onboardingStep1Description,
+                                context.i18n.onboardingStep1Description,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.grey[600], fontSize: 18),
                               ),
@@ -77,12 +76,12 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                                 height: MediaQuery.of(context).size.height / 4,
                               ),
                               Text(
-                                AppLocalizations.of(context)!.onboardingStep2Title,
+                                context.i18n.onboardingStep2Title,
                                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                               ),
                               Gaps.h32,
                               Text(
-                                AppLocalizations.of(context)!.onboardingStep2Description,
+                                context.i18n.onboardingStep2Description,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.grey[600], fontSize: 18),
                               ),
@@ -126,7 +125,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                 onPressed: () {
                   widget.onOnboardingFinished(context);
                 },
-                child: Text(AppLocalizations.of(context)!.onboardingAction),
+                child: Text(context.i18n.onboardingAction),
               ),
             ),
             Gaps.h64,

@@ -33,6 +33,10 @@ class Gaps {
   static const Widget w128 = SizedBox(width: 128);
 }
 
+extension BuildContextExtension on BuildContext {
+  AppLocalizations get i18n => AppLocalizations.of(this)!;
+}
+
 extension ListExtension<E> on List<E> {
   Iterable<T> mapIndexed<T>(T Function(int idx, E element) f) => asMap()
       .map(
@@ -60,7 +64,7 @@ Widget buildBackButton(BuildContext context) {
       TextButton(
         onPressed: () => Navigator.pop(context),
         child: Text(
-          AppLocalizations.of(context)!.back,
+          context.i18n.back,
           style: Theme.of(context).textTheme.subtitle1?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
         ),
       ),

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:markup_text/markup_text.dart';
@@ -42,7 +41,7 @@ class AboutScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context)!.aboutProjectTitle,
+            context.i18n.aboutProjectTitle,
             style: Theme.of(context).textTheme.subtitle1?.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
@@ -50,7 +49,7 @@ class AboutScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context)!.aboutProjectDescription,
+            context.i18n.aboutProjectDescription,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           Gaps.h16,
@@ -69,7 +68,7 @@ class AboutScreen extends StatelessWidget {
                 }
               },
               child: Text(
-                AppLocalizations.of(context)!.aboutRateIt,
+                context.i18n.aboutRateIt,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
               ),
@@ -86,7 +85,7 @@ class AboutScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context)!.aboutSourcesTitle,
+            context.i18n.aboutSourcesTitle,
             style: Theme.of(context).textTheme.subtitle1?.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
@@ -94,7 +93,7 @@ class AboutScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context)!.aboutSourcesDescription,
+            context.i18n.aboutSourcesDescription,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],

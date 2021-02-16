@@ -1,7 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:warmd/common/common.dart';
@@ -44,12 +43,12 @@ class CountryScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.countrySelectionTitle,
+                      context.i18n.countrySelectionTitle,
                       style: Theme.of(context).textTheme.headline6?.copyWith(color: warmdBlue, fontWeight: FontWeight.bold),
                     ),
                     Gaps.h32,
                     Text(
-                      AppLocalizations.of(context)!.countrySelectionQuestion,
+                      context.i18n.countrySelectionQuestion,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                     ),
@@ -71,7 +70,7 @@ class CountryScreen extends StatelessWidget {
                           },
                           autoFocusSearchBox: true,
                           emptyBuilder: (context, searchEntry) => Center(
-                            child: Text(AppLocalizations.of(context)!.countrySelectionNotFound),
+                            child: Text(context.i18n.countrySelectionNotFound),
                           ),
                           dropdownSearchDecoration: const InputDecoration(
                             filled: false,
@@ -81,7 +80,7 @@ class CountryScreen extends StatelessWidget {
                           ),
                           searchBoxDecoration: InputDecoration(
                             border: const OutlineInputBorder(),
-                            labelText: AppLocalizations.of(context)!.countrySelectionSearchHint,
+                            labelText: context.i18n.countrySelectionSearchHint,
                           ),
                           selectedItem: c.currentValue.toInt(),
                         ),
@@ -89,7 +88,7 @@ class CountryScreen extends StatelessWidget {
                     ),
                     Gaps.h32,
                     Text(
-                      AppLocalizations.of(context)!.countrySelectionExplanation,
+                      context.i18n.countrySelectionExplanation,
                       style: Theme.of(context).textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
                     ),
                   ],
@@ -101,7 +100,7 @@ class CountryScreen extends StatelessWidget {
                 onPressed: () {
                   onCountrySelected(context);
                 },
-                child: Text(AppLocalizations.of(context)!.continueAction),
+                child: Text(context.i18n.continueAction),
               ),
             ),
             Gaps.h48,

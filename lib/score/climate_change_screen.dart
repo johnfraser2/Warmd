@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:warmd/common/blue_card.dart';
@@ -20,7 +19,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h48,
           Text(
-            AppLocalizations.of(context)!.climateChangeTitle,
+            context.i18n.climateChangeTitle,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
           ),
@@ -46,7 +45,7 @@ class ClimateChangeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context)!.consequencesTitle,
+            context.i18n.consequencesTitle,
             style: Theme.of(context).textTheme.subtitle1?.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
@@ -54,7 +53,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context)!.consequencesPart1,
+            context.i18n.consequencesPart1,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           Gaps.h16,
@@ -66,7 +65,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context)!.consequencesPart2,
+            context.i18n.consequencesPart2,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
@@ -80,7 +79,7 @@ class ClimateChangeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context)!.globalObjectivesTitle,
+            context.i18n.globalObjectivesTitle,
             style: Theme.of(context).textTheme.subtitle1?.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
@@ -88,7 +87,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context)!.globalObjectivesPart1,
+            context.i18n.globalObjectivesPart1,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           Gaps.h16,
@@ -100,7 +99,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context)!.globalObjectivesPart2,
+            context.i18n.globalObjectivesPart2,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
@@ -114,7 +113,7 @@ class ClimateChangeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context)!.globalActionsTitle,
+            context.i18n.globalActionsTitle,
             style: Theme.of(context).textTheme.subtitle1?.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
@@ -122,7 +121,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context)!.globalActionsPart1,
+            context.i18n.globalActionsPart1,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           Gaps.h16,
@@ -134,7 +133,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context)!.globalActionsPart2,
+            context.i18n.globalActionsPart2,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],

@@ -2,7 +2,6 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:warmd/common/common.dart';
 import 'package:warmd/common/states.dart';
 
@@ -61,9 +60,7 @@ class _ScoreWidgetState extends State<ScoreWidget> {
                         ?.copyWith(color: _scoreRatioToColor(scoreRatio), fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: co2EqTonsPerMonth < 1
-                        ? AppLocalizations.of(context)!.scoreKgUnit
-                        : AppLocalizations.of(context)!.scoreTonsUnit,
+                    text: co2EqTonsPerMonth < 1 ? context.i18n.scoreKgUnit : context.i18n.scoreTonsUnit,
                     style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                 ],

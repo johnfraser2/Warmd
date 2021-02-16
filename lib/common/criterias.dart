@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'common.dart';
 import 'countries.dart';
 
 const _oneMileInKms = 1.61;
@@ -120,10 +120,10 @@ class HeatingFuelCriteria extends Criteria {
             currentValue: 0);
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.heatingFuelCriteriaTitle;
+  String title(BuildContext context) => context.i18n.heatingFuelCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.inUnitPerMonth(_countryCriteria.getCurrencyCode());
+  String explanation(BuildContext context) => context.i18n.inUnitPerMonth(_countryCriteria.getCurrencyCode());
 
   @override
   double get maxValue => (((300 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -149,7 +149,7 @@ class HeatingFuelCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 2) {
-      return AppLocalizations.of(context)!.heatingFuelCriteriaAdvice;
+      return context.i18n.heatingFuelCriteriaAdvice;
     } else {
       return null;
     }
@@ -161,7 +161,7 @@ class HeatingFuelCriteria extends Criteria {
       // People who don't know generally rent an apartment with common heating.
       // After few searches, seems the average monthly cost is between 50$ and 80$ for fuel-based heating, let's arbitrary take 70$.
       // Of course it will again depends of the country/city so it's not really precise.
-      AppLocalizations.of(context)!.shortcutUnknown: 70 / _countryCriteria.getCurrencyRate(),
+      context.i18n.shortcutUnknown: 70 / _countryCriteria.getCurrencyRate(),
     };
   }
 }
@@ -178,10 +178,10 @@ class ElectricityBillCriteria extends Criteria {
             currentValue: 100);
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.electricityBillCriteriaTitle;
+  String title(BuildContext context) => context.i18n.electricityBillCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.inUnitPerMonth(_countryCriteria.getCurrencyCode());
+  String explanation(BuildContext context) => context.i18n.inUnitPerMonth(_countryCriteria.getCurrencyCode());
 
   @override
   double get maxValue => (((500 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -211,10 +211,10 @@ class CleanElectricityCriteria extends Criteria {
   }
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.cleanElectricityCriteriaTitle;
+  String title(BuildContext context) => context.i18n.cleanElectricityCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.cleanElectricityCriteriaExplanation;
+  String explanation(BuildContext context) => context.i18n.cleanElectricityCriteriaExplanation;
 
   @override
   double get minValue {
@@ -248,7 +248,7 @@ class CleanElectricityCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 0.5) {
-      return AppLocalizations.of(context)!.cleanElectricityCriteriaAdvice;
+      return context.i18n.cleanElectricityCriteriaAdvice;
     } else {
       return null;
     }
@@ -256,7 +256,7 @@ class CleanElectricityCriteria extends Criteria {
 
   @override
   Map<String, double> shortcuts(BuildContext context) {
-    return {AppLocalizations.of(context)!.shortcutUnknown: _meanValue};
+    return {context.i18n.shortcutUnknown: _meanValue};
   }
 
   double get _meanValue => max(15, minValue);
@@ -277,7 +277,7 @@ class UtilitiesCategory extends CriteriaCategory {
   }
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.utilitiesCategoryTitle;
+  String title(BuildContext context) => context.i18n.utilitiesCategoryTitle;
 }
 
 class FlightsCriteria extends Criteria {
@@ -293,10 +293,10 @@ class FlightsCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.flightsCriteriaTitle;
+  String title(BuildContext context) => context.i18n.flightsCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.inUnitPerMonth(unit);
+  String explanation(BuildContext context) => context.i18n.inUnitPerMonth(unit);
 
   @override
   String get unit => 'h';
@@ -315,7 +315,7 @@ class FlightsCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 0.5) {
-      return AppLocalizations.of(context)!.flightsCriteriaAdvice;
+      return context.i18n.flightsCriteriaAdvice;
     } else {
       return null;
     }
@@ -336,10 +336,10 @@ class CarCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.carCriteriaTitle;
+  String title(BuildContext context) => context.i18n.carCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.inUnitPerMonth(unit);
+  String explanation(BuildContext context) => context.i18n.inUnitPerMonth(unit);
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
@@ -366,9 +366,9 @@ class CarCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 1.5) {
-      return AppLocalizations.of(context)!.carCriteriaAdviceHigh;
+      return context.i18n.carCriteriaAdviceHigh;
     } else if (co2EqTonsPerYear() > 0.5) {
-      return AppLocalizations.of(context)!.carCriteriaAdviceLow;
+      return context.i18n.carCriteriaAdviceLow;
     } else {
       return null;
     }
@@ -380,8 +380,8 @@ class CarCriteria extends Criteria {
 
     // I arbitrary took 50km/h as an average, I didn't find a viable source
     return {
-      AppLocalizations.of(context)!.carCriteriaShortcutOneHourPerDay: (50 * 20) / kmToMilesFactor,
-      AppLocalizations.of(context)!.carCriteriaShortcutTwoHoursPerDay: (50 * 20 * 2) / kmToMilesFactor,
+      context.i18n.carCriteriaShortcutOneHourPerDay: (50 * 20) / kmToMilesFactor,
+      context.i18n.carCriteriaShortcutTwoHoursPerDay: (50 * 20 * 2) / kmToMilesFactor,
     };
   }
 }
@@ -401,10 +401,10 @@ class CarConsumptionCriteria extends Criteria {
   }
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.carConsumptionCriteriaTitle;
+  String title(BuildContext context) => context.i18n.carConsumptionCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.inUnit(unit);
+  String explanation(BuildContext context) => context.i18n.inUnit(unit);
 
   @override
   double get minValue =>
@@ -425,7 +425,7 @@ class CarConsumptionCriteria extends Criteria {
   @override
   Map<String, double> shortcuts(BuildContext context) {
     return {
-      AppLocalizations.of(context)!.shortcutUnknown: _meanValue,
+      context.i18n.shortcutUnknown: _meanValue,
     };
   }
 
@@ -449,10 +449,10 @@ class PublicTransportCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.publicTransportCriteriaTitle;
+  String title(BuildContext context) => context.i18n.publicTransportCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.inUnitPerMonth(unit);
+  String explanation(BuildContext context) => context.i18n.inUnitPerMonth(unit);
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
@@ -472,7 +472,7 @@ class PublicTransportCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 2) {
-      return AppLocalizations.of(context)!.publicTransportCriteriaAdvice;
+      return context.i18n.publicTransportCriteriaAdvice;
     } else {
       return null;
     }
@@ -485,10 +485,10 @@ class PublicTransportCriteria extends Criteria {
     // The first number represents the average km/h for a type a transport, the 20 represents the number of typical working days in a month.
     // Of course this is an approximation and will clearly depends of the place.
     return {
-      AppLocalizations.of(context)!.publicTransportCriteriaShortcutBus: (18 * 20) / kmToMilesFactor,
-      AppLocalizations.of(context)!.publicTransportCriteriaShortcutSubway: (30 * 20) / kmToMilesFactor,
-      AppLocalizations.of(context)!.publicTransportCriteriaShortcutSuburbanTrain: (50 * 20) / kmToMilesFactor,
-      AppLocalizations.of(context)!.publicTransportCriteriaShortcutTrain: (100 * 20) / kmToMilesFactor,
+      context.i18n.publicTransportCriteriaShortcutBus: (18 * 20) / kmToMilesFactor,
+      context.i18n.publicTransportCriteriaShortcutSubway: (30 * 20) / kmToMilesFactor,
+      context.i18n.publicTransportCriteriaShortcutSuburbanTrain: (50 * 20) / kmToMilesFactor,
+      context.i18n.publicTransportCriteriaShortcutTrain: (100 * 20) / kmToMilesFactor,
     };
   }
 }
@@ -509,7 +509,7 @@ class TravelCategory extends CriteriaCategory {
   }
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.travelCategoryTitle;
+  String title(BuildContext context) => context.i18n.travelCategoryTitle;
 }
 
 const _foodLinks = {
@@ -533,10 +533,10 @@ class RuminantMeatCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.ruminantMeatCriteriaTitle;
+  String title(BuildContext context) => context.i18n.ruminantMeatCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.perWeek;
+  String explanation(BuildContext context) => context.i18n.perWeek;
 
   @override
   double co2EqTonsPerYear() {
@@ -550,7 +550,7 @@ class RuminantMeatCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 0.5) {
-      return AppLocalizations.of(context)!.ruminantMeatCriteriaAdvice;
+      return context.i18n.ruminantMeatCriteriaAdvice;
     } else {
       return null;
     }
@@ -571,10 +571,10 @@ class NonRuminantMeatCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.nonRuminantMeatCriteriaTitle;
+  String title(BuildContext context) => context.i18n.nonRuminantMeatCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.perWeek;
+  String explanation(BuildContext context) => context.i18n.perWeek;
 
   @override
   double co2EqTonsPerYear() {
@@ -588,7 +588,7 @@ class NonRuminantMeatCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 0.5) {
-      return AppLocalizations.of(context)!.nonRuminantMeatCriteriaAdvice;
+      return context.i18n.nonRuminantMeatCriteriaAdvice;
     } else {
       return null;
     }
@@ -609,10 +609,10 @@ class CheeseCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.cheeseCriteriaTitle;
+  String title(BuildContext context) => context.i18n.cheeseCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.perWeek;
+  String explanation(BuildContext context) => context.i18n.perWeek;
 
   @override
   double co2EqTonsPerYear() {
@@ -626,7 +626,7 @@ class CheeseCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 0.5) {
-      return AppLocalizations.of(context)!.cheeseCriteriaAdvice;
+      return context.i18n.cheeseCriteriaAdvice;
     } else {
       return null;
     }
@@ -647,10 +647,10 @@ class SnackCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.snacksCriteriaTitle;
+  String title(BuildContext context) => context.i18n.snacksCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.perWeek;
+  String explanation(BuildContext context) => context.i18n.perWeek;
 
   @override
   double co2EqTonsPerYear() {
@@ -661,7 +661,7 @@ class SnackCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 0.5) {
-      return AppLocalizations.of(context)!.snacksCriteriaAdvice;
+      return context.i18n.snacksCriteriaAdvice;
     } else {
       return null;
     }
@@ -687,13 +687,13 @@ class OverweightCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.overweightCriteriaTitle;
+  String title(BuildContext context) => context.i18n.overweightCriteriaTitle;
 
   @override
   List<String> labels(BuildContext context) => [
-        AppLocalizations.of(context)!.overweightCriteriaLabel1,
-        AppLocalizations.of(context)!.overweightCriteriaLabel2,
-        AppLocalizations.of(context)!.overweightCriteriaLabel3,
+        context.i18n.overweightCriteriaLabel1,
+        context.i18n.overweightCriteriaLabel2,
+        context.i18n.overweightCriteriaLabel3,
       ];
 
   @override
@@ -710,7 +710,7 @@ class OverweightCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 0.5) {
-      return AppLocalizations.of(context)!.overweightCriteriaAdvice;
+      return context.i18n.overweightCriteriaAdvice;
     } else {
       return null;
     }
@@ -738,7 +738,7 @@ class FoodCategory extends CriteriaCategory {
   }
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.foodCategoryTitle;
+  String title(BuildContext context) => context.i18n.foodCategoryTitle;
 
   @override
   double co2EqTonsPerYear() {
@@ -761,10 +761,10 @@ class MaterialGoodsCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.materialGoodsCriteriaTitle;
+  String title(BuildContext context) => context.i18n.materialGoodsCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.materialGoodsCriteriaExplanation(unit);
+  String explanation(BuildContext context) => context.i18n.materialGoodsCriteriaExplanation(unit);
 
   @override
   double get maxValue => (((10000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -787,7 +787,7 @@ class MaterialGoodsCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 0.5) {
-      return AppLocalizations.of(context)!.materialGoodsCriteriaAdvice;
+      return context.i18n.materialGoodsCriteriaAdvice;
     } else {
       return null;
     }
@@ -821,11 +821,10 @@ class SavingsCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.savingsCriteriaTitle;
+  String title(BuildContext context) => context.i18n.savingsCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) =>
-      '${AppLocalizations.of(context)!.inUnit(unit)}\n\n${AppLocalizations.of(context)!.savingsCriteriaExplanation}';
+  String explanation(BuildContext context) => '${context.i18n.inUnit(unit)}\n\n${context.i18n.savingsCriteriaExplanation}';
 
   @override
   double get maxValue => (((100000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -849,7 +848,7 @@ class SavingsCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 0.5) {
-      return AppLocalizations.of(context)!.savingsCriteriaAdvice;
+      return context.i18n.savingsCriteriaAdvice;
     } else {
       return null;
     }
@@ -875,16 +874,16 @@ class WaterCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.waterCriteriaTitle;
+  String title(BuildContext context) => context.i18n.waterCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => AppLocalizations.of(context)!.waterCriteriaExplanation;
+  String explanation(BuildContext context) => context.i18n.waterCriteriaExplanation;
 
   @override
   List<String> labels(BuildContext context) => [
-        AppLocalizations.of(context)!.waterCriteriaLabel1,
-        AppLocalizations.of(context)!.waterCriteriaLabel2,
-        AppLocalizations.of(context)!.waterCriteriaLabel3,
+        context.i18n.waterCriteriaLabel1,
+        context.i18n.waterCriteriaLabel2,
+        context.i18n.waterCriteriaLabel3,
       ];
 
   @override
@@ -895,7 +894,7 @@ class WaterCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 1) {
-      return AppLocalizations.of(context)!.waterCriteriaAdvice;
+      return context.i18n.waterCriteriaAdvice;
     } else {
       return null;
     }
@@ -923,13 +922,13 @@ class InternetCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.internetCriteriaTitle;
+  String title(BuildContext context) => context.i18n.internetCriteriaTitle;
 
   @override
   List<String> labels(BuildContext context) => [
-        AppLocalizations.of(context)!.internetCriteriaLabel1,
-        AppLocalizations.of(context)!.internetCriteriaLabel2,
-        AppLocalizations.of(context)!.internetCriteriaLabel3,
+        context.i18n.internetCriteriaLabel1,
+        context.i18n.internetCriteriaLabel2,
+        context.i18n.internetCriteriaLabel3,
       ];
 
   @override
@@ -938,7 +937,7 @@ class InternetCriteria extends Criteria {
   @override
   String? advice(BuildContext context) {
     if (co2EqTonsPerYear() > 0.5) {
-      return AppLocalizations.of(context)!.internetCriteriaAdvice;
+      return context.i18n.internetCriteriaAdvice;
     } else {
       return null;
     }
@@ -970,5 +969,5 @@ class GoodsCategory extends CriteriaCategory {
   }
 
   @override
-  String title(BuildContext context) => AppLocalizations.of(context)!.goodsAndServicesCategoryTitle;
+  String title(BuildContext context) => context.i18n.goodsAndServicesCategoryTitle;
 }

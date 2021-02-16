@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +30,7 @@ class AdvicesScreen extends StatelessWidget {
           ),
           Gaps.h48,
           Text(
-            AppLocalizations.of(context)!.advicesTitle,
+            context.i18n.advicesTitle,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
           ),
@@ -39,7 +38,7 @@ class AdvicesScreen extends StatelessWidget {
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 350),
             child: Text(
-              AppLocalizations.of(context)!.advicesExplanation,
+              context.i18n.advicesExplanation,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
             ),
@@ -78,15 +77,15 @@ class AdvicesScreen extends StatelessWidget {
       context: context,
       state: state,
       position: 0,
-      title: AppLocalizations.of(context)!.advicesPoliticsCategory,
+      title: context.i18n.advicesPoliticsCategory,
       iconName: 'vote',
-      description: AppLocalizations.of(context)!.politicalAdvice,
+      description: context.i18n.politicalAdvice,
       child: Align(
         alignment: Alignment.topRight,
         child: TextButton(
           onPressed: () => onSeeClimateChangeTapped(context),
           child: Text(
-            AppLocalizations.of(context)!.advicesSeeClimateChange,
+            context.i18n.advicesSeeClimateChange,
             textAlign: TextAlign.right,
             style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
           ),
@@ -110,7 +109,7 @@ class AdvicesScreen extends StatelessWidget {
             child: TextButton(
               onPressed: () => _showLinksBottomSheet(context, links),
               child: Text(
-                AppLocalizations.of(context)!.advicesSeeLinks,
+                context.i18n.advicesSeeLinks,
                 textAlign: TextAlign.right,
                 style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
               ),
@@ -191,9 +190,8 @@ class AdvicesScreen extends StatelessWidget {
           if (co2EqTonsPerYear != null)
             Text(
               co2EqTonsPerMonth > 1
-                  ? AppLocalizations.of(context)!.co2EqPercentTonsValue(percentValue, co2EqTonsPerMonth.toShortString(1))
-                  : AppLocalizations.of(context)!
-                      .co2EqPercentKgValue(percentValue, (co2EqTonsPerMonth * 1000).round().toString()),
+                  ? context.i18n.co2EqPercentTonsValue(percentValue, co2EqTonsPerMonth.toShortString(1))
+                  : context.i18n.co2EqPercentKgValue(percentValue, (co2EqTonsPerMonth * 1000).round().toString()),
               style: Theme.of(context).textTheme.subtitle2?.copyWith(
                     color: warmdDarkBlue,
                   ),
@@ -214,7 +212,7 @@ class AdvicesScreen extends StatelessWidget {
   Widget _buildOtherPollutionTypesCard(BuildContext context) {
     return BlueCard(
       child: Text(
-        AppLocalizations.of(context)!.advicesOtherPolutionTypes,
+        context.i18n.advicesOtherPolutionTypes,
         style: Theme.of(context).textTheme.bodyText2,
       ),
     );
@@ -251,7 +249,7 @@ class AdvicesScreen extends StatelessWidget {
                 ),
                 Gaps.h24,
                 MarkupText(
-                  AppLocalizations.of(context)!.advicesLinksExplanation,
+                  context.i18n.advicesLinksExplanation,
                   style: Theme.of(context).textTheme.caption?.copyWith(color: warmdDarkBlue),
                 ),
               ],
