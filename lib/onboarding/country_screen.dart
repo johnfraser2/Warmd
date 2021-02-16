@@ -11,14 +11,14 @@ import 'package:warmd/common/steps_progress_indicator.dart';
 class CountryScreen extends StatelessWidget {
   final Function(BuildContext) onCountrySelected;
 
-  const CountryScreen({@required this.onCountrySelected, Key key}) : super(key: key);
+  const CountryScreen({required this.onCountrySelected, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final historyState = context.watch<HistoryState>();
     final state = context.watch<CriteriasState>();
     final c = state.categories[0].criterias[0];
-    final labels = c.labels(context);
+    final labels = c.labels(context)!;
 
     return Scaffold(
       resizeToAvoidBottomInset: false, // Usefull to have a better display when the keyboard is up
@@ -31,7 +31,7 @@ class CountryScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: StepsProgressIndicator(value: 0.2),
             ),
-            if (historyState.scores.isNotEmpty)
+            if (historyState.scores!.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 child: buildBackButton(context),
@@ -44,14 +44,14 @@ class CountryScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      AppLocalizations.of(context).countrySelectionTitle,
-                      style: Theme.of(context).textTheme.headline6.copyWith(color: warmdBlue, fontWeight: FontWeight.bold),
+                      AppLocalizations.of(context)!.countrySelectionTitle,
+                      style: Theme.of(context).textTheme.headline6?.copyWith(color: warmdBlue, fontWeight: FontWeight.bold),
                     ),
                     Gaps.h32,
                     Text(
-                      AppLocalizations.of(context).countrySelectionQuestion,
+                      AppLocalizations.of(context)!.countrySelectionQuestion,
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
+                      style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                     ),
                     Gaps.h32,
                     ConstrainedBox(
@@ -71,7 +71,7 @@ class CountryScreen extends StatelessWidget {
                           },
                           autoFocusSearchBox: true,
                           emptyBuilder: (context, searchEntry) => Center(
-                            child: Text(AppLocalizations.of(context).countrySelectionNotFound),
+                            child: Text(AppLocalizations.of(context)!.countrySelectionNotFound),
                           ),
                           dropdownSearchDecoration: const InputDecoration(
                             filled: false,
@@ -81,7 +81,7 @@ class CountryScreen extends StatelessWidget {
                           ),
                           searchBoxDecoration: InputDecoration(
                             border: const OutlineInputBorder(),
-                            labelText: AppLocalizations.of(context).countrySelectionSearchHint,
+                            labelText: AppLocalizations.of(context)!.countrySelectionSearchHint,
                           ),
                           selectedItem: c.currentValue.toInt(),
                         ),
@@ -89,8 +89,8 @@ class CountryScreen extends StatelessWidget {
                     ),
                     Gaps.h32,
                     Text(
-                      AppLocalizations.of(context).countrySelectionExplanation,
-                      style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
+                      AppLocalizations.of(context)!.countrySelectionExplanation,
+                      style: Theme.of(context).textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
                     ),
                   ],
                 ),
@@ -101,7 +101,7 @@ class CountryScreen extends StatelessWidget {
                 onPressed: () {
                   onCountrySelected(context);
                 },
-                child: Text(AppLocalizations.of(context).continueAction),
+                child: Text(AppLocalizations.of(context)!.continueAction),
               ),
             ),
             Gaps.h48,

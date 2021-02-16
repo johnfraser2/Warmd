@@ -58,13 +58,13 @@ class _ScoreWidgetState extends State<ScoreWidget> {
                     style: Theme.of(context)
                         .textTheme
                         .headline3
-                        .copyWith(color: _scoreRatioToColor(scoreRatio), fontWeight: FontWeight.bold),
+                        ?.copyWith(color: _scoreRatioToColor(scoreRatio), fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
                     text: co2EqTonsPerMonth < 1
-                        ? AppLocalizations.of(context).scoreKgUnit
-                        : AppLocalizations.of(context).scoreTonsUnit,
-                    style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
+                        ? AppLocalizations.of(context)!.scoreKgUnit
+                        : AppLocalizations.of(context)!.scoreTonsUnit,
+                    style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

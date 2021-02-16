@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'states.dart';
 
@@ -13,7 +13,6 @@ T _$identity<T>(T value) => value;
 class _$NavStateTearOff {
   const _$NavStateTearOff();
 
-// ignore: unused_element
   _NavState call(
       {bool splashScreenSeen = false,
       int onboardingStepsNum = 0,
@@ -35,7 +34,6 @@ class _$NavStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $NavState = _$NavStateTearOff();
 
 /// @nodoc
@@ -48,6 +46,7 @@ mixin _$NavState {
   bool get showAboutScreen;
   int get questionnaireStepsNum;
 
+  @JsonKey(ignore: true)
   $NavStateCopyWith<NavState> get copyWith;
 }
 
@@ -75,13 +74,13 @@ class _$NavStateCopyWithImpl<$Res> implements $NavStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object splashScreenSeen = freezed,
-    Object onboardingStepsNum = freezed,
-    Object showAdvicesScreen = freezed,
-    Object showClimateChangeScreen = freezed,
-    Object showClimateChangeScreenFromActions = freezed,
-    Object showAboutScreen = freezed,
-    Object questionnaireStepsNum = freezed,
+    Object? splashScreenSeen = freezed,
+    Object? onboardingStepsNum = freezed,
+    Object? showAdvicesScreen = freezed,
+    Object? showClimateChangeScreen = freezed,
+    Object? showClimateChangeScreenFromActions = freezed,
+    Object? showAboutScreen = freezed,
+    Object? questionnaireStepsNum = freezed,
   }) {
     return _then(_value.copyWith(
       splashScreenSeen: splashScreenSeen == freezed
@@ -136,13 +135,13 @@ class __$NavStateCopyWithImpl<$Res> extends _$NavStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object splashScreenSeen = freezed,
-    Object onboardingStepsNum = freezed,
-    Object showAdvicesScreen = freezed,
-    Object showClimateChangeScreen = freezed,
-    Object showClimateChangeScreenFromActions = freezed,
-    Object showAboutScreen = freezed,
-    Object questionnaireStepsNum = freezed,
+    Object? splashScreenSeen = freezed,
+    Object? onboardingStepsNum = freezed,
+    Object? showAdvicesScreen = freezed,
+    Object? showClimateChangeScreen = freezed,
+    Object? showClimateChangeScreenFromActions = freezed,
+    Object? showAboutScreen = freezed,
+    Object? questionnaireStepsNum = freezed,
   }) {
     return _then(_NavState(
       splashScreenSeen: splashScreenSeen == freezed
@@ -180,14 +179,7 @@ class _$_NavState implements _NavState {
       this.showClimateChangeScreen = false,
       this.showClimateChangeScreenFromActions = false,
       this.showAboutScreen = false,
-      this.questionnaireStepsNum = 0})
-      : assert(splashScreenSeen != null),
-        assert(onboardingStepsNum != null),
-        assert(showAdvicesScreen != null),
-        assert(showClimateChangeScreen != null),
-        assert(showClimateChangeScreenFromActions != null),
-        assert(showAboutScreen != null),
-        assert(questionnaireStepsNum != null);
+      this.questionnaireStepsNum = 0});
 
   @JsonKey(defaultValue: false)
   @override
@@ -257,6 +249,7 @@ class _$_NavState implements _NavState {
       const DeepCollectionEquality().hash(showAboutScreen) ^
       const DeepCollectionEquality().hash(questionnaireStepsNum);
 
+  @JsonKey(ignore: true)
   @override
   _$NavStateCopyWith<_NavState> get copyWith =>
       __$NavStateCopyWithImpl<_NavState>(this, _$identity);
@@ -287,5 +280,6 @@ abstract class _NavState implements NavState {
   @override
   int get questionnaireStepsNum;
   @override
+  @JsonKey(ignore: true)
   _$NavStateCopyWith<_NavState> get copyWith;
 }

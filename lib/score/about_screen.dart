@@ -11,7 +11,7 @@ import 'package:warmd/common/common.dart';
 import 'package:warmd/common/screen_template.dart';
 
 class AboutScreen extends StatelessWidget {
-  const AboutScreen({Key key}) : super(key: key);
+  const AboutScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,16 +42,16 @@ class AboutScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context).aboutProjectTitle,
-            style: Theme.of(context).textTheme.subtitle1.copyWith(
+            AppLocalizations.of(context)!.aboutProjectTitle,
+            style: Theme.of(context).textTheme.subtitle1?.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
                 ),
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context).aboutProjectDescription,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            AppLocalizations.of(context)!.aboutProjectDescription,
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           Gaps.h16,
           Align(
@@ -69,9 +69,9 @@ class AboutScreen extends StatelessWidget {
                 }
               },
               child: Text(
-                AppLocalizations.of(context).aboutRateIt,
+                AppLocalizations.of(context)!.aboutRateIt,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
               ),
             ),
           ),
@@ -86,16 +86,16 @@ class AboutScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context).aboutSourcesTitle,
-            style: Theme.of(context).textTheme.subtitle1.copyWith(
+            AppLocalizations.of(context)!.aboutSourcesTitle,
+            style: Theme.of(context).textTheme.subtitle1?.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
                 ),
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context).aboutSourcesDescription,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            AppLocalizations.of(context)!.aboutSourcesDescription,
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
       ),

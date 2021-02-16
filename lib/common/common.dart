@@ -60,8 +60,8 @@ Widget buildBackButton(BuildContext context) {
       TextButton(
         onPressed: () => Navigator.pop(context),
         child: Text(
-          AppLocalizations.of(context).back,
-          style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
+          AppLocalizations.of(context)!.back,
+          style: Theme.of(context).textTheme.subtitle1?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
         ),
       ),
     ],

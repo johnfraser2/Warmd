@@ -28,11 +28,11 @@ class FootprintScreen extends StatefulWidget {
   final Function(BuildContext) onSeeAboutTapped;
 
   const FootprintScreen(
-      {@required this.onSeeClimateChangeTapped,
-      @required this.onSeeAdvicesTapped,
-      @required this.onRestartTapped,
-      @required this.onSeeAboutTapped,
-      Key key})
+      {required this.onSeeClimateChangeTapped,
+      required this.onSeeAdvicesTapped,
+      required this.onRestartTapped,
+      required this.onSeeAboutTapped,
+      Key? key})
       : super(key: key);
 
   @override
@@ -137,9 +137,9 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 ),
                 Gaps.h48,
                 Text(
-                  AppLocalizations.of(context).footprintShareTitle,
+                  AppLocalizations.of(context)!.footprintShareTitle,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Center(child: ScoreWidget(state)),
                 Gaps.h16,
@@ -179,7 +179,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
           height: 16,
         ),
         Gaps.w12,
-        MarkupText(AppLocalizations.of(context)
+        MarkupText(AppLocalizations.of(context)!
             .footprintCarKmEquivalent(distanceForCurrentScore.toInt().toString(), meanCarCriteria.unit)),
       ],
     );
@@ -207,8 +207,8 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 220),
                       child: Text(
-                        AppLocalizations.of(context).footprintTitle,
-                        style: Theme.of(context).textTheme.headline5.copyWith(fontWeight: FontWeight.bold),
+                        AppLocalizations.of(context)!.footprintTitle,
+                        style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
                     Expanded(
@@ -219,10 +219,10 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                             ShareFilesAndScreenshotWidgets().shareScreenshot(
                               hiddenShareWidgetContainer,
                               1024,
-                              AppLocalizations.of(context).footprintShareTitle,
+                              AppLocalizations.of(context)!.footprintShareTitle,
                               'warmd_carbon_footprint.png',
                               'image/png',
-                              text: AppLocalizations.of(context).footprintShareLink,
+                              text: AppLocalizations.of(context)!.footprintShareLink,
                             );
                           }),
                     ),
@@ -240,9 +240,9 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                       child: TextButton(
                         onPressed: () => widget.onSeeClimateChangeTapped(context),
                         child: Text(
-                          AppLocalizations.of(context).footprintWarning,
+                          AppLocalizations.of(context)!.footprintWarning,
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.caption.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                          style: Theme.of(context).textTheme.caption?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                         ),
                       ),
                     ),
@@ -270,7 +270,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                         shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         )),
-                        textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2.copyWith(
+                        textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2!.copyWith(
                               fontWeight: FontWeight.bold,
                             )),
                         minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
@@ -278,7 +278,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                             const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
                       ),
                       child: Text(
-                        AppLocalizations.of(context).seeAdvices,
+                        AppLocalizations.of(context)!.seeAdvices,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -303,8 +303,8 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
     return Column(
       children: [
         Text(
-          AppLocalizations.of(context).footprintRepartitionTitle,
-          style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
+          AppLocalizations.of(context)!.footprintRepartitionTitle,
+          style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
         ),
         Gaps.h24,
         SizedBox(
@@ -323,15 +323,15 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                         .map((cat) => PieChartSectionData(
                               color: colors[cat.runtimeType],
                               value: cat.co2EqTonsPerYear(),
-                              title: AppLocalizations.of(context)
+                              title: AppLocalizations.of(context)!
                                   .co2EqKgValue(((cat.co2EqTonsPerYear() / 12) * 1000).round().toString()),
                               radius: 90,
                               titleStyle:
-                                  Theme.of(context).textTheme.caption.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+                                  Theme.of(context).textTheme.caption?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
                               badgeWidget: _PieBadge(
                                 'assets/${cat.key}.svg',
                                 size: 35,
-                                borderColor: colors[cat.runtimeType],
+                                borderColor: colors[cat.runtimeType]!,
                               ),
                               badgePositionPercentageOffset: .98,
                             ))
@@ -347,7 +347,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: sortedCategories
                       .map((cat) => _PieIndicator(
-                            color: colors[cat.runtimeType],
+                            color: colors[cat.runtimeType]!,
                             text: cat.title(context),
                             textColor: warmdDarkBlue,
                           ))
@@ -359,15 +359,15 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
         ),
         Gaps.h64,
         Text(
-          AppLocalizations.of(context).footprintEvolutionTitle,
-          style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold),
+          AppLocalizations.of(context)!.footprintEvolutionTitle,
+          style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
         ),
         Padding(
           padding: const EdgeInsets.all(32),
           child: Text(
-            AppLocalizations.of(context).footprintEvolutionExplanation,
+            AppLocalizations.of(context)!.footprintEvolutionExplanation,
             textAlign: TextAlign.start,
-            style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
+            style: Theme.of(context).textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
           ),
         ),
         const Padding(
@@ -381,7 +381,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
   Widget _buildReminderOption(BuildContext context) {
     final historyState = context.watch<HistoryState>();
 
-    void setReminderEnable({bool isOptionEnabled}) {
+    void setReminderEnable({required bool isOptionEnabled}) {
       if (!isOptionEnabled) {
         _localNotificationsPlugin.cancelAll();
       } else {
@@ -395,7 +395,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
         child: Row(
           children: [
             Expanded(
-              child: Text(AppLocalizations.of(context).redoQuestionnaireReminder),
+              child: Text(AppLocalizations.of(context)!.redoQuestionnaireReminder),
             ),
             Gaps.w8,
             Switch.adaptive(
@@ -430,15 +430,15 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
 
             widget.onRestartTapped(context);
           },
-          style: Theme.of(context).elevatedButtonTheme.style.copyWith(
+          style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
                 textStyle: MaterialStateProperty.all<TextStyle>(
-                    Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold)),
+                    Theme.of(context).textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold)),
                 padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
               ),
           child: Text(
-            AppLocalizations.of(context).redoQuestionnaire,
+            AppLocalizations.of(context)!.redoQuestionnaire,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
       ),
@@ -459,8 +459,8 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
             children: [
               Expanded(
                 child: Text(
-                  AppLocalizations.of(context).seeAbout,
-                  style: Theme.of(context).textTheme.subtitle2.copyWith(
+                  AppLocalizations.of(context)!.seeAbout,
+                  style: Theme.of(context).textTheme.subtitle2?.copyWith(
                         color: warmdDarkBlue,
                         fontWeight: FontWeight.bold,
                       ),
@@ -492,8 +492,8 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
 
     _localNotificationsPlugin.zonedSchedule(
       0,
-      AppLocalizations.of(context).reminderNotificationTitle,
-      AppLocalizations.of(context).reminderNotificationDescription,
+      AppLocalizations.of(context)!.reminderNotificationTitle,
+      AppLocalizations.of(context)!.reminderNotificationDescription,
       TZDateTime.now(getLocation(currentTimeZone)).add(const Duration(days: 31)),
       const NotificationDetails(
           android: AndroidNotificationDetails(
@@ -515,9 +515,9 @@ class _PieBadge extends StatelessWidget {
 
   const _PieBadge(
     this.svgAsset, {
-    Key key,
-    @required this.size,
-    @required this.borderColor,
+    Key? key,
+    required this.size,
+    required this.borderColor,
   }) : super(key: key);
 
   @override
@@ -558,9 +558,9 @@ class _PieIndicator extends StatelessWidget {
   final Color textColor;
 
   const _PieIndicator({
-    Key key,
-    this.color,
-    this.text,
+    Key? key,
+    required this.color,
+    required this.text,
     this.size = 16,
     this.textColor = const Color(0xff505050),
   }) : super(key: key);
@@ -585,7 +585,7 @@ class _PieIndicator extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: Theme.of(context).textTheme.bodyText2.copyWith(color: textColor),
+                style: Theme.of(context).textTheme.bodyText2?.copyWith(color: textColor),
               ),
             ),
           ],
@@ -596,12 +596,12 @@ class _PieIndicator extends StatelessWidget {
 }
 
 class _FootprintChart extends StatelessWidget {
-  const _FootprintChart({Key key}) : super(key: key);
+  const _FootprintChart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final historyState = context.watch<HistoryState>();
-    final scores = historyState.scores;
+    final scores = historyState.scores!;
     // FOR TEST PURPOSE ONLY
     // final firstScoreDate = DateTime.utc(2020, 7);
     // final scores = {
@@ -619,8 +619,8 @@ class _FootprintChart extends StatelessWidget {
     final maxX = numYears * 12.0; // each month is represented
     final maxY = max(1.0, (scores.values.reduce(max) / 12) * 1.5);
 
-    int previousYearForTitle;
-    int previousYearForVerticalLine;
+    int? previousYearForTitle;
+    int? previousYearForVerticalLine;
 
     int xValueToYear(double value) => years.first + (value + startMonth - 1) ~/ 12;
 
@@ -668,7 +668,7 @@ class _FootprintChart extends StatelessWidget {
                     }
                     return '';
                   },
-                  getTextStyles: (value) => Theme.of(context).textTheme.caption.copyWith(color: warmdDarkBlue),
+                  getTextStyles: (value) => Theme.of(context).textTheme.caption?.copyWith(color: warmdDarkBlue),
                 ),
                 leftTitles: SideTitles(
                   showTitles: true,
@@ -678,7 +678,7 @@ class _FootprintChart extends StatelessWidget {
                     }
                     return '';
                   },
-                  getTextStyles: (value) => Theme.of(context).textTheme.caption.copyWith(color: warmdDarkBlue),
+                  getTextStyles: (value) => Theme.of(context).textTheme.caption?.copyWith(color: warmdDarkBlue),
                 ),
               ),
               borderData: FlBorderData(
@@ -711,8 +711,8 @@ class _FootprintChart extends StatelessWidget {
               axisTitleData: FlAxisTitleData(
                 leftTitle: AxisTitle(
                   showTitle: true,
-                  titleText: AppLocalizations.of(context).footprintEvolutionTonsAxis,
-                  textStyle: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                  titleText: AppLocalizations.of(context)!.footprintEvolutionTonsAxis,
+                  textStyle: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                 ),
               ),
             ),
@@ -725,8 +725,8 @@ class _FootprintChart extends StatelessWidget {
                 onTap: () {
                   showOkCancelAlertDialog(
                     context: context,
-                    title: AppLocalizations.of(context).resetFootprintHistoryQuestion,
-                    message: AppLocalizations.of(context).resetFootprintHistoryConfirmation,
+                    title: AppLocalizations.of(context)!.resetFootprintHistoryQuestion,
+                    message: AppLocalizations.of(context)!.resetFootprintHistoryConfirmation,
                   ).then((result) {
                     if (result == OkCancelResult.ok) {
                       historyState.resetHistory();
@@ -780,7 +780,7 @@ class _FootprintChart extends StatelessWidget {
                   ),
                   child: Text(
                     '$improvementPercent% ▼',
-                    style: Theme.of(context).textTheme.caption.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.caption?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

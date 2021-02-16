@@ -9,12 +9,12 @@ abstract class DelayableState<E extends StatefulWidget> extends State<E> with Wi
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
     for (final subscription in _subscriptions) {
       subscription.cancel();
     }
@@ -36,7 +36,7 @@ abstract class DelayableState<E extends StatefulWidget> extends State<E> with Wi
   }
 
   void delay(Duration duration, Function onDelayed) {
-    StreamSubscription s;
+    late StreamSubscription s;
     s = Future<void>.delayed(duration).asStream().listen((_) {
       _subscriptions.remove(s);
 

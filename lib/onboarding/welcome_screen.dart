@@ -7,7 +7,7 @@ import 'package:warmd/common/common.dart';
 class WelcomeScreen extends StatelessWidget {
   final Function(BuildContext) onStartSelected;
 
-  const WelcomeScreen({@required this.onStartSelected, Key key}) : super(key: key);
+  const WelcomeScreen({required this.onStartSelected, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,15 +32,15 @@ class WelcomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        AppLocalizations.of(context).welcomeTitle,
+                        AppLocalizations.of(context)!.welcomeTitle,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
+                        style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                       ),
                       Gaps.h64,
                       Text(
-                        AppLocalizations.of(context).welcomeDescription,
+                        AppLocalizations.of(context)!.welcomeDescription,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue),
+                        style: Theme.of(context).textTheme.subtitle1?.copyWith(color: warmdDarkBlue),
                       ),
                     ],
                   ),
@@ -52,7 +52,7 @@ class WelcomeScreen extends StatelessWidget {
                 onPressed: () {
                   onStartSelected(context);
                 },
-                child: Text(AppLocalizations.of(context).welcomeAction),
+                child: Text(AppLocalizations.of(context)!.welcomeAction),
               ),
             ),
             Gaps.h48,

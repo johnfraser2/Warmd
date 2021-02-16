@@ -9,21 +9,14 @@ import 'package:warmd/common/delayable_state.dart';
 class OnboardingScreen extends StatefulWidget {
   final Function(BuildContext) onOnboardingFinished;
 
-  const OnboardingScreen({@required this.onOnboardingFinished, Key key}) : super(key: key);
+  const OnboardingScreen({required this.onOnboardingFinished, Key? key}) : super(key: key);
 
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
 
 class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
-  PageController _pageController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _pageController = PageController();
-  }
+  final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +52,12 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                                 height: MediaQuery.of(context).size.height / 4,
                               ),
                               Text(
-                                AppLocalizations.of(context).onboardingStep1Title,
+                                AppLocalizations.of(context)!.onboardingStep1Title,
                                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                               ),
                               Gaps.h32,
                               Text(
-                                AppLocalizations.of(context).onboardingStep1Description,
+                                AppLocalizations.of(context)!.onboardingStep1Description,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.grey[600], fontSize: 18),
                               ),
@@ -84,12 +77,12 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                                 height: MediaQuery.of(context).size.height / 4,
                               ),
                               Text(
-                                AppLocalizations.of(context).onboardingStep2Title,
+                                AppLocalizations.of(context)!.onboardingStep2Title,
                                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                               ),
                               Gaps.h32,
                               Text(
-                                AppLocalizations.of(context).onboardingStep2Description,
+                                AppLocalizations.of(context)!.onboardingStep2Description,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.grey[600], fontSize: 18),
                               ),
@@ -133,7 +126,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                 onPressed: () {
                   widget.onOnboardingFinished(context);
                 },
-                child: Text(AppLocalizations.of(context).onboardingAction),
+                child: Text(AppLocalizations.of(context)!.onboardingAction),
               ),
             ),
             Gaps.h64,

@@ -6,7 +6,7 @@ class BlueCard extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry padding;
 
-  const BlueCard({@required this.child, this.padding = const EdgeInsets.all(32), Key key}) : super(key: key);
+  const BlueCard({required this.child, this.padding = const EdgeInsets.all(32), Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -15,7 +15,7 @@ import 'package:warmd/common/states.dart';
 class AdvicesScreen extends StatelessWidget {
   final Function(BuildContext) onSeeClimateChangeTapped;
 
-  const AdvicesScreen({@required this.onSeeClimateChangeTapped, Key key}) : super(key: key);
+  const AdvicesScreen({required this.onSeeClimateChangeTapped, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,22 +31,22 @@ class AdvicesScreen extends StatelessWidget {
           ),
           Gaps.h48,
           Text(
-            AppLocalizations.of(context).advicesTitle,
+            AppLocalizations.of(context)!.advicesTitle,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
+            style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
           ),
           Gaps.h48,
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 350),
             child: Text(
-              AppLocalizations.of(context).advicesExplanation,
+              AppLocalizations.of(context)!.advicesExplanation,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+              style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
             ),
           ),
           Gaps.h32,
           _buildFirstAdviceCard(context, state),
-          for (int position in orderedAdvices.keys) _buildCriteriaAdviceCard(context, position, state, orderedAdvices[position]),
+          for (int position in orderedAdvices.keys) _buildCriteriaAdviceCard(context, position, state, orderedAdvices[position]!),
           _buildOtherPollutionTypesCard(context),
           Gaps.h92,
           Align(
@@ -78,17 +78,17 @@ class AdvicesScreen extends StatelessWidget {
       context: context,
       state: state,
       position: 0,
-      title: AppLocalizations.of(context).advicesPoliticsCategory,
+      title: AppLocalizations.of(context)!.advicesPoliticsCategory,
       iconName: 'vote',
-      description: AppLocalizations.of(context).politicalAdvice,
+      description: AppLocalizations.of(context)!.politicalAdvice,
       child: Align(
         alignment: Alignment.topRight,
         child: TextButton(
           onPressed: () => onSeeClimateChangeTapped(context),
           child: Text(
-            AppLocalizations.of(context).advicesSeeClimateChange,
+            AppLocalizations.of(context)!.advicesSeeClimateChange,
             textAlign: TextAlign.right,
-            style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+            style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
           ),
         ),
       ),
@@ -110,9 +110,9 @@ class AdvicesScreen extends StatelessWidget {
             child: TextButton(
               onPressed: () => _showLinksBottomSheet(context, links),
               child: Text(
-                AppLocalizations.of(context).advicesSeeLinks,
+                AppLocalizations.of(context)!.advicesSeeLinks,
                 textAlign: TextAlign.right,
-                style: Theme.of(context).textTheme.subtitle2.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
               ),
             ),
           )
@@ -125,20 +125,20 @@ class AdvicesScreen extends StatelessWidget {
       co2EqTonsPerYear: crit.co2EqTonsPerYear(),
       title: crit.title(context),
       iconName: crit.key,
-      description: crit.advice(context),
+      description: crit.advice(context)!,
       child: linksWidget,
     );
   }
 
   Widget _buildGenericAdviceCard(
-      {BuildContext context,
-      CriteriasState state,
-      int position,
-      double co2EqTonsPerYear,
-      String title,
-      String iconName,
-      String description,
-      Widget child}) {
+      {required BuildContext context,
+      required CriteriasState state,
+      required int position,
+      double? co2EqTonsPerYear,
+      required String title,
+      required String iconName,
+      required String description,
+      Widget? child}) {
     final percentValue = (100 ~/ (state.co2EqTonsPerYear() / (co2EqTonsPerYear ?? 1))).toString();
     final co2EqTonsPerMonth = (co2EqTonsPerYear ?? 1) / 12;
 
@@ -152,7 +152,7 @@ class AdvicesScreen extends StatelessWidget {
               children: [
                 Text(
                   '${position + 1}.',
-                  style: Theme.of(context).textTheme.headline3.copyWith(
+                  style: Theme.of(context).textTheme.headline3?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: co2EqTonsPerYear == null || co2EqTonsPerYear > 1 ? warmdRed : warmdBlue,
                       ),
@@ -167,7 +167,7 @@ class AdvicesScreen extends StatelessWidget {
                         title,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.subtitle1.copyWith(
+                        style: Theme.of(context).textTheme.subtitle1?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: warmdDarkBlue,
                             ),
@@ -191,16 +191,17 @@ class AdvicesScreen extends StatelessWidget {
           if (co2EqTonsPerYear != null)
             Text(
               co2EqTonsPerMonth > 1
-                  ? AppLocalizations.of(context).co2EqPercentTonsValue(percentValue, co2EqTonsPerMonth.toShortString(1))
-                  : AppLocalizations.of(context).co2EqPercentKgValue(percentValue, (co2EqTonsPerMonth * 1000).round().toString()),
-              style: Theme.of(context).textTheme.subtitle2.copyWith(
+                  ? AppLocalizations.of(context)!.co2EqPercentTonsValue(percentValue, co2EqTonsPerMonth.toShortString(1))
+                  : AppLocalizations.of(context)!
+                      .co2EqPercentKgValue(percentValue, (co2EqTonsPerMonth * 1000).round().toString()),
+              style: Theme.of(context).textTheme.subtitle2?.copyWith(
                     color: warmdDarkBlue,
                   ),
             ),
           Gaps.h16,
           MarkupText(
             description,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(
                   fontWeight: FontWeight.w300,
                 ),
           ),
@@ -213,7 +214,7 @@ class AdvicesScreen extends StatelessWidget {
   Widget _buildOtherPollutionTypesCard(BuildContext context) {
     return BlueCard(
       child: Text(
-        AppLocalizations.of(context).advicesOtherPolutionTypes,
+        AppLocalizations.of(context)!.advicesOtherPolutionTypes,
         style: Theme.of(context).textTheme.bodyText2,
       ),
     );
@@ -240,7 +241,7 @@ class AdvicesScreen extends StatelessWidget {
                         shadowColor: Colors.grey[100],
                         label: Text(
                           link.key,
-                          style: Theme.of(context).textTheme.bodyText1.copyWith(color: warmdDarkBlue),
+                          style: Theme.of(context).textTheme.bodyText1?.copyWith(color: warmdDarkBlue),
                         ),
                         onPressed: () async {
                           if (await canLaunch(link.value)) launch(link.value);
@@ -250,8 +251,8 @@ class AdvicesScreen extends StatelessWidget {
                 ),
                 Gaps.h24,
                 MarkupText(
-                  AppLocalizations.of(context).advicesLinksExplanation,
-                  style: Theme.of(context).textTheme.caption.copyWith(color: warmdDarkBlue),
+                  AppLocalizations.of(context)!.advicesLinksExplanation,
+                  style: Theme.of(context).textTheme.caption?.copyWith(color: warmdDarkBlue),
                 ),
               ],
             ),

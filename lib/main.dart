@@ -94,14 +94,14 @@ class MyApp extends StatelessWidget {
                       onFinished: (context) => context.navUpdate((navState) => navState.copyWith(splashScreenSeen: true)),
                     ),
                   ),
-                if (navState.splashScreenSeen && historyState.scores.isEmpty && navState.onboardingStepsNum == 0)
+                if (navState.splashScreenSeen && historyState.scores!.isEmpty && navState.onboardingStepsNum == 0)
                   MaterialPage<OnboardingScreen>(
                     child: OnboardingScreen(
                       onOnboardingFinished: (context) =>
                           context.navUpdate((navState) => navState.copyWith(onboardingStepsNum: navState.onboardingStepsNum + 1)),
                     ),
                   ),
-                if (navState.splashScreenSeen && historyState.scores.isEmpty && navState.onboardingStepsNum == 1)
+                if (navState.splashScreenSeen && historyState.scores!.isEmpty && navState.onboardingStepsNum == 1)
                   MaterialPage<WelcomeScreen>(
                     child: WelcomeScreen(
                       onStartSelected: (context) => context.navUpdate((navState) => navState.copyWith(
@@ -110,7 +110,7 @@ class MyApp extends StatelessWidget {
                           )),
                     ),
                   ),
-                if (navState.splashScreenSeen && historyState.scores.isNotEmpty)
+                if (navState.splashScreenSeen && historyState.scores!.isNotEmpty)
                   MaterialPage<FootprintScreen>(
                     child: FootprintScreen(
                       onSeeClimateChangeTapped: (context) =>

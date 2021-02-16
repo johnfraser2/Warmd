@@ -23,7 +23,7 @@ abstract class NavState with _$NavState {
 }
 
 class CriteriasState with ChangeNotifier {
-  List<CriteriaCategory> _categories;
+  late List<CriteriaCategory> _categories;
   List<CriteriaCategory> get categories => _categories;
 
   CriteriasState() {
@@ -86,12 +86,12 @@ class HistoryState with ChangeNotifier {
   }
 
   static const _scoresKey = 'SCORES_KEY';
-  Map<String, double> _scores;
-  Map<DateTime, double> get scores =>
+  Map<String, double>? _scores;
+  Map<DateTime, double>? get scores =>
       _scores?.map((key, value) => MapEntry(DateTime.fromMillisecondsSinceEpoch(int.parse(key)), value));
 
   void addScore(DateTime date, double score) {
-    _scores[date.millisecondsSinceEpoch.toString()] = score;
+    _scores?[date.millisecondsSinceEpoch.toString()] = score;
 
     notifyListeners();
 
@@ -101,9 +101,11 @@ class HistoryState with ChangeNotifier {
   }
 
   void resetHistory() {
-    final lastScore = _scores.entries.last;
-    _scores.clear();
-    _scores[lastScore.key] = lastScore.value;
+    final lastScore = _scores?.entries.last;
+    _scores?.clear();
+    if (lastScore != null) {
+      _scores?[lastScore.key] = lastScore.value;
+    }
 
     notifyListeners();
 
@@ -132,16 +134,16 @@ class HistoryState with ChangeNotifier {
   Future<void> _loadState() async {
     final prefs = await SharedPreferences.getInstance();
     _scores = prefs.containsKey(_scoresKey)
-        ? (json.decode(prefs.getString(_scoresKey)) as Map<String, dynamic>)
+        ? (json.decode(prefs.getString(_scoresKey)!) as Map<String, dynamic>)
             .map((key, dynamic value) => MapEntry(key, value as double))
         : {};
 
     if (prefs.containsKey(_improvementPercentKey)) {
-      _improvementPercent = prefs.getInt(_improvementPercentKey);
+      _improvementPercent = prefs.getInt(_improvementPercentKey)!;
     }
 
     if (prefs.containsKey(_isReminderEnabledKey)) {
-      _isReminderEnabled = prefs.getBool(_isReminderEnabledKey);
+      _isReminderEnabled = prefs.getBool(_isReminderEnabledKey)!;
     }
 
     notifyListeners();

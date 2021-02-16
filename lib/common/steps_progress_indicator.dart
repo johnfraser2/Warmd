@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class StepsProgressIndicator extends StatelessWidget {
   final double value;
 
-  const StepsProgressIndicator({@required this.value, Key key}) : super(key: key);
+  const StepsProgressIndicator({required this.value, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

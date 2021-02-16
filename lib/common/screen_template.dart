@@ -4,11 +4,11 @@ import 'common.dart';
 import 'steps_progress_indicator.dart';
 
 class ScreenTemplate extends StatelessWidget {
-  final double progressValue;
+  final double? progressValue;
   final Widget body;
-  final ScrollController scrollController;
+  final ScrollController? scrollController;
 
-  const ScreenTemplate({this.progressValue, @required this.body, this.scrollController, Key key}) : super(key: key);
+  const ScreenTemplate({this.progressValue, required this.body, this.scrollController, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ScreenTemplate extends StatelessWidget {
           controller: scrollController,
           children: [
             Gaps.h16,
-            if (progressValue != null) StepsProgressIndicator(value: progressValue) else Gaps.h12,
+            if (progressValue != null) StepsProgressIndicator(value: progressValue!) else Gaps.h12,
             Gaps.h8,
             Padding(
               padding: const EdgeInsets.all(8),

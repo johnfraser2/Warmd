@@ -17,7 +17,7 @@ import 'package:warmd/common/states.dart';
 class UtilitiesCategoryScreen extends StatelessWidget {
   final Function(BuildContext) onContinueTapped;
 
-  const UtilitiesCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
+  const UtilitiesCategoryScreen({required this.onContinueTapped, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class UtilitiesCategoryScreen extends StatelessWidget {
 class TravelCategoryScreen extends StatelessWidget {
   final Function(BuildContext) onContinueTapped;
 
-  const TravelCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
+  const TravelCategoryScreen({required this.onContinueTapped, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class TravelCategoryScreen extends StatelessWidget {
 class FoodCategoryScreen extends StatelessWidget {
   final Function(BuildContext) onContinueTapped;
 
-  const FoodCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
+  const FoodCategoryScreen({required this.onContinueTapped, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class FoodCategoryScreen extends StatelessWidget {
 class GoodsCategoryScreen extends StatelessWidget {
   final Function(BuildContext) onContinueTapped;
 
-  const GoodsCategoryScreen({@required this.onContinueTapped, Key key}) : super(key: key);
+  const GoodsCategoryScreen({required this.onContinueTapped, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +71,7 @@ class _CriteriasScreen extends StatefulWidget {
   final double progressValue;
   final Function(BuildContext) onContinueTapped;
 
-  const _CriteriasScreen(
-      {@required this.criteriaCategory, @required this.progressValue, @required this.onContinueTapped, Key key})
+  const _CriteriasScreen({required this.criteriaCategory, required this.progressValue, required this.onContinueTapped, Key? key})
       : super(key: key);
 
   @override
@@ -100,7 +99,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             Gaps.h16,
             Text(
               widget.criteriaCategory.title(context),
-              style: Theme.of(context).textTheme.headline5.copyWith(color: warmdGreen, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdGreen, fontWeight: FontWeight.bold),
             ),
             Gaps.h32,
             // We display all criterias, except the one that are necessarily at a specific value (like clean energy percent for some countries)
@@ -108,9 +107,9 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               if (crit.maxValue > crit.minValue) _buildCriteria(context, state, crit),
             Gaps.h32,
             Text(
-              AppLocalizations.of(context).continueActionExplanation,
+              AppLocalizations.of(context)!.continueActionExplanation,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle2.copyWith(color: warmdDarkBlue),
+              style: Theme.of(context).textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
             ),
             Gaps.h24,
             Center(
@@ -121,7 +120,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
 
                   widget.onContinueTapped(context);
                 },
-                child: Text(AppLocalizations.of(context).continueAction),
+                child: Text(AppLocalizations.of(context)!.continueAction),
               ),
             ),
             Gaps.h48,
@@ -146,7 +145,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                 Expanded(
                   child: Text(
                     c.title(context),
-                    style: Theme.of(context).textTheme.subtitle1.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.subtitle1?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Gaps.w12,
@@ -165,7 +164,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: MarkupText(
                 explanation,
-                style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.grey[600], fontWeight: FontWeight.w300),
+                style: Theme.of(context).textTheme.bodyText2?.copyWith(color: Colors.grey[600], fontWeight: FontWeight.w300),
               ),
             ),
           Gaps.h8,
@@ -187,7 +186,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
   }
 
   Widget _buildDropdown(BuildContext context, Criteria c, CriteriasState state) {
-    final labels = c.labels(context);
+    final labels = c.labels(context)!;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -214,8 +213,8 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             },
             value: c.currentValue.toInt(),
             underline: Container(),
-            onChanged: (int value) {
-              c.currentValue = value.toDouble();
+            onChanged: (int? value) {
+              c.currentValue = value!.toDouble();
               state.persist(c);
             },
             items: labels
@@ -223,7 +222,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                       value: index,
                       child: Text(
                         label,
-                        style: Theme.of(context).textTheme.bodyText2.copyWith(color: _getDropdownTextColor(c, index)),
+                        style: Theme.of(context).textTheme.bodyText2?.copyWith(color: _getDropdownTextColor(c, index)),
                       ),
                     ))
                 .toList(),
@@ -286,8 +285,8 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                 : c.currentValue != c.maxValue || c.unit == '%' // We can't go above 100% so we don't display "or more"
                     ? valueWithUnit
                     : c.minValue < 0 // Some values are negatives because more is better (like mpg)
-                        ? AppLocalizations.of(context).valueWithLess(valueWithUnit)
-                        : AppLocalizations.of(context).valueWithMore(valueWithUnit),
+                        ? AppLocalizations.of(context)!.valueWithLess(valueWithUnit)
+                        : AppLocalizations.of(context)!.valueWithMore(valueWithUnit),
             value: c.currentValue,
             onChanged: (double value) {
               c.currentValue = value;
@@ -310,14 +309,13 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
   }
 
   Widget _buildShortcutChips(BuildContext context, CriteriasState state, Criteria c) {
-    final shortcuts = c.shortcuts(context);
+    final shortcuts = c.shortcuts(context)!;
 
     return SizedBox(
       width: double.infinity,
       child: Wrap(
         alignment: WrapAlignment.center,
         spacing: 12,
-        runSpacing: 12,
         children: [
           ...shortcuts.entries.map((entry) => ActionChip(
                 label: Text(

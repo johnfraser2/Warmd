@@ -8,7 +8,7 @@ import 'package:warmd/common/common.dart';
 import 'package:warmd/common/screen_template.dart';
 
 class ClimateChangeScreen extends StatelessWidget {
-  const ClimateChangeScreen({Key key}) : super(key: key);
+  const ClimateChangeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +20,9 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h48,
           Text(
-            AppLocalizations.of(context).climateChangeTitle,
+            AppLocalizations.of(context)!.climateChangeTitle,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline5.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
+            style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
           ),
           Gaps.h32,
           _buildConsequencesCard(context),
@@ -46,16 +46,16 @@ class ClimateChangeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context).consequencesTitle,
-            style: Theme.of(context).textTheme.subtitle1.copyWith(
+            AppLocalizations.of(context)!.consequencesTitle,
+            style: Theme.of(context).textTheme.subtitle1?.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
                 ),
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context).consequencesPart1,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            AppLocalizations.of(context)!.consequencesPart1,
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           Gaps.h16,
           const Image(
@@ -66,8 +66,8 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context).consequencesPart2,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            AppLocalizations.of(context)!.consequencesPart2,
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
       ),
@@ -80,16 +80,16 @@ class ClimateChangeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context).globalObjectivesTitle,
-            style: Theme.of(context).textTheme.subtitle1.copyWith(
+            AppLocalizations.of(context)!.globalObjectivesTitle,
+            style: Theme.of(context).textTheme.subtitle1?.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
                 ),
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context).globalObjectivesPart1,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            AppLocalizations.of(context)!.globalObjectivesPart1,
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           Gaps.h16,
           Center(
@@ -100,8 +100,8 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context).globalObjectivesPart2,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            AppLocalizations.of(context)!.globalObjectivesPart2,
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
       ),
@@ -114,16 +114,16 @@ class ClimateChangeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context).globalActionsTitle,
-            style: Theme.of(context).textTheme.subtitle1.copyWith(
+            AppLocalizations.of(context)!.globalActionsTitle,
+            style: Theme.of(context).textTheme.subtitle1?.copyWith(
                   color: warmdDarkBlue,
                   fontWeight: FontWeight.bold,
                 ),
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context).globalActionsPart1,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            AppLocalizations.of(context)!.globalActionsPart1,
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           Gaps.h16,
           Center(
@@ -134,8 +134,8 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           Gaps.h16,
           MarkupText(
-            AppLocalizations.of(context).globalActionsPart2,
-            style: Theme.of(context).textTheme.bodyText2.copyWith(fontWeight: FontWeight.w300),
+            AppLocalizations.of(context)!.globalActionsPart2,
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
       ),
