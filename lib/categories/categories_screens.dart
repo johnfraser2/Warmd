@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
@@ -95,22 +96,22 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               'assets/${widget.criteriaCategory.key}.svg',
               height: 96,
             ),
-            Gaps.h16,
+            const Gap(16),
             Text(
               widget.criteriaCategory.title(context),
               style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdGreen, fontWeight: FontWeight.bold),
             ),
-            Gaps.h32,
+            const Gap(32),
             // We display all criterias, except the one that are necessarily at a specific value (like clean energy percent for some countries)
             for (Criteria crit in widget.criteriaCategory.criterias)
               if (crit.maxValue > crit.minValue) _buildCriteria(context, state, crit),
-            Gaps.h32,
+            const Gap(32),
             Text(
               context.i18n.continueActionExplanation,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
             ),
-            Gaps.h24,
+            const Gap(24),
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -122,7 +123,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                 child: Text(context.i18n.continueAction),
               ),
             ),
-            Gaps.h48,
+            const Gap(48),
           ],
         ),
       ),
@@ -147,7 +148,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                     style: Theme.of(context).textTheme.subtitle1?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Gaps.w12,
+                const Gap(12),
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxHeight: 42, maxWidth: 42),
                   child: SvgPicture.asset(
@@ -157,7 +158,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               ],
             ),
           ),
-          Gaps.h12,
+          const Gap(12),
           if (explanation != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -166,7 +167,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                 style: Theme.of(context).textTheme.bodyText2?.copyWith(color: Colors.grey[600], fontWeight: FontWeight.w300),
               ),
             ),
-          Gaps.h8,
+          const Gap(8),
           if (c.labels(context) != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),

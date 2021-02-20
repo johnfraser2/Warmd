@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 import 'common.dart';
 import 'steps_progress_indicator.dart';
@@ -18,9 +19,9 @@ class ScreenTemplate extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           controller: scrollController,
           children: [
-            Gaps.h16,
-            if (progressValue != null) StepsProgressIndicator(value: progressValue!) else Gaps.h12,
-            Gaps.h8,
+            const Gap(16),
+            if (progressValue != null) StepsProgressIndicator(value: progressValue!) else const Gap(12),
+            const Gap(8),
             Padding(
               padding: const EdgeInsets.all(8),
               child: buildBackButton(context),

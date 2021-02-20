@@ -17,7 +17,7 @@ index cad1dba..f9f3142 100644
              context.i18n.aboutProjectDescription,
              style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
            ),
--          Gaps.h16,
+-          const Gap(16),
 -          Align(
 -            alignment: Alignment.centerRight,
 -            child: TextButton(

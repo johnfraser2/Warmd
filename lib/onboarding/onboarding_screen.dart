@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:page_indicator/page_indicator.dart';
 import 'package:warmd/common/common.dart';
 import 'package:warmd/common/delayable_state.dart';
@@ -54,7 +55,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                                 context.i18n.onboardingStep1Title,
                                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                               ),
-                              Gaps.h32,
+                              const Gap(32),
                               Text(
                                 context.i18n.onboardingStep1Description,
                                 textAlign: TextAlign.center,
@@ -79,7 +80,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                                 context.i18n.onboardingStep2Title,
                                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                               ),
-                              Gaps.h32,
+                              const Gap(32),
                               Text(
                                 context.i18n.onboardingStep2Description,
                                 textAlign: TextAlign.center,
@@ -104,7 +105,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                     //             'A climate-conscious community',
                     //             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                     //           ),
-                    //           Gaps.h32,
+                    //           const Gap(32),
                     //           Text(
                     //             'Be part of a community to share your ideas, progress & much more.',
                     //             textAlign: TextAlign.center,
@@ -119,7 +120,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                 ),
               ),
             ),
-            Gaps.h24,
+            const Gap(24),
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -128,7 +129,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                 child: Text(context.i18n.onboardingAction),
               ),
             ),
-            Gaps.h64,
+            const Gap(64),
           ],
         ),
       ),

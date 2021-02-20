@@ -2,6 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:warmd/common/common.dart';
 import 'package:warmd/common/states.dart';
@@ -25,7 +26,7 @@ class CountryScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Gaps.h16,
+            const Gap(16),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: StepsProgressIndicator(value: 0.2),
@@ -46,13 +47,13 @@ class CountryScreen extends StatelessWidget {
                       context.i18n.countrySelectionTitle,
                       style: Theme.of(context).textTheme.headline6?.copyWith(color: warmdBlue, fontWeight: FontWeight.bold),
                     ),
-                    Gaps.h32,
+                    const Gap(32),
                     Text(
                       context.i18n.countrySelectionQuestion,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                     ),
-                    Gaps.h32,
+                    const Gap(32),
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 500),
                       child: Padding(
@@ -86,7 +87,7 @@ class CountryScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Gaps.h32,
+                    const Gap(32),
                     Text(
                       context.i18n.countrySelectionExplanation,
                       style: Theme.of(context).textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
@@ -103,7 +104,7 @@ class CountryScreen extends StatelessWidget {
                 child: Text(context.i18n.continueAction),
               ),
             ),
-            Gaps.h48,
+            const Gap(48),
             SvgPicture.asset(
               'assets/bear.svg',
               height: MediaQuery.of(context).size.height / 6,

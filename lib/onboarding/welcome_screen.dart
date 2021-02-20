@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:warmd/common/common.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class WelcomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Gaps.h64,
+            const Gap(64),
             Align(
               alignment: Alignment.topLeft,
               child: SvgPicture.asset(
@@ -35,7 +36,7 @@ class WelcomeScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                       ),
-                      Gaps.h64,
+                      const Gap(64),
                       Text(
                         context.i18n.welcomeDescription,
                         textAlign: TextAlign.center,
@@ -54,7 +55,7 @@ class WelcomeScreen extends StatelessWidget {
                 child: Text(context.i18n.welcomeAction),
               ),
             ),
-            Gaps.h48,
+            const Gap(48),
             Align(
               alignment: Alignment.bottomRight,
               child: SvgPicture.asset(

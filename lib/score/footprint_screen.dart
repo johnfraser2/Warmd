@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
 import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
@@ -94,7 +95,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 child: Column(
                   children: [
                     _buildHeader(context, sortedCategories, state, hiddenShareWidgetContainer),
-                    Gaps.h64,
+                    const Gap(64),
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 600),
                       child: Padding(
@@ -102,11 +103,11 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                         child: _buildFootprintAnalysis(context, state, sortedCategories),
                       ),
                     ),
-                    Gaps.h24,
+                    const Gap(24),
                     _buildReminderOption(context),
-                    Gaps.h48,
+                    const Gap(48),
                     _buildRedoQuestionnaireButton(context),
-                    Gaps.h64,
+                    const Gap(64),
                     _buildGoToSourcesButton(context),
                   ],
                 ),
@@ -130,32 +131,32 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                Gaps.h32,
+                const Gap(32),
                 SvgPicture.asset(
                   'assets/splash.svg',
                 ),
-                Gaps.h48,
+                const Gap(48),
                 Text(
                   context.i18n.footprintShareTitle,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Center(child: ScoreWidget(state)),
-                Gaps.h16,
+                const Gap(16),
                 _buildFlightsEquivalent(state),
-                Gaps.h64,
+                const Gap(64),
                 _buildFootprintAnalysis(context, state, sortedCategories),
-                Gaps.h64,
+                const Gap(64),
                 SvgPicture.asset(
                   'assets/play_store.svg',
                   width: 148,
                 ),
-                Gaps.h8,
+                const Gap(8),
                 SvgPicture.asset(
                   'assets/app_store.svg',
                   width: 150,
                 ),
-                Gaps.h32,
+                const Gap(32),
               ],
             ),
           ),
@@ -177,7 +178,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
           'assets/car.svg',
           height: 16,
         ),
-        Gaps.w12,
+        const Gap(12),
         MarkupText(context.i18n.footprintCarKmEquivalent(distanceForCurrentScore.toInt().toString(), meanCarCriteria.unit)),
       ],
     );
@@ -228,7 +229,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 ),
               ),
               Center(child: ScoreWidget(state)),
-              Gaps.h24,
+              const Gap(24),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: Column(
@@ -247,7 +248,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                   ],
                 ),
               ),
-              Gaps.h48,
+              const Gap(48),
             ],
           ),
         ),
@@ -304,7 +305,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
           context.i18n.footprintRepartitionTitle,
           style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
         ),
-        Gaps.h24,
+        const Gap(24),
         SizedBox(
           height: 216,
           child: Row(
@@ -336,7 +337,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                   ),
                 ),
               ),
-              Gaps.w8,
+              const Gap(8),
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 150),
                 child: Column(
@@ -354,7 +355,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
             ],
           ),
         ),
-        Gaps.h64,
+        const Gap(64),
         Text(
           context.i18n.footprintEvolutionTitle,
           style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
@@ -394,7 +395,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
             Expanded(
               child: Text(context.i18n.redoQuestionnaireReminder),
             ),
-            Gaps.w8,
+            const Gap(8),
             Switch.adaptive(
                 value: historyState.isReminderEnable,
                 onChanged: (bool newValue) {
@@ -463,7 +464,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                       ),
                 ),
               ),
-              Gaps.w24,
+              const Gap(24),
               Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -578,7 +579,7 @@ class _PieIndicator extends StatelessWidget {
                 color: color,
               ),
             ),
-            Gaps.w4,
+            const Gap(4),
             Expanded(
               child: Text(
                 text,

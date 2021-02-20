@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,13 +29,13 @@ class AdvicesScreen extends StatelessWidget {
           SvgPicture.asset(
             'assets/sky.svg',
           ),
-          Gaps.h48,
+          const Gap(48),
           Text(
             context.i18n.advicesTitle,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
           ),
-          Gaps.h48,
+          const Gap(48),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 350),
             child: Text(
@@ -43,11 +44,11 @@ class AdvicesScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
             ),
           ),
-          Gaps.h32,
+          const Gap(32),
           _buildFirstAdviceCard(context, state),
           for (int position in orderedAdvices.keys) _buildCriteriaAdviceCard(context, position, state, orderedAdvices[position]!),
           _buildOtherPollutionTypesCard(context),
-          Gaps.h92,
+          const Gap(92),
           Align(
             alignment: Alignment.bottomRight,
             child: SvgPicture.asset(
@@ -156,7 +157,7 @@ class AdvicesScreen extends StatelessWidget {
                         color: co2EqTonsPerYear == null || co2EqTonsPerYear > 1 ? warmdRed : warmdBlue,
                       ),
                 ),
-                Gaps.w16,
+                const Gap(16),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8),
@@ -174,7 +175,7 @@ class AdvicesScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Gaps.w4,
+                const Gap(4),
                 Center(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxHeight: 42, maxWidth: 42),
@@ -186,7 +187,7 @@ class AdvicesScreen extends StatelessWidget {
               ],
             ),
           ),
-          if (co2EqTonsPerYear != null) Gaps.h12,
+          if (co2EqTonsPerYear != null) const Gap(12),
           if (co2EqTonsPerYear != null)
             Text(
               co2EqTonsPerMonth > 1
@@ -196,7 +197,7 @@ class AdvicesScreen extends StatelessWidget {
                     color: warmdDarkBlue,
                   ),
             ),
-          Gaps.h16,
+          const Gap(16),
           MarkupText(
             description,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(
@@ -247,7 +248,7 @@ class AdvicesScreen extends StatelessWidget {
                       ),
                   ],
                 ),
-                Gaps.h24,
+                const Gap(24),
                 MarkupText(
                   context.i18n.advicesLinksExplanation,
                   style: Theme.of(context).textTheme.caption?.copyWith(color: warmdDarkBlue),

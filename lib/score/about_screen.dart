@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:warmd/common/blue_card.dart';
@@ -20,10 +21,10 @@ class AboutScreen extends StatelessWidget {
           SvgPicture.asset(
             'assets/splash.svg',
           ),
-          Gaps.h48,
+          const Gap(48),
           _buildWarmdProjectCard(context),
           _buildSourcesCard(context),
-          Gaps.h48,
+          const Gap(48),
           Align(
             alignment: Alignment.bottomRight,
             child: SvgPicture.asset(
@@ -47,12 +48,12 @@ class AboutScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          Gaps.h16,
+          const Gap(16),
           MarkupText(
             context.i18n.aboutProjectDescription,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
-          Gaps.h16,
+          const Gap(16),
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
@@ -91,7 +92,7 @@ class AboutScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          Gaps.h16,
+          const Gap(16),
           MarkupText(
             context.i18n.aboutSourcesDescription,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
