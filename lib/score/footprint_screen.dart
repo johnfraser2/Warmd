@@ -15,7 +15,7 @@ import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_wi
 import 'package:timezone/data/latest.dart';
 import 'package:timezone/timezone.dart';
 import 'package:warmd/common/common.dart';
-import 'package:warmd/common/criterias.dart';
+import 'package:warmd/common/criteria.dart';
 import 'package:warmd/common/delayable_state.dart';
 import 'package:warmd/common/states.dart';
 
@@ -72,7 +72,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriaState>();
 
     final sortedCategories = state.categories.where((cat) => cat.co2EqTonsPerYear() > 0).toList();
     sortedCategories.sort((a, b) => -a.co2EqTonsPerYear().compareTo(b.co2EqTonsPerYear()));
@@ -120,7 +120,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
   }
 
   Widget _buildHiddenShareWidget(GlobalKey<State<StatefulWidget>> hiddenShareWidgetContainer, BuildContext context,
-      List<CriteriaCategory> sortedCategories, CriteriasState state) {
+      List<CriteriaCategory> sortedCategories, CriteriaState state) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 400),
       child: SingleChildScrollView(
@@ -165,8 +165,8 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
     );
   }
 
-  Row _buildFlightsEquivalent(CriteriasState state) {
-    final countryCriteria = state.categories[0].criterias[0] as CountryCriteria;
+  Row _buildFlightsEquivalent(CriteriaState state) {
+    final countryCriteria = state.generalCategory.countryCriteria;
     final meanCarCriteria = CarCriteria(CarConsumptionCriteria(countryCriteria), countryCriteria)..currentValue = 1000;
     final distanceForCurrentScore =
         (state.co2EqTonsPerYear() / meanCarCriteria.co2EqTonsPerYear()) * meanCarCriteria.currentValue;
@@ -185,7 +185,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
   }
 
   Widget _buildHeader(
-      BuildContext context, List<CriteriaCategory> sortedCategories, CriteriasState state, GlobalKey hiddenShareWidgetContainer) {
+      BuildContext context, List<CriteriaCategory> sortedCategories, CriteriaState state, GlobalKey hiddenShareWidgetContainer) {
     return Stack(
       children: [
         Container(
@@ -291,7 +291,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
     );
   }
 
-  Widget _buildFootprintAnalysis(BuildContext context, CriteriasState state, List<CriteriaCategory> sortedCategories) {
+  Widget _buildFootprintAnalysis(BuildContext context, CriteriaState state, List<CriteriaCategory> sortedCategories) {
     const colors = {
       UtilitiesCategory: Color(0xFFF9A500),
       TravelCategory: warmdRed,

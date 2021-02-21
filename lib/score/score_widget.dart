@@ -17,7 +17,7 @@ const _levelColors = [
 Color _scoreRatioToColor(double scoreRatio) => _levelColors[(5 * scoreRatio).round()];
 
 class ScoreWidget extends StatefulWidget {
-  final CriteriasState state;
+  final CriteriaState state;
 
   const ScoreWidget(this.state);
 

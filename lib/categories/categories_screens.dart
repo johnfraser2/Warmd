@@ -9,7 +9,7 @@ import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
 import 'package:warmd/common/blue_card.dart';
 import 'package:warmd/common/common.dart';
-import 'package:warmd/common/criterias.dart';
+import 'package:warmd/common/criteria.dart';
 import 'package:warmd/common/delayable_state.dart';
 import 'package:warmd/common/screen_template.dart';
 import 'package:warmd/common/states.dart';
@@ -21,7 +21,7 @@ class UtilitiesCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriaState>();
 
     return _CriteriasScreen(criteriaCategory: state.categories[1], progressValue: 0.3, onContinueTapped: onContinueTapped);
   }
@@ -34,7 +34,7 @@ class TravelCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriaState>();
 
     return _CriteriasScreen(criteriaCategory: state.categories[2], progressValue: 0.5, onContinueTapped: onContinueTapped);
   }
@@ -47,7 +47,7 @@ class FoodCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriaState>();
 
     return _CriteriasScreen(criteriaCategory: state.categories[3], progressValue: 0.7, onContinueTapped: onContinueTapped);
   }
@@ -60,7 +60,7 @@ class GoodsCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriaState>();
 
     return _CriteriasScreen(criteriaCategory: state.categories[4], progressValue: 0.9, onContinueTapped: onContinueTapped);
   }
@@ -83,7 +83,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriaState>();
 
     return ScreenTemplate(
       progressValue: widget.progressValue,
@@ -103,8 +103,10 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             ),
             const Gap(32),
             // We display all criterias, except the one that are necessarily at a specific value (like clean energy percent for some countries)
-            for (Criteria crit in widget.criteriaCategory.criterias)
-              if (crit.maxValue > crit.minValue) _buildCriteria(context, state, crit),
+            for (Criteria crit in widget.criteriaCategory.getCriteriaList())
+              // We hide the CarConsumptionCriteria is we don't use car
+              if (crit is! CarConsumptionCriteria || state.travelCategory.carCriteria.currentValue > 0)
+                _buildCriteria(context, state, crit),
             const Gap(32),
             Text(
               context.i18n.continueActionExplanation,
@@ -130,7 +132,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
     );
   }
 
-  Widget _buildCriteria(BuildContext context, CriteriasState state, Criteria c) {
+  Widget _buildCriteria(BuildContext context, CriteriaState state, Criteria c) {
     final explanation = c.explanation(context);
 
     return BlueCard(
@@ -185,7 +187,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
     );
   }
 
-  Widget _buildDropdown(BuildContext context, Criteria c, CriteriasState state) {
+  Widget _buildDropdown(BuildContext context, Criteria c, CriteriaState state) {
     final labels = c.labels(context)!;
 
     return Padding(
@@ -244,7 +246,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
     }
   }
 
-  Widget _buildSlider(Criteria c, BuildContext context, CriteriasState state) {
+  Widget _buildSlider(Criteria c, BuildContext context, CriteriaState state) {
     final unit = c.unit != null ? ' ${c.unit}' : '';
     final valueWithUnit = NumberFormat.decimalPattern().format(c.currentValue.abs()).toString() + unit;
 
@@ -308,7 +310,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
     );
   }
 
-  Widget _buildShortcutChips(BuildContext context, CriteriasState state, Criteria c) {
+  Widget _buildShortcutChips(BuildContext context, CriteriaState state, Criteria c) {
     final shortcuts = c.shortcuts(context)!;
 
     return SizedBox(

@@ -16,9 +16,9 @@ class CountryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final historyState = context.watch<HistoryState>();
-    final state = context.watch<CriteriasState>();
-    final c = state.categories[0].criterias[0];
-    final labels = c.labels(context)!;
+    final state = context.watch<CriteriaState>();
+    final c = state.generalCategory.countryCriteria;
+    final labels = c.labels(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: false, // Usefull to have a better display when the keyboard is up

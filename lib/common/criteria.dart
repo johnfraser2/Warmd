@@ -34,12 +34,12 @@ abstract class Criteria {
 
 abstract class CriteriaCategory {
   String key;
-  List<Criteria> criterias;
 
-  CriteriaCategory({required this.key, required this.criterias});
+  CriteriaCategory({required this.key});
 
   String title(BuildContext context);
-  double co2EqTonsPerYear() => criterias.map((crit) => crit.co2EqTonsPerYear()).reduce((a, b) => a + b);
+  List<Criteria> getCriteriaList();
+  double co2EqTonsPerYear() => getCriteriaList().map((crit) => crit.co2EqTonsPerYear()).reduce((a, b) => a + b);
 }
 
 enum UnitSystem { metric, us, uk }
@@ -98,14 +98,15 @@ class CountryCriteria extends Criteria {
 }
 
 class GeneralCategory extends CriteriaCategory {
-  GeneralCategory()
-      : super(
-          key: 'general',
-          criterias: [CountryCriteria()],
-        );
+  final countryCriteria = CountryCriteria();
+
+  GeneralCategory() : super(key: 'general');
 
   @override
   String title(BuildContext context) => ''; // This special criteria is never displayed
+
+  @override
+  List<Criteria> getCriteriaList() => [countryCriteria];
 }
 
 class HeatingFuelCriteria extends Criteria {
@@ -263,21 +264,21 @@ class CleanElectricityCriteria extends Criteria {
 }
 
 class UtilitiesCategory extends CriteriaCategory {
-  UtilitiesCategory(CountryCriteria countryCriteria)
-      : super(
-          key: 'utilities',
-          criterias: [],
-        ) {
-    final electricityBillCriteria = ElectricityBillCriteria(countryCriteria);
-    criterias = [
-      HeatingFuelCriteria(countryCriteria),
-      electricityBillCriteria,
-      CleanElectricityCriteria(countryCriteria, electricityBillCriteria),
-    ];
+  late HeatingFuelCriteria heatingFuelCriteria;
+  late ElectricityBillCriteria electricityBillCriteria;
+  late CleanElectricityCriteria cleanElectricityCriteria;
+
+  UtilitiesCategory(CountryCriteria countryCriteria) : super(key: 'utilities') {
+    electricityBillCriteria = ElectricityBillCriteria(countryCriteria);
+    heatingFuelCriteria = HeatingFuelCriteria(countryCriteria);
+    cleanElectricityCriteria = CleanElectricityCriteria(countryCriteria, electricityBillCriteria);
   }
 
   @override
   String title(BuildContext context) => context.i18n.utilitiesCategoryTitle;
+
+  @override
+  List<Criteria> getCriteriaList() => [heatingFuelCriteria, electricityBillCriteria, cleanElectricityCriteria];
 }
 
 class FlightsCriteria extends Criteria {
@@ -494,22 +495,22 @@ class PublicTransportCriteria extends Criteria {
 }
 
 class TravelCategory extends CriteriaCategory {
-  TravelCategory(CountryCriteria countryCriteria)
-      : super(
-          key: 'travel',
-          criterias: [],
-        ) {
-    final carConsumptionCriteria = CarConsumptionCriteria(countryCriteria);
-    criterias = [
-      FlightsCriteria(),
-      CarCriteria(carConsumptionCriteria, countryCriteria),
-      carConsumptionCriteria,
-      PublicTransportCriteria(countryCriteria)
-    ];
+  final flightsCriteria = FlightsCriteria();
+  late CarCriteria carCriteria;
+  late CarConsumptionCriteria carConsumptionCriteria;
+  late PublicTransportCriteria publicTransportCriteria;
+
+  TravelCategory(CountryCriteria countryCriteria) : super(key: 'travel') {
+    carConsumptionCriteria = CarConsumptionCriteria(countryCriteria);
+    carCriteria = CarCriteria(carConsumptionCriteria, countryCriteria);
+    publicTransportCriteria = PublicTransportCriteria(countryCriteria);
   }
 
   @override
   String title(BuildContext context) => context.i18n.travelCategoryTitle;
+
+  @override
+  List<Criteria> getCriteriaList() => [flightsCriteria, carCriteria, carConsumptionCriteria, publicTransportCriteria];
 }
 
 const _foodLinks = {
@@ -718,24 +719,14 @@ class OverweightCriteria extends Criteria {
 }
 
 class FoodCategory extends CriteriaCategory {
-  FoodCategory()
-      : super(
-          key: 'food',
-          criterias: [],
-        ) {
-    final ruminantMeatCriteria = RuminantMeatCriteria();
-    final nonRuminantMeatCriteria = NonRuminantMeatCriteria();
-    final dairyCriteria = CheeseCriteria();
-    final snackCriteria = SnackCriteria();
+  final ruminantMeatCriteria = RuminantMeatCriteria();
+  final nonRuminantMeatCriteria = NonRuminantMeatCriteria();
+  final dairyCriteria = CheeseCriteria();
+  final snackCriteria = SnackCriteria();
+  late OverweightCriteria overweightCriteria =
+      OverweightCriteria(ruminantMeatCriteria, nonRuminantMeatCriteria, dairyCriteria, snackCriteria);
 
-    criterias = [
-      ruminantMeatCriteria,
-      nonRuminantMeatCriteria,
-      dairyCriteria,
-      snackCriteria,
-      OverweightCriteria(ruminantMeatCriteria, nonRuminantMeatCriteria, dairyCriteria, snackCriteria),
-    ];
-  }
+  FoodCategory() : super(key: 'food');
 
   @override
   String title(BuildContext context) => context.i18n.foodCategoryTitle;
@@ -746,6 +737,10 @@ class FoodCategory extends CriteriaCategory {
     // Of course it is not precise.
     return super.co2EqTonsPerYear() + 2;
   }
+
+  @override
+  List<Criteria> getCriteriaList() =>
+      [ruminantMeatCriteria, nonRuminantMeatCriteria, dairyCriteria, snackCriteria, overweightCriteria];
 }
 
 class MaterialGoodsCriteria extends Criteria {
@@ -955,19 +950,19 @@ class InternetCriteria extends Criteria {
 }
 
 class GoodsCategory extends CriteriaCategory {
-  GoodsCategory(CountryCriteria countryCriteria)
-      : super(
-          key: 'goods',
-          criterias: [],
-        ) {
-    criterias = [
-      MaterialGoodsCriteria(countryCriteria),
-      SavingsCriteria(countryCriteria),
-      WaterCriteria(),
-      InternetCriteria(),
-    ];
+  late MaterialGoodsCriteria materialGoodsCriteria;
+  late SavingsCriteria savingsCriteria;
+  final waterCriteria = WaterCriteria();
+  final internetCriteria = InternetCriteria();
+
+  GoodsCategory(CountryCriteria countryCriteria) : super(key: 'goods') {
+    materialGoodsCriteria = MaterialGoodsCriteria(countryCriteria);
+    savingsCriteria = SavingsCriteria(countryCriteria);
   }
 
   @override
   String title(BuildContext context) => context.i18n.goodsAndServicesCategoryTitle;
+
+  @override
+  List<Criteria> getCriteriaList() => [materialGoodsCriteria, savingsCriteria, waterCriteria, internetCriteria];
 }

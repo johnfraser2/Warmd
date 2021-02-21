@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
       home: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => HistoryState()),
-          ChangeNotifierProvider(create: (_) => CriteriasState()),
+          ChangeNotifierProvider(create: (_) => CriteriaState()),
         ],
         child: Builder(
           builder: (context) {
@@ -172,7 +172,7 @@ class MyApp extends StatelessWidget {
                         final now = DateTime.now();
                         historyState.addScore(
                           DateTime.utc(now.year, now.month),
-                          context.read<CriteriasState>().co2EqTonsPerYear(),
+                          context.read<CriteriaState>().co2EqTonsPerYear(),
                         );
                         context.navUpdate((navState) => navState.copyWith(questionnaireStepsNum: 0));
                       },

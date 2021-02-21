@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:warmd/common/blue_card.dart';
 import 'package:warmd/common/common.dart';
-import 'package:warmd/common/criterias.dart';
+import 'package:warmd/common/criteria.dart';
 import 'package:warmd/common/screen_template.dart';
 import 'package:warmd/common/states.dart';
 
@@ -19,7 +19,7 @@ class AdvicesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<CriteriasState>();
+    final state = context.watch<CriteriaState>();
 
     final orderedAdvices = _getOrderedAdvices(context, state).asMap();
 
@@ -60,10 +60,10 @@ class AdvicesScreen extends StatelessWidget {
     );
   }
 
-  List<Criteria> _getOrderedAdvices(BuildContext context, CriteriasState state) {
+  List<Criteria> _getOrderedAdvices(BuildContext context, CriteriaState state) {
     final orderedAdvices = <Criteria>[];
     for (final cat in state.categories) {
-      for (final crit in cat.criterias) {
+      for (final crit in cat.getCriteriaList()) {
         if (crit.advice(context) != null) orderedAdvices.add(crit);
       }
     }
@@ -73,7 +73,7 @@ class AdvicesScreen extends StatelessWidget {
     return orderedAdvices;
   }
 
-  Widget _buildFirstAdviceCard(BuildContext context, CriteriasState state) {
+  Widget _buildFirstAdviceCard(BuildContext context, CriteriaState state) {
     return _buildGenericAdviceCard(
       context: context,
       state: state,
@@ -95,8 +95,8 @@ class AdvicesScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCriteriaAdviceCard(BuildContext context, int position, CriteriasState state, Criteria crit) {
-    final countryCriteria = state.categories[0].criterias[0] as CountryCriteria;
+  Widget _buildCriteriaAdviceCard(BuildContext context, int position, CriteriaState state, Criteria crit) {
+    final countryCriteria = state.generalCategory.countryCriteria;
 
     final allCountriesLinks = crit.links();
     // We merge current country and international links
@@ -132,7 +132,7 @@ class AdvicesScreen extends StatelessWidget {
 
   Widget _buildGenericAdviceCard(
       {required BuildContext context,
-      required CriteriasState state,
+      required CriteriaState state,
       required int position,
       double? co2EqTonsPerYear,
       required String title,

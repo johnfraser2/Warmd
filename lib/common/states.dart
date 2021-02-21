@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'criterias.dart';
+import 'criteria.dart';
 
 part 'states.freezed.dart';
 
@@ -22,27 +22,26 @@ abstract class NavState with _$NavState {
   }) = _NavState;
 }
 
-class CriteriasState with ChangeNotifier {
-  late List<CriteriaCategory> _categories;
-  List<CriteriaCategory> get categories => _categories;
+class CriteriaState with ChangeNotifier {
+  final generalCategory = GeneralCategory();
+  late final utilitiesCategory = UtilitiesCategory(generalCategory.countryCriteria);
+  late final travelCategory = TravelCategory(generalCategory.countryCriteria);
+  final foodCategory = FoodCategory();
+  late final goodsCategory = GoodsCategory(generalCategory.countryCriteria);
 
-  CriteriasState() {
-    final generalCategory = GeneralCategory();
-    final countryCriteria = generalCategory.criterias[0] as CountryCriteria;
-    final utilitiesCategory = UtilitiesCategory(countryCriteria);
+  late final List<CriteriaCategory> categories = [
+    generalCategory,
+    utilitiesCategory,
+    travelCategory,
+    foodCategory,
+    goodsCategory
+  ];
 
-    _categories = [
-      generalCategory,
-      utilitiesCategory,
-      TravelCategory(countryCriteria),
-      FoodCategory(),
-      GoodsCategory(countryCriteria)
-    ];
-
+  CriteriaState() {
     _loadState();
   }
 
-  double co2EqTonsPerYear() => _categories.map((cat) => cat.co2EqTonsPerYear()).reduce((a, b) => a + b);
+  double co2EqTonsPerYear() => categories.map((cat) => cat.co2EqTonsPerYear()).reduce((a, b) => a + b);
 
   void persist(Criteria c) {
     notifyListeners();
@@ -55,8 +54,8 @@ class CriteriasState with ChangeNotifier {
   Future<void> _loadState() async {
     final prefs = await SharedPreferences.getInstance();
 
-    for (final cat in _categories) {
-      for (final crit in cat.criterias) {
+    for (final cat in categories) {
+      for (final crit in cat.getCriteriaList()) {
         crit.currentValue = prefs.getDouble(crit.key) ?? crit.currentValue;
 
         if (crit.currentValue > crit.maxValue) {
