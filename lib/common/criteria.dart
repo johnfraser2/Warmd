@@ -520,6 +520,7 @@ const _foodLinks = {
     'TooGoodToGo Anti-Gaspi': 'https://toogoodtogo.fr/',
     'Phenix Anti-Gaspi': 'https://phenixapp.page.link/open-app',
     'Etiquettable': 'https://etiquettable.eco2initiative.com/application/',
+    'Le Guide du Tri': 'https://www.consignesdetri.fr',
   },
 };
 
@@ -793,12 +794,13 @@ class MaterialGoodsCriteria extends Criteria {
         'FR': {
           'BackMarket : produits reconditionnés': 'https://www.backmarket.fr/',
           'LeBonCoin : petites annonces': 'https://www.leboncoin.fr/',
-          'Vinted : vêtements de seconde main': 'https://www.vinted.fr/',
+          'Vinted : achats de seconde main': 'https://www.vinted.fr/',
           "Geev : dons d'objets": 'https://www.geev.com/fr',
-          "Emmaüs : dons/achat d'occasions": 'https://www.label-emmaus.co/fr/nos-boutiques/',
+          "Emmaüs : dons/achats d'occasions": 'https://www.label-emmaus.co/fr/nos-boutiques/',
           "Zack : revend/répare/recycle l'électronique": 'https://www.zack.eco/',
           'Murphy : réparation électroménager': 'https://murfy.fr/',
           "Bricolib : location d'outils": 'https://www.bricolib.net/',
+          'Le Guide du Tri': 'https://www.consignesdetri.fr',
         },
       };
 }
