@@ -1,8 +1,64 @@
 {
+    "back": "Indietro",
+    "@back": {},
+    "onboardingStep1Title": "Comprendi il tuo impatto",
+    "@onboardingStep1Title": {},
+    "onboardingStep1Description": "Scopri come le tue attività influenzano il pianeta, gli animali e altro ancora.",
+    "@onboardingStep1Description": {},
+    "onboardingStep2Title": "Intervieni per ridurre l'impatto",
+    "@onboardingStep2Title": {},
+    "onboardingStep2Description": "Facendo piccoli passi, ogni giorno, sono le fondamenta per guidare grandi cambiamenti per il futuro.",
+    "@onboardingStep2Description": {},
+    "onboardingAction": "INIZIAMO",
+    "@onboardingAction": {},
+    "welcomeTitle": "Ehilà,",
+    "@welcomeTitle": {},
+    "welcomeDescription": "Grazie per aver scaricato Warmd e per aver fatto il primo passo per rendere più sicure le nostre generazioni future.\n\n\nPrima di iniziare, ti faremo alcune domande per creare consigli personalizzati. Sei pronto?",
+    "@welcomeDescription": {},
+    "welcomeAction": "PARTIAMO",
+    "@welcomeAction": {},
+    "countrySelectionTitle": "PAESE",
+    "@countrySelectionTitle": {},
+    "countrySelectionQuestion": "In quale paese risiedi?",
+    "@countrySelectionQuestion": {},
+    "countrySelectionExplanation": "Queste informazioni ci permettono di calcolare correttamente la tua impronta di carbonio.",
+    "@countrySelectionExplanation": {},
+    "countrySelectionSearchHint": "Cerca un paese",
+    "@countrySelectionSearchHint": {},
+    "countrySelectionNotFound": "Non abbiamo riconosciuto questo paese, si prega di provare a scriverlo nella lingua ufficiale del paese o selezionarlo nella lista.",
+    "@countrySelectionNotFound": {},
+    "continueAction": "CONTINUA",
+    "@continueAction": {},
+    "continueActionExplanation": "È sempre possibile aggiornare i dati in seguito.",
+    "@continueActionExplanation": {},
+    "perWeek": "Per settimana.",
+    "@perWeek": {},
+    "inUnit": "In {unit}.",
+    "@inUnit": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "inUnitPerMonth": "In {unit} per il mese scorso.",
+    "@inUnitPerMonth": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "politicalAdvice": "Il vostro impatto è insignificante rispetto a quello delle imprese o dei governi, e per il momento le loro politiche ecologiche sono tutt'altro che sufficienti.\nCerca di influenzare le loro decisioni votando, scrivendo ai tuoi rappresentanti, unendo un gruppo di azione per il clima o con altri mezzi.\n\nSe c'è una cosa da fare è certamente questo.",
+    "@politicalAdvice": {},
     "heatingFuelCriteriaTitle": "La tua bolletta del riscaldamento",
     "@heatingFuelCriteriaTitle": {},
+    "heatingFuelCriteriaAdvice": "Cerca di isolare meglio la tua casa e evita il riscaldamento più del necessario (una qualità del sonno per adulti è migliore a 66°F/19°C). I controlli intelligenti possono aiutarti a spegnere il riscaldamento quando sei fuori.\n\nPreferisci anche il riscaldamento con pompa di calore, con elettricità a basse emissioni di carbonio, con legno proveniente da foreste locali e sostenibili o con biogas.",
+    "@heatingFuelCriteriaAdvice": {},
     "electricityBillCriteriaTitle": "La tua bolletta della corrente elettrica",
     "@electricityBillCriteriaTitle": {},
+    "cleanElectricityCriteriaTitle": "Percentuale di elettricità a basse emissioni di carbonio",
+    "@cleanElectricityCriteriaTitle": {},
     "waterCriteriaTitle": "Il tuo consumo di acqua",
     "@waterCriteriaTitle": {},
     "waterCriteriaExplanation": "Inclusa l'acqua per le tue docce, bagni, sciacquoni e giardinaggio.",
