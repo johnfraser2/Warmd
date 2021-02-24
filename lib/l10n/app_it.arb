@@ -59,6 +59,88 @@
     "@electricityBillCriteriaTitle": {},
     "cleanElectricityCriteriaTitle": "Percentuale di elettricità a basse emissioni di carbonio",
     "@cleanElectricityCriteriaTitle": {},
+    "cleanElectricityCriteriaExplanation": "Incluse l'energia nucleare, eolica o idraulica.\n\nMaggiori informazioni su (a https://www.electricitymap.org)ElectricityMap(/a).",
+    "@cleanElectricityCriteriaExplanation": {},
+    "cleanElectricityCriteriaAdvice": "Scegli il tuo fornitore di energia elettrica per pagare solo per l'elettricità rinnovabile o nucleare.\n\nSe non riesci a utilizzare più elettricità a basse emissioni di carbonio, prendi in considerazione la possibilità di ridurre l'uso di auto elettriche o stufette elettriche.",
+    "@cleanElectricityCriteriaAdvice": {},
+    "utilitiesCategoryTitle": "Utilità",
+    "@utilitiesCategoryTitle": {},
+    "flightsCriteriaTitle": "Ore trascorse in un aereo",
+    "@flightsCriteriaTitle": {},
+    "flightsCriteriaAdvice": "Un aereo produce tra le 6 e 40 volte in più di gas a effetto serra per passeggero che un treno.\n\nChiedetevi: hai davvero bisogno di questi viaggi aerei? Considerate di avere vacanze nel vostro paese e prendere il treno.",
+    "@flightsCriteriaAdvice": {},
+    "carCriteriaTitle": "Distanza percorsa con un'auto a benzina / diesel",
+    "@carCriteriaTitle": {},
+    "carCriteriaAdviceHigh": "Dovresti ridurre l'utilizzo dell'auto cambiando la casa, adottando il lavoro remoto o utilizzando il treno/metropolitana/tram/bus per la maggior parte del tuo trasporto.\n\nSe non riesci a farlo e hai accesso a un'elettricità a basse emissioni di carbonio, prendi in considerazione l'acquisto di una piccola auto elettrica (evita sempre grandi o sportive).",
+    "@carCriteriaAdviceHigh": {},
+    "carCriteriaAdviceLow": "Potrete migliorare ulteriormente il vostro impatto auto imparando la guida ecologica o utilizzando treno/metropolitana/tram/bus (non comprare una nuova auto, la sua costruzione inquinerà più che utilizzando il vostro attuale).",
+    "@carCriteriaAdviceLow": {},
+    "carCriteriaShortcutOneHourPerDay": "1 ora/giorno",
+    "@carCriteriaShortcutOneHourPerDay": {},
+    "carCriteriaShortcutTwoHoursPerDay": "2 ore/giorno",
+    "@carCriteriaShortcutTwoHoursPerDay": {},
+    "carConsumptionCriteriaTitle": "Il consumo di carburante della tua auto",
+    "@carConsumptionCriteriaTitle": {},
+    "publicTransportCriteriaTitle": "Distanza percorsa in autobus, treno, metropolitana o tram",
+    "@publicTransportCriteriaTitle": {},
+    "publicTransportCriteriaAdvice": "Considera di fare lavori a distanza per ridurre la tua impronta di carbonio nel trasporto.",
+    "@publicTransportCriteriaAdvice": {},
+    "publicTransportCriteriaShortcutBus": "1 ora/giorno di autobus",
+    "@publicTransportCriteriaShortcutBus": {},
+    "publicTransportCriteriaShortcutSubway": "1 ora/giorno della metropolitana",
+    "@publicTransportCriteriaShortcutSubway": {},
+    "publicTransportCriteriaShortcutSuburbanTrain": "1 ora/giorno del treno suburbano",
+    "@publicTransportCriteriaShortcutSuburbanTrain": {},
+    "publicTransportCriteriaShortcutTrain": "1 ora/giorno di treno",
+    "@publicTransportCriteriaShortcutTrain": {},
+    "travelCategoryTitle": "Trasporti",
+    "@travelCategoryTitle": {},
+    "ruminantMeatCriteriaTitle": "Numero di pasti di manzo, agnello o montone",
+    "@ruminantMeatCriteriaTitle": {},
+    "ruminantMeatCriteriaAdvice": "La produzione di carne di ruminante è (un https://ourworldindata.org/uploads/2020/02/Ambiente-impact-of-food by-life cycle-stage-1536x1380.png)un importante emittatore(/a) di gas a effetto serra, poiché richiede un ampio uso del suolo ed emette metano, un potente gas serra. Emette più di 4 volte più gas serra della produzione di pollo e almeno 10 volte più della maggior parte della produzione ortofrutticola, anche se aggiungiamo i costi di trasporto per portarli da paesi lontani.\n\nGli adulti non hanno bisogno di più di 3 pasti a settimana (leggermente di più per i bambini). Non deve superare quel numero e dovrebbe considerare l'acquisto di pollo invece o addirittura diventare vegetariano.",
+    "@ruminantMeatCriteriaAdvice": {},
+    "nonRuminantMeatCriteriaTitle": "Numero di pasti di suini, polli, pesci o uova",
+    "@nonRuminantMeatCriteriaTitle": {},
+    "nonRuminantMeatCriteriaAdvice": "Sebbene la produzione di carne di ruminanti sia meno inquinante, la produzione di carne di non ruminanti emette ancora (https://ourworldindata.org/uploads/2020/02/Ambiente-impact-of-food by-life cycle-stage-1536x1380. ng)almeno 4 volte di più (/a) gas serra rispetto alla maggior parte della produzione ortofrutticola.\n\nGli adulti non hanno bisogno di più di 3 pasti a settimana (leggermente di più per i bambini). Non deve superare quel numero e potrebbe anche considerare di diventare vegetariano.",
+    "@nonRuminantMeatCriteriaAdvice": {},
+    "cheeseCriteriaTitle": "Numero di porzioni di formaggio (42 g)",
+    "@cheeseCriteriaTitle": {},
+    "cheeseCriteriaAdvice": "Se vuoi o hai bisogno di latticini, puoi invece prendere latte o yogurt, che sono da 5 a 8 volte meno inquinanti del formaggio.",
+    "@cheeseCriteriaAdvice": {},
+    "snacksCriteriaTitle": "Numero di snack, bevande o altri alimenti altamente trasformati",
+    "@snacksCriteriaTitle": {},
+    "snacksCriteriaAdvice": "Preferisci frutta e verdura invece che spuntini, cioccolata o cibi trasformati. Preferisci anche l'acqua o bevande fatte in casa invece che bibite o succhi acquistati in negozio.",
+    "@snacksCriteriaAdvice": {},
+    "overweightCriteriaTitle": "Sovrappeso e obesità",
+    "@overweightCriteriaTitle": {},
+    "overweightCriteriaLabel1": "Io sono normale",
+    "@overweightCriteriaLabel1": {},
+    "overweightCriteriaLabel2": "Io sono sovrappeso",
+    "@overweightCriteriaLabel2": {},
+    "overweightCriteriaLabel3": "Io sono obeso",
+    "@overweightCriteriaLabel3": {},
+    "overweightCriteriaAdvice": "Essere in sovrappeso significa in pratica assorbire più energia rispetto alle esigenze del vostro corpo. Ogni anno, l'umanità consuma 140 miliardi inutili di tonnellate di cibo.\n\nProva ad aumentare la quota di frutta e verdura nella tua dieta, o semplicemente a ridurre la quantità di cibo ingerito.",
+    "@overweightCriteriaAdvice": {},
+    "foodCategoryTitle": "Alimenti",
+    "@foodCategoryTitle": {},
+    "materialGoodsCriteriaTitle": "Denaro speso in beni materiali",
+    "@materialGoodsCriteriaTitle": {},
+    "materialGoodsCriteriaExplanation": "In {unit} per il mese scorso.\n\nRiguarda mobili, elettrodomestici, abiti, dispositivi elettronici, strumenti, veicoli, veicoli parti, medicine, …",
+    "@materialGoodsCriteriaExplanation": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "materialGoodsCriteriaAdvice": "La loro costruzione, soprattutto per i dispositivi elettronici e meccanici, è generalmente molto inquinante.\n\nPuoi ridurre notevolmente la tua impronta mantenendola più a lungo o limitando semplicemente i tuoi acquisti. Inoltre, ci sono spesso diverse soluzioni disponibili per riparare/vendere/dare i vostri beni attuali, trovare quelli di seconda mano o affittarle.",
+    "@materialGoodsCriteriaAdvice": {},
+    "savingsCriteriaTitle": "Denaro che rimane su un conto bancario non decarbonizzato",
+    "@savingsCriteriaTitle": {},
+    "savingsCriteriaExplanation": "Se non lo sapete, potete considerare che la maggior parte dei vostri risparmi sono interessati.",
+    "@savingsCriteriaExplanation": {},
+    "savingsCriteriaAdvice": "La maggior parte delle banche di oggi ancora investe la maggior parte dei vostri risparmi sulle aziende con grande impatto di carbonio. Fortunatamente, alcune banche ora consentono di scegliere per investimenti a basse emissioni di carbonio.",
+    "@savingsCriteriaAdvice": {},
     "waterCriteriaTitle": "Il tuo consumo di acqua",
     "@waterCriteriaTitle": {},
     "waterCriteriaExplanation": "Inclusa l'acqua per le tue docce, bagni, sciacquoni e giardinaggio.",
@@ -68,5 +150,158 @@
     "waterCriteriaLabel2": "Normale",
     "@waterCriteriaLabel2": {},
     "waterCriteriaLabel3": "Alto (docce lunghe o bagni, giardini grandi, ...)",
-    "@waterCriteriaLabel3": {}
+    "@waterCriteriaLabel3": {},
+    "waterCriteriaAdvice": "È possibile limitare facilmente il consumo di acqua facendo docce corte (evitare bagni) con un soffione a riduzione d'acqua (fino a -70% di acqua).\n\nPuoi anche mettere una bottiglia di plastica nel serbatoio dell'acqua della tua toilette per limitarne la capacità e comprare un recuperatore d'acqua per il tuo giardino.",
+    "@waterCriteriaAdvice": {},
+    "internetCriteriaTitle": "Quantità di dati Internet utilizzati",
+    "@internetCriteriaTitle": {},
+    "internetCriteriaLabel1": "Solo poche email o ricerche a settimana",
+    "@internetCriteriaLabel1": {},
+    "internetCriteriaLabel2": "Uso alcuni siti web o servizi cloud almeno una volta al giorno",
+    "@internetCriteriaLabel2": {},
+    "internetCriteriaLabel3": "Guardo molti video in streaming (> 30 min / giorno)",
+    "@internetCriteriaLabel3": {},
+    "internetCriteriaAdvice": "Internet è già responsabile di circa il 4% delle emissioni totali di carbonio, più del trasporto aereo, e potrebbe raddoppiare prima del 2025. Ciò è dovuto principalmente a un uso crescente di video ad alta risoluzione.\n\nProva a limitare l'uso dello streaming video o semplicemente ridurre la qualità dello streaming video a 480p massimo(SD).",
+    "@internetCriteriaAdvice": {},
+    "goodsAndServicesCategoryTitle": "Merci e servizi",
+    "@goodsAndServicesCategoryTitle": {},
+    "shortcutUnknown": "Non lo so",
+    "@shortcutUnknown": {},
+    "valueWithMore": "{value} o più",
+    "@valueWithMore": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "valueWithLess": "{value} o meno",
+    "@valueWithLess": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "footprintTitle": "La tua impronta di carbonio totale è",
+    "@footprintTitle": {},
+    "footprintCarKmEquivalent": "O (b){number} {unit}(/b) con una tipica auto a benzina",
+    "@footprintCarKmEquivalent": {
+        "placeholders": {
+            "number": {
+                "type": "String"
+            },
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "footprintWarning": "Vedere cosa succede quando non si agisce >",
+    "@footprintWarning": {},
+    "footprintRepartitionTitle": "RIPARTIZIONE DELL'IMPRONTA DI CARBONIO",
+    "@footprintRepartitionTitle": {},
+    "footprintEvolutionTitle": "EVOLUZIONE DELL'IMPRONTA DEL CARBONIO",
+    "@footprintEvolutionTitle": {},
+    "footprintEvolutionExplanation": "Calcola la tua impronta di carbonio ogni mese e vedi la tua evoluzione.\n\nIl mondo deve ridurre le sue emissioni di almeno il 6% all'anno. Che dire di te?",
+    "@footprintEvolutionExplanation": {},
+    "footprintEvolutionTonsAxis": "Tonnellate CO₂e / mese",
+    "@footprintEvolutionTonsAxis": {},
+    "footprintShareTitle": "La mia impronta di carbonio",
+    "@footprintShareTitle": {},
+    "footprintShareLink": "Fatto con Warmd: https://fredjul.github.io/Warmd/",
+    "@footprintShareLink": {},
+    "seeAdvices": "VEDI COSA POTRESTI FARE",
+    "@seeAdvices": {},
+    "resetFootprintHistoryQuestion": "Ripristinare la cronologia?",
+    "@resetFootprintHistoryQuestion": {},
+    "resetFootprintHistoryConfirmation": "Sei sicuro di voler ripristinare la cronologia delle impronte di carbonio?",
+    "@resetFootprintHistoryConfirmation": {},
+    "redoQuestionnaireReminder": "Ricordami di fare di nuovo il test in 1 mese",
+    "@redoQuestionnaireReminder": {},
+    "reminderNotificationTitle": "Qual è la tua impronta di carbonio?",
+    "@reminderNotificationTitle": {},
+    "reminderNotificationDescription": "Calcola la tua nuova impronta di carbonio e vedi la tua progressione.",
+    "@reminderNotificationDescription": {},
+    "redoQuestionnaire": "RIFAI IL QUESTIONARIO",
+    "@redoQuestionnaire": {},
+    "seeAbout": "Comprendi come viene calcolata la tua impronta di carbonio e come potresti aiutare questo progetto.",
+    "@seeAbout": {},
+    "scoreTonsUnit": "tonnelate\nCO₂e / mese",
+    "@scoreTonsUnit": {},
+    "scoreKgUnit": "kg\nCO₂e / mese",
+    "@scoreKgUnit": {},
+    "co2EqKgValue": "{value} kg",
+    "@co2EqKgValue": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentTonsValue": "{percent}% ({co2EqTons} tonnelate CO₂e/ mese)",
+    "@co2EqPercentTonsValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqTons": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentKgValue": "{percent}% ({co2EqKg} kg CO₂e / mese)",
+    "@co2EqPercentKgValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqKg": {
+                "type": "String"
+            }
+        }
+    },
+    "climateChangeTitle": "Che cos'è il cambiamento climatico?",
+    "@climateChangeTitle": {},
+    "consequencesTitle": "Conseguenze del riscaldamento globale",
+    "@consequencesTitle": {},
+    "consequencesPart1": "Abbiamo già ottenuto (b)+1°C(/b) (in media) dai livelli preindustriali, con un aumento già visibile del numero di ondate di calore, siccità, incendi o cicloni. Nonostante quanto dicono alcuni scettici climatici, gli scienziati (a https://climate.nasa. ov/evidence/)sono più del 95% certo(/a) che ciò sia dovuto alle emissioni di gas a effetto serra prodotte dalle attività umane (CO₂, CH₄, N₂O). La natura non può assorbire tale quantità di gas a effetto serra e, come se non bastasse, ogni anno continuiamo ad aggiungere di più all'atmosfera.\n\nRaggiungendo (b)+2°C(/b) nel 2100, (a https://www.wwf.org.uk/updates/our-warming-world-how-much-difference-will-half-degree-real-make) certamente soffriremo (/a) una perdita importante nella nostra biodiversità (-18% insetti, -16% piante, -8% vertebrati, -99% coralli), 49 milioni di persone saranno colpite dall'aumento del livello del mare e 410 milioni di persone soffriranno di grave siccità, portando a massicce emigrazioni, instabilità finanziaria e politica.\n\nA (b)+4°C(/b) gli esseri umani non saranno in grado di vivere attorno all’equatore (a http://www.uhm.hawaii.edu/news/article.php?aId=8657)a causa del calore mortale (/a):",
+    "@consequencesPart1": {},
+    "consequencesPart2": "Miliardi di persone emigreranno in altre zone con un rischio molto elevato di carestie, guerre e milioni o miliardi di morti.\n\n(b)+6°C(/b) è la stessa differenza di temperatura media tra la precedente (b)era glaciale(/b) e il (b)20° secolo(/b).",
+    "@consequencesPart2": {},
+    "advicesTitle": "Cosa potresti fare?",
+    "@advicesTitle": {},
+    "advicesExplanation": "Piccoli atti sono accolti con favore, ma non dovrebbero nascondere la verità: non sono abbastanza significativi per affrontare l'emergenza climatica, dobbiamo concentrarci su quelli grandi.",
+    "@advicesExplanation": {},
+    "advicesOtherPolutionTypes": "Si prega di notare che questa app si concentra solo sul cambiamento climatico, ma non dobbiamo dimenticare gli altri tipi di inquinamento (aria, acqua, terreno, rumore e inquinamento luminoso), dato che meritano molto la nostra attenzione.",
+    "@advicesOtherPolutionTypes": {},
+    "advicesPoliticsCategory": "Esprimi le tue preoccupazioni",
+    "@advicesPoliticsCategory": {},
+    "advicesSeeClimateChange": "Capire qual è la posta in gioco >",
+    "@advicesSeeClimateChange": {},
+    "advicesSeeLinks": "Vedi alcune soluzioni >",
+    "@advicesSeeLinks": {},
+    "advicesLinksExplanation": "Questo elenco non è esaustivo e non è stato sponsorizzato, è semplicemente link che riteniamo utili.\nSe hai un suggerimento o un'osservazione, (una mailto:warmd_app@icloud.com) ti preghiamo di contattarci(/a).",
+    "@advicesLinksExplanation": {},
+    "globalObjectivesTitle": "Obiettivi globali",
+    "@globalObjectivesTitle": {},
+    "globalObjectivesPart1": "Per rimanere al di sotto di +2°C, le emissioni di gas serra devono essere (https://folk.universitetetioslo.no/roberan/t/global_mitigation_curves.shtml)divise per 3 per 2050(/a), vale a dire circa (b)-6% all'anno (/b) a partire dal 2020.",
+    "@globalObjectivesPart1": {},
+    "globalObjectivesPart2": "Finora è improbabile che ciò avvenga; fino ad ora abbiamo costantemente aumentato le nostre emissioni e non vi sono ancora chiari segnali di riduzione.\n\nCon la tendenza attuale e senza sforzi efficaci, finiremo con almeno (b)+3.2°C per il 2100(/b), e continuerà ad aumentare successivamente.",
+    "@globalObjectivesPart2": {},
+    "globalActionsTitle": "Da dove dovremmo iniziare?",
+    "@globalActionsTitle": {},
+    "globalActionsPart1": "Le emissioni provengono essenzialmente da pochi settori principali (fonte: IPCC, 2014, emissioni globali).",
+    "@globalActionsPart1": {},
+    "globalActionsPart2": "• La prima cosa da fare è (b)smettere completamente di utilizzare combustibili fossili(/b) (carbone, petrolio, gas) e sostituirli con elettricità a basse emissioni di carbonio ((a https://www. pcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_chapter7.pdf)IPCC(/a) raccomanda un maggiore uso di energia nucleare e rinnovabile).\n\n• Poi c'è bisogno di una (b)migliore gestione degli alimenti(/b), con meno produzione di carne e sprechi.\n\n• Per finire, potrebbe essere necessario avviare l'organizzazione di una decrescita globale e di un controllo delle nascite in quanto potrebbe essere l'unica soluzione per raggiungere una decarbonizzazione completa.",
+    "@globalActionsPart2": {},
+    "aboutProjectTitle": "Progetto Warmd",
+    "@aboutProjectTitle": {},
+    "aboutProjectDescription": "Warmd è un progetto open-source non lucrativo. Puoi contribuire ad esso (un https://github.com/FredJul/Warmd)qui(/a) o aiutarlo a tradurre (un https://frju.crowdin.com/warmd)qui(/a).\n\nIl design di Warmd è stato generosamente fornito da (a https://mnstudio.et)mn studio(/a).\n\nIl nostro unico obiettivo è quello di ridurre un pò l'impatto umano sul nostro pianeta.",
+    "@aboutProjectDescription": {},
+    "aboutRateIt": "Aiutaci valutando 5 stelle >",
+    "@aboutRateIt": {},
+    "aboutSourcesTitle": "Sorgenti",
+    "@aboutSourcesTitle": {},
+    "aboutSourcesDescription": "Questa calcolatrice di impronta di carbonio si basa principalmente sui risultati di (a https://coolclimate.org)CoolClimate(/a) con l'aiuto di altre fonti come (a https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (a https://www.bc.com/news/science-environment-49349566)BBC(/a), (a https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20emissions%20report.pdf)LowCVP(/a), (a https://www. rontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) oppure (a https://riftapp.fr/)Rift(/a).\n\nA causa della complessità del compito, non ci aspettiamo che questa app sia molto precisa, ma ti dà un'idea del tuo impatto.\n\nNon sono affiliato a nessuna delle organizzazioni citate.",
+    "@aboutSourcesDescription": {}
 }
