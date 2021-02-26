@@ -1,4 +1,12 @@
 {
+    "back": "Zurück",
+    "@back": {},
+    "onboardingStep1Title": "Verstehen Sie Ihren Einfluss",
+    "@onboardingStep1Title": {},
+    "onboardingStep1Description": "Sehen Sie, wie sich ihre Aktivität auf unseren Planeten, die Tiere &mehr auswirken.",
+    "@onboardingStep1Description": {},
+    "onboardingStep2Title": "Ergreife Maßnahmen, um den Einfluss zu verringern",
+    "@onboardingStep2Title": {},
     "waterCriteriaTitle": "Dein Wasserverbrauch",
     "@waterCriteriaTitle": {}
 }
