@@ -217,5 +217,91 @@
     "resetFootprintHistoryConfirmation": "Sind Sie sicher, dass Sie Ihren CO2-Fußabdruck zurücksetzen möchten?",
     "@resetFootprintHistoryConfirmation": {},
     "redoQuestionnaireReminder": "Erinnere mich daran, den Test in 1 Monat erneut zu machen",
-    "@redoQuestionnaireReminder": {}
+    "@redoQuestionnaireReminder": {},
+    "reminderNotificationTitle": "Was ist ihr CO2-Fußabdruck?",
+    "@reminderNotificationTitle": {},
+    "reminderNotificationDescription": "Berechnen Sie Ihren neuen CO2-Fußabdruck und sehen Sie Ihren Fortschritt.",
+    "@reminderNotificationDescription": {},
+    "redoQuestionnaire": "Fragebogen wiederholen",
+    "@redoQuestionnaire": {},
+    "seeAbout": "Verstehen Sie, wie Ihr CO2-Fußabdruck berechnet wird und wie Sie diesem Projekt helfen können.",
+    "@seeAbout": {},
+    "scoreTonsUnit": "Tonnen\nCO2e / Monat",
+    "@scoreTonsUnit": {},
+    "scoreKgUnit": "kg\nCO2e / Monat",
+    "@scoreKgUnit": {},
+    "co2EqKgValue": "{value} kg",
+    "@co2EqKgValue": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentTonsValue": "{percent}% ({co2EqTons} Tonnen CO2e / Monat)",
+    "@co2EqPercentTonsValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqTons": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentKgValue": "{percent}% ({co2EqKg} kg CO2e / Monat)",
+    "@co2EqPercentKgValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqKg": {
+                "type": "String"
+            }
+        }
+    },
+    "climateChangeTitle": "Was ist der Klimawandel?",
+    "@climateChangeTitle": {},
+    "consequencesTitle": "Folgen der Erderwärmung",
+    "@consequencesTitle": {},
+    "consequencesPart1": "Wir haben bereits (b)+1°C(/b) im Durchschnitt von vorindustriellen Niveaus gewonnen, mit einer bereits sichtbaren Zunahme der Anzahl von Hitzewellen, Dürren, Bränden oder Zyklonen. Ungeachtet dessen, was einige Klimaskeptiker sagen, Wissenschaftler (https://climate.nasa. ov/evidence/)sind mehr als 95 % sicher(/a) dass dies auf die Treibhausgasemissionen menschlicher Aktivitäten zurückzuführen ist (CO2, CH4, N2O). Die Natur kann so viele Treibhausgase nicht absorbieren, und als ob das nicht ausreichen würde, vergrößern wir die Atmosphäre jedes Jahr weiter.\n\nDurch das Erreichen (b)+2°C(/b) in 2100 (ein https://www. wf.org. k/updates/unsere Erwärmungs-Welt-viel-viel-difference-will-halb halb Grad-wirklich)wir werden sicherlich einen großen Verlust in unserer biologischen Vielfalt (-18% Insekten, -16% Pflanzen, -8% Wirbelsäule, -99 % Korallen), 49 Millionen Menschen werden vom Anstieg des Meeresspiegels betroffen sein, und 410 Millionen Menschen werden schwere Dürren erleiden, Dies führt zu massiven Auswanderungen, finanziellen und politischen Instabilitäten.\n\nBei (b)+4°C(/b) werden Menschen aufgrund tödlicher Hitze(/a): nicht in der Lage sein, um den Äquator herum zu leben (http://www.uhm.hawaii.edu/news/article.php?aId=8657)).",
+    "@consequencesPart1": {},
+    "consequencesPart2": "Milliarden von Menschen werden in andere Gebiete auswandern, mit einem sehr hohen Risiko von Hungersnöten, Kriegen und Millionen oder Milliarden Toten.\n\n(b)+6°C(/b) ist der selbe Temperaturunterschied zwischen der vorherigen (b)eiszeit(/b) und dem (b)20. Jahrhundert(/b).",
+    "@consequencesPart2": {},
+    "advicesTitle": "Was sollten Sie tun?",
+    "@advicesTitle": {},
+    "advicesExplanation": "Kleine Taten sind begrüßenswert, aber sie sollten die Wahrheit nicht verbergen: Sie sind nicht signifikant genug, um der Klimakrise zu begegnen, wir müssen uns auf das große Ganze konzentrieren.",
+    "@advicesExplanation": {},
+    "advicesOtherPolutionTypes": "Bitte beachten Sie, dass sich diese App nur auf den Klimawandel konzentriert, aber wir sollten die anderen Arten der Verschmutzung nicht vergessen (Luft, Wasser, Land, Lärmbelästigung und leichte Verschmutzung verdienen ebenfalls unsere Aufmerksamkeit.",
+    "@advicesOtherPolutionTypes": {},
+    "advicesPoliticsCategory": "Ihre Bedenken ausdrücken",
+    "@advicesPoliticsCategory": {},
+    "advicesSeeClimateChange": "Verstehen Sie, was auf dem Spiel steht >",
+    "@advicesSeeClimateChange": {},
+    "advicesSeeLinks": "Einige Lösungen ansehen >",
+    "@advicesSeeLinks": {},
+    "advicesLinksExplanation": "Diese Liste ist nicht erschöpfend und wird nicht gesponsert, sie ist einfach Links, die wir für hilfreich halten.\nWenn du einen Vorschlag oder eine Anmerkung hast (ein mailto:warmd_app@icloud.com)dann sag uns bitte(/a).",
+    "@advicesLinksExplanation": {},
+    "globalObjectivesTitle": "Globale Ziele",
+    "@globalObjectivesTitle": {},
+    "globalObjectivesPart1": "Um unter +2°C zu bleiben, müssen die Treibhausgasemissionen (https://folk.universitetetioslo.no/roberan/t/global_mitigation_curves.shtml)durch 3 bis 2050(/a), d.h. etwa (b)-6% pro Jahr (/b) ab 2020 aufgeteilt werden.",
+    "@globalObjectivesPart1": {},
+    "globalObjectivesPart2": "Bisher ist es unwahrscheinlich, dass es dazu kommt, dass wir bisher unsere Emissionen ständig erhöht haben, und es gibt immer noch keine deutlichen Anzeichen für eine Reduzierung.\n\nMit dem aktuellen Trend und ohne effektive Anstrengungen werden wir am Ende mindestens (b)+3 haben. °C bis 2100(/b), und danach wird es weiter ansteigen.",
+    "@globalObjectivesPart2": {},
+    "globalActionsTitle": "Wo sollen wir anfangen?",
+    "@globalActionsTitle": {},
+    "globalActionsPart1": "Emissionen stammen im Wesentlichen aus wenigen Hauptsektoren (Quelle: IPCC, 2014, globale Emissionen).",
+    "@globalActionsPart1": {},
+    "globalActionsPart2": "• Das Erste, was zu tun ist, (b)vollständig aufhören fossile Brennstoffe (/b) (Kohle, Öl, Gas) und ersetzen sie durch kohlenstoffarme Elektrizität (((a https://www. pcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_chapter7.pdf)IPCC(/a) empfiehlt eine verstärkte Nutzung sowohl von Kernenergie als auch von erneuerbaren Energien).\n\n• Dann ist eine bessere Lebensmittelverwaltung (/b), mit weniger Fleischproduktion und Abfall nötig.\n\n• Zum Beenden, Es könnte notwendig sein, mit der Organisation einer globalen Degeneration und einer Kontrolle der Geburtenrate zu beginnen, da dies die einzige Lösung sein könnte, um eine vollständige Dekarbonisierung zu erreichen.",
+    "@globalActionsPart2": {},
+    "aboutProjectTitle": "Warmd Projekt",
+    "@aboutProjectTitle": {},
+    "aboutProjectDescription": "Warmd ist ein nicht-lukratives Open-Source-Projekt. Du kannst dazu beitragen (https://github.com/FredJul/Warmd)hier(/a) oder helfen, es zu übersetzen (https://frju.crowdin.com/warmd)hier(/a).\n\nWarmds Design wurde großzügig von (https://mnstudio. et)mn studio(/a).\n\nUnser einziges Ziel ist es, den menschlichen Einfluss auf unseren Planeten etwas zu reduzieren.",
+    "@aboutProjectDescription": {},
+    "aboutRateIt": "Hilf uns mit einer 5 Sternen Bewertung >",
+    "@aboutRateIt": {},
+    "aboutSourcesTitle": "Quellen",
+    "@aboutSourcesTitle": {},
+    "aboutSourcesDescription": "Dieser CO2-Footprint-Rechner basiert hauptsächlich auf (https://coolclimate.org)CoolClimate(/a) Ergebnissen, mit Hilfe anderer Quellen wie (https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (https://www. bc.com/news/science-environment-49349566)BBC(/a), (https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20eMissionen%20report.pdf)LowCVP(/a), (https://www. rontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) or (a https://riftapp.fr/)Rift(/a).\n\nAufgrund der Komplexität der Aufgabe, wir erwarten nicht, dass diese App sehr genau ist, aber sie gibt Ihnen eine Vorstellung von Ihrer Wirkung.\n\nIch bin keinem der genannten Organisationen angeschlossen.",
+    "@aboutSourcesDescription": {}
 }
