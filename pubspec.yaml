@@ -17,10 +17,10 @@ dependencies:
     sdk: flutter
   adaptive_dialog: ^0.10.0+4
   cupertino_icons: ^1.0.2
-  dropdown_search: ^0.4.8
-  fl_chart: ^0.12.2
-  flow_builder: 0.0.1-dev.9
-  flutter_local_notifications: ^4.0.1
+  dropdown_search: ^0.4.9
+  fl_chart: ^0.20.0-nullsafety1
+  flow_builder: 0.0.1-dev.9 # above version up to 0.0.1 are buggy on android
+  flutter_local_notifications: ^4.0.1+1
   flutter_native_timezone: ^1.0.4
   flutter_svg: ^0.20.0-nullsafety.3
   freezed: ^0.13.0-nullsafety.2
@@ -29,12 +29,11 @@ dependencies:
   intl: ^0.17.0
   markup_text: ^0.2.0
   page_indicator: ^0.3.0
-  provider: ^5.0.0-nullsafety.3
+  provider: ^5.0.0-nullsafety.5
   share_files_and_screenshot_widgets: ^1.0.3
   shared_preferences: ^2.0.0-nullsafety
 
 dependency_overrides:
-  path_drawing: ^0.5.0-nullsafety.0 # for fl_chart to be OK until they provide a nullsafety version
   path_provider: ^2.0.0-nullsafety # for share_files_and_screenshot_widgets to be OK until they provide a nullsafety version
   url_launcher: ^6.0.0-nullsafety # for markup_text to be OK until they provide a nullsafety version
 

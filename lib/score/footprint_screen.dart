@@ -670,7 +670,7 @@ class _FootprintChart extends StatelessWidget {
                     }
                     return '';
                   },
-                  getTextStyles: (value) => Theme.of(context).textTheme.caption?.copyWith(color: warmdDarkBlue),
+                  getTextStyles: (value) => Theme.of(context).textTheme.caption!.copyWith(color: warmdDarkBlue),
                 ),
                 leftTitles: SideTitles(
                   showTitles: true,
@@ -680,7 +680,7 @@ class _FootprintChart extends StatelessWidget {
                     }
                     return '';
                   },
-                  getTextStyles: (value) => Theme.of(context).textTheme.caption?.copyWith(color: warmdDarkBlue),
+                  getTextStyles: (value) => Theme.of(context).textTheme.caption!.copyWith(color: warmdDarkBlue),
                 ),
               ),
               borderData: FlBorderData(
