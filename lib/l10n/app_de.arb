@@ -93,6 +93,129 @@
     "@publicTransportCriteriaShortcutSuburbanTrain": {},
     "publicTransportCriteriaShortcutTrain": "1 Stunde Zug am Tag",
     "@publicTransportCriteriaShortcutTrain": {},
+    "travelCategoryTitle": "Beförderung",
+    "@travelCategoryTitle": {},
+    "ruminantMeatCriteriaTitle": "Anzahl der Rind, Lamm- oder Schweinefleisch-Speisen",
+    "@ruminantMeatCriteriaTitle": {},
+    "ruminantMeatCriteriaAdvice": "Die Produktion von Wiederkäuerfleisch ist (https://ourworldindata.org/uploads/2020/02/Environmental-impact-of-food-by-life-cycle-stage-1536x1380.png)ein wichtiger Treibhausgasemiter(/a) da sie einen großen Flächenverbrauch erfordert und Methan emittiert, ein starkes Treibhausgas. Es emittiert mehr als viermal mehr Treibhausgas als die Hühnerproduktion und mindestens zehnmal mehr als die meisten Obst- und Gemüseprodukte. auch wenn wir die Transportkosten erhöhen, um sie aus fernen Ländern zu bringen.\n\nErwachsene brauchen nicht mehr als 3 Fleischmahlzeiten pro Woche (etwas mehr für Kinder). Sie sollten diese Zahl nicht überschreiten und sollten in Erwägung ziehen, Hühnerfleisch zu kaufen oder sogar Vegetarier zu werden.",
+    "@ruminantMeatCriteriaAdvice": {},
+    "nonRuminantMeatCriteriaTitle": "Anzahl Schwein, Hühner, Fisch oder Eier Mahlzeiten",
+    "@nonRuminantMeatCriteriaTitle": {},
+    "nonRuminantMeatCriteriaAdvice": "Obwohl die Fleischproduktion weniger umweltschädlich ist als die Erzeugung von Wiederkäuern, emittiert die Fleischproduktion von Nichtwiederkäuern (https://ourworldindata.org/uploads/2020/02/Environmental-impact-of-food-by-life-cycle-stage-1536x1380. ng)mindestens 4 mal mehr (/a) Treibhausgas als die meisten Obst- und Gemüseproduktionen.\n\nErwachsene brauchen nicht mehr als 3 Fleischmahlzeiten pro Woche (etwas mehr für Kinder). Sie sollten diese Zahl nicht überschreiten und könnten sogar in Betracht ziehen, Vegetarier zu werden.",
+    "@nonRuminantMeatCriteriaAdvice": {},
+    "cheeseCriteriaTitle": "Portionen Käse (1,5 oz)",
+    "@cheeseCriteriaTitle": {},
+    "cheeseCriteriaAdvice": "Wenn Sie ein Milchprodukt wollen oder brauchen, können Sie stattdessen Milch oder Joghurt nehmen, die 5-8-mal weniger umweltschädlich sind als Käse.",
+    "@cheeseCriteriaAdvice": {},
+    "snacksCriteriaTitle": "Anzahl der Snacks, Getränke oder andere stark transformierte Lebensmittel",
+    "@snacksCriteriaTitle": {},
+    "snacksCriteriaAdvice": "Bevorzugen Sie Obst und Gemüse gegenüber Snacks, Schokolade oder verwandelten Lebensmitteln.",
+    "@snacksCriteriaAdvice": {},
+    "overweightCriteriaTitle": "Übergewicht und Fettleibigkeit",
+    "@overweightCriteriaTitle": {},
+    "overweightCriteriaLabel1": "Ich bin normal",
+    "@overweightCriteriaLabel1": {},
+    "overweightCriteriaLabel2": "Ich bin übergewichtig",
+    "@overweightCriteriaLabel2": {},
+    "overweightCriteriaLabel3": "Ich bin fettleibig",
+    "@overweightCriteriaLabel3": {},
+    "overweightCriteriaAdvice": "Übergewichtig zu sein bedeutet, dass Sie mehr Energie aufnehmen, als Ihr Körper braucht. Jedes Jahr verbraucht die Menschheit unnötige 140 Milliarden Tonnen Nahrung.\n\nVersuchen sie den Anteil an Obst und Gemüse in ihrer Ernährung zu erhöhen oder reduzieren sie einfach die Menge an eingenommenen Lebensmitteln.",
+    "@overweightCriteriaAdvice": {},
+    "foodCategoryTitle": "Nahrung",
+    "@foodCategoryTitle": {},
+    "materialGoodsCriteriaTitle": "Geld für Sachgüter",
+    "@materialGoodsCriteriaTitle": {},
+    "materialGoodsCriteriaExplanation": "In {unit} für den letzten Monat.\n\nBetrifft Möbel, Geräte, Kleidung, elektronische Geräte, Werkzeuge, Fahrzeuge, Fahrzeugteile, Fahrzeugteile, Medikamente, …",
+    "@materialGoodsCriteriaExplanation": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "materialGoodsCriteriaAdvice": "Ihre Geräte, vor allem für elektronische und mechanische Geräte, ist im Allgemeinen sehr umweltschädlich.\n\nSie können ihren Fußabdruck stark reduzieren, indem sie sie länger behalten oder einfach nur ihren Einkäufe beschränken. Darüber hinaus gibt es oft mehrere Lösungen, um Ihre aktuellen Waren zu reparieren/zu verkaufen, zu finden oder zu vermieten.",
+    "@materialGoodsCriteriaAdvice": {},
+    "savingsCriteriaTitle": "Geld, das auf einem nicht dekarbonierten Bankkonto schläft",
+    "@savingsCriteriaTitle": {},
+    "savingsCriteriaExplanation": "Wenn Sie das nicht wissen, können Sie davon ausgehen, dass die meisten Ihrer Einsparungen betroffen sind.",
+    "@savingsCriteriaExplanation": {},
+    "savingsCriteriaAdvice": "Die meisten Banken von heute investieren immer noch den Großteil Ihrer Ersparnisse in Unternehmen mit großen Co2-Auswirkungen. Glücklicherweise erlauben einige Banken Ihnen jetzt die Wahl für kohlenstoffarme Investitionen.",
+    "@savingsCriteriaAdvice": {},
     "waterCriteriaTitle": "Dein Wasserverbrauch",
-    "@waterCriteriaTitle": {}
+    "@waterCriteriaTitle": {},
+    "waterCriteriaExplanation": "Inklusive des Wassers für Duschen, Bäder, Toilettenspülungen und Gartenanlagen.",
+    "@waterCriteriaExplanation": {},
+    "waterCriteriaLabel1": "Niedrig (schnelle Duschen, kein Garten)",
+    "@waterCriteriaLabel1": {},
+    "waterCriteriaLabel2": "Normal",
+    "@waterCriteriaLabel2": {},
+    "waterCriteriaLabel3": "Hoch (langes Duschen oder Baden, großer Garten, …)",
+    "@waterCriteriaLabel3": {},
+    "waterCriteriaAdvice": "Sie können Ihren Wasserverbrauch leicht einschränken, indem Sie kurz duschen (Vermeiden Sie Bäder) mit einem Duschkopf (bis zu -70% Wasser) nehmen.\n\nSie können auch eine Plastikflasche in den Wassertank deiner Toilette legen, um die Kapazität zu begrenzen und einen Rekubator für deinen Garten zu kaufen.",
+    "@waterCriteriaAdvice": {},
+    "internetCriteriaTitle": "Anzahl der verwendeten Internetdaten",
+    "@internetCriteriaTitle": {},
+    "internetCriteriaLabel1": "Nur wenige E-Mails oder Suchen pro Woche",
+    "@internetCriteriaLabel1": {},
+    "internetCriteriaLabel2": "Ich benutze einige Websites oder Cloud-Dienste mindestens einmal pro Tag",
+    "@internetCriteriaLabel2": {},
+    "internetCriteriaLabel3": "Ich schaue viele Streaming Video (> 30 min / Tag)",
+    "@internetCriteriaLabel3": {},
+    "internetCriteriaAdvice": "Das Internet ist bereits für etwa 4 % der gesamten Kohlendioxidemissionen verantwortlich, mehr als der Luftverkehr, und es könnte sich bis 2025 verdoppeln. Dies ist vor allem auf die zunehmende Verwendung von hochauflösenden Videos zurückzuführen.\n\nVersuchen Sie die Nutzung von Video-Streaming zu beschränken oder reduzieren Sie einfach die Video-Streaming-Qualität auf 480p Maximum (SD).",
+    "@internetCriteriaAdvice": {},
+    "goodsAndServicesCategoryTitle": "Waren und Dienstleistungen",
+    "@goodsAndServicesCategoryTitle": {},
+    "shortcutUnknown": "Ich weiß nicht",
+    "@shortcutUnknown": {},
+    "valueWithMore": "{value} oder mehr",
+    "@valueWithMore": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "valueWithLess": "{value} oder weniger",
+    "@valueWithLess": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "footprintTitle": "Dein Co2-Fußabdruck",
+    "@footprintTitle": {},
+    "footprintCarKmEquivalent": "Oder (b){number} {unit}(/b) mit einem typischen Benzinwagen",
+    "@footprintCarKmEquivalent": {
+        "placeholders": {
+            "number": {
+                "type": "String"
+            },
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "footprintWarning": "Sehen Sie, was passiert, wenn Sie nichts tun >",
+    "@footprintWarning": {},
+    "footprintRepartitionTitle": "CO2 Fußabdruck neu berechnen",
+    "@footprintRepartitionTitle": {},
+    "footprintEvolutionTitle": "CO2 Fußabdruck Entwicklung",
+    "@footprintEvolutionTitle": {},
+    "footprintEvolutionExplanation": "Berechnen Sie jeden Monat Ihren Co2-Fußabdruck und sehen Sie Ihre Entwicklung.\n\nDie Welt muss ihre Emissionen um mindestens 6% pro Jahr senken. Was ist mit ihnen?",
+    "@footprintEvolutionExplanation": {},
+    "footprintEvolutionTonsAxis": "Tonne CO2e / Monat",
+    "@footprintEvolutionTonsAxis": {},
+    "footprintShareTitle": "Mein Co2-Fußabdruck",
+    "@footprintShareTitle": {},
+    "footprintShareLink": "Fertig mit Warmd: https://fredjul.github.io/Warmd/",
+    "@footprintShareLink": {},
+    "seeAdvices": "SEHEN SIE, WAS SIE TUN KÖNNTEN",
+    "@seeAdvices": {},
+    "resetFootprintHistoryQuestion": "Verlauf zurücksetzen?",
+    "@resetFootprintHistoryQuestion": {},
+    "resetFootprintHistoryConfirmation": "Sind Sie sicher, dass Sie Ihren CO2-Fußabdruck zurücksetzen möchten?",
+    "@resetFootprintHistoryConfirmation": {},
+    "redoQuestionnaireReminder": "Erinnere mich daran, den Test in 1 Monat erneut zu machen",
+    "@redoQuestionnaireReminder": {}
 }
