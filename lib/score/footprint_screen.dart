@@ -143,7 +143,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 ),
                 Center(child: ScoreWidget(state)),
                 const Gap(16),
-                _buildFlightsEquivalent(state),
+                _buildCarKmEquivalent(state),
                 const Gap(64),
                 _buildFootprintAnalysis(context, state, sortedCategories),
                 const Gap(64),
@@ -165,7 +165,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
     );
   }
 
-  Row _buildFlightsEquivalent(CriteriaState state) {
+  Widget _buildCarKmEquivalent(CriteriaState state) {
     final countryCriteria = state.generalCategory.countryCriteria;
     final meanCarCriteria = CarCriteria(CarConsumptionCriteria(countryCriteria), countryCriteria)..currentValue = 1000;
     final distanceForCurrentScore =
@@ -179,7 +179,11 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
           height: 16,
         ),
         const Gap(12),
-        MarkupText(context.i18n.footprintCarKmEquivalent(distanceForCurrentScore.toInt().toString(), meanCarCriteria.unit)),
+        // Flexible needed to avoid text overflow
+        Flexible(
+          child:
+              MarkupText(context.i18n.footprintCarKmEquivalent(distanceForCurrentScore.toInt().toString(), meanCarCriteria.unit)),
+        ),
       ],
     );
   }
@@ -234,7 +238,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: Column(
                   children: [
-                    _buildFlightsEquivalent(state),
+                    _buildCarKmEquivalent(state),
                     Center(
                       child: TextButton(
                         onPressed: () => widget.onSeeClimateChangeTapped(context),
