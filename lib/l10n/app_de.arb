@@ -1,4 +1,307 @@
 {
+    "back": "Zurück",
+    "@back": {},
+    "onboardingStep1Title": "Verstehen Sie Ihren Einfluss",
+    "@onboardingStep1Title": {},
+    "onboardingStep1Description": "Sehen Sie, wie sich ihre Aktivität auf unseren Planeten, die Tiere &mehr auswirken.",
+    "@onboardingStep1Description": {},
+    "onboardingStep2Title": "Ergreife Maßnahmen, um den Einfluss zu verringern",
+    "@onboardingStep2Title": {},
+    "onboardingStep2Description": "Kleine Schritte jeden Tag sind Eckpfeiler, um große Veränderungen für die Zukunft voranzutreiben.",
+    "@onboardingStep2Description": {},
+    "onboardingAction": "ANFANGEN",
+    "@onboardingAction": {},
+    "welcomeTitle": "Hallo",
+    "@welcomeTitle": {},
+    "welcomeDescription": "Vielen Dank für das Herunterladen von Warmd und den ersten Schritt, um den zukünftigen Generationen ein sicheres Leben zu sichern.\n\n\nBevor Sie loslegen, stellen wir Ihnen einige Fragen, um personalisierte Empfehlungen zu erstellen. Sind Sie bereit?",
+    "@welcomeDescription": {},
+    "welcomeAction": "AUF GEHTS",
+    "@welcomeAction": {},
+    "countrySelectionTitle": "LAND",
+    "@countrySelectionTitle": {},
+    "countrySelectionQuestion": "In welchem Land wohnen Sie?",
+    "@countrySelectionQuestion": {},
+    "countrySelectionExplanation": "Diese Informationen ermöglichen es uns, Ihren Co2-Fußabdruck korrekt zu berechnen.",
+    "@countrySelectionExplanation": {},
+    "countrySelectionSearchHint": "Suche ein Land",
+    "@countrySelectionSearchHint": {},
+    "countrySelectionNotFound": "Wir haben dieses Land nicht erkannt, bitte versuchen Sie es in die offizielle Landessprache zu schreiben oder wählen Sie es in der Liste aus.",
+    "@countrySelectionNotFound": {},
+    "continueAction": "BESTÄTIGEN",
+    "@continueAction": {},
+    "continueActionExplanation": "Sie können die Daten später jederzeit aktualisieren.",
+    "@continueActionExplanation": {},
+    "perWeek": "Jede Woche.",
+    "@perWeek": {},
+    "inUnit": "In {unit}.",
+    "@inUnit": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "inUnitPerMonth": "In {unit} für den letzten Monat.",
+    "@inUnitPerMonth": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "politicalAdvice": "Ihre eigenen Auswirkungen sind im Vergleich zu denen von Unternehmen oder Regierungen unerheblich, und im Moment sind ihre ökologischen Strategien bei weitem nicht ausreichend.\nVersuchen sie die Wahl zu beeinflussen, indem sie für ihre Vertreter abstimmst, indem du einer Klima-Aktionsgruppe beitrittst oder auf andere Weise.\n\nWenn es eines zu tun gibt, dann ist es sicherlich dieses.",
+    "@politicalAdvice": {},
+    "heatingFuelCriteriaTitle": "Ihre Heizkraftstoff-/Gasrechnung",
+    "@heatingFuelCriteriaTitle": {},
+    "heatingFuelCriteriaAdvice": "Versuchen Sie, Ihr Zuhause besser zu isolieren und Heizung zu vermeiden (Erwachsenenschlafqualität ist am besten bei 66°F/19°C). Intelligente Steuerelemente können Ihnen helfen, die Heizung abzuschalten, wenn Sie draußen sind.\n\nbevorzugen sie auch das Heizen mit Wärmepumpe, mit kohlenstoffarmer Elektrizität, mit Holz aus lokalen und nachhaltigen Wäldern oder mit Biogas.",
+    "@heatingFuelCriteriaAdvice": {},
+    "electricityBillCriteriaTitle": "Ihre Stromrechnung",
+    "@electricityBillCriteriaTitle": {},
+    "cleanElectricityCriteriaTitle": "Prozent der kohlenstoffarmen Elektrizität",
+    "@cleanElectricityCriteriaTitle": {},
+    "cleanElectricityCriteriaExplanation": "Enthält Atom-, Wind-, Solar- oder Hydraulikstrom.\n\nWenn sie nicht wissen, können sie einige Antworten auf (https://www.electricitymap.org)ElectricityMap(/a) finden.",
+    "@cleanElectricityCriteriaExplanation": {},
+    "cleanElectricityCriteriaAdvice": "Wählen Sie Ihren Stromversorger, um nur für erneuerbare oder Kernenergie zu bezahlen.\n\nWenn sie nicht mehr kohlenstoffarmen Strom verwenden können, dann erwägen sie die Reduzierung des Gebrauchs von Elektroautos oder Elektroheizungen.",
+    "@cleanElectricityCriteriaAdvice": {},
+    "utilitiesCategoryTitle": "Hilfsmittel",
+    "@utilitiesCategoryTitle": {},
+    "flightsCriteriaTitle": "Stunden im Flugzeug verbracht",
+    "@flightsCriteriaTitle": {},
+    "flightsCriteriaAdvice": "Ein Flugzeug produziert zwischen 6x und 40x mehr Treibhausgas pro Passagier als ein Zug.\n\nFragen Sie sich selbst: Brauchen Sie wirklich diese Flugreisen? Überlegen Sie, Urlaub im eigenen Land zu machen und den Zug zu nehmen.",
+    "@flightsCriteriaAdvice": {},
+    "carCriteriaTitle": "Distanz mit einem Benzin/Dieselwagen",
+    "@carCriteriaTitle": {},
+    "carCriteriaAdviceHigh": "Sie sollten Ihren Autoverbrauch reduzieren, indem Sie Ihr Wohnort verschieben, Arbeit in der nähe übernehmen oder den Zug/U-Bahn, Straßenbahn/Bus für den Großteil Ihres Transports benutzen.\n\nWenn sie dies nicht können und Zugang zu kohlenstoffarmer Elektrizität haben, denken sie über den Kauf eines kleinen Elektroautos (immer große Autos oder Sportwagen vermeiden) nach.",
+    "@carCriteriaAdviceHigh": {},
+    "carCriteriaAdviceLow": "Sie können Ihr Auto weiter verbessern, indem Sie Umweltbewusst fahren lernen oder mit Zug/U-Bahn, Straßenbahn/Bus fahren (kein neues Auto kaufen da der Bau mehr verschmutzt als Ihre jetziges Auto).",
+    "@carCriteriaAdviceLow": {},
+    "carCriteriaShortcutOneHourPerDay": "1 Stunde am Tag",
+    "@carCriteriaShortcutOneHourPerDay": {},
+    "carCriteriaShortcutTwoHoursPerDay": "2 Stunden am Tag",
+    "@carCriteriaShortcutTwoHoursPerDay": {},
+    "carConsumptionCriteriaTitle": "Kraftstoffverbrauch Ihres Autos",
+    "@carConsumptionCriteriaTitle": {},
+    "publicTransportCriteriaTitle": "Entfernungen mit Bus, Bahn, U-Bahn oder Straßenbahn",
+    "@publicTransportCriteriaTitle": {},
+    "publicTransportCriteriaAdvice": "Ziehen Sie in Erwägung, entfernte Arbeit zu reduzieren, um Ihren Co2-Fußabdruck zu reduzieren.",
+    "@publicTransportCriteriaAdvice": {},
+    "publicTransportCriteriaShortcutBus": "1 Stunde Bus am Tag",
+    "@publicTransportCriteriaShortcutBus": {},
+    "publicTransportCriteriaShortcutSubway": "1 Stunde U-Bahn am Tag",
+    "@publicTransportCriteriaShortcutSubway": {},
+    "publicTransportCriteriaShortcutSuburbanTrain": "Eine Stunde S-Bahn am Tag",
+    "@publicTransportCriteriaShortcutSuburbanTrain": {},
+    "publicTransportCriteriaShortcutTrain": "1 Stunde Zug am Tag",
+    "@publicTransportCriteriaShortcutTrain": {},
+    "travelCategoryTitle": "Beförderung",
+    "@travelCategoryTitle": {},
+    "ruminantMeatCriteriaTitle": "Anzahl der Rind, Lamm- oder Schweinefleisch-Speisen",
+    "@ruminantMeatCriteriaTitle": {},
+    "ruminantMeatCriteriaAdvice": "Die Produktion von Wiederkäuerfleisch ist (https://ourworldindata.org/uploads/2020/02/Environmental-impact-of-food-by-life-cycle-stage-1536x1380.png)ein wichtiger Treibhausgasemiter(/a) da sie einen großen Flächenverbrauch erfordert und Methan emittiert, ein starkes Treibhausgas. Es emittiert mehr als viermal mehr Treibhausgas als die Hühnerproduktion und mindestens zehnmal mehr als die meisten Obst- und Gemüseprodukte. auch wenn wir die Transportkosten erhöhen, um sie aus fernen Ländern zu bringen.\n\nErwachsene brauchen nicht mehr als 3 Fleischmahlzeiten pro Woche (etwas mehr für Kinder). Sie sollten diese Zahl nicht überschreiten und sollten in Erwägung ziehen, Hühnerfleisch zu kaufen oder sogar Vegetarier zu werden.",
+    "@ruminantMeatCriteriaAdvice": {},
+    "nonRuminantMeatCriteriaTitle": "Anzahl Schwein, Hühner, Fisch oder Eier Mahlzeiten",
+    "@nonRuminantMeatCriteriaTitle": {},
+    "nonRuminantMeatCriteriaAdvice": "Obwohl die Fleischproduktion weniger umweltschädlich ist als die Erzeugung von Wiederkäuern, emittiert die Fleischproduktion von Nichtwiederkäuern (https://ourworldindata.org/uploads/2020/02/Environmental-impact-of-food-by-life-cycle-stage-1536x1380. ng)mindestens 4 mal mehr (/a) Treibhausgas als die meisten Obst- und Gemüseproduktionen.\n\nErwachsene brauchen nicht mehr als 3 Fleischmahlzeiten pro Woche (etwas mehr für Kinder). Sie sollten diese Zahl nicht überschreiten und könnten sogar in Betracht ziehen, Vegetarier zu werden.",
+    "@nonRuminantMeatCriteriaAdvice": {},
+    "cheeseCriteriaTitle": "Portionen Käse (1,5 oz)",
+    "@cheeseCriteriaTitle": {},
+    "cheeseCriteriaAdvice": "Wenn Sie ein Milchprodukt wollen oder brauchen, können Sie stattdessen Milch oder Joghurt nehmen, die 5-8-mal weniger umweltschädlich sind als Käse.",
+    "@cheeseCriteriaAdvice": {},
+    "snacksCriteriaTitle": "Anzahl der Snacks, Getränke oder andere stark transformierte Lebensmittel",
+    "@snacksCriteriaTitle": {},
+    "snacksCriteriaAdvice": "Bevorzugen Sie Obst und Gemüse gegenüber Snacks, Schokolade oder verwandelten Lebensmitteln.",
+    "@snacksCriteriaAdvice": {},
+    "overweightCriteriaTitle": "Übergewicht und Fettleibigkeit",
+    "@overweightCriteriaTitle": {},
+    "overweightCriteriaLabel1": "Ich bin normal",
+    "@overweightCriteriaLabel1": {},
+    "overweightCriteriaLabel2": "Ich bin übergewichtig",
+    "@overweightCriteriaLabel2": {},
+    "overweightCriteriaLabel3": "Ich bin fettleibig",
+    "@overweightCriteriaLabel3": {},
+    "overweightCriteriaAdvice": "Übergewichtig zu sein bedeutet, dass Sie mehr Energie aufnehmen, als Ihr Körper braucht. Jedes Jahr verbraucht die Menschheit unnötige 140 Milliarden Tonnen Nahrung.\n\nVersuchen sie den Anteil an Obst und Gemüse in ihrer Ernährung zu erhöhen oder reduzieren sie einfach die Menge an eingenommenen Lebensmitteln.",
+    "@overweightCriteriaAdvice": {},
+    "foodCategoryTitle": "Nahrung",
+    "@foodCategoryTitle": {},
+    "materialGoodsCriteriaTitle": "Geld für Sachgüter",
+    "@materialGoodsCriteriaTitle": {},
+    "materialGoodsCriteriaExplanation": "In {unit} für den letzten Monat.\n\nBetrifft Möbel, Geräte, Kleidung, elektronische Geräte, Werkzeuge, Fahrzeuge, Fahrzeugteile, Fahrzeugteile, Medikamente, …",
+    "@materialGoodsCriteriaExplanation": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "materialGoodsCriteriaAdvice": "Ihre Geräte, vor allem für elektronische und mechanische Geräte, ist im Allgemeinen sehr umweltschädlich.\n\nSie können ihren Fußabdruck stark reduzieren, indem sie sie länger behalten oder einfach nur ihren Einkäufe beschränken. Darüber hinaus gibt es oft mehrere Lösungen, um Ihre aktuellen Waren zu reparieren/zu verkaufen, zu finden oder zu vermieten.",
+    "@materialGoodsCriteriaAdvice": {},
+    "savingsCriteriaTitle": "Geld, das auf einem nicht dekarbonierten Bankkonto schläft",
+    "@savingsCriteriaTitle": {},
+    "savingsCriteriaExplanation": "Wenn Sie das nicht wissen, können Sie davon ausgehen, dass die meisten Ihrer Einsparungen betroffen sind.",
+    "@savingsCriteriaExplanation": {},
+    "savingsCriteriaAdvice": "Die meisten Banken von heute investieren immer noch den Großteil Ihrer Ersparnisse in Unternehmen mit großen Co2-Auswirkungen. Glücklicherweise erlauben einige Banken Ihnen jetzt die Wahl für kohlenstoffarme Investitionen.",
+    "@savingsCriteriaAdvice": {},
     "waterCriteriaTitle": "Dein Wasserverbrauch",
-    "@waterCriteriaTitle": {}
+    "@waterCriteriaTitle": {},
+    "waterCriteriaExplanation": "Inklusive des Wassers für Duschen, Bäder, Toilettenspülungen und Gartenanlagen.",
+    "@waterCriteriaExplanation": {},
+    "waterCriteriaLabel1": "Niedrig (schnelle Duschen, kein Garten)",
+    "@waterCriteriaLabel1": {},
+    "waterCriteriaLabel2": "Normal",
+    "@waterCriteriaLabel2": {},
+    "waterCriteriaLabel3": "Hoch (langes Duschen oder Baden, großer Garten, …)",
+    "@waterCriteriaLabel3": {},
+    "waterCriteriaAdvice": "Sie können Ihren Wasserverbrauch leicht einschränken, indem Sie kurz duschen (Vermeiden Sie Bäder) mit einem Duschkopf (bis zu -70% Wasser) nehmen.\n\nSie können auch eine Plastikflasche in den Wassertank deiner Toilette legen, um die Kapazität zu begrenzen und einen Rekubator für deinen Garten zu kaufen.",
+    "@waterCriteriaAdvice": {},
+    "internetCriteriaTitle": "Anzahl der verwendeten Internetdaten",
+    "@internetCriteriaTitle": {},
+    "internetCriteriaLabel1": "Nur wenige E-Mails oder Suchen pro Woche",
+    "@internetCriteriaLabel1": {},
+    "internetCriteriaLabel2": "Ich benutze einige Websites oder Cloud-Dienste mindestens einmal pro Tag",
+    "@internetCriteriaLabel2": {},
+    "internetCriteriaLabel3": "Ich schaue viele Streaming Video (> 30 min / Tag)",
+    "@internetCriteriaLabel3": {},
+    "internetCriteriaAdvice": "Das Internet ist bereits für etwa 4 % der gesamten Kohlendioxidemissionen verantwortlich, mehr als der Luftverkehr, und es könnte sich bis 2025 verdoppeln. Dies ist vor allem auf die zunehmende Verwendung von hochauflösenden Videos zurückzuführen.\n\nVersuchen Sie die Nutzung von Video-Streaming zu beschränken oder reduzieren Sie einfach die Video-Streaming-Qualität auf 480p Maximum (SD).",
+    "@internetCriteriaAdvice": {},
+    "goodsAndServicesCategoryTitle": "Waren und Dienstleistungen",
+    "@goodsAndServicesCategoryTitle": {},
+    "shortcutUnknown": "Ich weiß nicht",
+    "@shortcutUnknown": {},
+    "valueWithMore": "{value} oder mehr",
+    "@valueWithMore": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "valueWithLess": "{value} oder weniger",
+    "@valueWithLess": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "footprintTitle": "Dein Co2-Fußabdruck",
+    "@footprintTitle": {},
+    "footprintCarKmEquivalent": "Oder (b){number} {unit}(/b) mit einem typischen Benzinwagen",
+    "@footprintCarKmEquivalent": {
+        "placeholders": {
+            "number": {
+                "type": "String"
+            },
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "footprintWarning": "Sehen Sie, was passiert, wenn Sie nichts tun >",
+    "@footprintWarning": {},
+    "footprintRepartitionTitle": "CO2 Fußabdruck neu berechnen",
+    "@footprintRepartitionTitle": {},
+    "footprintEvolutionTitle": "CO2 Fußabdruck Entwicklung",
+    "@footprintEvolutionTitle": {},
+    "footprintEvolutionExplanation": "Berechnen Sie jeden Monat Ihren Co2-Fußabdruck und sehen Sie Ihre Entwicklung.\n\nDie Welt muss ihre Emissionen um mindestens 6% pro Jahr senken. Was ist mit ihnen?",
+    "@footprintEvolutionExplanation": {},
+    "footprintEvolutionTonsAxis": "Tonne CO2e / Monat",
+    "@footprintEvolutionTonsAxis": {},
+    "footprintShareTitle": "Mein Co2-Fußabdruck",
+    "@footprintShareTitle": {},
+    "footprintShareLink": "Fertig mit Warmd: https://fredjul.github.io/Warmd/",
+    "@footprintShareLink": {},
+    "seeAdvices": "SEHEN SIE, WAS SIE TUN KÖNNTEN",
+    "@seeAdvices": {},
+    "resetFootprintHistoryQuestion": "Verlauf zurücksetzen?",
+    "@resetFootprintHistoryQuestion": {},
+    "resetFootprintHistoryConfirmation": "Sind Sie sicher, dass Sie Ihren CO2-Fußabdruck zurücksetzen möchten?",
+    "@resetFootprintHistoryConfirmation": {},
+    "redoQuestionnaireReminder": "Erinnere mich daran, den Test in 1 Monat erneut zu machen",
+    "@redoQuestionnaireReminder": {},
+    "reminderNotificationTitle": "Was ist ihr CO2-Fußabdruck?",
+    "@reminderNotificationTitle": {},
+    "reminderNotificationDescription": "Berechnen Sie Ihren neuen CO2-Fußabdruck und sehen Sie Ihren Fortschritt.",
+    "@reminderNotificationDescription": {},
+    "redoQuestionnaire": "Fragebogen wiederholen",
+    "@redoQuestionnaire": {},
+    "seeAbout": "Verstehen Sie, wie Ihr CO2-Fußabdruck berechnet wird und wie Sie diesem Projekt helfen können.",
+    "@seeAbout": {},
+    "scoreTonsUnit": "Tonnen\nCO2e / Monat",
+    "@scoreTonsUnit": {},
+    "scoreKgUnit": "kg\nCO2e / Monat",
+    "@scoreKgUnit": {},
+    "co2EqKgValue": "{value} kg",
+    "@co2EqKgValue": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentTonsValue": "{percent}% ({co2EqTons} Tonnen CO2e / Monat)",
+    "@co2EqPercentTonsValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqTons": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentKgValue": "{percent}% ({co2EqKg} kg CO2e / Monat)",
+    "@co2EqPercentKgValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqKg": {
+                "type": "String"
+            }
+        }
+    },
+    "climateChangeTitle": "Was ist der Klimawandel?",
+    "@climateChangeTitle": {},
+    "consequencesTitle": "Folgen der Erderwärmung",
+    "@consequencesTitle": {},
+    "consequencesPart1": "Wir haben bereits (b)+1°C(/b) im Durchschnitt von vorindustriellen Niveaus gewonnen, mit einer bereits sichtbaren Zunahme der Anzahl von Hitzewellen, Dürren, Bränden oder Zyklonen. Ungeachtet dessen, was einige Klimaskeptiker sagen, Wissenschaftler (https://climate.nasa. ov/evidence/)sind mehr als 95 % sicher(/a) dass dies auf die Treibhausgasemissionen menschlicher Aktivitäten zurückzuführen ist (CO2, CH4, N2O). Die Natur kann so viele Treibhausgase nicht absorbieren, und als ob das nicht ausreichen würde, vergrößern wir die Atmosphäre jedes Jahr weiter.\n\nDurch das Erreichen (b)+2°C(/b) in 2100 (ein https://www. wf.org. k/updates/unsere Erwärmungs-Welt-viel-viel-difference-will-halb halb Grad-wirklich)wir werden sicherlich einen großen Verlust in unserer biologischen Vielfalt (-18% Insekten, -16% Pflanzen, -8% Wirbelsäule, -99 % Korallen), 49 Millionen Menschen werden vom Anstieg des Meeresspiegels betroffen sein, und 410 Millionen Menschen werden schwere Dürren erleiden, Dies führt zu massiven Auswanderungen, finanziellen und politischen Instabilitäten.\n\nBei (b)+4°C(/b) werden Menschen aufgrund tödlicher Hitze(/a): nicht in der Lage sein, um den Äquator herum zu leben (http://www.uhm.hawaii.edu/news/article.php?aId=8657)).",
+    "@consequencesPart1": {},
+    "consequencesPart2": "Milliarden von Menschen werden in andere Gebiete auswandern, mit einem sehr hohen Risiko von Hungersnöten, Kriegen und Millionen oder Milliarden Toten.\n\n(b)+6°C(/b) ist der selbe Temperaturunterschied zwischen der vorherigen (b)eiszeit(/b) und dem (b)20. Jahrhundert(/b).",
+    "@consequencesPart2": {},
+    "advicesTitle": "Was sollten Sie tun?",
+    "@advicesTitle": {},
+    "advicesExplanation": "Kleine Taten sind begrüßenswert, aber sie sollten die Wahrheit nicht verbergen: Sie sind nicht signifikant genug, um der Klimakrise zu begegnen, wir müssen uns auf das große Ganze konzentrieren.",
+    "@advicesExplanation": {},
+    "advicesOtherPolutionTypes": "Bitte beachten Sie, dass sich diese App nur auf den Klimawandel konzentriert, aber wir sollten die anderen Arten der Verschmutzung nicht vergessen (Luft, Wasser, Land, Lärmbelästigung und leichte Verschmutzung verdienen ebenfalls unsere Aufmerksamkeit.",
+    "@advicesOtherPolutionTypes": {},
+    "advicesPoliticsCategory": "Ihre Bedenken ausdrücken",
+    "@advicesPoliticsCategory": {},
+    "advicesSeeClimateChange": "Verstehen Sie, was auf dem Spiel steht >",
+    "@advicesSeeClimateChange": {},
+    "advicesSeeLinks": "Einige Lösungen ansehen >",
+    "@advicesSeeLinks": {},
+    "advicesLinksExplanation": "Diese Liste ist nicht erschöpfend und wird nicht gesponsert, sie ist einfach Links, die wir für hilfreich halten.\nWenn du einen Vorschlag oder eine Anmerkung hast (ein mailto:warmd_app@icloud.com)dann sag uns bitte(/a).",
+    "@advicesLinksExplanation": {},
+    "globalObjectivesTitle": "Globale Ziele",
+    "@globalObjectivesTitle": {},
+    "globalObjectivesPart1": "Um unter +2°C zu bleiben, müssen die Treibhausgasemissionen (https://folk.universitetetioslo.no/roberan/t/global_mitigation_curves.shtml)durch 3 bis 2050(/a), d.h. etwa (b)-6% pro Jahr (/b) ab 2020 aufgeteilt werden.",
+    "@globalObjectivesPart1": {},
+    "globalObjectivesPart2": "Bisher ist es unwahrscheinlich, dass es dazu kommt, dass wir bisher unsere Emissionen ständig erhöht haben, und es gibt immer noch keine deutlichen Anzeichen für eine Reduzierung.\n\nMit dem aktuellen Trend und ohne effektive Anstrengungen werden wir am Ende mindestens (b)+3 haben. °C bis 2100(/b), und danach wird es weiter ansteigen.",
+    "@globalObjectivesPart2": {},
+    "globalActionsTitle": "Wo sollen wir anfangen?",
+    "@globalActionsTitle": {},
+    "globalActionsPart1": "Emissionen stammen im Wesentlichen aus wenigen Hauptsektoren (Quelle: IPCC, 2014, globale Emissionen).",
+    "@globalActionsPart1": {},
+    "globalActionsPart2": "• Das Erste, was zu tun ist, (b)vollständig aufhören fossile Brennstoffe (/b) (Kohle, Öl, Gas) und ersetzen sie durch kohlenstoffarme Elektrizität (((a https://www. pcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_chapter7.pdf)IPCC(/a) empfiehlt eine verstärkte Nutzung sowohl von Kernenergie als auch von erneuerbaren Energien).\n\n• Dann ist eine bessere Lebensmittelverwaltung (/b), mit weniger Fleischproduktion und Abfall nötig.\n\n• Zum Beenden, Es könnte notwendig sein, mit der Organisation einer globalen Degeneration und einer Kontrolle der Geburtenrate zu beginnen, da dies die einzige Lösung sein könnte, um eine vollständige Dekarbonisierung zu erreichen.",
+    "@globalActionsPart2": {},
+    "aboutProjectTitle": "Warmd Projekt",
+    "@aboutProjectTitle": {},
+    "aboutProjectDescription": "Warmd ist ein nicht-lukratives Open-Source-Projekt. Du kannst dazu beitragen (https://github.com/FredJul/Warmd)hier(/a) oder helfen, es zu übersetzen (https://frju.crowdin.com/warmd)hier(/a).\n\nWarmds Design wurde großzügig von (https://mnstudio. et)mn studio(/a).\n\nUnser einziges Ziel ist es, den menschlichen Einfluss auf unseren Planeten etwas zu reduzieren.",
+    "@aboutProjectDescription": {},
+    "aboutRateIt": "Hilf uns mit einer 5 Sternen Bewertung >",
+    "@aboutRateIt": {},
+    "aboutSourcesTitle": "Quellen",
+    "@aboutSourcesTitle": {},
+    "aboutSourcesDescription": "Dieser CO2-Footprint-Rechner basiert hauptsächlich auf (https://coolclimate.org)CoolClimate(/a) Ergebnissen, mit Hilfe anderer Quellen wie (https://ourworldindata.org/food-choice-vs-eating-local)OurWorldInData(/a), (https://www. bc.com/news/science-environment-49349566)BBC(/a), (https://www.lowcvp.org.uk/assets/workingdocuments/MC-P-11-15a%20Lifecycle%20eMissionen%20report.pdf)LowCVP(/a), (https://www. rontiersin.org/articles/10.3389/fnut.2019.00126/full)Frontiers(/a), (a https://theshiftproject.org/en/article/unsustainable-use-online-video/)The Shift Project(/a) or (a https://riftapp.fr/)Rift(/a).\n\nAufgrund der Komplexität der Aufgabe, wir erwarten nicht, dass diese App sehr genau ist, aber sie gibt Ihnen eine Vorstellung von Ihrer Wirkung.\n\nIch bin keinem der genannten Organisationen angeschlossen.",
+    "@aboutSourcesDescription": {}
 }
