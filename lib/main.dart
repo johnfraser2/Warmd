@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
         Locale('en', ''),
         Locale('fr', ''),
         Locale('it', ''),
+        Locale('de', ''),
       ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
