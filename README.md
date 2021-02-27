@@ -22,7 +22,7 @@ Warmd does everything on your phone and does not need access to Internet. It doe
 
 ## Contribute
 You can help Warmd development by:
-- improving or adding translations on [Crowdin](https://frju.crowdin.com/warmd) (you need to create a new account for the "Frju" organisation, existing Crowdin accounts will not work)
+- improving or adding translations on [Crowdin](https://frju.crowdin.com/warmd) (you need to create a new account for the "Frju" organisation, existing Crowdin accounts will not work - see [this discussion](https://github.com/FredJul/Warmd/issues/37#issuecomment-784992109) if you have any issue)
 - providing links of popular products or services that can help reducing your carbon footprint in a specific country (like www.backmarket.com for France). I'll try to establish some acceptance criterias later, for now I may arbitrary refuse some proposals.
 - opening [tickets](https://github.com/FredJul/Warmd/issues/new) for bug reports or suggestions
 - developing features and bugfixes
