@@ -70,7 +70,7 @@ class AboutScreen extends StatelessWidget {
               },
               child: Text(
                 context.i18n.aboutRateIt,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.right,
                 style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
               ),
             ),
