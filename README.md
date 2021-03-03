@@ -30,7 +30,7 @@ You can help Warmd development by:
 ## How to compile?
 Warmd is a Flutter project, meaning you need to [setup Flutter](https://flutter.dev/docs/get-started/install) to be able to compile.
 
-Warmd currently use Flutter beta 1.26.0-17.5.pre version and I recommand to use [VSCode](https://code.visualstudio.com/) (with the official Flutter extension) since Warmd already contains some VSCode configuration files.
+Warmd always use the last stable Flutter version and I recommand to use [VSCode](https://code.visualstudio.com/) (with the official Flutter extension) since Warmd already contains some VSCode configuration files.
 
 ## Donate
 <a href="https://www.buymeacoffee.com/frju" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-blue.png" width="174"></a>
