@@ -9,8 +9,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'categories/categories_screens.dart';
-import 'common/common.dart';
 import 'common/states.dart';
+import 'common/widgets.dart';
 import 'onboarding/country_screen.dart';
 import 'onboarding/onboarding_screen.dart';
 import 'onboarding/welcome_screen.dart';

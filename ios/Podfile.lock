@@ -46,7 +46,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
-  flutter_native_timezone: e72ff1900460ff57cfd331d1758050c9269f3e99
+  flutter_native_timezone: 5f05b2de06c9776b4cc70e1839f03de178394d22
   in_app_review: 4a97249f7a2f539a0f294c2d9196b7fe35e49541
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   share_files_and_screenshot_widgets: 11063d06810f086eade3c1170946f8599e276adb

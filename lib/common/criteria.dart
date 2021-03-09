@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'common.dart';
 import 'countries.dart';
+import 'extensions.dart';
 
 const _oneMileInKms = 1.61;
 

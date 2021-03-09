@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
-import 'package:warmd/common/common.dart';
+import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/states.dart';
 import 'package:warmd/common/steps_progress_indicator.dart';
+import 'package:warmd/common/widgets.dart';
 
 class CountryScreen extends StatelessWidget {
   final Function(BuildContext) onCountrySelected;
@@ -45,13 +46,13 @@ class CountryScreen extends StatelessWidget {
                   children: [
                     Text(
                       context.i18n.countrySelectionTitle,
-                      style: Theme.of(context).textTheme.headline6?.copyWith(color: warmdBlue, fontWeight: FontWeight.bold),
+                      style: context.textTheme.headline6?.copyWith(color: warmdBlue, fontWeight: FontWeight.bold),
                     ),
                     const Gap(32),
                     Text(
                       context.i18n.countrySelectionQuestion,
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
+                      style: context.textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                     ),
                     const Gap(32),
                     ConstrainedBox(
@@ -90,7 +91,7 @@ class CountryScreen extends StatelessWidget {
                     const Gap(32),
                     Text(
                       context.i18n.countrySelectionExplanation,
-                      style: Theme.of(context).textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
+                      style: context.textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
                     ),
                   ],
                 ),

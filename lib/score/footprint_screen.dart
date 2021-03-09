@@ -14,10 +14,11 @@ import 'package:provider/provider.dart';
 import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
 import 'package:timezone/data/latest.dart';
 import 'package:timezone/timezone.dart';
-import 'package:warmd/common/common.dart';
 import 'package:warmd/common/criteria.dart';
 import 'package:warmd/common/delayable_state.dart';
+import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/states.dart';
+import 'package:warmd/common/widgets.dart';
 
 import 'score_widget.dart';
 
@@ -58,13 +59,13 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
           requestSoundPermission: false,
         ),
       ),
-      onSelectNotification: (String payload) async {
+      onSelectNotification: (String? payload) async {
         _scheduleReminder();
 
         widget.onRestartTapped(context);
       },
     ).then((success) {
-      if (success && context.read<HistoryState>().isReminderEnable) {
+      if (success == true && context.read<HistoryState>().isReminderEnable) {
         _scheduleReminder();
       }
     });
@@ -139,7 +140,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 Text(
                   context.i18n.footprintShareTitle,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
+                  style: context.textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Center(child: ScoreWidget(state)),
                 const Gap(16),
@@ -211,7 +212,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                       constraints: const BoxConstraints(maxWidth: 220),
                       child: Text(
                         context.i18n.footprintTitle,
-                        style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
+                        style: context.textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
                     Expanded(
@@ -245,7 +246,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                         child: Text(
                           context.i18n.footprintWarning,
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.caption?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                          style: context.textTheme.caption?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                         ),
                       ),
                     ),
@@ -273,9 +274,9 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                         shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         )),
-                        textStyle: MaterialStateProperty.all<TextStyle>(Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontWeight: FontWeight.bold,
-                            )),
+                        textStyle: MaterialStateProperty.all<TextStyle>(context.textTheme.bodyText2!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        )),
                         minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
                         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                             const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
@@ -307,7 +308,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
       children: [
         Text(
           context.i18n.footprintRepartitionTitle,
-          style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
+          style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
         ),
         const Gap(24),
         SizedBox(
@@ -328,8 +329,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                               value: cat.co2EqTonsPerYear(),
                               title: context.i18n.co2EqKgValue(((cat.co2EqTonsPerYear() / 12) * 1000).round().toString()),
                               radius: 90,
-                              titleStyle:
-                                  Theme.of(context).textTheme.caption?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+                              titleStyle: context.textTheme.caption?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
                               badgeWidget: _PieBadge(
                                 'assets/${cat.key}.svg',
                                 size: 35,
@@ -362,14 +362,14 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
         const Gap(64),
         Text(
           context.i18n.footprintEvolutionTitle,
-          style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
+          style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
         ),
         Padding(
           padding: const EdgeInsets.all(32),
           child: Text(
             context.i18n.footprintEvolutionExplanation,
             textAlign: TextAlign.start,
-            style: Theme.of(context).textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
+            style: context.textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
           ),
         ),
         const Padding(
@@ -412,7 +412,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                             badge: true,
                             sound: true,
                           )
-                          ?.then((value) => setReminderEnable(isOptionEnabled: newValue)) ??
+                          .then((value) => setReminderEnable(isOptionEnabled: newValue)) ??
                       setReminderEnable(isOptionEnabled: newValue);
                 }),
           ],
@@ -433,14 +433,14 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
             widget.onRestartTapped(context);
           },
           style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-                textStyle: MaterialStateProperty.all<TextStyle>(
-                    Theme.of(context).textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold)),
+                textStyle:
+                    MaterialStateProperty.all<TextStyle>(context.textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold)),
                 padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
               ),
           child: Text(
             context.i18n.redoQuestionnaire,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+            style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
       ),
@@ -462,10 +462,10 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
               Expanded(
                 child: Text(
                   context.i18n.seeAbout,
-                  style: Theme.of(context).textTheme.subtitle2?.copyWith(
-                        color: warmdDarkBlue,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  style: context.textTheme.subtitle2?.copyWith(
+                    color: warmdDarkBlue,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const Gap(24),
@@ -587,7 +587,7 @@ class _PieIndicator extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: Theme.of(context).textTheme.bodyText2?.copyWith(color: textColor),
+                style: context.textTheme.bodyText2?.copyWith(color: textColor),
               ),
             ),
           ],
@@ -670,7 +670,7 @@ class _FootprintChart extends StatelessWidget {
                     }
                     return '';
                   },
-                  getTextStyles: (value) => Theme.of(context).textTheme.caption!.copyWith(color: warmdDarkBlue),
+                  getTextStyles: (value) => context.textTheme.caption!.copyWith(color: warmdDarkBlue),
                 ),
                 leftTitles: SideTitles(
                   showTitles: true,
@@ -680,7 +680,7 @@ class _FootprintChart extends StatelessWidget {
                     }
                     return '';
                   },
-                  getTextStyles: (value) => Theme.of(context).textTheme.caption!.copyWith(color: warmdDarkBlue),
+                  getTextStyles: (value) => context.textTheme.caption!.copyWith(color: warmdDarkBlue),
                 ),
               ),
               borderData: FlBorderData(
@@ -714,7 +714,7 @@ class _FootprintChart extends StatelessWidget {
                 leftTitle: AxisTitle(
                   showTitle: true,
                   titleText: context.i18n.footprintEvolutionTonsAxis,
-                  textStyle: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                  textStyle: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                 ),
               ),
             ),
@@ -782,7 +782,7 @@ class _FootprintChart extends StatelessWidget {
                   ),
                   child: Text(
                     '$improvementPercent% ▼',
-                    style: Theme.of(context).textTheme.caption?.copyWith(fontWeight: FontWeight.bold),
+                    style: context.textTheme.caption?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

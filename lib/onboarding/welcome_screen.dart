@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:warmd/common/common.dart';
+import 'package:warmd/common/extensions.dart';
+import 'package:warmd/common/widgets.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final Function(BuildContext) onStartSelected;
@@ -34,13 +35,13 @@ class WelcomeScreen extends StatelessWidget {
                       Text(
                         context.i18n.welcomeTitle,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
+                        style: context.textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                       ),
                       const Gap(64),
                       Text(
                         context.i18n.welcomeDescription,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.subtitle1?.copyWith(color: warmdDarkBlue),
+                        style: context.textTheme.subtitle1?.copyWith(color: warmdDarkBlue),
                       ),
                     ],
                   ),

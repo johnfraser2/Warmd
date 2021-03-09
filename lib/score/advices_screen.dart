@@ -7,10 +7,11 @@ import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:warmd/common/blue_card.dart';
-import 'package:warmd/common/common.dart';
 import 'package:warmd/common/criteria.dart';
+import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/screen_template.dart';
 import 'package:warmd/common/states.dart';
+import 'package:warmd/common/widgets.dart';
 
 class AdvicesScreen extends StatelessWidget {
   final Function(BuildContext) onSeeClimateChangeTapped;
@@ -33,7 +34,7 @@ class AdvicesScreen extends StatelessWidget {
           Text(
             context.i18n.advicesTitle,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
+            style: context.textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
           ),
           const Gap(48),
           ConstrainedBox(
@@ -41,7 +42,7 @@ class AdvicesScreen extends StatelessWidget {
             child: Text(
               context.i18n.advicesExplanation,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+              style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
             ),
           ),
           const Gap(32),
@@ -88,7 +89,7 @@ class AdvicesScreen extends StatelessWidget {
           child: Text(
             context.i18n.advicesSeeClimateChange,
             textAlign: TextAlign.right,
-            style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+            style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
           ),
         ),
       ),
@@ -112,7 +113,7 @@ class AdvicesScreen extends StatelessWidget {
               child: Text(
                 context.i18n.advicesSeeLinks,
                 textAlign: TextAlign.right,
-                style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
               ),
             ),
           )
@@ -152,10 +153,10 @@ class AdvicesScreen extends StatelessWidget {
               children: [
                 Text(
                   '${position + 1}.',
-                  style: Theme.of(context).textTheme.headline3?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: co2EqTonsPerYear == null || co2EqTonsPerYear > 1 ? warmdRed : warmdBlue,
-                      ),
+                  style: context.textTheme.headline3?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: co2EqTonsPerYear == null || co2EqTonsPerYear > 1 ? warmdRed : warmdBlue,
+                  ),
                 ),
                 const Gap(16),
                 Expanded(
@@ -167,10 +168,10 @@ class AdvicesScreen extends StatelessWidget {
                         title,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: warmdDarkBlue,
-                            ),
+                        style: context.textTheme.subtitle1?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: warmdDarkBlue,
+                        ),
                       ),
                     ),
                   ),
@@ -193,16 +194,16 @@ class AdvicesScreen extends StatelessWidget {
               co2EqTonsPerMonth > 1
                   ? context.i18n.co2EqPercentTonsValue(percentValue, co2EqTonsPerMonth.toShortString(1))
                   : context.i18n.co2EqPercentKgValue(percentValue, (co2EqTonsPerMonth * 1000).round().toString()),
-              style: Theme.of(context).textTheme.subtitle2?.copyWith(
-                    color: warmdDarkBlue,
-                  ),
+              style: context.textTheme.subtitle2?.copyWith(
+                color: warmdDarkBlue,
+              ),
             ),
           const Gap(16),
           MarkupText(
             description,
-            style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                  fontWeight: FontWeight.w300,
-                ),
+            style: context.textTheme.bodyText2?.copyWith(
+              fontWeight: FontWeight.w300,
+            ),
           ),
           if (child != null) child
         ],
@@ -214,7 +215,7 @@ class AdvicesScreen extends StatelessWidget {
     return BlueCard(
       child: Text(
         context.i18n.advicesOtherPolutionTypes,
-        style: Theme.of(context).textTheme.bodyText2,
+        style: context.textTheme.bodyText2,
       ),
     );
   }
@@ -240,7 +241,7 @@ class AdvicesScreen extends StatelessWidget {
                         shadowColor: Colors.grey[100],
                         label: Text(
                           link.key,
-                          style: Theme.of(context).textTheme.bodyText1?.copyWith(color: warmdDarkBlue),
+                          style: context.textTheme.bodyText1?.copyWith(color: warmdDarkBlue),
                         ),
                         onPressed: () async {
                           if (await canLaunch(link.value)) launch(link.value);
@@ -251,7 +252,7 @@ class AdvicesScreen extends StatelessWidget {
                 const Gap(24),
                 MarkupText(
                   context.i18n.advicesLinksExplanation,
-                  style: Theme.of(context).textTheme.caption?.copyWith(color: warmdDarkBlue),
+                  style: context.textTheme.caption?.copyWith(color: warmdDarkBlue),
                 ),
               ],
             ),

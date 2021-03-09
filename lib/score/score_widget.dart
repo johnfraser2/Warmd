@@ -2,7 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:warmd/common/common.dart';
+import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/states.dart';
 
 const _levelColors = [
@@ -61,7 +61,7 @@ class _ScoreWidgetState extends State<ScoreWidget> {
                   ),
                   TextSpan(
                     text: co2EqTonsPerMonth < 1 ? context.i18n.scoreKgUnit : context.i18n.scoreTonsUnit,
-                    style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
+                    style: context.textTheme.headline6?.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

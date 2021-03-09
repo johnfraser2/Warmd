@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'common.dart';
+import 'widgets.dart';
 
 class BlueCard extends StatelessWidget {
   final Widget child;

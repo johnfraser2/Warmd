@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import 'common.dart';
 import 'steps_progress_indicator.dart';
+import 'widgets.dart';
 
 class ScreenTemplate extends StatelessWidget {
   final double? progressValue;

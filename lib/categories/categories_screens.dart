@@ -8,11 +8,12 @@ import 'package:intl/intl.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:provider/provider.dart';
 import 'package:warmd/common/blue_card.dart';
-import 'package:warmd/common/common.dart';
 import 'package:warmd/common/criteria.dart';
 import 'package:warmd/common/delayable_state.dart';
+import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/screen_template.dart';
 import 'package:warmd/common/states.dart';
+import 'package:warmd/common/widgets.dart';
 
 class UtilitiesCategoryScreen extends StatelessWidget {
   final Function(BuildContext) onContinueTapped;
@@ -99,7 +100,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             const Gap(16),
             Text(
               widget.criteriaCategory.title(context),
-              style: Theme.of(context).textTheme.headline5?.copyWith(color: warmdGreen, fontWeight: FontWeight.bold),
+              style: context.textTheme.headline5?.copyWith(color: warmdGreen, fontWeight: FontWeight.bold),
             ),
             const Gap(32),
             // We display all criterias, except the one that are necessarily at a specific value (like clean energy percent for some countries)
@@ -111,7 +112,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             Text(
               context.i18n.continueActionExplanation,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
+              style: context.textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
             ),
             const Gap(24),
             Center(
@@ -147,7 +148,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                 Expanded(
                   child: Text(
                     c.title(context),
-                    style: Theme.of(context).textTheme.subtitle1?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
+                    style: context.textTheme.subtitle1?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
                   ),
                 ),
                 const Gap(12),
@@ -166,7 +167,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: MarkupText(
                 explanation,
-                style: Theme.of(context).textTheme.bodyText2?.copyWith(color: Colors.grey[600], fontWeight: FontWeight.w300),
+                style: context.textTheme.bodyText2?.copyWith(color: Colors.grey[600], fontWeight: FontWeight.w300),
               ),
             ),
           const Gap(8),
@@ -207,7 +208,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                       item,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyText2,
+                      style: context.textTheme.bodyText2,
                     ),
                   ],
                 );
@@ -224,7 +225,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                       value: index,
                       child: Text(
                         label,
-                        style: Theme.of(context).textTheme.bodyText2?.copyWith(color: _getDropdownTextColor(c, index)),
+                        style: context.textTheme.bodyText2?.copyWith(color: _getDropdownTextColor(c, index)),
                       ),
                     ))
                 .toList(),

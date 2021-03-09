@@ -7,8 +7,9 @@ import 'package:gap/gap.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:markup_text/markup_text.dart';
 import 'package:warmd/common/blue_card.dart';
-import 'package:warmd/common/common.dart';
+import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/screen_template.dart';
+import 'package:warmd/common/widgets.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key? key}) : super(key: key);
@@ -43,15 +44,15 @@ class AboutScreen extends StatelessWidget {
         children: [
           Text(
             context.i18n.aboutProjectTitle,
-            style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                  color: warmdDarkBlue,
-                  fontWeight: FontWeight.bold,
-                ),
+            style: context.textTheme.subtitle1?.copyWith(
+              color: warmdDarkBlue,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const Gap(16),
           MarkupText(
             context.i18n.aboutProjectDescription,
-            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
+            style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           const Gap(16),
           Align(
@@ -71,7 +72,7 @@ class AboutScreen extends StatelessWidget {
               child: Text(
                 context.i18n.aboutRateIt,
                 textAlign: TextAlign.right,
-                style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+                style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
               ),
             ),
           ),
@@ -87,15 +88,15 @@ class AboutScreen extends StatelessWidget {
         children: [
           Text(
             context.i18n.aboutSourcesTitle,
-            style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                  color: warmdDarkBlue,
-                  fontWeight: FontWeight.bold,
-                ),
+            style: context.textTheme.subtitle1?.copyWith(
+              color: warmdDarkBlue,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const Gap(16),
           MarkupText(
             context.i18n.aboutSourcesDescription,
-            style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
+            style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
       ),

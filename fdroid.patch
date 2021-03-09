@@ -12,10 +12,10 @@ index cad1dba..f9f3142 100644
 -import 'package:in_app_review/in_app_review.dart';
  import 'package:markup_text/markup_text.dart';
  import 'package:warmd/common/blue_card.dart';
- import 'package:warmd/common/common.dart';
+ import 'package:warmd/common/widgets.dart';
 @@ -53,28 +50,6 @@ class AboutScreen extends StatelessWidget {
              context.i18n.aboutProjectDescription,
-             style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
+             style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
            ),
 -          const Gap(16),
 -          Align(
@@ -35,7 +35,7 @@ index cad1dba..f9f3142 100644
 -              child: Text(
 -                context.i18n.aboutRateIt,
 -                textAlign: TextAlign.center,
--                style: Theme.of(context).textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
+-                style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
 -              ),
 -            ),
 -          ),

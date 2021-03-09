@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:page_indicator/page_indicator.dart';
-import 'package:warmd/common/common.dart';
 import 'package:warmd/common/delayable_state.dart';
+import 'package:warmd/common/extensions.dart';
+import 'package:warmd/common/widgets.dart';
 
 class OnboardingScreen extends StatefulWidget {
   final Function(BuildContext) onOnboardingFinished;
