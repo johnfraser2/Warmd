@@ -28,10 +28,10 @@ dependencies:
   in_app_review: ^2.0.1
   intl: ^0.17.0
   markup_text: ^0.2.0
-  page_indicator: ^0.3.0
+  page_indicator: ^0.4.1
   provider: ^5.0.0
   share_files_and_screenshot_widgets: ^1.0.3
-  shared_preferences: ^2.0.3
+  shared_preferences: ^2.0.5
 
 dependency_overrides:
   path_provider: ^2.0.1 # for share_files_and_screenshot_widgets to be OK until they provide a nullsafety version

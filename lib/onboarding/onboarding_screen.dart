@@ -33,7 +33,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
               child: PageIndicatorContainer(
                 length: 2,
                 padding: const EdgeInsets.all(10),
-                indicatorColor: Colors.grey[300],
+                indicatorColor: Colors.grey[300]!,
                 indicatorSelectorColor: warmdDarkBlue,
                 shape: IndicatorShape.circle(),
                 child: PageView.builder(
