@@ -1,9 +1,9 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
+import 'package:search_choices/search_choices.dart';
 import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/states.dart';
 import 'package:warmd/common/steps_progress_indicator.dart';
@@ -12,7 +12,7 @@ import 'package:warmd/common/widgets.dart';
 class CountryScreen extends StatelessWidget {
   final Function(BuildContext) onCountrySelected;
 
-  const CountryScreen({required this.onCountrySelected, Key? key}) : super(key: key);
+  const CountryScreen({Key? key, required this.onCountrySelected}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,33 +59,53 @@ class CountryScreen extends StatelessWidget {
                       constraints: const BoxConstraints(maxWidth: 500),
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
-                        child: DropdownSearch<int>(
-                          mode: Mode.BOTTOM_SHEET,
-                          showSearchBox: true,
-                          showSelectedItem: true,
-                          items: List.generate(c.maxValue.toInt() + 1, (i) => i),
-                          compareFn: (int i, int j) => i == j,
-                          itemAsString: (item) => labels[item],
-                          onChanged: (int value) {
-                            c.currentValue = value.toDouble();
+                        child: SearchChoices<String>.single(
+                          items: labels.mapIndexed((idx, label) {
+                            return DropdownMenuItem<String>(
+                              value: label,
+                              child: Text(label),
+                            );
+                          }).toList(),
+                          displayClearIcon: false,
+                          underline: Container(
+                            height: 1,
+                            decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: warmdBlue, width: 2))),
+                          ),
+                          value: labels[c.currentValue.toInt()],
+                          onChanged: (String value) {
+                            c.currentValue = labels.indexOf(value).toDouble();
                             state.persist(c);
                           },
-                          autoFocusSearchBox: true,
-                          emptyBuilder: (context, searchEntry) => Center(
-                            child: Text(context.i18n.countrySelectionNotFound),
-                          ),
-                          dropdownSearchDecoration: const InputDecoration(
-                            filled: false,
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: warmdBlue, width: 2),
-                            ),
-                          ),
-                          searchBoxDecoration: InputDecoration(
-                            border: const OutlineInputBorder(),
-                            labelText: context.i18n.countrySelectionSearchHint,
-                          ),
-                          selectedItem: c.currentValue.toInt(),
+                          isExpanded: true,
                         ),
+
+                        // DropdownSearch<int>(
+                        //   mode: Mode.BOTTOM_SHEET,
+                        //   showSearchBox: true,
+                        //   showSelectedItem: true,
+                        //   items: List.generate(c.maxValue.toInt() + 1, (i) => i),
+                        //   compareFn: (int i, int j) => i == j,
+                        //   itemAsString: (item) => labels[item],
+                        //   onChanged: (int value) {
+                        //     c.currentValue = value.toDouble();
+                        //     state.persist(c);
+                        //   },
+                        //   autoFocusSearchBox: true,
+                        //   emptyBuilder: (context, searchEntry) => Center(
+                        //     child: Text(context.i18n.countrySelectionNotFound),
+                        //   ),
+                        //   dropdownSearchDecoration: const InputDecoration(
+                        //     filled: false,
+                        //     enabledBorder: UnderlineInputBorder(
+                        //       borderSide: BorderSide(color: warmdBlue, width: 2),
+                        //     ),
+                        //   ),
+                        //   searchBoxDecoration: InputDecoration(
+                        //     border: const OutlineInputBorder(),
+                        //     labelText: context.i18n.countrySelectionSearchHint,
+                        //   ),
+                        //   selectedItem: c.currentValue.toInt(),
+                        // ),
                       ),
                     ),
                     const Gap(32),

@@ -17,7 +17,7 @@ dependencies:
     sdk: flutter
   adaptive_dialog: ^0.10.0+5
   cupertino_icons: ^1.0.2
-  dropdown_search: ^0.4.9
+  search_choices: ^2.0.3
   fl_chart: ^0.20.1
   flow_builder: 0.0.1-dev.9 # above version up to 0.0.1 are buggy on android
   flutter_local_notifications: ^5.0.0-nullsafety.1

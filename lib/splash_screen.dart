@@ -6,7 +6,7 @@ import 'common/delayable_state.dart';
 class SplashScreen extends StatefulWidget {
   final Function(BuildContext) onFinished;
 
-  const SplashScreen({required this.onFinished, Key? key}) : super(key: key);
+  const SplashScreen({Key? key, required this.onFinished}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();

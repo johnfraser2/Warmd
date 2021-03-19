@@ -183,13 +183,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.14"
-  dropdown_search:
-    dependency: "direct main"
-    description:
-      name: dropdown_search
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.9"
   equatable:
     dependency: transitive
     description:
@@ -560,6 +553,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.8"
+  search_choices:
+    dependency: "direct main"
+    description:
+      name: search_choices
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   share_files_and_screenshot_widgets:
     dependency: "direct main"
     description:

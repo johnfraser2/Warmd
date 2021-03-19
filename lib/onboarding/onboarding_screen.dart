@@ -10,7 +10,7 @@ import 'package:warmd/common/widgets.dart';
 class OnboardingScreen extends StatefulWidget {
   final Function(BuildContext) onOnboardingFinished;
 
-  const OnboardingScreen({required this.onOnboardingFinished, Key? key}) : super(key: key);
+  const OnboardingScreen({Key? key, required this.onOnboardingFinished}) : super(key: key);
 
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();

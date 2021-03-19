@@ -18,7 +18,7 @@ import 'package:warmd/common/widgets.dart';
 class UtilitiesCategoryScreen extends StatelessWidget {
   final Function(BuildContext) onContinueTapped;
 
-  const UtilitiesCategoryScreen({required this.onContinueTapped, Key? key}) : super(key: key);
+  const UtilitiesCategoryScreen({Key? key, required this.onContinueTapped}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class UtilitiesCategoryScreen extends StatelessWidget {
 class TravelCategoryScreen extends StatelessWidget {
   final Function(BuildContext) onContinueTapped;
 
-  const TravelCategoryScreen({required this.onContinueTapped, Key? key}) : super(key: key);
+  const TravelCategoryScreen({Key? key, required this.onContinueTapped}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class TravelCategoryScreen extends StatelessWidget {
 class FoodCategoryScreen extends StatelessWidget {
   final Function(BuildContext) onContinueTapped;
 
-  const FoodCategoryScreen({required this.onContinueTapped, Key? key}) : super(key: key);
+  const FoodCategoryScreen({Key? key, required this.onContinueTapped}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class FoodCategoryScreen extends StatelessWidget {
 class GoodsCategoryScreen extends StatelessWidget {
   final Function(BuildContext) onContinueTapped;
 
-  const GoodsCategoryScreen({required this.onContinueTapped, Key? key}) : super(key: key);
+  const GoodsCategoryScreen({Key? key, required this.onContinueTapped}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _CriteriasScreen extends StatefulWidget {
   final double progressValue;
   final Function(BuildContext) onContinueTapped;
 
-  const _CriteriasScreen({required this.criteriaCategory, required this.progressValue, required this.onContinueTapped, Key? key})
+  const _CriteriasScreen({Key? key, required this.criteriaCategory, required this.progressValue, required this.onContinueTapped})
       : super(key: key);
 
   @override

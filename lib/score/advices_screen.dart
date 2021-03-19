@@ -16,7 +16,7 @@ import 'package:warmd/common/widgets.dart';
 class AdvicesScreen extends StatelessWidget {
   final Function(BuildContext) onSeeClimateChangeTapped;
 
-  const AdvicesScreen({required this.onSeeClimateChangeTapped, Key? key}) : super(key: key);
+  const AdvicesScreen({Key? key, required this.onSeeClimateChangeTapped}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

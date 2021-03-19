@@ -8,6 +8,8 @@ PODS:
     - Flutter
   - path_provider (0.0.1):
     - Flutter
+  - search_choices (0.0.1):
+    - Flutter
   - share_files_and_screenshot_widgets (0.0.1):
     - Flutter
   - shared_preferences (0.0.1):
@@ -21,6 +23,7 @@ DEPENDENCIES:
   - flutter_native_timezone (from `.symlinks/plugins/flutter_native_timezone/ios`)
   - in_app_review (from `.symlinks/plugins/in_app_review/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - search_choices (from `.symlinks/plugins/search_choices/ios`)
   - share_files_and_screenshot_widgets (from `.symlinks/plugins/share_files_and_screenshot_widgets/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
@@ -36,6 +39,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/in_app_review/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  search_choices:
+    :path: ".symlinks/plugins/search_choices/ios"
   share_files_and_screenshot_widgets:
     :path: ".symlinks/plugins/share_files_and_screenshot_widgets/ios"
   shared_preferences:
@@ -49,6 +54,7 @@ SPEC CHECKSUMS:
   flutter_native_timezone: 5f05b2de06c9776b4cc70e1839f03de178394d22
   in_app_review: 4a97249f7a2f539a0f294c2d9196b7fe35e49541
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  search_choices: b50731e8c425078048f681f39c34375c58d6ce8d
   share_files_and_screenshot_widgets: 11063d06810f086eade3c1170946f8599e276adb
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef

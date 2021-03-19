@@ -8,7 +8,7 @@ import 'package:warmd/common/widgets.dart';
 class WelcomeScreen extends StatelessWidget {
   final Function(BuildContext) onStartSelected;
 
-  const WelcomeScreen({required this.onStartSelected, Key? key}) : super(key: key);
+  const WelcomeScreen({Key? key, required this.onStartSelected}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

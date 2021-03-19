@@ -9,7 +9,7 @@ class ScreenTemplate extends StatelessWidget {
   final Widget body;
   final ScrollController? scrollController;
 
-  const ScreenTemplate({this.progressValue, required this.body, this.scrollController, Key? key}) : super(key: key);
+  const ScreenTemplate({Key? key, this.progressValue, required this.body, this.scrollController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

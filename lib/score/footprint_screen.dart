@@ -28,13 +28,13 @@ class FootprintScreen extends StatefulWidget {
   final Function(BuildContext) onRestartTapped;
   final Function(BuildContext) onSeeAboutTapped;
 
-  const FootprintScreen(
-      {required this.onSeeClimateChangeTapped,
-      required this.onSeeAdvicesTapped,
-      required this.onRestartTapped,
-      required this.onSeeAboutTapped,
-      Key? key})
-      : super(key: key);
+  const FootprintScreen({
+    Key? key,
+    required this.onSeeClimateChangeTapped,
+    required this.onSeeAdvicesTapped,
+    required this.onRestartTapped,
+    required this.onSeeAboutTapped,
+  }) : super(key: key);
 
   @override
   _FootprintScreenState createState() => _FootprintScreenState();
