@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'states.dart';
 
@@ -8,6 +8,9 @@ part of 'states.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 class _$NavStateTearOff {
@@ -38,16 +41,18 @@ const $NavState = _$NavStateTearOff();
 
 /// @nodoc
 mixin _$NavState {
-  bool get splashScreenSeen;
-  int get onboardingStepsNum;
-  bool get showAdvicesScreen;
-  bool get showClimateChangeScreen;
-  bool get showClimateChangeScreenFromActions;
-  bool get showAboutScreen;
-  int get questionnaireStepsNum;
+  bool get splashScreenSeen => throw _privateConstructorUsedError;
+  int get onboardingStepsNum => throw _privateConstructorUsedError;
+  bool get showAdvicesScreen => throw _privateConstructorUsedError;
+  bool get showClimateChangeScreen => throw _privateConstructorUsedError;
+  bool get showClimateChangeScreenFromActions =>
+      throw _privateConstructorUsedError;
+  bool get showAboutScreen => throw _privateConstructorUsedError;
+  int get questionnaireStepsNum => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $NavStateCopyWith<NavState> get copyWith;
+  $NavStateCopyWith<NavState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -85,26 +90,33 @@ class _$NavStateCopyWithImpl<$Res> implements $NavStateCopyWith<$Res> {
     return _then(_value.copyWith(
       splashScreenSeen: splashScreenSeen == freezed
           ? _value.splashScreenSeen
-          : splashScreenSeen as bool,
+          : splashScreenSeen // ignore: cast_nullable_to_non_nullable
+              as bool,
       onboardingStepsNum: onboardingStepsNum == freezed
           ? _value.onboardingStepsNum
-          : onboardingStepsNum as int,
+          : onboardingStepsNum // ignore: cast_nullable_to_non_nullable
+              as int,
       showAdvicesScreen: showAdvicesScreen == freezed
           ? _value.showAdvicesScreen
-          : showAdvicesScreen as bool,
+          : showAdvicesScreen // ignore: cast_nullable_to_non_nullable
+              as bool,
       showClimateChangeScreen: showClimateChangeScreen == freezed
           ? _value.showClimateChangeScreen
-          : showClimateChangeScreen as bool,
-      showClimateChangeScreenFromActions:
-          showClimateChangeScreenFromActions == freezed
-              ? _value.showClimateChangeScreenFromActions
-              : showClimateChangeScreenFromActions as bool,
+          : showClimateChangeScreen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showClimateChangeScreenFromActions: showClimateChangeScreenFromActions ==
+              freezed
+          ? _value.showClimateChangeScreenFromActions
+          : showClimateChangeScreenFromActions // ignore: cast_nullable_to_non_nullable
+              as bool,
       showAboutScreen: showAboutScreen == freezed
           ? _value.showAboutScreen
-          : showAboutScreen as bool,
+          : showAboutScreen // ignore: cast_nullable_to_non_nullable
+              as bool,
       questionnaireStepsNum: questionnaireStepsNum == freezed
           ? _value.questionnaireStepsNum
-          : questionnaireStepsNum as int,
+          : questionnaireStepsNum // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -146,26 +158,33 @@ class __$NavStateCopyWithImpl<$Res> extends _$NavStateCopyWithImpl<$Res>
     return _then(_NavState(
       splashScreenSeen: splashScreenSeen == freezed
           ? _value.splashScreenSeen
-          : splashScreenSeen as bool,
+          : splashScreenSeen // ignore: cast_nullable_to_non_nullable
+              as bool,
       onboardingStepsNum: onboardingStepsNum == freezed
           ? _value.onboardingStepsNum
-          : onboardingStepsNum as int,
+          : onboardingStepsNum // ignore: cast_nullable_to_non_nullable
+              as int,
       showAdvicesScreen: showAdvicesScreen == freezed
           ? _value.showAdvicesScreen
-          : showAdvicesScreen as bool,
+          : showAdvicesScreen // ignore: cast_nullable_to_non_nullable
+              as bool,
       showClimateChangeScreen: showClimateChangeScreen == freezed
           ? _value.showClimateChangeScreen
-          : showClimateChangeScreen as bool,
-      showClimateChangeScreenFromActions:
-          showClimateChangeScreenFromActions == freezed
-              ? _value.showClimateChangeScreenFromActions
-              : showClimateChangeScreenFromActions as bool,
+          : showClimateChangeScreen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showClimateChangeScreenFromActions: showClimateChangeScreenFromActions ==
+              freezed
+          ? _value.showClimateChangeScreenFromActions
+          : showClimateChangeScreenFromActions // ignore: cast_nullable_to_non_nullable
+              as bool,
       showAboutScreen: showAboutScreen == freezed
           ? _value.showAboutScreen
-          : showAboutScreen as bool,
+          : showAboutScreen // ignore: cast_nullable_to_non_nullable
+              as bool,
       questionnaireStepsNum: questionnaireStepsNum == freezed
           ? _value.questionnaireStepsNum
-          : questionnaireStepsNum as int,
+          : questionnaireStepsNum // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -266,20 +285,22 @@ abstract class _NavState implements NavState {
       int questionnaireStepsNum}) = _$_NavState;
 
   @override
-  bool get splashScreenSeen;
+  bool get splashScreenSeen => throw _privateConstructorUsedError;
   @override
-  int get onboardingStepsNum;
+  int get onboardingStepsNum => throw _privateConstructorUsedError;
   @override
-  bool get showAdvicesScreen;
+  bool get showAdvicesScreen => throw _privateConstructorUsedError;
   @override
-  bool get showClimateChangeScreen;
+  bool get showClimateChangeScreen => throw _privateConstructorUsedError;
   @override
-  bool get showClimateChangeScreenFromActions;
+  bool get showClimateChangeScreenFromActions =>
+      throw _privateConstructorUsedError;
   @override
-  bool get showAboutScreen;
+  bool get showAboutScreen => throw _privateConstructorUsedError;
   @override
-  int get questionnaireStepsNum;
+  int get questionnaireStepsNum => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$NavStateCopyWith<_NavState> get copyWith;
+  _$NavStateCopyWith<_NavState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
