@@ -188,8 +188,8 @@ class AdvicesScreen extends StatelessWidget {
               ],
             ),
           ),
-          if (co2EqTonsPerYear != null) const Gap(12),
-          if (co2EqTonsPerYear != null)
+          if (co2EqTonsPerYear != null) ...[
+            const Gap(12),
             Text(
               co2EqTonsPerMonth > 1
                   ? context.i18n.co2EqPercentTonsValue(percentValue, co2EqTonsPerMonth.toShortString(1))
@@ -198,6 +198,7 @@ class AdvicesScreen extends StatelessWidget {
                 color: warmdDarkBlue,
               ),
             ),
+          ],
           const Gap(16),
           MarkupText(
             description,

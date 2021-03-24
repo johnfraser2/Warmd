@@ -96,90 +96,93 @@ class MyApp extends StatelessWidget {
                       onFinished: (context) => context.navUpdate((navState) => navState.copyWith(splashScreenSeen: true)),
                     ),
                   ),
-                if (navState.splashScreenSeen && historyState.scores!.isEmpty && navState.onboardingStepsNum == 0)
-                  MaterialPage<OnboardingScreen>(
-                    child: OnboardingScreen(
-                      onOnboardingFinished: (context) =>
-                          context.navUpdate((navState) => navState.copyWith(onboardingStepsNum: navState.onboardingStepsNum + 1)),
+                if (navState.splashScreenSeen) ...[
+                  if (historyState.scores!.isEmpty && navState.onboardingStepsNum == 0)
+                    MaterialPage<OnboardingScreen>(
+                      child: OnboardingScreen(
+                        onOnboardingFinished: (context) => context
+                            .navUpdate((navState) => navState.copyWith(onboardingStepsNum: navState.onboardingStepsNum + 1)),
+                      ),
                     ),
-                  ),
-                if (navState.splashScreenSeen && historyState.scores!.isEmpty && navState.onboardingStepsNum == 1)
-                  MaterialPage<WelcomeScreen>(
-                    child: WelcomeScreen(
-                      onStartSelected: (context) => context.navUpdate((navState) => navState.copyWith(
-                            onboardingStepsNum: navState.onboardingStepsNum + 1, // Will remove all onboarding screens from stack
-                            questionnaireStepsNum: 1, // We start the questionnaire
-                          )),
+                  if (historyState.scores!.isEmpty && navState.onboardingStepsNum == 1)
+                    MaterialPage<WelcomeScreen>(
+                      child: WelcomeScreen(
+                        onStartSelected: (context) => context.navUpdate((navState) => navState.copyWith(
+                              onboardingStepsNum:
+                                  navState.onboardingStepsNum + 1, // Will remove all onboarding screens from stack
+                              questionnaireStepsNum: 1, // We start the questionnaire
+                            )),
+                      ),
                     ),
-                  ),
-                if (navState.splashScreenSeen && historyState.scores!.isNotEmpty)
-                  MaterialPage<FootprintScreen>(
-                    child: FootprintScreen(
-                      onSeeClimateChangeTapped: (context) =>
-                          context.navUpdate((navState) => navState.copyWith(showClimateChangeScreen: true)),
-                      onSeeAdvicesTapped: (context) =>
-                          context.navUpdate((navState) => navState.copyWith(showAdvicesScreen: true)),
-                      onRestartTapped: (context) => context.navUpdate((navState) => navState.copyWith(questionnaireStepsNum: 1)),
-                      onSeeAboutTapped: (context) => context.navUpdate((navState) => navState.copyWith(showAboutScreen: true)),
+                  if (historyState.scores!.isNotEmpty)
+                    MaterialPage<FootprintScreen>(
+                      child: FootprintScreen(
+                        onSeeClimateChangeTapped: (context) =>
+                            context.navUpdate((navState) => navState.copyWith(showClimateChangeScreen: true)),
+                        onSeeAdvicesTapped: (context) =>
+                            context.navUpdate((navState) => navState.copyWith(showAdvicesScreen: true)),
+                        onRestartTapped: (context) =>
+                            context.navUpdate((navState) => navState.copyWith(questionnaireStepsNum: 1)),
+                        onSeeAboutTapped: (context) => context.navUpdate((navState) => navState.copyWith(showAboutScreen: true)),
+                      ),
                     ),
-                  ),
-                if (navState.splashScreenSeen && navState.showAdvicesScreen)
-                  MaterialPage<AdvicesScreen>(
-                    child: AdvicesScreen(
-                      onSeeClimateChangeTapped: (context) =>
-                          context.navUpdate((navState) => navState.copyWith(showClimateChangeScreenFromActions: true)),
+                  if (navState.showAdvicesScreen)
+                    MaterialPage<AdvicesScreen>(
+                      child: AdvicesScreen(
+                        onSeeClimateChangeTapped: (context) =>
+                            context.navUpdate((navState) => navState.copyWith(showClimateChangeScreenFromActions: true)),
+                      ),
                     ),
-                  ),
-                if (navState.splashScreenSeen &&
-                    (navState.showClimateChangeScreen || navState.showClimateChangeScreenFromActions))
-                  const MaterialPage<ClimateChangeScreen>(
-                    child: ClimateChangeScreen(),
-                  ),
-                if (navState.splashScreenSeen && navState.showAboutScreen)
-                  const MaterialPage<AboutScreen>(
-                    child: AboutScreen(),
-                  ),
-                if (navState.splashScreenSeen && navState.questionnaireStepsNum >= 1)
-                  MaterialPage<CountryScreen>(
-                    child: CountryScreen(
-                      onCountrySelected: (context) => context
-                          .navUpdate((navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                  if (navState.showClimateChangeScreen || navState.showClimateChangeScreenFromActions)
+                    const MaterialPage<ClimateChangeScreen>(
+                      child: ClimateChangeScreen(),
                     ),
-                  ),
-                if (navState.splashScreenSeen && navState.questionnaireStepsNum >= 2)
-                  MaterialPage<UtilitiesCategoryScreen>(
-                    child: UtilitiesCategoryScreen(
-                      onContinueTapped: (context) => context
-                          .navUpdate((navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                  if (navState.showAboutScreen)
+                    const MaterialPage<AboutScreen>(
+                      child: AboutScreen(),
                     ),
-                  ),
-                if (navState.splashScreenSeen && navState.questionnaireStepsNum >= 3)
-                  MaterialPage<TravelCategoryScreen>(
-                    child: TravelCategoryScreen(
-                      onContinueTapped: (context) => context
-                          .navUpdate((navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                  if (navState.questionnaireStepsNum >= 1)
+                    MaterialPage<CountryScreen>(
+                      child: CountryScreen(
+                        onCountrySelected: (context) => context.navUpdate(
+                            (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                      ),
                     ),
-                  ),
-                if (navState.splashScreenSeen && navState.questionnaireStepsNum >= 4)
-                  MaterialPage<FoodCategoryScreen>(
-                    child: FoodCategoryScreen(
-                      onContinueTapped: (context) => context
-                          .navUpdate((navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                  if (navState.questionnaireStepsNum >= 2)
+                    MaterialPage<UtilitiesCategoryScreen>(
+                      child: UtilitiesCategoryScreen(
+                        onContinueTapped: (context) => context.navUpdate(
+                            (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                      ),
                     ),
-                  ),
-                if (navState.splashScreenSeen && navState.questionnaireStepsNum >= 5)
-                  MaterialPage<GoodsCategoryScreen>(
-                    child: GoodsCategoryScreen(
-                      onContinueTapped: (context) {
-                        final now = DateTime.now();
-                        historyState.addScore(
-                          DateTime.utc(now.year, now.month),
-                          context.read<CriteriaState>().co2EqTonsPerYear(),
-                        );
-                        context.navUpdate((navState) => navState.copyWith(questionnaireStepsNum: 0));
-                      },
+                  if (navState.questionnaireStepsNum >= 3)
+                    MaterialPage<TravelCategoryScreen>(
+                      child: TravelCategoryScreen(
+                        onContinueTapped: (context) => context.navUpdate(
+                            (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                      ),
                     ),
-                  ),
+                  if (navState.questionnaireStepsNum >= 4)
+                    MaterialPage<FoodCategoryScreen>(
+                      child: FoodCategoryScreen(
+                        onContinueTapped: (context) => context.navUpdate(
+                            (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                      ),
+                    ),
+                  if (navState.questionnaireStepsNum >= 5)
+                    MaterialPage<GoodsCategoryScreen>(
+                      child: GoodsCategoryScreen(
+                        onContinueTapped: (context) {
+                          final now = DateTime.now();
+                          historyState.addScore(
+                            DateTime.utc(now.year, now.month),
+                            context.read<CriteriaState>().co2EqTonsPerYear(),
+                          );
+                          context.navUpdate((navState) => navState.copyWith(questionnaireStepsNum: 0));
+                        },
+                      ),
+                    ),
+                ],
               ],
             );
           },

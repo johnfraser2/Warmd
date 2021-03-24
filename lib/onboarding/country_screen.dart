@@ -78,34 +78,6 @@ class CountryScreen extends StatelessWidget {
                           },
                           isExpanded: true,
                         ),
-
-                        // DropdownSearch<int>(
-                        //   mode: Mode.BOTTOM_SHEET,
-                        //   showSearchBox: true,
-                        //   showSelectedItem: true,
-                        //   items: List.generate(c.maxValue.toInt() + 1, (i) => i),
-                        //   compareFn: (int i, int j) => i == j,
-                        //   itemAsString: (item) => labels[item],
-                        //   onChanged: (int value) {
-                        //     c.currentValue = value.toDouble();
-                        //     state.persist(c);
-                        //   },
-                        //   autoFocusSearchBox: true,
-                        //   emptyBuilder: (context, searchEntry) => Center(
-                        //     child: Text(context.i18n.countrySelectionNotFound),
-                        //   ),
-                        //   dropdownSearchDecoration: const InputDecoration(
-                        //     filled: false,
-                        //     enabledBorder: UnderlineInputBorder(
-                        //       borderSide: BorderSide(color: warmdBlue, width: 2),
-                        //     ),
-                        //   ),
-                        //   searchBoxDecoration: InputDecoration(
-                        //     border: const OutlineInputBorder(),
-                        //     labelText: context.i18n.countrySelectionSearchHint,
-                        //   ),
-                        //   selectedItem: c.currentValue.toInt(),
-                        // ),
                       ),
                     ),
                     const Gap(32),
