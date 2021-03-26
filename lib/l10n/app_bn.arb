@@ -30,12 +30,16 @@
     "utilitiesCategoryTitle": "উপযোগী বস্তু",
     "carCriteriaShortcutOneHourPerDay": "১ ঘণ্টা/দিন",
     "carCriteriaShortcutTwoHoursPerDay": "২ ঘণ্টা/দিন",
+    "publicTransportCriteriaShortcutBus": "১ ঘণ্টা/দিন বাস",
+    "publicTransportCriteriaShortcutSubway": "১ ঘণ্টা/দিন পাতালপথ",
+    "publicTransportCriteriaShortcutTrain": "১ ঘণ্টা/দিন রেল",
     "travelCategoryTitle": "পরিবহন",
     "overweightCriteriaLabel1": "আমি স্বাভাবিক",
     "overweightCriteriaLabel2": "আমি স্থূল",
     "overweightCriteriaLabel3": "আমি স্থূল",
     "foodCategoryTitle": "খাদ্য",
     "waterCriteriaLabel2": "স্বাভাবিক",
+    "goodsAndServicesCategoryTitle": "বস্তু ও সেবা",
     "shortcutUnknown": "আমি জানি না",
     "valueWithMore": "{value} অথবা বেশি",
     "@valueWithMore": {
@@ -53,7 +57,11 @@
             }
         }
     },
+    "footprintEvolutionTonsAxis": "টন কার্বননিঃ / মাস",
+    "footprintShareTitle": "আমার কার্বন নিঃসরণ পরিমান",
     "resetFootprintHistoryQuestion": "ইতিহাস পরিষ্কার করবে?",
+    "redoQuestionnaire": "আবার প্রশ্নোত্তর করো",
+    "scoreTonsUnit": "টন\nকার্বননিঃ / মাস",
     "scoreKgUnit": "কেজি\nকার্বননিঃ / মাস",
     "co2EqKgValue": "{value} কেজি",
     "@co2EqKgValue": {
