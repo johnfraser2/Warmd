@@ -12,6 +12,7 @@
     "countrySelectionQuestion": "তুমি কোন দেশে থাকো?",
     "countrySelectionExplanation": "এই তথ্য দ্বারা তোমার সঠিক কার্বন প্রভাব আমরা বের করতে পারব।",
     "countrySelectionSearchHint": "দেশ হিসেবে খুঁজো",
+    "countrySelectionNotFound": "এই দেশটা চিনতে পারিনি, দয়া করে দেশটির মূল ভাষায় লিখো বা তালিকা থেকে নাও।",
     "continueAction": "আগাই",
     "continueActionExplanation": "তুমি এই তথ্য পরে পাল্টাতে পারবে।",
     "perWeek": "প্রতি সপ্তাহে।",
