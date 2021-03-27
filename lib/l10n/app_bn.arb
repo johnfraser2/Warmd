@@ -59,6 +59,7 @@
     },
     "footprintEvolutionTonsAxis": "টন কার্বননিঃ / মাস",
     "footprintShareTitle": "আমার কার্বন নিঃসরণ পরিমান",
+    "seeAdvices": "তুমি কী করতে পারো",
     "resetFootprintHistoryQuestion": "ইতিহাস পরিষ্কার করবে?",
     "redoQuestionnaire": "আবার প্রশ্নোত্তর করো",
     "scoreTonsUnit": "টন\nকার্বননিঃ / মাস",
@@ -71,6 +72,8 @@
             }
         }
     },
+    "advicesTitle": "তুমি কী করবে?",
+    "advicesSeeLinks": "কিছু সমাধান দেখো >",
     "globalObjectivesTitle": "বৈশ্বিক উদ্দেশ্য",
     "aboutProjectTitle": "ওয়ার্মড প্রকল্প",
     "aboutSourcesTitle": "উৎস"
