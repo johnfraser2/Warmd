@@ -32,7 +32,7 @@ class _ScoreWidgetState extends State<ScoreWidget> {
 
     final co2EqTonsPerMonth = widget.state.co2EqTonsPerYear() / 12;
     final scoreToDisplay =
-        co2EqTonsPerMonth < 1 ? (co2EqTonsPerMonth * 1000).toInt().toString() : co2EqTonsPerMonth.toShortString(1);
+        co2EqTonsPerMonth < 1 ? (co2EqTonsPerMonth * 1000).toInt().toString() : co2EqTonsPerMonth.toShortString(context, 1);
 
     return Stack(
       children: [

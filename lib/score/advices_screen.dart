@@ -192,7 +192,7 @@ class AdvicesScreen extends StatelessWidget {
             const Gap(12),
             Text(
               co2EqTonsPerMonth > 1
-                  ? context.i18n.co2EqPercentTonsValue(percentValue, co2EqTonsPerMonth.toShortString(1))
+                  ? context.i18n.co2EqPercentTonsValue(percentValue, co2EqTonsPerMonth.toShortString(context, 1))
                   : context.i18n.co2EqPercentKgValue(percentValue, (co2EqTonsPerMonth * 1000).round().toString()),
               style: context.textTheme.subtitle2?.copyWith(
                 color: warmdDarkBlue,

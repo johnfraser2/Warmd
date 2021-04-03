@@ -20,8 +20,8 @@ extension ListExtension<E> on List<E> {
 }
 
 extension DoubleExtension on double {
-  String toShortString(int maxFractionDigits) {
-    final formatter = NumberFormat()
+  String toShortString(BuildContext context, int maxFractionDigits) {
+    final formatter = NumberFormat.decimalPattern(Localizations.localeOf(context).languageCode)
       ..minimumFractionDigits = 0
       ..maximumFractionDigits = maxFractionDigits;
     return formatter.format(this);
