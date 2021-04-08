@@ -35,7 +35,7 @@ abstract class DelayableState<E extends StatefulWidget> extends State<E> with Wi
     }
   }
 
-  void delay(Duration duration, Function onDelayed) {
+  void delay(Duration duration, VoidCallback onDelayed) {
     late StreamSubscription s;
     s = Future<void>.delayed(duration).asStream().listen((_) {
       _subscriptions.remove(s);
@@ -46,7 +46,7 @@ abstract class DelayableState<E extends StatefulWidget> extends State<E> with Wi
     _subscriptions.add(s);
   }
 
-  void delayMs(int ms, Function onDelayed) {
+  void delayMs(int ms, VoidCallback onDelayed) {
     delay(Duration(milliseconds: ms), onDelayed);
   }
 }
