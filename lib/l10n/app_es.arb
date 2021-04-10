@@ -24,9 +24,85 @@
             }
         }
     },
+    "inUnitPerMonth": "En {unit} para el mes pasado.",
+    "@inUnitPerMonth": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
     "politicalAdvice": "Tu impacto es insignificante comparado con el de las compañías o gobiernos y por el momento sus políticas ambientales son muy insuficientes. Trata de influir en sus decisiones votando, escribiendo a tus representantes, uniéndote a un grupo de acción climática o por otros medios.\n\nSi hay alguna cosa que hacer, es precisamente esta.",
     "heatingFuelCriteriaTitle": "Tu factura del gas o fuel",
+    "electricityBillCriteriaTitle": "Tu factura de luz",
+    "cleanElectricityCriteriaTitle": "Porcentaje de electricidad baja en carbono",
+    "utilitiesCategoryTitle": "Utilidades",
+    "flightsCriteriaTitle": "Horas pasadas en un avión",
+    "carCriteriaShortcutOneHourPerDay": "1 h/día",
+    "carCriteriaShortcutTwoHoursPerDay": "2 h/día",
+    "publicTransportCriteriaShortcutBus": "1 h/día de autobús",
+    "publicTransportCriteriaShortcutSubway": "1 h/día de metro",
+    "publicTransportCriteriaShortcutTrain": "1 h/día de tren",
+    "travelCategoryTitle": "Transporte",
+    "overweightCriteriaTitle": "Superpeso y obesidad",
+    "overweightCriteriaLabel1": "Soy normal",
+    "overweightCriteriaLabel2": "Tengo sobrepeso",
+    "overweightCriteriaLabel3": "Soy obeso",
+    "foodCategoryTitle": "Comida",
+    "materialGoodsCriteriaTitle": "Dinero gastado en bienes materiales",
+    "waterCriteriaTitle": "Tu consumo de agua",
+    "waterCriteriaLabel1": "Baja (duchas rápidas, sin jardín)",
+    "waterCriteriaLabel2": "Normal",
+    "waterCriteriaLabel3": "Alta (duchas o baños que duran mucho tiempo, gran jardín, …)",
+    "internetCriteriaTitle": "Consumo de datos",
+    "internetCriteriaLabel1": "Solamente pocos correos electrónicos o búsqueda por semana",
+    "internetCriteriaLabel3": "Veo mucho video en streaming (> 30 min / día)",
+    "goodsAndServicesCategoryTitle": "Bienes y servicios",
+    "shortcutUnknown": "No sé",
+    "valueWithMore": "{value} o más",
+    "@valueWithMore": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "valueWithLess": "{value} o menos",
+    "@valueWithLess": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "footprintTitle": "Tu huella de carbono total es",
+    "footprintWarning": "Mira lo que pasa cuando no tomas acción >",
+    "footprintRepartitionTitle": "REPARTICIÓN DE LA HUELLA DE CARBONO",
+    "footprintEvolutionTitle": "EVOLUCIÓN DE LA HUELLA DE CARBONO",
+    "footprintEvolutionExplanation": "Calcule tu huella de carbono todos los meses y vea su evolución.\n\nEl mundo debe reducir sus emisiones en al menos un 6% anual. ¿Y usted?",
+    "footprintShareTitle": "Mi huella de carbono",
+    "footprintShareLink": "Hecho con Warmd: https://fredjul.github.io/Warmd/",
+    "seeAdvices": "VER QUÉ PUEDES HACER",
     "resetFootprintHistoryQuestion": "Reseteamos?",
     "redoQuestionnaireReminder": "Recuérdame hacer el test dentro de 1 mes",
-    "reminderNotificationDescription": "Realiza tu nueva huella de carbono y valora tu progreso."
+    "reminderNotificationTitle": "¿Cuál es tu huella de carbono?",
+    "reminderNotificationDescription": "Realiza tu nueva huella de carbono y valora tu progreso.",
+    "redoQuestionnaire": "REHACER CUESTIONARIO",
+    "seeAbout": "Comprenda cómo se calcula tu huella de carbono y cómo puede ayudar a este proyecto.",
+    "co2EqKgValue": "{value} kg",
+    "@co2EqKgValue": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "climateChangeTitle": "¿Qué es el cambio climático?",
+    "advicesTitle": "¿Qué debes hacer?",
+    "advicesExplanation": "Los pequeños actos son bienvenidos, pero no deben ocultar la verdad: no son lo suficientemente significativos para afrontar la emergencia climática, hay que centrarnos en los grandes.",
+    "advicesSeeLinks": "Ver algunas soluciones >",
+    "globalObjectivesTitle": "Metas mundiales",
+    "globalActionsTitle": "¿Dónde debemos empezar?",
+    "aboutProjectTitle": "Proyecto Warmd",
+    "aboutSourcesTitle": "Fuentes"
 }
