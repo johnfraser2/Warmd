@@ -18,11 +18,11 @@ dependencies:
   adaptive_dialog: ^0.10.0+5
   cupertino_icons: ^1.0.2
   search_choices: ^2.0.3
-  fl_chart: ^0.30.0
-  flow_builder: 0.0.1-dev.9 # above versions (up to 0.0.1) are buggy on android
-  flutter_local_notifications: ^5.0.0
+  fl_chart: ^0.35.0
+  flow_builder: 0.0.1-dev.9 # above versions (up to 0.0.2) are buggy on android
+  flutter_local_notifications: ^5.0.0+1
   flutter_native_timezone: ^1.0.10
-  flutter_svg: ^0.21.0-nullsafety.0
+  flutter_svg: ^0.21.0+1
   freezed: ^0.14.1+1
   gap: ^2.0.0-nullsafety.1
   in_app_review: ^2.0.1
