@@ -190,6 +190,7 @@ class __$NavStateCopyWithImpl<$Res> extends _$NavStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_NavState implements _NavState {
   _$_NavState(
       {this.splashScreenSeen = false,
