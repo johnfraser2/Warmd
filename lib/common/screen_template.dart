@@ -15,19 +15,22 @@ class ScreenTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           controller: scrollController,
-          children: [
-            const Gap(16),
-            if (progressValue != null) StepsProgressIndicator(value: progressValue!) else const Gap(12),
-            const Gap(8),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: buildBackButton(context),
-            ),
-            body,
-          ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Gap(16),
+              if (progressValue != null) StepsProgressIndicator(value: progressValue!) else const Gap(12),
+              const Gap(8),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: buildBackButton(context),
+              ),
+              body,
+            ],
+          ),
         ),
       ),
     );

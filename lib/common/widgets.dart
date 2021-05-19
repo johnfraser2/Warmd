@@ -11,16 +11,11 @@ const warmdRed = Color(0xFFFF757D);
 const warmdGreen = Color(0xFF7CCE17);
 
 Widget buildBackButton(BuildContext context) {
-  // TODO: find a better way than a Row to left-align the back button
-  return Row(
-    children: [
-      TextButton(
-        onPressed: () => Navigator.pop(context),
-        child: Text(
-          context.i18n.back,
-          style: context.textTheme.subtitle1?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
-        ),
-      ),
-    ],
+  return TextButton(
+    onPressed: () => Navigator.pop(context),
+    child: Text(
+      context.i18n.back,
+      style: context.textTheme.subtitle1?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
+    ),
   );
 }
