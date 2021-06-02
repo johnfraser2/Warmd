@@ -1,3 +1,4 @@
+import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -17,7 +18,7 @@ class _SplashScreenState extends DelayableState<SplashScreen> {
   void initState() {
     super.initState();
 
-    delay(const Duration(seconds: 2), () => widget.onFinished(context));
+    delay(2.seconds, () => widget.onFinished(context));
   }
 
   @override

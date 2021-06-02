@@ -8,17 +8,6 @@ extension BuildContextExtension on BuildContext {
   AppLocalizations get i18n => AppLocalizations.of(this)!;
 }
 
-extension ListExtension<E> on List<E> {
-  Iterable<T> mapIndexed<T>(T Function(int idx, E element) f) => asMap()
-      .map(
-        (idx, element) => MapEntry(
-          idx,
-          f(idx, element),
-        ),
-      )
-      .values;
-}
-
 extension DoubleExtension on double {
   String toShortString(BuildContext context, int maxFractionDigits) {
     final formatter = NumberFormat.decimalPattern(Localizations.localeOf(context).languageCode)

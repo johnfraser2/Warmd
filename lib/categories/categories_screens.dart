@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -119,7 +120,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   // We want to scroll back to the top, so that we can clearly see in what category we arrive
-                  delay(const Duration(milliseconds: 500), () => _scrollController.jumpTo(0));
+                  delay(500.milliseconds, () => _scrollController.jumpTo(0));
 
                   widget.onContinueTapped(context);
                 },

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:dartx/dartx.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -428,7 +429,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
         child: ElevatedButton(
           onPressed: () {
             // We want to scroll back to the top, I want to see the score after a "Redo questionnaire"
-            delay(const Duration(milliseconds: 500), () => _scrollController.jumpTo(0));
+            delay(500.milliseconds, () => _scrollController.jumpTo(0));
 
             widget.onRestartTapped(context);
           },
@@ -496,7 +497,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
       0,
       context.i18n.reminderNotificationTitle,
       context.i18n.reminderNotificationDescription,
-      TZDateTime.now(getLocation(currentTimeZone)).add(const Duration(days: 31)),
+      TZDateTime.now(getLocation(currentTimeZone)).add(31.days),
       const NotificationDetails(
           android: AndroidNotificationDetails(
             'reminderChannelId',
