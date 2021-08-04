@@ -19,9 +19,9 @@ dependencies:
   cupertino_icons: ^1.0.3
   dartx: ^0.7.1
   fl_chart: ^0.36.1
-  flow_builder: 0.0.1-dev.9 # above versions (up to 0.0.2) are buggy on android
-  flutter_local_notifications: ^6.0.0
-  flutter_native_timezone: ^1.1.0
+  flow_builder: 0.0.1-dev.9 # above versions (up to 0.0.4) are buggy on android
+  flutter_local_notifications: ^8.0.0
+  flutter_native_timezone: ^2.0.0
   flutter_svg: ^0.22.0
   freezed: ^0.14.2
   gap: ^2.0.0
@@ -34,9 +34,9 @@ dependencies:
   share_files_and_screenshot_widgets: ^1.0.3
   shared_preferences: ^2.0.6
 
-dependency_overrides:
-  path_provider: ^2.0.1 # for share_files_and_screenshot_widgets to be OK until they provide a nullsafety version
-  url_launcher: ^6.0.2 # for markup_text to be OK until they provide a nullsafety version
+#dependency_overrides:
+#  path_provider: ^2.0.1 # for share_files_and_screenshot_widgets to be OK until they provide a nullsafety version
+#  url_launcher: ^6.0.2 # for markup_text to be OK until they provide a nullsafety version
 
 dev_dependencies:
   flutter_test:
