@@ -1,1 +1,168 @@
-{}
+{
+    "back": "Terug",
+    "onboardingStep1Title": "Leer meer over jouw invloed",
+    "onboardingStep1Description": "Bekijk hier hoe jouw dagelijkse bezigheden invloed hebben op de planeet, de dieren en meer.",
+    "onboardingStep2Title": "Neem actie om jouw impact te verminderen",
+    "onboardingStep2Description": "Door elke dag kleine stappen te ondernemen, kunnen we grote veranderingen in de toekomst brengen.",
+    "onboardingAction": "START HIER",
+    "welcomeTitle": "Hoi,",
+    "welcomeDescription": "Bedankt om Warmd te downloaden! Je hebt de eerste stap gezet om de wereld te beteren voor de generaties na ons.\n\nVoor we beginnen, zouden we je enkele vragen willen stellen. Zo kunnen we jou gepersonaliseerde aanbevelingen geven. Ben je klaar?",
+    "welcomeAction": "BEGIN",
+    "countrySelectionTitle": "LAND",
+    "countrySelectionQuestion": "In welk land woon je?",
+    "countrySelectionExplanation": "Hiermee kunnen we jouw ecologische voetafdruk berekenen.",
+    "countrySelectionSearchHint": "Zoek land",
+    "countrySelectionNotFound": "Dat land herkennen we niet, gelieve het land te noteren in de nationale taal, of een taal te kiezen uit de lijst.",
+    "continueAction": "GA VERDER",
+    "continueActionExplanation": "Je kan deze gegevens later op elk moment bijwerken.",
+    "perWeek": "Per week.",
+    "inUnit": "In {unit}.",
+    "@inUnit": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "inUnitPerMonth": "In {unit} voor de voorbije maand.",
+    "@inUnitPerMonth": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "politicalAdvice": "Jouw eigen impact is immens klein tegenover de impact dat bedrijven en overheden kunnen maken. De huidige milieubeleid volstaat niet, integendeel.\nProbeer invloed uit te oefenen op beslissingen die worden gemaakt. Breng je stem uit, schrijf een brief naar je vertegenwoordigers, word lid van een klimaatactiegroep...\n\nAls je slechts één actie onderneemt, is deze het meest impactvol.",
+    "heatingFuelCriteriaTitle": "Jouw energierekening voor verwarming/gas",
+    "electricityBillCriteriaTitle": "Jouw elektriciteitsfactuur",
+    "cleanElectricityCriteriaTitle": "Percentage koolstofarme elektriciteit",
+    "flightsCriteriaTitle": "Aantal uren in een vliegtuig",
+    "flightsCriteriaAdvice": "Een vliegtuig produceert tussen de 6 en 40 keer meer ozongas per passagier dan een trein. \n\nStel jezelf de vraag: Heb je deze trips echt wel nodig? Overweeg om op vakantie te gaan in je eigen land en neem de trein.",
+    "carCriteriaTitle": "Afstand afgelegd met een benzine-/dieselauto",
+    "carCriteriaShortcutOneHourPerDay": "1 uur/dag",
+    "carCriteriaShortcutTwoHoursPerDay": "2 uur/dag",
+    "carConsumptionCriteriaTitle": "Het brandstofverbruik van je auto",
+    "publicTransportCriteriaTitle": "Afstand afgelegd in bus, trein, metro of tram",
+    "publicTransportCriteriaAdvice": "Overweeg telewerk om je transportvoetafdruk te verkleinen.",
+    "publicTransportCriteriaShortcutBus": "1 uur/dag met de bus",
+    "publicTransportCriteriaShortcutSubway": "1 uur/dag met de metro",
+    "publicTransportCriteriaShortcutTrain": "1 uur/dag met de trein",
+    "travelCategoryTitle": "Vervoer",
+    "ruminantMeatCriteriaAdvice": "De vleesindustrie is (a https://ourworldindata.org/uploads/2020/02/Environmental-impact-of-food-by-life-cycle-stage-1536x1380.png)één van de grootste uitstoters van broeikasgassen(/a) omdat deze veel land in beslag neemt en methaan, een krachtig broeikasgas, uitstoot. Het stoot meer dan 4 keer meer broeikasgas uit dan de kippenvleesindustrie, en meer dan 10 keer meer dan de fruit- en groentenindustrie, zelfs als je het transport meerekent.\n\nVolwassenen hebben niet meer dan 3 porties vlees nodig per week (iets meer dan kinderen). Ga niet over deze grens en koop kip in plaats van rood vlees. Of beter zelfs, word vegetariër.",
+    "nonRuminantMeatCriteriaTitle": "Aantal maaltijden met varkensvlees, kip, vis of ei",
+    "cheeseCriteriaTitle": "Aantal porties kaas (40 gram)",
+    "cheeseCriteriaAdvice": "Als je melkproducten wil of moet gebruiken, is melk of yoghurt een betere optie. Deze zijn 5 tot 8 keer minder vervuilend dan kaas.",
+    "snacksCriteriaTitle": "Aantal snacks, dranken of andere sterk verwerkte voedingsmiddelen",
+    "snacksCriteriaAdvice": "Verkies fruit en groenten boven snacks, chocolade of verwerkt voedsel. Neem ook de voorkeur aan water of huisgemaakte drankjes over frisdrank of fruitsap van de winkel.",
+    "overweightCriteriaTitle": "Overgewicht en obesitas",
+    "overweightCriteriaLabel1": "Ik heb een normaal gewicht",
+    "overweightCriteriaLabel2": "Ik heb overgewicht",
+    "overweightCriteriaLabel3": "Ik ben obees",
+    "overweightCriteriaAdvice": "Als je overgewicht hebt, betekent dit dat je meer energie opneemt dan je lichaam nodig heeft. De mens consumeert elk jaar een onnodige 140 miljard ton aan voedsel.\n\nProbeer meer fruit en groenten op te nemen in je dieet, of verminder simpelweg de hoeveelheid dat je eet.",
+    "foodCategoryTitle": "Voedsel",
+    "materialGoodsCriteriaTitle": "Geld uitgegeven aan materiële zaken",
+    "materialGoodsCriteriaExplanation": "In {unit} voor de voorbije maand.\n\nDit houdt zaken in als meubilair, huishoudelijk materiaal, kleding, elektronische toestellen, voertuigen en voertuigonderdelen, medicatie…",
+    "@materialGoodsCriteriaExplanation": {
+        "placeholders": {
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "materialGoodsCriteriaAdvice": "De productie hiervan, vooral voor elektronische en mechanische apparatuur, is over het algemeen enorm vervuilend.\n\nJe kan je ecologische voetafdruk aanzienlijk verkleinen door deze langer te gebruiken of door simpelweg je beperken hoeveel je koopt. Bovendien zijn er altijd mogelijkheden beschikbaar om je huidige toestellen te repareren/verkopen/weg te geven, tweedehands toestellen te vinden, of om deze te huren.",
+    "savingsCriteriaExplanation": "Als je het niet weet, kan je ervan uitgaan dat het merendeel van je spaargeld in aanmerking komt.",
+    "savingsCriteriaAdvice": "De meeste banken investeren nog steeds het grootste deel van je spaargeld in bedrijven met een aanzienlijke klimaatimpact. Gelukkig bieden sommige banken tegenwoordig investeringen aan met een lage CO2-uitstoot.",
+    "waterCriteriaTitle": "Jouw waterverbruik",
+    "waterCriteriaExplanation": "Dit omvat het water dat je verbruikt voor je douche of bad, het toilet en in de tuin.",
+    "waterCriteriaLabel1": "Laag (snelle douches, geen tuin)",
+    "waterCriteriaLabel2": "Normaal",
+    "waterCriteriaLabel3": "Hoog (lange douches of bad, een grote tuin…)",
+    "waterCriteriaAdvice": "Je kan je waterverbruik makkelijk beperken door korte douches (geen bad) te nemen met een spaardouchekop (verbruikt tot -70% minder water). \n\nJe kan ook een plastieken fles in de watertank van je toilet steken om de capaciteit te verminderen. Je kan ook een waterrevolator kopen voor in de tuin.",
+    "internetCriteriaTitle": "Hoeveelheid verbruikte internetdata",
+    "internetCriteriaLabel1": "Maar een paar mails of zoekopdrachten per week",
+    "internetCriteriaLabel2": "Ik bezoek dagelijks websites of Cloud-diensten",
+    "internetCriteriaLabel3": "Ik stream veel video's (>30 min/dag)",
+    "internetCriteriaAdvice": "Internet is ondertussen verantwoordelijk voor 4% van de totale koolstofemissies, meer dan de luchtvaart, en kan verdubbelen tegen 2025. Dit is vooral te wijten aan het toenemend aantal van hogeresolutie-streams.\n\nProbeer minder video's te streamen of verminder simpelweg de kwaliteit tot een maximum van 480p (SD).",
+    "goodsAndServicesCategoryTitle": "Goederen en diensten",
+    "shortcutUnknown": "Ik weet het niet",
+    "valueWithMore": "{value} of meer",
+    "@valueWithMore": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "valueWithLess": "{value} of minder",
+    "@valueWithLess": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "footprintTitle": "Je totale koolstofvoetafdruk is",
+    "footprintWarning": "Bekijk wat er gebeurt als je geen actie onderneemt >",
+    "footprintEvolutionExplanation": "Bereken jouw ecologische voetafdruk elke maand en bekijk jouw evolutie.\n\nDe wereld moet zijn emissies met minstens 6% per jaar verminderen. En jij?",
+    "footprintEvolutionTonsAxis": "Ton CO₂e / maand",
+    "footprintShareTitle": "Mijn ecologische voetafdruk",
+    "footprintShareLink": "Gemaakt met Warmd: https://fredjul.github.io/Warmd/",
+    "seeAdvices": "BEKIJK WAT JIJ ZOU KUNNEN DOEN",
+    "resetFootprintHistoryQuestion": "Geschiedenis leegmaken?",
+    "resetFootprintHistoryConfirmation": "Ben je zeker dat je de geschiedenis van jouw CO2-voetafdruk wilt resetten?",
+    "redoQuestionnaireReminder": "Herinner me eraan om de test over 1 maand opnieuw te doen",
+    "reminderNotificationTitle": "Wat is jouw ecologische voetafdruk?",
+    "reminderNotificationDescription": "Bereken je nieuwe ecologische voetafdruk en zie je vooruitgang.",
+    "redoQuestionnaire": "VRAGEN OPNIEUW BEANTWOORDEN",
+    "seeAbout": "Begrijp hoe jouw ecologische voetafdruk wordt berekend en hoe je dit project kan helpen.",
+    "scoreTonsUnit": "ton\nCO₂e / maand",
+    "scoreKgUnit": "kg\nCO₂e / maand",
+    "co2EqKgValue": "{value} kg",
+    "@co2EqKgValue": {
+        "placeholders": {
+            "value": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentTonsValue": "{percent}% ({co2EqTons} ton CO₂e / maand)",
+    "@co2EqPercentTonsValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqTons": {
+                "type": "String"
+            }
+        }
+    },
+    "co2EqPercentKgValue": "{percent}% ({co2EqKg} kg CO₂e / maand)",
+    "@co2EqPercentKgValue": {
+        "placeholders": {
+            "percent": {
+                "type": "String"
+            },
+            "co2EqKg": {
+                "type": "String"
+            }
+        }
+    },
+    "climateChangeTitle": "Wat betekent klimaatverandering?",
+    "consequencesTitle": "Gevolgen van de opwarming van de aarde",
+    "advicesTitle": "Wat kan je doen?",
+    "advicesExplanation": "Kleine verbeteringen zijn welkom, maar ze mogen de waarheid niet verbergen: Ze zijn niet significant genoeg om het hoofd te bieden aan de klimaatcrisis. We moeten ons concentreren op de grotere problematiek.",
+    "advicesOtherPolutionTypes": "Houd er rekening mee dat deze app zich alleen richt op klimaatverandering. We mogen ook de andere vormen van vervuiling niet vergeten (lucht-. water-, grond-, lawaai- en lichtvervuiling). Zij verdienen ook onze aandacht.",
+    "advicesPoliticsCategory": "Druk uw zorgen uit",
+    "advicesSeeClimateChange": "Begrijp wat er op het spel staat >",
+    "advicesSeeLinks": "Bekijk enkele oplossingen >",
+    "advicesLinksExplanation": "Deze lijst is niet volledig en wordt niet gesponsord. Het is slechts een een zicht op wat volgens ons nuttig is.\nAls u een suggestie of opmerking hebt, (een mailto:warmd_app@icloud.com)laat het ons dan weten (/a).",
+    "globalObjectivesTitle": "Globale doelstellingen",
+    "globalObjectivesPart1": "Om onder de +2°C te blijven, moeten broeikasgasemissies (een https://folk.universitetetioslo.no/roberan/t/global_mitigation_curves.shtml) tot 3 keer verlagen voor 2050(/a), d.w.z. (b)-6% per jaar (/b) vanaf 2020.",
+    "globalObjectivesPart2": "Voor zover is dit onwaarschijnlijk. Tot nu toe hebben we onze emissies voortdurend verhoogd en zijn er nog geen duidelijke tekenen van reductie.\n\nMet de huidige trend en zonder effectieve inspanningen, eindigen we op zijn minst met (b)+3.2°C tegen 2100(/b) en zal het enkel blijven stijgen.",
+    "globalActionsTitle": "Waar moeten we beginnen?",
+    "globalActionsPart1": "Emissies komen hoofdzakelijk uit een paar hoofdsectoren (bron: IPCC, 2014, globale emissies).",
+    "aboutProjectTitle": "Het Warmd-project",
+    "aboutProjectDescription": "Warmd is een niet-lucratief open-source project. Je kunt er (a https://github.com/FredJul/Warmd)hier(/a) aan bijdragen, of help met het vertalen (a https://frju.crowdin.com/warmd)(/a).\n\nWarmd's ontwerp is ruimhartig aangeboden door (a https://mnstudio.net)mn studio(/a).\n\nOns enige doel is het verminderen van de menselijke impact op onze planeet.",
+    "aboutRateIt": "Help ons door het te waarderen met 5 sterren >",
+    "aboutSourcesTitle": "Bronnen"
+}
