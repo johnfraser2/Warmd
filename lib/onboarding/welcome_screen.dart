@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/widgets.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final Function(BuildContext) onStartSelected;
@@ -33,13 +34,13 @@ class WelcomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        context.i18n.welcomeTitle,
+                        Translation.current.welcomeTitle,
                         textAlign: TextAlign.center,
                         style: context.textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                       ),
                       const Gap(64),
                       Text(
-                        context.i18n.welcomeDescription,
+                        Translation.current.welcomeDescription,
                         textAlign: TextAlign.center,
                         style: context.textTheme.subtitle1?.copyWith(color: warmdDarkBlue),
                       ),
@@ -53,7 +54,7 @@ class WelcomeScreen extends StatelessWidget {
                 onPressed: () {
                   onStartSelected(context);
                 },
-                child: Text(context.i18n.welcomeAction),
+                child: Text(Translation.current.welcomeAction),
               ),
             ),
             const Gap(48),

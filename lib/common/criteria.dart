@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 import 'countries.dart';
-import 'extensions.dart';
 
 const _oneMileInKms = 1.61;
 
@@ -23,12 +23,12 @@ abstract class Criteria {
       required this.step,
       required this.currentValue});
 
-  List<String>? labels(BuildContext context) => null;
+  List<String>? labels() => null;
   double co2EqTonsPerYear() => 0;
-  String title(BuildContext context);
-  String? explanation(BuildContext context) => null;
-  String? advice(BuildContext context) => null;
-  Map<String, double>? shortcuts(BuildContext context) => null;
+  String title();
+  String? explanation() => null;
+  String? advice() => null;
+  Map<String, double>? shortcuts() => null;
   Map<String, Map<String, String>>? links() => null;
 }
 
@@ -37,7 +37,7 @@ abstract class CriteriaCategory {
 
   CriteriaCategory({required this.key});
 
-  String title(BuildContext context);
+  String title();
   List<Criteria> getCriteriaList();
   double co2EqTonsPerYear() => getCriteriaList().map((crit) => crit.co2EqTonsPerYear()).reduce((a, b) => a + b);
 }
@@ -54,7 +54,7 @@ class CountryCriteria extends Criteria {
             currentValue: _getCurrentCountryPos().toDouble());
 
   @override
-  List<String> labels(BuildContext context) => countries.map((c) => c['name']!).toList();
+  List<String> labels() => countries.map((c) => c['name']!).toList();
 
   double getCurrencyRate() {
     return 1 / currencyRates[countries[currentValue.toInt()]['currency']]!;
@@ -94,7 +94,7 @@ class CountryCriteria extends Criteria {
   }
 
   @override
-  String title(BuildContext context) => ''; // This special criteria is never displayed
+  String title() => ''; // This special criteria is never displayed
 }
 
 class GeneralCategory extends CriteriaCategory {
@@ -103,7 +103,7 @@ class GeneralCategory extends CriteriaCategory {
   GeneralCategory() : super(key: 'general');
 
   @override
-  String title(BuildContext context) => ''; // This special criteria is never displayed
+  String title() => ''; // This special criteria is never displayed
 
   @override
   List<Criteria> getCriteriaList() => [countryCriteria];
@@ -121,10 +121,10 @@ class HeatingFuelCriteria extends Criteria {
             currentValue: 0);
 
   @override
-  String title(BuildContext context) => context.i18n.heatingFuelCriteriaTitle;
+  String title() => Translation.current.heatingFuelCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.inUnitPerMonth(_countryCriteria.getCurrencyCode());
+  String explanation() => Translation.current.inUnitPerMonth(_countryCriteria.getCurrencyCode());
 
   @override
   double get maxValue => (((300 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -148,21 +148,21 @@ class HeatingFuelCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 2) {
-      return context.i18n.heatingFuelCriteriaAdvice;
+      return Translation.current.heatingFuelCriteriaAdvice;
     } else {
       return null;
     }
   }
 
   @override
-  Map<String, double> shortcuts(BuildContext context) {
+  Map<String, double> shortcuts() {
     return {
       // People who don't know generally rent an apartment with common heating.
       // After few searches, seems the average monthly cost is between 50$ and 80$ for fuel-based heating, let's arbitrary take 70$.
       // Of course it will again depends of the country/city so it's not really precise.
-      context.i18n.shortcutUnknown: 70 / _countryCriteria.getCurrencyRate(),
+      Translation.current.shortcutUnknown: 70 / _countryCriteria.getCurrencyRate(),
     };
   }
 }
@@ -179,10 +179,10 @@ class ElectricityBillCriteria extends Criteria {
             currentValue: 100);
 
   @override
-  String title(BuildContext context) => context.i18n.electricityBillCriteriaTitle;
+  String title() => Translation.current.electricityBillCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.inUnitPerMonth(_countryCriteria.getCurrencyCode());
+  String explanation() => Translation.current.inUnitPerMonth(_countryCriteria.getCurrencyCode());
 
   @override
   double get maxValue => (((500 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -212,10 +212,10 @@ class CleanElectricityCriteria extends Criteria {
   }
 
   @override
-  String title(BuildContext context) => context.i18n.cleanElectricityCriteriaTitle;
+  String title() => Translation.current.cleanElectricityCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.cleanElectricityCriteriaExplanation;
+  String explanation() => Translation.current.cleanElectricityCriteriaExplanation;
 
   @override
   double get minValue {
@@ -247,17 +247,17 @@ class CleanElectricityCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 0.5) {
-      return context.i18n.cleanElectricityCriteriaAdvice;
+      return Translation.current.cleanElectricityCriteriaAdvice;
     } else {
       return null;
     }
   }
 
   @override
-  Map<String, double> shortcuts(BuildContext context) {
-    return {context.i18n.shortcutUnknown: _meanValue};
+  Map<String, double> shortcuts() {
+    return {Translation.current.shortcutUnknown: _meanValue};
   }
 
   double get _meanValue => max(15, minValue);
@@ -275,7 +275,7 @@ class UtilitiesCategory extends CriteriaCategory {
   }
 
   @override
-  String title(BuildContext context) => context.i18n.utilitiesCategoryTitle;
+  String title() => Translation.current.utilitiesCategoryTitle;
 
   @override
   List<Criteria> getCriteriaList() => [heatingFuelCriteria, electricityBillCriteria, cleanElectricityCriteria];
@@ -294,10 +294,10 @@ class FlightsCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.flightsCriteriaTitle;
+  String title() => Translation.current.flightsCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.inUnitPerMonth(unit);
+  String explanation() => Translation.current.inUnitPerMonth(unit);
 
   @override
   String get unit => 'h';
@@ -314,9 +314,9 @@ class FlightsCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 0.5) {
-      return context.i18n.flightsCriteriaAdvice;
+      return Translation.current.flightsCriteriaAdvice;
     } else {
       return null;
     }
@@ -337,10 +337,10 @@ class CarCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.carCriteriaTitle;
+  String title() => Translation.current.carCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.inUnitPerMonth(unit);
+  String explanation() => Translation.current.inUnitPerMonth(unit);
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
@@ -365,24 +365,24 @@ class CarCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 1.5) {
-      return context.i18n.carCriteriaAdviceHigh;
+      return Translation.current.carCriteriaAdviceHigh;
     } else if (co2EqTonsPerYear() > 0.5) {
-      return context.i18n.carCriteriaAdviceLow;
+      return Translation.current.carCriteriaAdviceLow;
     } else {
       return null;
     }
   }
 
   @override
-  Map<String, double> shortcuts(BuildContext context) {
+  Map<String, double> shortcuts() {
     final kmToMilesFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1.0 : _oneMileInKms;
 
     // I arbitrary took 50km/h as an average, I didn't find a viable source
     return {
-      context.i18n.carCriteriaShortcutOneHourPerDay: (50 * 20) / kmToMilesFactor,
-      context.i18n.carCriteriaShortcutTwoHoursPerDay: (50 * 20 * 2) / kmToMilesFactor,
+      Translation.current.carCriteriaShortcutOneHourPerDay: (50 * 20) / kmToMilesFactor,
+      Translation.current.carCriteriaShortcutTwoHoursPerDay: (50 * 20 * 2) / kmToMilesFactor,
     };
   }
 }
@@ -402,10 +402,10 @@ class CarConsumptionCriteria extends Criteria {
   }
 
   @override
-  String title(BuildContext context) => context.i18n.carConsumptionCriteriaTitle;
+  String title() => Translation.current.carConsumptionCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.inUnit(unit);
+  String explanation() => Translation.current.inUnit(unit);
 
   @override
   double get minValue =>
@@ -424,9 +424,9 @@ class CarConsumptionCriteria extends Criteria {
       : 'mpg'; // Actually there is 2 different mpg, we mix them two here and will do the diff in carbon calculation
 
   @override
-  Map<String, double> shortcuts(BuildContext context) {
+  Map<String, double> shortcuts() {
     return {
-      context.i18n.shortcutUnknown: _meanValue,
+      Translation.current.shortcutUnknown: _meanValue,
     };
   }
 
@@ -450,10 +450,10 @@ class PublicTransportCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.publicTransportCriteriaTitle;
+  String title() => Translation.current.publicTransportCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.inUnitPerMonth(unit);
+  String explanation() => Translation.current.inUnitPerMonth(unit);
 
   @override
   String get unit => _countryCriteria.unitSystem() == UnitSystem.metric ? 'km' : 'miles';
@@ -471,25 +471,25 @@ class PublicTransportCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 2) {
-      return context.i18n.publicTransportCriteriaAdvice;
+      return Translation.current.publicTransportCriteriaAdvice;
     } else {
       return null;
     }
   }
 
   @override
-  Map<String, double> shortcuts(BuildContext context) {
+  Map<String, double> shortcuts() {
     final kmToMilesFactor = _countryCriteria.unitSystem() == UnitSystem.metric ? 1.0 : _oneMileInKms;
 
     // The first number represents the average km/h for a type a transport, the 20 represents the number of typical working days in a month.
     // Of course this is an approximation and will clearly depends of the place.
     return {
-      context.i18n.publicTransportCriteriaShortcutBus: (18 * 20) / kmToMilesFactor,
-      context.i18n.publicTransportCriteriaShortcutSubway: (30 * 20) / kmToMilesFactor,
-      context.i18n.publicTransportCriteriaShortcutSuburbanTrain: (50 * 20) / kmToMilesFactor,
-      context.i18n.publicTransportCriteriaShortcutTrain: (100 * 20) / kmToMilesFactor,
+      Translation.current.publicTransportCriteriaShortcutBus: (18 * 20) / kmToMilesFactor,
+      Translation.current.publicTransportCriteriaShortcutSubway: (30 * 20) / kmToMilesFactor,
+      Translation.current.publicTransportCriteriaShortcutSuburbanTrain: (50 * 20) / kmToMilesFactor,
+      Translation.current.publicTransportCriteriaShortcutTrain: (100 * 20) / kmToMilesFactor,
     };
   }
 }
@@ -507,7 +507,7 @@ class TravelCategory extends CriteriaCategory {
   }
 
   @override
-  String title(BuildContext context) => context.i18n.travelCategoryTitle;
+  String title() => Translation.current.travelCategoryTitle;
 
   @override
   List<Criteria> getCriteriaList() => [flightsCriteria, carCriteria, carConsumptionCriteria, publicTransportCriteria];
@@ -535,10 +535,10 @@ class RuminantMeatCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.ruminantMeatCriteriaTitle;
+  String title() => Translation.current.ruminantMeatCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.perWeek;
+  String explanation() => Translation.current.perWeek;
 
   @override
   double co2EqTonsPerYear() {
@@ -550,9 +550,9 @@ class RuminantMeatCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 0.5) {
-      return context.i18n.ruminantMeatCriteriaAdvice;
+      return Translation.current.ruminantMeatCriteriaAdvice;
     } else {
       return null;
     }
@@ -573,10 +573,10 @@ class NonRuminantMeatCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.nonRuminantMeatCriteriaTitle;
+  String title() => Translation.current.nonRuminantMeatCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.perWeek;
+  String explanation() => Translation.current.perWeek;
 
   @override
   double co2EqTonsPerYear() {
@@ -588,9 +588,9 @@ class NonRuminantMeatCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 0.5) {
-      return context.i18n.nonRuminantMeatCriteriaAdvice;
+      return Translation.current.nonRuminantMeatCriteriaAdvice;
     } else {
       return null;
     }
@@ -611,10 +611,10 @@ class CheeseCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.cheeseCriteriaTitle;
+  String title() => Translation.current.cheeseCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.perWeek;
+  String explanation() => Translation.current.perWeek;
 
   @override
   double co2EqTonsPerYear() {
@@ -626,9 +626,9 @@ class CheeseCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 0.5) {
-      return context.i18n.cheeseCriteriaAdvice;
+      return Translation.current.cheeseCriteriaAdvice;
     } else {
       return null;
     }
@@ -649,10 +649,10 @@ class SnackCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.snacksCriteriaTitle;
+  String title() => Translation.current.snacksCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.perWeek;
+  String explanation() => Translation.current.perWeek;
 
   @override
   double co2EqTonsPerYear() {
@@ -661,9 +661,9 @@ class SnackCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 0.5) {
-      return context.i18n.snacksCriteriaAdvice;
+      return Translation.current.snacksCriteriaAdvice;
     } else {
       return null;
     }
@@ -689,13 +689,13 @@ class OverweightCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.overweightCriteriaTitle;
+  String title() => Translation.current.overweightCriteriaTitle;
 
   @override
-  List<String> labels(BuildContext context) => [
-        context.i18n.overweightCriteriaLabel1,
-        context.i18n.overweightCriteriaLabel2,
-        context.i18n.overweightCriteriaLabel3,
+  List<String> labels() => [
+        Translation.current.overweightCriteriaLabel1,
+        Translation.current.overweightCriteriaLabel2,
+        Translation.current.overweightCriteriaLabel3,
       ];
 
   @override
@@ -710,9 +710,9 @@ class OverweightCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 0.5) {
-      return context.i18n.overweightCriteriaAdvice;
+      return Translation.current.overweightCriteriaAdvice;
     } else {
       return null;
     }
@@ -730,7 +730,7 @@ class FoodCategory extends CriteriaCategory {
   FoodCategory() : super(key: 'food');
 
   @override
-  String title(BuildContext context) => context.i18n.foodCategoryTitle;
+  String title() => Translation.current.foodCategoryTitle;
 
   @override
   double co2EqTonsPerYear() {
@@ -757,10 +757,10 @@ class MaterialGoodsCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.materialGoodsCriteriaTitle;
+  String title() => Translation.current.materialGoodsCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.materialGoodsCriteriaExplanation(unit);
+  String explanation() => Translation.current.materialGoodsCriteriaExplanation(unit);
 
   @override
   double get maxValue => (((10000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -781,9 +781,9 @@ class MaterialGoodsCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 0.5) {
-      return context.i18n.materialGoodsCriteriaAdvice;
+      return Translation.current.materialGoodsCriteriaAdvice;
     } else {
       return null;
     }
@@ -818,10 +818,10 @@ class SavingsCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.savingsCriteriaTitle;
+  String title() => Translation.current.savingsCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => '${context.i18n.inUnit(unit)}\n\n${context.i18n.savingsCriteriaExplanation}';
+  String explanation() => '${Translation.current.inUnit(unit)}\n\n${Translation.current.savingsCriteriaExplanation}';
 
   @override
   double get maxValue => (((100000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
@@ -843,9 +843,9 @@ class SavingsCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 0.5) {
-      return context.i18n.savingsCriteriaAdvice;
+      return Translation.current.savingsCriteriaAdvice;
     } else {
       return null;
     }
@@ -871,16 +871,16 @@ class WaterCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.waterCriteriaTitle;
+  String title() => Translation.current.waterCriteriaTitle;
 
   @override
-  String explanation(BuildContext context) => context.i18n.waterCriteriaExplanation;
+  String explanation() => Translation.current.waterCriteriaExplanation;
 
   @override
-  List<String> labels(BuildContext context) => [
-        context.i18n.waterCriteriaLabel1,
-        context.i18n.waterCriteriaLabel2,
-        context.i18n.waterCriteriaLabel3,
+  List<String> labels() => [
+        Translation.current.waterCriteriaLabel1,
+        Translation.current.waterCriteriaLabel2,
+        Translation.current.waterCriteriaLabel3,
       ];
 
   @override
@@ -889,9 +889,9 @@ class WaterCriteria extends Criteria {
   }
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 1) {
-      return context.i18n.waterCriteriaAdvice;
+      return Translation.current.waterCriteriaAdvice;
     } else {
       return null;
     }
@@ -919,22 +919,22 @@ class InternetCriteria extends Criteria {
         );
 
   @override
-  String title(BuildContext context) => context.i18n.internetCriteriaTitle;
+  String title() => Translation.current.internetCriteriaTitle;
 
   @override
-  List<String> labels(BuildContext context) => [
-        context.i18n.internetCriteriaLabel1,
-        context.i18n.internetCriteriaLabel2,
-        context.i18n.internetCriteriaLabel3,
+  List<String> labels() => [
+        Translation.current.internetCriteriaLabel1,
+        Translation.current.internetCriteriaLabel2,
+        Translation.current.internetCriteriaLabel3,
       ];
 
   @override
   double co2EqTonsPerYear() => 0.1 + currentValue * 0.25; // Based on Carbonalyser extension's results
 
   @override
-  String? advice(BuildContext context) {
+  String? advice() {
     if (co2EqTonsPerYear() > 0.5) {
-      return context.i18n.internetCriteriaAdvice;
+      return Translation.current.internetCriteriaAdvice;
     } else {
       return null;
     }
@@ -963,7 +963,7 @@ class GoodsCategory extends CriteriaCategory {
   }
 
   @override
-  String title(BuildContext context) => context.i18n.goodsAndServicesCategoryTitle;
+  String title() => Translation.current.goodsAndServicesCategoryTitle;
 
   @override
   List<Criteria> getCriteriaList() => [materialGoodsCriteria, savingsCriteria, waterCriteria, internetCriteria];

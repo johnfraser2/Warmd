@@ -26,7 +26,6 @@ dependencies:
   freezed: ^0.14.2
   gap: ^2.0.0
   in_app_review: ^2.0.2
-  intl: ^0.17.0
   markup_text: ^0.3.0
   page_indicator: ^0.4.1
   provider: ^5.0.0
@@ -43,9 +42,16 @@ dev_dependencies:
     sdk: flutter
   build_runner: ^2.0.4
   lint: ^1.5.3
+  intl_utils: ^2.4.0
+
+flutter_intl:
+  enabled: true
+  class_name: Translation
+  main_locale: en
+  arb_dir: lib/translations
+  output_dir: lib/translations/gen
 
 flutter:
-  generate: true # for l10n
   uses-material-design: true
   assets:
     - assets/

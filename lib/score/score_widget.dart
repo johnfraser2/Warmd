@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/states.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 const _levelColors = [
   Color(0xFF00A31D),
@@ -60,7 +61,7 @@ class _ScoreWidgetState extends State<ScoreWidget> {
                         ?.copyWith(color: _scoreRatioToColor(scoreRatio), fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: co2EqTonsPerMonth < 1 ? context.i18n.scoreKgUnit : context.i18n.scoreTonsUnit,
+                    text: co2EqTonsPerMonth < 1 ? Translation.current.scoreKgUnit : Translation.current.scoreTonsUnit,
                     style: context.textTheme.headline6?.copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
                 ],

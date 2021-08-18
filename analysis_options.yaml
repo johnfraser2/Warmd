@@ -11,5 +11,7 @@ analyzer:
     implicit-dynamic: false
   exclude:
     - build/**
+    - lib/gen/**
+    - lib/translations/gen/**
     - "**/*.g.dart"
     - "**/*.freezed.dart"

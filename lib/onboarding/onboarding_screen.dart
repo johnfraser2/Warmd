@@ -4,8 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:page_indicator/page_indicator.dart';
 import 'package:warmd/common/delayable_state.dart';
-import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/widgets.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 class OnboardingScreen extends StatefulWidget {
   final Function(BuildContext) onOnboardingFinished;
@@ -53,12 +53,12 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                                 height: MediaQuery.of(context).size.height / 4,
                               ),
                               Text(
-                                context.i18n.onboardingStep1Title,
+                                Translation.current.onboardingStep1Title,
                                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                               ),
                               const Gap(32),
                               Text(
-                                context.i18n.onboardingStep1Description,
+                                Translation.current.onboardingStep1Description,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.grey[600], fontSize: 18),
                               ),
@@ -78,12 +78,12 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                                 height: MediaQuery.of(context).size.height / 4,
                               ),
                               Text(
-                                context.i18n.onboardingStep2Title,
+                                Translation.current.onboardingStep2Title,
                                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                               ),
                               const Gap(32),
                               Text(
-                                context.i18n.onboardingStep2Description,
+                                Translation.current.onboardingStep2Description,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.grey[600], fontSize: 18),
                               ),
@@ -127,7 +127,7 @@ class _OnboardingScreenState extends DelayableState<OnboardingScreen> {
                 onPressed: () {
                   widget.onOnboardingFinished(context);
                 },
-                child: Text(context.i18n.onboardingAction),
+                child: Text(Translation.current.onboardingAction),
               ),
             ),
             const Gap(64),

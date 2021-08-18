@@ -1,3 +1,3 @@
 files:
-  - source: /lib/l10n/app_en.arb
-    translation: /lib/l10n/app_%two_letters_code%.arb
+  - source: /lib/translations/intl_en.arb
+    translation: /lib/translations/intl_%two_letters_code%.arb

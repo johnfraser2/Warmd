@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 import 'extensions.dart';
 
@@ -14,7 +15,7 @@ Widget buildBackButton(BuildContext context) {
   return TextButton(
     onPressed: () => Navigator.pop(context),
     child: Text(
-      context.i18n.back,
+      Translation.current.back,
       style: context.textTheme.subtitle1?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
     ),
   );

@@ -4,9 +4,9 @@ import 'dart:ui';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 import 'categories/categories_screens.dart';
 import 'common/states.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Warmd',
       localizationsDelegates: const [
-        AppLocalizations.delegate,
+        Translation.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

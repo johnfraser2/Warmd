@@ -10,6 +10,7 @@ import 'package:warmd/common/blue_card.dart';
 import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/screen_template.dart';
 import 'package:warmd/common/widgets.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class AboutScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            context.i18n.aboutProjectTitle,
+            Translation.current.aboutProjectTitle,
             style: context.textTheme.subtitle1?.copyWith(
               color: warmdDarkBlue,
               fontWeight: FontWeight.bold,
@@ -51,7 +52,7 @@ class AboutScreen extends StatelessWidget {
           ),
           const Gap(16),
           MarkupText(
-            context.i18n.aboutProjectDescription,
+            Translation.current.aboutProjectDescription,
             style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           const Gap(16),
@@ -70,7 +71,7 @@ class AboutScreen extends StatelessWidget {
                 }
               },
               child: Text(
-                context.i18n.aboutRateIt,
+                Translation.current.aboutRateIt,
                 textAlign: TextAlign.right,
                 style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
               ),
@@ -87,7 +88,7 @@ class AboutScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            context.i18n.aboutSourcesTitle,
+            Translation.current.aboutSourcesTitle,
             style: context.textTheme.subtitle1?.copyWith(
               color: warmdDarkBlue,
               fontWeight: FontWeight.bold,
@@ -95,7 +96,7 @@ class AboutScreen extends StatelessWidget {
           ),
           const Gap(16),
           MarkupText(
-            context.i18n.aboutSourcesDescription,
+            Translation.current.aboutSourcesDescription,
             style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],

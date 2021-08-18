@@ -12,6 +12,7 @@ import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/screen_template.dart';
 import 'package:warmd/common/states.dart';
 import 'package:warmd/common/widgets.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 class AdvicesScreen extends StatelessWidget {
   final Function(BuildContext) onSeeClimateChangeTapped;
@@ -32,7 +33,7 @@ class AdvicesScreen extends StatelessWidget {
           ),
           const Gap(48),
           Text(
-            context.i18n.advicesTitle,
+            Translation.current.advicesTitle,
             textAlign: TextAlign.center,
             style: context.textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
           ),
@@ -40,7 +41,7 @@ class AdvicesScreen extends StatelessWidget {
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 350),
             child: Text(
-              context.i18n.advicesExplanation,
+              Translation.current.advicesExplanation,
               textAlign: TextAlign.center,
               style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
             ),
@@ -65,7 +66,7 @@ class AdvicesScreen extends StatelessWidget {
     final orderedAdvices = <Criteria>[];
     for (final cat in state.categories) {
       for (final crit in cat.getCriteriaList()) {
-        if (crit.advice(context) != null) orderedAdvices.add(crit);
+        if (crit.advice() != null) orderedAdvices.add(crit);
       }
     }
 
@@ -79,15 +80,15 @@ class AdvicesScreen extends StatelessWidget {
       context: context,
       state: state,
       position: 0,
-      title: context.i18n.advicesPoliticsCategory,
+      title: Translation.current.advicesPoliticsCategory,
       iconName: 'vote',
-      description: context.i18n.politicalAdvice,
+      description: Translation.current.politicalAdvice,
       child: Align(
         alignment: Alignment.topRight,
         child: TextButton(
           onPressed: () => onSeeClimateChangeTapped(context),
           child: Text(
-            context.i18n.advicesSeeClimateChange,
+            Translation.current.advicesSeeClimateChange,
             textAlign: TextAlign.right,
             style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
           ),
@@ -111,7 +112,7 @@ class AdvicesScreen extends StatelessWidget {
             child: TextButton(
               onPressed: () => _showLinksBottomSheet(context, links),
               child: Text(
-                context.i18n.advicesSeeLinks,
+                Translation.current.advicesSeeLinks,
                 textAlign: TextAlign.right,
                 style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
               ),
@@ -124,9 +125,9 @@ class AdvicesScreen extends StatelessWidget {
       state: state,
       position: position + 1,
       co2EqTonsPerYear: crit.co2EqTonsPerYear(),
-      title: crit.title(context),
+      title: crit.title(),
       iconName: crit.key,
-      description: crit.advice(context)!,
+      description: crit.advice()!,
       child: linksWidget,
     );
   }
@@ -192,8 +193,8 @@ class AdvicesScreen extends StatelessWidget {
             const Gap(12),
             Text(
               co2EqTonsPerMonth > 1
-                  ? context.i18n.co2EqPercentTonsValue(percentValue, co2EqTonsPerMonth.toShortString(context, 1))
-                  : context.i18n.co2EqPercentKgValue(percentValue, (co2EqTonsPerMonth * 1000).round().toString()),
+                  ? Translation.current.co2EqPercentTonsValue(percentValue, co2EqTonsPerMonth.toShortString(context, 1))
+                  : Translation.current.co2EqPercentKgValue(percentValue, (co2EqTonsPerMonth * 1000).round().toString()),
               style: context.textTheme.subtitle2?.copyWith(
                 color: warmdDarkBlue,
               ),
@@ -215,7 +216,7 @@ class AdvicesScreen extends StatelessWidget {
   Widget _buildOtherPollutionTypesCard(BuildContext context) {
     return BlueCard(
       child: Text(
-        context.i18n.advicesOtherPolutionTypes,
+        Translation.current.advicesOtherPolutionTypes,
         style: context.textTheme.bodyText2,
       ),
     );
@@ -252,7 +253,7 @@ class AdvicesScreen extends StatelessWidget {
                 ),
                 const Gap(24),
                 MarkupText(
-                  context.i18n.advicesLinksExplanation,
+                  Translation.current.advicesLinksExplanation,
                   style: context.textTheme.caption?.copyWith(color: warmdDarkBlue),
                 ),
               ],

@@ -9,6 +9,7 @@ import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/states.dart';
 import 'package:warmd/common/steps_progress_indicator.dart';
 import 'package:warmd/common/widgets.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 class CountryScreen extends StatelessWidget {
   final Function(BuildContext) onCountrySelected;
@@ -20,7 +21,7 @@ class CountryScreen extends StatelessWidget {
     final historyState = context.watch<HistoryState>();
     final state = context.watch<CriteriaState>();
     final c = state.generalCategory.countryCriteria;
-    final labels = c.labels(context);
+    final labels = c.labels();
 
     return Scaffold(
       resizeToAvoidBottomInset: false, // Usefull to have a better display when the keyboard is up
@@ -46,12 +47,12 @@ class CountryScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      context.i18n.countrySelectionTitle,
+                      Translation.current.countrySelectionTitle,
                       style: context.textTheme.headline6?.copyWith(color: warmdBlue, fontWeight: FontWeight.bold),
                     ),
                     const Gap(32),
                     Text(
-                      context.i18n.countrySelectionQuestion,
+                      Translation.current.countrySelectionQuestion,
                       textAlign: TextAlign.center,
                       style: context.textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
                     ),
@@ -83,7 +84,7 @@ class CountryScreen extends StatelessWidget {
                     ),
                     const Gap(32),
                     Text(
-                      context.i18n.countrySelectionExplanation,
+                      Translation.current.countrySelectionExplanation,
                       style: context.textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
                     ),
                   ],
@@ -95,7 +96,7 @@ class CountryScreen extends StatelessWidget {
                 onPressed: () {
                   onCountrySelected(context);
                 },
-                child: Text(context.i18n.continueAction),
+                child: Text(Translation.current.continueAction),
               ),
             ),
             const Gap(48),

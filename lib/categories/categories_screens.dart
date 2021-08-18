@@ -15,6 +15,7 @@ import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/screen_template.dart';
 import 'package:warmd/common/states.dart';
 import 'package:warmd/common/widgets.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 class UtilitiesCategoryScreen extends StatelessWidget {
   final Function(BuildContext) onContinueTapped;
@@ -100,7 +101,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             ),
             const Gap(16),
             Text(
-              widget.criteriaCategory.title(context),
+              widget.criteriaCategory.title(),
               style: context.textTheme.headline5?.copyWith(color: warmdGreen, fontWeight: FontWeight.bold),
             ),
             const Gap(32),
@@ -111,7 +112,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                 _buildCriteria(context, state, crit),
             const Gap(32),
             Text(
-              context.i18n.continueActionExplanation,
+              Translation.current.continueActionExplanation,
               textAlign: TextAlign.center,
               style: context.textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
             ),
@@ -124,7 +125,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
 
                   widget.onContinueTapped(context);
                 },
-                child: Text(context.i18n.continueAction),
+                child: Text(Translation.current.continueAction),
               ),
             ),
             const Gap(48),
@@ -135,7 +136,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
   }
 
   Widget _buildCriteria(BuildContext context, CriteriaState state, Criteria c) {
-    final explanation = c.explanation(context);
+    final explanation = c.explanation();
 
     return BlueCard(
       padding: const EdgeInsets.only(top: 28, bottom: 36),
@@ -148,7 +149,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               children: [
                 Expanded(
                   child: Text(
-                    c.title(context),
+                    c.title(),
                     style: context.textTheme.subtitle1?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -172,14 +173,14 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
               ),
             ),
           const Gap(8),
-          if (c.labels(context) != null)
+          if (c.labels() != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: _buildDropdown(context, c, state),
             )
           else
             _buildSlider(c, context, state),
-          if (c.shortcuts(context) != null)
+          if (c.shortcuts() != null)
             Padding(
               padding: const EdgeInsets.only(top: 12, left: 32, right: 32),
               child: _buildShortcutChips(context, state, c),
@@ -190,7 +191,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
   }
 
   Widget _buildDropdown(BuildContext context, Criteria c, CriteriaState state) {
-    final labels = c.labels(context)!;
+    final labels = c.labels()!;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -273,7 +274,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
     final shouldDisplayOnlyThreeValues =
         valueText2 == valueText1 || valueText2 == valueText3 || valueText4 == valueText3 || valueText4 == valueText5;
 
-    final labels = c.labels(context);
+    final labels = c.labels();
 
     return Column(
       children: [
@@ -289,8 +290,8 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                 : c.currentValue != c.maxValue || c.unit == '%' // We can't go above 100% so we don't display "or more"
                     ? valueWithUnit
                     : c.minValue < 0 // Some values are negatives because more is better (like mpg)
-                        ? context.i18n.valueWithLess(valueWithUnit)
-                        : context.i18n.valueWithMore(valueWithUnit),
+                        ? Translation.current.valueWithLess(valueWithUnit)
+                        : Translation.current.valueWithMore(valueWithUnit),
             value: c.currentValue,
             onChanged: (double value) {
               c.currentValue = value;
@@ -313,7 +314,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
   }
 
   Widget _buildShortcutChips(BuildContext context, CriteriaState state, Criteria c) {
-    final shortcuts = c.shortcuts(context)!;
+    final shortcuts = c.shortcuts()!;
 
     return SizedBox(
       width: double.infinity,

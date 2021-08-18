@@ -20,6 +20,7 @@ import 'package:warmd/common/delayable_state.dart';
 import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/states.dart';
 import 'package:warmd/common/widgets.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 import 'score_widget.dart';
 
@@ -139,7 +140,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 ),
                 const Gap(48),
                 Text(
-                  context.i18n.footprintShareTitle,
+                  Translation.current.footprintShareTitle,
                   textAlign: TextAlign.center,
                   style: context.textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -183,8 +184,8 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
         const Gap(12),
         // Flexible needed to avoid text overflow
         Flexible(
-          child:
-              MarkupText(context.i18n.footprintCarKmEquivalent(distanceForCurrentScore.toInt().toString(), meanCarCriteria.unit)),
+          child: MarkupText(
+              Translation.current.footprintCarKmEquivalent(distanceForCurrentScore.toInt().toString(), meanCarCriteria.unit)),
         ),
       ],
     );
@@ -212,7 +213,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 220),
                       child: Text(
-                        context.i18n.footprintTitle,
+                        Translation.current.footprintTitle,
                         style: context.textTheme.headline5?.copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -224,10 +225,10 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                             ShareFilesAndScreenshotWidgets().shareScreenshot(
                               hiddenShareWidgetContainer,
                               1024,
-                              context.i18n.footprintShareTitle,
+                              Translation.current.footprintShareTitle,
                               'warmd_carbon_footprint.png',
                               'image/png',
-                              text: context.i18n.footprintShareLink,
+                              text: Translation.current.footprintShareLink,
                             );
                           }),
                     ),
@@ -245,7 +246,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                       child: TextButton(
                         onPressed: () => widget.onSeeClimateChangeTapped(context),
                         child: Text(
-                          context.i18n.footprintWarning,
+                          Translation.current.footprintWarning,
                           textAlign: TextAlign.center,
                           style: context.textTheme.caption?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                         ),
@@ -283,7 +284,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                             const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
                       ),
                       child: Text(
-                        context.i18n.seeAdvices,
+                        Translation.current.seeAdvices,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -308,7 +309,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
     return Column(
       children: [
         Text(
-          context.i18n.footprintRepartitionTitle,
+          Translation.current.footprintRepartitionTitle,
           style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
         ),
         const Gap(24),
@@ -328,7 +329,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                         .map((cat) => PieChartSectionData(
                               color: colors[cat.runtimeType],
                               value: cat.co2EqTonsPerYear(),
-                              title: context.i18n.co2EqKgValue(((cat.co2EqTonsPerYear() / 12) * 1000).round().toString()),
+                              title: Translation.current.co2EqKgValue(((cat.co2EqTonsPerYear() / 12) * 1000).round().toString()),
                               radius: 90,
                               titleStyle: context.textTheme.caption?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
                               badgeWidget: _PieBadge(
@@ -351,7 +352,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                   children: sortedCategories
                       .map((cat) => _PieIndicator(
                             color: colors[cat.runtimeType]!,
-                            text: cat.title(context),
+                            text: cat.title(),
                             textColor: warmdDarkBlue,
                           ))
                       .toList(),
@@ -362,13 +363,13 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
         ),
         const Gap(64),
         Text(
-          context.i18n.footprintEvolutionTitle,
+          Translation.current.footprintEvolutionTitle,
           style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold),
         ),
         Padding(
           padding: const EdgeInsets.all(32),
           child: Text(
-            context.i18n.footprintEvolutionExplanation,
+            Translation.current.footprintEvolutionExplanation,
             textAlign: TextAlign.start,
             style: context.textTheme.subtitle2?.copyWith(color: warmdDarkBlue),
           ),
@@ -398,7 +399,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
         child: Row(
           children: [
             Expanded(
-              child: Text(context.i18n.redoQuestionnaireReminder),
+              child: Text(Translation.current.redoQuestionnaireReminder),
             ),
             const Gap(8),
             Switch.adaptive(
@@ -439,7 +440,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                 padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
               ),
           child: Text(
-            context.i18n.redoQuestionnaire,
+            Translation.current.redoQuestionnaire,
             textAlign: TextAlign.center,
             style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
           ),
@@ -462,7 +463,7 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
             children: [
               Expanded(
                 child: Text(
-                  context.i18n.seeAbout,
+                  Translation.current.seeAbout,
                   style: context.textTheme.subtitle2?.copyWith(
                     color: warmdDarkBlue,
                     fontWeight: FontWeight.bold,
@@ -495,8 +496,8 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
 
     _localNotificationsPlugin.zonedSchedule(
       0,
-      context.i18n.reminderNotificationTitle,
-      context.i18n.reminderNotificationDescription,
+      Translation.current.reminderNotificationTitle,
+      Translation.current.reminderNotificationDescription,
       TZDateTime.now(getLocation(currentTimeZone)).add(31.days),
       const NotificationDetails(
           android: AndroidNotificationDetails(
@@ -714,7 +715,7 @@ class _FootprintChart extends StatelessWidget {
               axisTitleData: FlAxisTitleData(
                 leftTitle: AxisTitle(
                   showTitle: true,
-                  titleText: context.i18n.footprintEvolutionTonsAxis,
+                  titleText: Translation.current.footprintEvolutionTonsAxis,
                   textStyle: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
                 ),
               ),
@@ -728,8 +729,8 @@ class _FootprintChart extends StatelessWidget {
                 onTap: () {
                   showOkCancelAlertDialog(
                     context: context,
-                    title: context.i18n.resetFootprintHistoryQuestion,
-                    message: context.i18n.resetFootprintHistoryConfirmation,
+                    title: Translation.current.resetFootprintHistoryQuestion,
+                    message: Translation.current.resetFootprintHistoryConfirmation,
                   ).then((result) {
                     if (result == OkCancelResult.ok) {
                       historyState.resetHistory();

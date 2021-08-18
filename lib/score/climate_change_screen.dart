@@ -7,6 +7,7 @@ import 'package:warmd/common/blue_card.dart';
 import 'package:warmd/common/extensions.dart';
 import 'package:warmd/common/screen_template.dart';
 import 'package:warmd/common/widgets.dart';
+import 'package:warmd/translations/gen/l10n.dart';
 
 class ClimateChangeScreen extends StatelessWidget {
   const ClimateChangeScreen({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           const Gap(48),
           Text(
-            context.i18n.climateChangeTitle,
+            Translation.current.climateChangeTitle,
             textAlign: TextAlign.center,
             style: context.textTheme.headline5?.copyWith(color: warmdDarkBlue, fontWeight: FontWeight.w700),
           ),
@@ -47,7 +48,7 @@ class ClimateChangeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            context.i18n.consequencesTitle,
+            Translation.current.consequencesTitle,
             style: context.textTheme.subtitle1?.copyWith(
               color: warmdDarkBlue,
               fontWeight: FontWeight.bold,
@@ -55,7 +56,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           const Gap(16),
           MarkupText(
-            context.i18n.consequencesPart1,
+            Translation.current.consequencesPart1,
             style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           const Gap(16),
@@ -67,7 +68,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           const Gap(16),
           MarkupText(
-            context.i18n.consequencesPart2,
+            Translation.current.consequencesPart2,
             style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
@@ -81,7 +82,7 @@ class ClimateChangeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            context.i18n.globalObjectivesTitle,
+            Translation.current.globalObjectivesTitle,
             style: context.textTheme.subtitle1?.copyWith(
               color: warmdDarkBlue,
               fontWeight: FontWeight.bold,
@@ -89,7 +90,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           const Gap(16),
           MarkupText(
-            context.i18n.globalObjectivesPart1,
+            Translation.current.globalObjectivesPart1,
             style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           const Gap(16),
@@ -101,7 +102,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           const Gap(16),
           MarkupText(
-            context.i18n.globalObjectivesPart2,
+            Translation.current.globalObjectivesPart2,
             style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
@@ -115,7 +116,7 @@ class ClimateChangeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            context.i18n.globalActionsTitle,
+            Translation.current.globalActionsTitle,
             style: context.textTheme.subtitle1?.copyWith(
               color: warmdDarkBlue,
               fontWeight: FontWeight.bold,
@@ -123,7 +124,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           const Gap(16),
           MarkupText(
-            context.i18n.globalActionsPart1,
+            Translation.current.globalActionsPart1,
             style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
           const Gap(16),
@@ -135,7 +136,7 @@ class ClimateChangeScreen extends StatelessWidget {
           ),
           const Gap(16),
           MarkupText(
-            context.i18n.globalActionsPart2,
+            Translation.current.globalActionsPart2,
             style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
