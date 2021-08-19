@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -101,16 +103,27 @@ class AdvicesScreen extends StatelessWidget {
     final countryCriteria = state.generalCategory.countryCriteria;
 
     final allCountriesLinks = crit.links();
+
     // We merge current country and international links
-    final Map<String, String> links = allCountriesLinks != null
+    final Map<String, Map<String, String>> links = allCountriesLinks != null
         ? ({}..addAll(allCountriesLinks[countryCriteria.getCountryCode()] ?? const {})..addAll(allCountriesLinks[''] ?? const {}))
         : const {};
+
+    // We do not display links for other platforms (ie. we do not display app store links if we are on android)
+    final Map<String, String> linksForCurrentPlatform = {};
+    for (final l in links.entries) {
+      linksForCurrentPlatform[l.key] = l.value.containsKey('all')
+          ? l.value['all']!
+          : Platform.isAndroid
+              ? l.value['android']!
+              : l.value['ios']!;
+    }
 
     final linksWidget = links.isNotEmpty
         ? Align(
             alignment: Alignment.topRight,
             child: TextButton(
-              onPressed: () => _showLinksBottomSheet(context, links),
+              onPressed: () => _showLinksBottomSheet(context, linksForCurrentPlatform),
               child: Text(
                 Translation.current.advicesSeeLinks,
                 textAlign: TextAlign.right,

@@ -29,7 +29,7 @@ abstract class Criteria {
   String? explanation() => null;
   String? advice() => null;
   Map<String, double>? shortcuts() => null;
-  Map<String, Map<String, String>>? links() => null;
+  Map<String, Map<String, Map<String, String>>>? links() => null;
 }
 
 abstract class CriteriaCategory {
@@ -515,12 +515,23 @@ class TravelCategory extends CriteriaCategory {
 
 const _foodLinks = {
   'FR': {
-    'OpenFoodFact scanner': 'https://fr.openfoodfacts.org/application-mobile-open-food-facts',
-    'Karbon scanner': 'https://www.karbon.earth/',
-    'TooGoodToGo Anti-Gaspi': 'https://toogoodtogo.fr/',
-    'Phenix Anti-Gaspi': 'https://phenixapp.page.link/open-app',
-    'Etiquettable': 'https://etiquettable.eco2initiative.com/application/',
-    'Le Guide du Tri': 'https://www.consignesdetri.fr',
+    'Verdure : score carbone': {
+      'android': 'https://play.google.com/store/apps/details?id=net.frju.ecoscore',
+      'ios': 'https://apps.apple.com/app/id1574642934'
+    },
+    'TooGoodToGo : anti-gaspi': {
+      'android': 'https://play.google.com/store/apps/details?id=com.app.tgtg',
+      'ios': 'https://apps.apple.com/app/id1060683933'
+    },
+    'Phenix : anti-gaspi': {'all': 'https://phenixapp.page.link/open-app'},
+    'Etiquettable': {
+      'android': 'https://play.google.com/store/apps/details?id=com.eco2initiative.etiquettable',
+      'ios': 'https://apps.apple.com/app/id1175751699'
+    },
+    'Le Guide du Tri': {
+      'android': 'https://play.google.com/store/apps/details?id=fr.ecoemballage.guidedutri',
+      'ios': 'https://apps.apple.com/app/id485709444'
+    },
   },
 };
 
@@ -559,7 +570,7 @@ class RuminantMeatCriteria extends Criteria {
   }
 
   @override
-  Map<String, Map<String, String>> links() => _foodLinks;
+  Map<String, Map<String, Map<String, String>>> links() => _foodLinks;
 }
 
 class NonRuminantMeatCriteria extends Criteria {
@@ -597,7 +608,7 @@ class NonRuminantMeatCriteria extends Criteria {
   }
 
   @override
-  Map<String, Map<String, String>> links() => _foodLinks;
+  Map<String, Map<String, Map<String, String>>> links() => _foodLinks;
 }
 
 class CheeseCriteria extends Criteria {
@@ -635,7 +646,7 @@ class CheeseCriteria extends Criteria {
   }
 
   @override
-  Map<String, Map<String, String>> links() => _foodLinks;
+  Map<String, Map<String, Map<String, String>>> links() => _foodLinks;
 }
 
 class SnackCriteria extends Criteria {
@@ -670,7 +681,7 @@ class SnackCriteria extends Criteria {
   }
 
   @override
-  Map<String, Map<String, String>> links() => _foodLinks;
+  Map<String, Map<String, Map<String, String>>> links() => _foodLinks;
 }
 
 class OverweightCriteria extends Criteria {
@@ -790,17 +801,32 @@ class MaterialGoodsCriteria extends Criteria {
   }
 
   @override
-  Map<String, Map<String, String>> links() => const {
+  Map<String, Map<String, Map<String, String>>> links() => const {
         'FR': {
-          'BackMarket : produits reconditionnés': 'https://www.backmarket.fr/',
-          'LeBonCoin : petites annonces': 'https://www.leboncoin.fr/',
-          'Vinted : achats de seconde main': 'https://www.vinted.fr/',
-          "Geev : dons d'objets": 'https://www.geev.com/fr',
-          "Emmaüs : dons/achats d'occasions": 'https://www.label-emmaus.co/fr/nos-boutiques/',
-          "Zack : revend/répare/recycle l'électronique": 'https://www.zack.eco/',
-          'Murphy : réparation électroménager': 'https://murfy.fr/',
-          "Bricolib : location d'outils": 'https://www.bricolib.net/',
-          'Le Guide du Tri': 'https://www.consignesdetri.fr',
+          'BackMarket : produits reconditionnés': {
+            'android': 'https://play.google.com/store/apps/details?id=com.backmarket',
+            'ios': 'https://apps.apple.com/app/id1458344336'
+          },
+          'LeBonCoin : petites annonces': {
+            'android': 'https://play.google.com/store/apps/details?id=fr.leboncoin',
+            'ios': 'https://apps.apple.com/app/id484115113'
+          },
+          'Vinted : achats de seconde main': {
+            'android': 'https://play.google.com/store/apps/details?id=fr.vinted',
+            'ios': 'https://apps.apple.com/app/id632064380'
+          },
+          "Geev : dons d'objets": {
+            'android': 'https://play.google.com/store/apps/details?id=fr.geev.application',
+            'ios': 'https://apps.apple.com/app/id1165633060'
+          },
+          "Emmaüs : dons/achats d'occasions": {'all': 'https://www.label-emmaus.co/fr/nos-boutiques/'},
+          "Zack : revend/répare/recycle l'électronique": {'all': 'https://www.zack.eco/'},
+          'Murphy : réparation électroménager': {'all': 'https://murfy.fr/'},
+          "Bricolib : location d'outils": {'all': 'https://www.bricolib.net/'},
+          'Le Guide du Tri': {
+            'android': 'https://play.google.com/store/apps/details?id=fr.ecoemballage.guidedutri',
+            'ios': 'https://apps.apple.com/app/id485709444'
+          },
         },
       };
 }
@@ -852,10 +878,16 @@ class SavingsCriteria extends Criteria {
   }
 
   @override
-  Map<String, Map<String, String>> links() => const {
+  Map<String, Map<String, Map<String, String>>> links() => const {
         'FR': {
-          'Calculateur Rift': 'https://riftapp.fr/',
-          'Banque mobile Helios': 'https://www.helios.do/',
+          'Calculateur Rift': {
+            'android': 'https://play.google.com/store/apps/details?id=co.lita.moreimpact',
+            'ios': 'https://apps.apple.com/app/rift/id1494745935'
+          },
+          'Banque mobile Helios': {
+            'android': 'https://play.google.com/store/apps/details?id=do.helios.app',
+            'ios': 'https://apps.apple.com/app/id1531700317'
+          },
         },
       };
 }
@@ -898,12 +930,14 @@ class WaterCriteria extends Criteria {
   }
 
   @override
-  Map<String, Map<String, String>> links() => const {
+  Map<String, Map<String, Map<String, String>>> links() => const {
         'FR': {
-          "Douchette à réduction d'eau Hansgrohe":
-              'https://www.hansgrohe.fr/articledetail-crometta-douchette-a-main-vario-green-6l-min-26336400',
-          "Mousseurs robinet à réduction d'eau Hansgrohe":
-              'https://www.hansgrohe.fr/articledetail-2-mousseurs-ecosmart-lavabo-et-bidet-sous-blister-13958002',
+          "Douchette à réduction d'eau Hansgrohe": {
+            'all': 'https://www.hansgrohe.fr/articledetail-crometta-douchette-a-main-vario-green-6l-min-26336400'
+          },
+          "Mousseurs robinet à réduction d'eau Hansgrohe": {
+            'all': 'https://www.hansgrohe.fr/articledetail-2-mousseurs-ecosmart-lavabo-et-bidet-sous-blister-13958002'
+          },
         },
       };
 }
@@ -941,12 +975,14 @@ class InternetCriteria extends Criteria {
   }
 
   @override
-  Map<String, Map<String, String>> links() => const {
+  Map<String, Map<String, Map<String, String>>> links() => const {
         // All countries
         '': {
-          'Ecosia': 'https://www.ecosia.org/',
-          'Cleanfox mail cleaner': 'https://www.cleanfox.io/',
-          'Mobile Carbonalyser': 'https://primezone.orange.com/app/Mobile-Carbonalyser/367',
+          'Ecosia': {
+            'android': 'https://play.google.com/store/apps/details?id=com.ecosia.android',
+            'ios': 'https://apps.apple.com/app/id670881887'
+          },
+          'Cleanfox mail cleaner': {'all': 'https://www.cleanfox.io/'},
         },
       };
 }
