@@ -1,5 +1,5 @@
 diff --git a/lib/score/about_screen.dart b/lib/score/about_screen.dart
-index cad1dba..f9f3142 100644
+index 6661ee4..94857c7 100644
 --- a/lib/score/about_screen.dart
 +++ b/lib/score/about_screen.dart
 @@ -1,10 +1,7 @@
@@ -7,13 +7,13 @@ index cad1dba..f9f3142 100644
 -
  import 'package:flutter/cupertino.dart';
  import 'package:flutter/material.dart';
- import 'package:warmd/translations/gen/l10n.dart';
  import 'package:flutter_svg/flutter_svg.dart';
+ import 'package:gap/gap.dart';
 -import 'package:in_app_review/in_app_review.dart';
  import 'package:markup_text/markup_text.dart';
  import 'package:warmd/common/blue_card.dart';
- import 'package:warmd/common/widgets.dart';
-@@ -53,28 +50,6 @@ class AboutScreen extends StatelessWidget {
+ import 'package:warmd/common/extensions.dart';
+@@ -55,28 +52,6 @@ class AboutScreen extends StatelessWidget {
              Translation.current.aboutProjectDescription,
              style: context.textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w300),
            ),
@@ -34,7 +34,7 @@ index cad1dba..f9f3142 100644
 -              },
 -              child: Text(
 -                Translation.current.aboutRateIt,
--                textAlign: TextAlign.center,
+-                textAlign: TextAlign.right,
 -                style: context.textTheme.subtitle2?.copyWith(fontWeight: FontWeight.bold, color: warmdDarkBlue),
 -              ),
 -            ),
