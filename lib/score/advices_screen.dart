@@ -17,9 +17,9 @@ import 'package:warmd/common/widgets.dart';
 import 'package:warmd/translations/gen/l10n.dart';
 
 class AdvicesScreen extends StatelessWidget {
-  final Function(BuildContext) onSeeClimateChangeTapped;
-
   const AdvicesScreen({Key? key, required this.onSeeClimateChangeTapped}) : super(key: key);
+
+  final Function(BuildContext) onSeeClimateChangeTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,9 @@ class AdvicesScreen extends StatelessWidget {
 
     // We merge current country and international links
     final Map<String, Map<String, String>> links = allCountriesLinks != null
-        ? ({}..addAll(allCountriesLinks[countryCriteria.getCountryCode()] ?? const {})..addAll(allCountriesLinks[''] ?? const {}))
+        ? ({}
+          ..addAll(allCountriesLinks[countryCriteria.getCountryCode()] ?? const {})
+          ..addAll(allCountriesLinks[''] ?? const {}))
         : const {};
 
     // We do not display links for other platforms (ie. we do not display app store links if we are on android)
@@ -145,15 +147,16 @@ class AdvicesScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildGenericAdviceCard(
-      {required BuildContext context,
-      required CriteriaState state,
-      required int position,
-      double? co2EqTonsPerYear,
-      required String title,
-      required String iconName,
-      required String description,
-      Widget? child}) {
+  Widget _buildGenericAdviceCard({
+    required BuildContext context,
+    required CriteriaState state,
+    required int position,
+    double? co2EqTonsPerYear,
+    required String title,
+    required String iconName,
+    required String description,
+    Widget? child,
+  }) {
     final percentValue = (100 ~/ (state.co2EqTonsPerYear() / (co2EqTonsPerYear ?? 1))).toString();
     final co2EqTonsPerMonth = (co2EqTonsPerYear ?? 1) / 12;
 
@@ -237,41 +240,42 @@ class AdvicesScreen extends StatelessWidget {
 
   void _showLinksBottomSheet(BuildContext context, Map<String, String> links) {
     showModalBottomSheet<void>(
-        context: context,
-        isScrollControlled: true,
-        builder: (BuildContext context) {
-          return Container(
-            padding: const EdgeInsets.all(32.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Wrap(
-                  spacing: 4,
-                  runSpacing: 4,
-                  children: [
-                    for (MapEntry<String, String> link in links.entries)
-                      ActionChip(
-                        backgroundColor: warmdLightBlue,
-                        shadowColor: Colors.grey[100],
-                        label: Text(
-                          link.key,
-                          style: context.textTheme.bodyText1?.copyWith(color: warmdDarkBlue),
-                        ),
-                        onPressed: () async {
-                          if (await canLaunch(link.value)) launch(link.value);
-                        },
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Wrap(
+                spacing: 4,
+                runSpacing: 4,
+                children: [
+                  for (MapEntry<String, String> link in links.entries)
+                    ActionChip(
+                      backgroundColor: warmdLightBlue,
+                      shadowColor: Colors.grey[100],
+                      label: Text(
+                        link.key,
+                        style: context.textTheme.bodyText1?.copyWith(color: warmdDarkBlue),
                       ),
-                  ],
-                ),
-                const Gap(24),
-                MarkupText(
-                  Translation.current.advicesLinksExplanation,
-                  style: context.textTheme.caption?.copyWith(color: warmdDarkBlue),
-                ),
-              ],
-            ),
-          );
-        });
+                      onPressed: () async {
+                        if (await canLaunch(link.value)) launch(link.value);
+                      },
+                    ),
+                ],
+              ),
+              const Gap(24),
+              MarkupText(
+                Translation.current.advicesLinksExplanation,
+                style: context.textTheme.caption?.copyWith(color: warmdDarkBlue),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

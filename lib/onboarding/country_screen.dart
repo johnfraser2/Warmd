@@ -12,9 +12,9 @@ import 'package:warmd/common/widgets.dart';
 import 'package:warmd/translations/gen/l10n.dart';
 
 class CountryScreen extends StatelessWidget {
-  final Function(BuildContext) onCountrySelected;
-
   const CountryScreen({Key? key, required this.onCountrySelected}) : super(key: key);
+
+  final Function(BuildContext) onCountrySelected;
 
   @override
   Widget build(BuildContext context) {

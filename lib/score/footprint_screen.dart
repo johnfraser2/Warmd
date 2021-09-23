@@ -25,11 +25,6 @@ import 'package:warmd/translations/gen/l10n.dart';
 import 'score_widget.dart';
 
 class FootprintScreen extends StatefulWidget {
-  final Function(BuildContext) onSeeClimateChangeTapped;
-  final Function(BuildContext) onSeeAdvicesTapped;
-  final Function(BuildContext) onRestartTapped;
-  final Function(BuildContext) onSeeAboutTapped;
-
   const FootprintScreen({
     Key? key,
     required this.onSeeClimateChangeTapped,
@@ -37,6 +32,11 @@ class FootprintScreen extends StatefulWidget {
     required this.onRestartTapped,
     required this.onSeeAboutTapped,
   }) : super(key: key);
+
+  final Function(BuildContext) onSeeClimateChangeTapped;
+  final Function(BuildContext) onSeeAdvicesTapped;
+  final Function(BuildContext) onRestartTapped;
+  final Function(BuildContext) onSeeAboutTapped;
 
   @override
   _FootprintScreenState createState() => _FootprintScreenState();
@@ -122,8 +122,12 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
     );
   }
 
-  Widget _buildHiddenShareWidget(GlobalKey<State<StatefulWidget>> hiddenShareWidgetContainer, BuildContext context,
-      List<CriteriaCategory> sortedCategories, CriteriaState state) {
+  Widget _buildHiddenShareWidget(
+    GlobalKey<State<StatefulWidget>> hiddenShareWidgetContainer,
+    BuildContext context,
+    List<CriteriaCategory> sortedCategories,
+    CriteriaState state,
+  ) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 400),
       child: SingleChildScrollView(
@@ -185,14 +189,19 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
         // Flexible needed to avoid text overflow
         Flexible(
           child: MarkupText(
-              Translation.current.footprintCarKmEquivalent(distanceForCurrentScore.toInt().toString(), meanCarCriteria.unit)),
+            Translation.current.footprintCarKmEquivalent(distanceForCurrentScore.toInt().toString(), meanCarCriteria.unit),
+          ),
         ),
       ],
     );
   }
 
   Widget _buildHeader(
-      BuildContext context, List<CriteriaCategory> sortedCategories, CriteriaState state, GlobalKey hiddenShareWidgetContainer) {
+    BuildContext context,
+    List<CriteriaCategory> sortedCategories,
+    CriteriaState state,
+    GlobalKey hiddenShareWidgetContainer,
+  ) {
     return Stack(
       children: [
         Container(
@@ -219,18 +228,19 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                     ),
                     Expanded(
                       child: IconButton(
-                          alignment: Alignment.topRight,
-                          icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
-                          onPressed: () {
-                            ShareFilesAndScreenshotWidgets().shareScreenshot(
-                              hiddenShareWidgetContainer,
-                              1024,
-                              Translation.current.footprintShareTitle,
-                              'warmd_carbon_footprint.png',
-                              'image/png',
-                              text: Translation.current.footprintShareLink,
-                            );
-                          }),
+                        alignment: Alignment.topRight,
+                        icon: Icon(Platform.isIOS ? CupertinoIcons.share : Icons.share),
+                        onPressed: () {
+                          ShareFilesAndScreenshotWidgets().shareScreenshot(
+                            hiddenShareWidgetContainer,
+                            1024,
+                            Translation.current.footprintShareTitle,
+                            'warmd_carbon_footprint.png',
+                            'image/png',
+                            text: Translation.current.footprintShareLink,
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -273,15 +283,20 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                       onPressed: () => widget.onSeeAdvicesTapped(context),
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(warmdGreen),
-                        shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        )),
-                        textStyle: MaterialStateProperty.all<TextStyle>(context.textTheme.bodyText2!.copyWith(
-                          fontWeight: FontWeight.bold,
-                        )),
+                        shape: MaterialStateProperty.all<OutlinedBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        textStyle: MaterialStateProperty.all<TextStyle>(
+                          context.textTheme.bodyText2!.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         minimumSize: MaterialStateProperty.all<Size>(const Size.fromHeight(64)),
                         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                            const EdgeInsets.symmetric(horizontal: 32, vertical: 14)),
+                          const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                        ),
                       ),
                       child: Text(
                         Translation.current.seeAdvices,
@@ -326,19 +341,21 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                     sectionsSpace: 0,
                     centerSpaceRadius: 0,
                     sections: sortedCategories
-                        .map((cat) => PieChartSectionData(
-                              color: colors[cat.runtimeType],
-                              value: cat.co2EqTonsPerYear(),
-                              title: Translation.current.co2EqKgValue(((cat.co2EqTonsPerYear() / 12) * 1000).round().toString()),
-                              radius: 90,
-                              titleStyle: context.textTheme.caption?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
-                              badgeWidget: _PieBadge(
-                                'assets/${cat.key}.svg',
-                                size: 35,
-                                borderColor: colors[cat.runtimeType]!,
-                              ),
-                              badgePositionPercentageOffset: .98,
-                            ))
+                        .map(
+                          (cat) => PieChartSectionData(
+                            color: colors[cat.runtimeType],
+                            value: cat.co2EqTonsPerYear(),
+                            title: Translation.current.co2EqKgValue(((cat.co2EqTonsPerYear() / 12) * 1000).round().toString()),
+                            radius: 90,
+                            titleStyle: context.textTheme.caption?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+                            badgeWidget: _PieBadge(
+                              'assets/${cat.key}.svg',
+                              size: 35,
+                              borderColor: colors[cat.runtimeType]!,
+                            ),
+                            badgePositionPercentageOffset: .98,
+                          ),
+                        )
                         .toList(),
                   ),
                 ),
@@ -350,11 +367,13 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: sortedCategories
-                      .map((cat) => _PieIndicator(
-                            color: colors[cat.runtimeType]!,
-                            text: cat.title(),
-                            textColor: warmdDarkBlue,
-                          ))
+                      .map(
+                        (cat) => _PieIndicator(
+                          color: colors[cat.runtimeType]!,
+                          text: cat.title(),
+                          textColor: warmdDarkBlue,
+                        ),
+                      )
                       .toList(),
                 ),
               ),
@@ -403,20 +422,21 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
             ),
             const Gap(8),
             Switch.adaptive(
-                value: historyState.isReminderEnable,
-                onChanged: (bool newValue) {
-                  historyState.isReminderEnable = newValue;
+              value: historyState.isReminderEnable,
+              onChanged: (bool newValue) {
+                historyState.isReminderEnable = newValue;
 
-                  _localNotificationsPlugin
-                          .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
-                          ?.requestPermissions(
-                            alert: true,
-                            badge: true,
-                            sound: true,
-                          )
-                          .then((value) => setReminderEnable(isOptionEnabled: newValue)) ??
-                      setReminderEnable(isOptionEnabled: newValue);
-                }),
+                _localNotificationsPlugin
+                        .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
+                        ?.requestPermissions(
+                          alert: true,
+                          badge: true,
+                          sound: true,
+                        )
+                        .then((value) => setReminderEnable(isOptionEnabled: newValue)) ??
+                    setReminderEnable(isOptionEnabled: newValue);
+              },
+            ),
           ],
         ),
       ),
@@ -500,12 +520,13 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
       Translation.current.reminderNotificationDescription,
       TZDateTime.now(getLocation(currentTimeZone)).add(31.days),
       const NotificationDetails(
-          android: AndroidNotificationDetails(
-            'reminderChannelId',
-            'Carbon footprint reminder',
-            'Notifications to reminds you to calculate your new carbon footprint',
-          ),
-          iOS: IOSNotificationDetails()),
+        android: AndroidNotificationDetails(
+          'reminderChannelId',
+          'Carbon footprint reminder',
+          'Notifications to reminds you to calculate your new carbon footprint',
+        ),
+        iOS: IOSNotificationDetails(),
+      ),
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
@@ -513,16 +534,16 @@ class _FootprintScreenState extends DelayableState<FootprintScreen> {
 }
 
 class _PieBadge extends StatelessWidget {
-  final String svgAsset;
-  final double size;
-  final Color borderColor;
-
   const _PieBadge(
     this.svgAsset, {
     Key? key,
     required this.size,
     required this.borderColor,
   }) : super(key: key);
+
+  final String svgAsset;
+  final double size;
+  final Color borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -556,11 +577,6 @@ class _PieBadge extends StatelessWidget {
 }
 
 class _PieIndicator extends StatelessWidget {
-  final Color color;
-  final String text;
-  final double size;
-  final Color textColor;
-
   const _PieIndicator({
     Key? key,
     required this.color,
@@ -568,6 +584,11 @@ class _PieIndicator extends StatelessWidget {
     this.size = 16,
     this.textColor = const Color(0xff505050),
   }) : super(key: key);
+
+  final Color color;
+  final String text;
+  final double size;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -638,7 +659,6 @@ class _FootprintChart extends StatelessWidget {
                 touchTooltipData: LineTouchTooltipData(
                   tooltipBgColor: Colors.white.withOpacity(0.9),
                 ),
-                touchCallback: (LineTouchResponse touchResponse) {},
                 handleBuiltInTouches: true,
               ),
               gridData: FlGridData(
@@ -660,6 +680,7 @@ class _FootprintChart extends StatelessWidget {
                 ),
               ),
               titlesData: FlTitlesData(
+                topTitles: SideTitles(showTitles: false),
                 bottomTitles: SideTitles(
                   showTitles: true,
                   getTitles: (value) {
@@ -672,7 +693,7 @@ class _FootprintChart extends StatelessWidget {
                     }
                     return '';
                   },
-                  getTextStyles: (value) => context.textTheme.caption!.copyWith(color: warmdDarkBlue),
+                  getTextStyles: (context, value) => context.textTheme.caption?.copyWith(color: warmdDarkBlue),
                 ),
                 leftTitles: SideTitles(
                   showTitles: true,
@@ -682,8 +703,9 @@ class _FootprintChart extends StatelessWidget {
                     }
                     return '';
                   },
-                  getTextStyles: (value) => context.textTheme.caption!.copyWith(color: warmdDarkBlue),
+                  getTextStyles: (context, value) => context.textTheme.caption?.copyWith(color: warmdDarkBlue),
                 ),
+                rightTitles: SideTitles(showTitles: false),
               ),
               borderData: FlBorderData(
                 show: true,
@@ -814,9 +836,12 @@ class _FootprintChart extends StatelessWidget {
       dotData: FlDotData(
         show: false,
       ),
-      belowBarData: BarAreaData(show: true, colors: [
-        warmdGreen.withOpacity(.15),
-      ]),
+      belowBarData: BarAreaData(
+        show: true,
+        colors: [
+          warmdGreen.withOpacity(.15),
+        ],
+      ),
     );
   }
 

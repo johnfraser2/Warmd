@@ -18,9 +18,9 @@ const _levelColors = [
 Color _scoreRatioToColor(double scoreRatio) => _levelColors[(5 * scoreRatio).round()];
 
 class ScoreWidget extends StatefulWidget {
-  final CriteriaState state;
-
   const ScoreWidget(this.state);
+
+  final CriteriaState state;
 
   @override
   _ScoreWidgetState createState() => _ScoreWidgetState();
@@ -75,9 +75,9 @@ class _ScoreWidgetState extends State<ScoreWidget> {
 }
 
 class _ScoreArcPainter extends CustomPainter {
-  final double scoreRatio;
-
   const _ScoreArcPainter(this.scoreRatio);
+
+  final double scoreRatio;
 
   @override
   void paint(Canvas canvas, Size size) {

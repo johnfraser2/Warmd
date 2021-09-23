@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'widgets.dart';
 
 class BlueCard extends StatelessWidget {
+  const BlueCard({Key? key, required this.child, this.padding = const EdgeInsets.all(32)}) : super(key: key);
+
   final Widget child;
   final EdgeInsetsGeometry padding;
-
-  const BlueCard({Key? key, required this.child, this.padding = const EdgeInsets.all(32)}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

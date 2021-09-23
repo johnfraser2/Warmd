@@ -23,6 +23,10 @@ abstract class NavState with _$NavState {
 }
 
 class CriteriaState with ChangeNotifier {
+  CriteriaState() {
+    _loadState();
+  }
+
   final generalCategory = GeneralCategory();
   late final utilitiesCategory = UtilitiesCategory(generalCategory.countryCriteria);
   late final travelCategory = TravelCategory(generalCategory.countryCriteria);
@@ -36,10 +40,6 @@ class CriteriaState with ChangeNotifier {
     foodCategory,
     goodsCategory
   ];
-
-  CriteriaState() {
-    _loadState();
-  }
 
   double co2EqTonsPerYear() => categories.map((cat) => cat.co2EqTonsPerYear()).reduce((a, b) => a + b);
 
@@ -71,6 +71,10 @@ class CriteriaState with ChangeNotifier {
 }
 
 class HistoryState with ChangeNotifier {
+  HistoryState() {
+    _loadState();
+  }
+
   static const _improvementPercentKey = 'IMPROVEMENT_PERCENT_KEY';
   int _improvementPercent = 6;
   int get improvementPercent => _improvementPercent;
@@ -124,10 +128,6 @@ class HistoryState with ChangeNotifier {
     SharedPreferences.getInstance().then((prefs) {
       prefs.setBool(_isReminderEnabledKey, _isReminderEnabled);
     });
-  }
-
-  HistoryState() {
-    _loadState();
   }
 
   Future<void> _loadState() async {

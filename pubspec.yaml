@@ -8,30 +8,42 @@ publish_to: "none"
 version: 1.4.3+31
 
 environment:
-  sdk: ">=2.13.0 <3.0.0"
+  sdk: ">=2.14.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+
+  # misc
+  provider: ^6.0.0
+  dartx: ^0.7.1
+  flow_builder: 0.0.1-dev.9 # above versions (up to 0.0.4) are buggy on android
+  freezed: ^0.14.2
+  freezed_annotation: ^0.14.2
+
+  # DB
+  shared_preferences: ^2.0.6
+
+  # UI
   adaptive_dialog: ^1.0.0
   cupertino_icons: ^1.0.3
-  dartx: ^0.7.1
-  fl_chart: ^0.36.1
-  flow_builder: 0.0.1-dev.9 # above versions (up to 0.0.4) are buggy on android
-  flutter_local_notifications: ^8.0.0
-  flutter_native_timezone: ^2.0.0
+  fl_chart: ^0.40.0
   flutter_svg: ^0.22.0
-  freezed: ^0.14.2
   gap: ^2.0.0
-  in_app_review: ^2.0.2
   markup_text: ^0.3.0
   page_indicator: ^0.4.1
-  provider: ^5.0.0
   search_choices: ^2.0.3
   share_files_and_screenshot_widgets: ^1.0.3
-  shared_preferences: ^2.0.6
+  intl: ^0.17.0
+
+  # system integration
+  in_app_review: ^2.0.2
+  flutter_local_notifications: ^8.0.0
+  flutter_native_timezone: ^2.0.0
+  timezone: ^0.8.0
+  url_launcher: ^6.0.3
 
 #dependency_overrides:
 #  path_provider: ^2.0.1 # for share_files_and_screenshot_widgets to be OK until they provide a nullsafety version
@@ -41,7 +53,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.0.4
-  lint: ^1.5.3
+  lint: ^1.7.2
   intl_utils: ^2.4.0
 
 flutter_intl:

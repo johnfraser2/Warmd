@@ -18,9 +18,9 @@ import 'package:warmd/common/widgets.dart';
 import 'package:warmd/translations/gen/l10n.dart';
 
 class UtilitiesCategoryScreen extends StatelessWidget {
-  final Function(BuildContext) onContinueTapped;
-
   const UtilitiesCategoryScreen({Key? key, required this.onContinueTapped}) : super(key: key);
+
+  final Function(BuildContext) onContinueTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +31,9 @@ class UtilitiesCategoryScreen extends StatelessWidget {
 }
 
 class TravelCategoryScreen extends StatelessWidget {
-  final Function(BuildContext) onContinueTapped;
-
   const TravelCategoryScreen({Key? key, required this.onContinueTapped}) : super(key: key);
+
+  final Function(BuildContext) onContinueTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +44,9 @@ class TravelCategoryScreen extends StatelessWidget {
 }
 
 class FoodCategoryScreen extends StatelessWidget {
-  final Function(BuildContext) onContinueTapped;
-
   const FoodCategoryScreen({Key? key, required this.onContinueTapped}) : super(key: key);
+
+  final Function(BuildContext) onContinueTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +57,9 @@ class FoodCategoryScreen extends StatelessWidget {
 }
 
 class GoodsCategoryScreen extends StatelessWidget {
-  final Function(BuildContext) onContinueTapped;
-
   const GoodsCategoryScreen({Key? key, required this.onContinueTapped}) : super(key: key);
+
+  final Function(BuildContext) onContinueTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -70,12 +70,12 @@ class GoodsCategoryScreen extends StatelessWidget {
 }
 
 class _CriteriasScreen extends StatefulWidget {
+  const _CriteriasScreen({Key? key, required this.criteriaCategory, required this.progressValue, required this.onContinueTapped})
+      : super(key: key);
+
   final CriteriaCategory criteriaCategory;
   final double progressValue;
   final Function(BuildContext) onContinueTapped;
-
-  const _CriteriasScreen({Key? key, required this.criteriaCategory, required this.progressValue, required this.onContinueTapped})
-      : super(key: key);
 
   @override
   _CriteriasScreenState createState() => _CriteriasScreenState();
@@ -229,7 +229,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                         label,
                         style: context.textTheme.bodyText2?.copyWith(color: _getDropdownTextColor(c, index)),
                       ),
-                    ))
+                    ),)
                 .toList(),
           ),
         ),
@@ -251,7 +251,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
 
   Widget _buildSlider(Criteria c, BuildContext context, CriteriaState state) {
     final unit = c.unit != null ? ' ${c.unit}' : '';
-    final valueWithUnit = NumberFormat.decimalPattern().format(c.currentValue.abs()).toString() + unit;
+    final valueWithUnit = NumberFormat.decimalPattern().format(c.currentValue.abs()) + unit;
 
     const valueTextStyle = TextStyle(color: warmdDarkBlue);
 
@@ -306,7 +306,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
             Expanded(child: Center(child: Text(valueText3, style: valueTextStyle))),
             if (!shouldDisplayOnlyThreeValues) Expanded(child: Center(child: Text(valueText4, style: valueTextStyle))),
             Expanded(
-                child: Center(child: Text(valueText5 + (c.minValue < 0 || c.unit == '%' ? '' : '+'), style: valueTextStyle))),
+                child: Center(child: Text(valueText5 + (c.minValue < 0 || c.unit == '%' ? '' : '+'), style: valueTextStyle)),),
           ],
         )
       ],
@@ -333,7 +333,7 @@ class _CriteriasScreenState extends DelayableState<_CriteriasScreen> {
                   c.currentValue = entry.value;
                   state.persist(c);
                 },
-              ))
+              ),)
         ],
       ),
     );

@@ -5,9 +5,9 @@ import 'package:flutter_svg/svg.dart';
 import 'common/delayable_state.dart';
 
 class SplashScreen extends StatefulWidget {
-  final Function(BuildContext) onFinished;
-
   const SplashScreen({Key? key, required this.onFinished}) : super(key: key);
+
+  final Function(BuildContext) onFinished;
 
   @override
   _SplashScreenState createState() => _SplashScreenState();

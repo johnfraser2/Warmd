@@ -24,11 +24,13 @@ void main() {
   runApp(MyApp());
 
   // Current design does not fit really well with the status bar, so it is hidden for now
-  SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.white70,
-    statusBarIconBrightness: Brightness.dark,
-  ));
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.white70,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
 
   // Block rotation on small screens (smartphones) since current UI is not always adapted to small height
   final windowSize = MediaQueryData.fromWindow(window).size;
@@ -68,14 +70,18 @@ class MyApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(warmdRed),
-            shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(32),
-            )),
-            textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(
-              fontFamily: 'VarelaRound',
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            )),
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32),
+              ),
+            ),
+            textStyle: MaterialStateProperty.all<TextStyle>(
+              const TextStyle(
+                fontFamily: 'VarelaRound',
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             elevation: MaterialStateProperty.all<double>(0),
             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 72, vertical: 14)),
           ),
@@ -112,11 +118,12 @@ class MyApp extends StatelessWidget {
                   if (historyState.scores!.isEmpty && navState.onboardingStepsNum == 1)
                     MaterialPage<WelcomeScreen>(
                       child: WelcomeScreen(
-                        onStartSelected: (context) => context.navUpdate((navState) => navState.copyWith(
-                              onboardingStepsNum:
-                                  navState.onboardingStepsNum + 1, // Will remove all onboarding screens from stack
-                              questionnaireStepsNum: 1, // We start the questionnaire
-                            )),
+                        onStartSelected: (context) => context.navUpdate(
+                          (navState) => navState.copyWith(
+                            onboardingStepsNum: navState.onboardingStepsNum + 1, // Will remove all onboarding screens from stack
+                            questionnaireStepsNum: 1, // We start the questionnaire
+                          ),
+                        ),
                       ),
                     ),
                   if (historyState.scores!.isNotEmpty)
@@ -150,28 +157,32 @@ class MyApp extends StatelessWidget {
                     MaterialPage<CountryScreen>(
                       child: CountryScreen(
                         onCountrySelected: (context) => context.navUpdate(
-                            (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                          (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1),
+                        ),
                       ),
                     ),
                   if (navState.questionnaireStepsNum >= 2)
                     MaterialPage<UtilitiesCategoryScreen>(
                       child: UtilitiesCategoryScreen(
                         onContinueTapped: (context) => context.navUpdate(
-                            (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                          (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1),
+                        ),
                       ),
                     ),
                   if (navState.questionnaireStepsNum >= 3)
                     MaterialPage<TravelCategoryScreen>(
                       child: TravelCategoryScreen(
                         onContinueTapped: (context) => context.navUpdate(
-                            (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                          (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1),
+                        ),
                       ),
                     ),
                   if (navState.questionnaireStepsNum >= 4)
                     MaterialPage<FoodCategoryScreen>(
                       child: FoodCategoryScreen(
                         onContinueTapped: (context) => context.navUpdate(
-                            (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1)),
+                          (navState) => navState.copyWith(questionnaireStepsNum: navState.questionnaireStepsNum + 1),
+                        ),
                       ),
                     ),
                   if (navState.questionnaireStepsNum >= 5)

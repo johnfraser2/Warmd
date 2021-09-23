@@ -5,11 +5,11 @@ import 'steps_progress_indicator.dart';
 import 'widgets.dart';
 
 class ScreenTemplate extends StatelessWidget {
+  const ScreenTemplate({Key? key, this.progressValue, required this.body, this.scrollController}) : super(key: key);
+
   final double? progressValue;
   final Widget body;
   final ScrollController? scrollController;
-
-  const ScreenTemplate({Key? key, this.progressValue, required this.body, this.scrollController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -8,20 +8,21 @@ import 'countries.dart';
 const _oneMileInKms = 1.61;
 
 abstract class Criteria {
+  Criteria({
+    required this.key,
+    required this.minValue,
+    required this.maxValue,
+    this.unit,
+    required this.step,
+    required this.currentValue,
+  });
+
   String key;
   double minValue;
   double maxValue;
   String? unit;
   double step;
   double currentValue;
-
-  Criteria(
-      {required this.key,
-      required this.minValue,
-      required this.maxValue,
-      this.unit,
-      required this.step,
-      required this.currentValue});
 
   List<String>? labels() => null;
   double co2EqTonsPerYear() => 0;
@@ -33,9 +34,9 @@ abstract class Criteria {
 }
 
 abstract class CriteriaCategory {
-  String key;
-
   CriteriaCategory({required this.key});
+
+  String key;
 
   String title();
   List<Criteria> getCriteriaList();
@@ -47,11 +48,12 @@ enum UnitSystem { metric, us, uk }
 class CountryCriteria extends Criteria {
   CountryCriteria()
       : super(
-            key: 'country',
-            minValue: 0,
-            maxValue: countries.length.toDouble() - 1,
-            step: 1,
-            currentValue: _getCurrentCountryPos().toDouble());
+          key: 'country',
+          minValue: 0,
+          maxValue: countries.length.toDouble() - 1,
+          step: 1,
+          currentValue: _getCurrentCountryPos().toDouble(),
+        );
 
   @override
   List<String> labels() => countries.map((c) => c['name']!).toList();
@@ -98,9 +100,9 @@ class CountryCriteria extends Criteria {
 }
 
 class GeneralCategory extends CriteriaCategory {
-  final countryCriteria = CountryCriteria();
-
   GeneralCategory() : super(key: 'general');
+
+  final countryCriteria = CountryCriteria();
 
   @override
   String title() => ''; // This special criteria is never displayed
@@ -110,15 +112,16 @@ class GeneralCategory extends CriteriaCategory {
 }
 
 class HeatingFuelCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-
   HeatingFuelCriteria(this._countryCriteria)
       : super(
-            key: 'heating_fuel',
-            minValue: 0,
-            maxValue: 0, // is overriden below
-            step: 10,
-            currentValue: 0);
+          key: 'heating_fuel',
+          minValue: 0,
+          maxValue: 0, // is overriden below
+          step: 10,
+          currentValue: 0,
+        );
+
+  final CountryCriteria _countryCriteria;
 
   @override
   String title() => Translation.current.heatingFuelCriteriaTitle;
@@ -127,7 +130,7 @@ class HeatingFuelCriteria extends Criteria {
   String explanation() => Translation.current.inUnitPerMonth(_countryCriteria.getCurrencyCode());
 
   @override
-  double get maxValue => (((300 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+  double get maxValue => ((300 / _countryCriteria.getCurrencyRate()) / step).truncate() * step;
 
   @override
   double get currentValue => super.currentValue > maxValue
@@ -168,15 +171,16 @@ class HeatingFuelCriteria extends Criteria {
 }
 
 class ElectricityBillCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-
   ElectricityBillCriteria(this._countryCriteria)
       : super(
-            key: 'electricity_bill',
-            minValue: 0,
-            maxValue: 0, // is overriden below
-            step: 10,
-            currentValue: 100);
+          key: 'electricity_bill',
+          minValue: 0,
+          maxValue: 0, // is overriden below
+          step: 10,
+          currentValue: 100,
+        );
+
+  final CountryCriteria _countryCriteria;
 
   @override
   String title() => Translation.current.electricityBillCriteriaTitle;
@@ -185,7 +189,7 @@ class ElectricityBillCriteria extends Criteria {
   String explanation() => Translation.current.inUnitPerMonth(_countryCriteria.getCurrencyCode());
 
   @override
-  double get maxValue => (((500 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+  double get maxValue => ((500 / _countryCriteria.getCurrencyRate()) / step).truncate() * step;
 
   @override
   double get currentValue => super.currentValue > maxValue
@@ -197,19 +201,20 @@ class ElectricityBillCriteria extends Criteria {
 }
 
 class CleanElectricityCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-  final ElectricityBillCriteria _electricityBillCriteria;
-
   CleanElectricityCriteria(this._countryCriteria, this._electricityBillCriteria)
       : super(
-            key: 'clean_electricity',
-            minValue: 0, // is overriden below
-            maxValue: 100,
-            step: 1,
-            currentValue: 0, // is changed just below
-            unit: '%') {
+          key: 'clean_electricity',
+          minValue: 0, // is overriden below
+          maxValue: 100,
+          step: 1,
+          currentValue: 0, // is changed just below
+          unit: '%',
+        ) {
     currentValue = _meanValue;
   }
+
+  final CountryCriteria _countryCriteria;
+  final ElectricityBillCriteria _electricityBillCriteria;
 
   @override
   String title() => Translation.current.cleanElectricityCriteriaTitle;
@@ -264,15 +269,15 @@ class CleanElectricityCriteria extends Criteria {
 }
 
 class UtilitiesCategory extends CriteriaCategory {
-  late HeatingFuelCriteria heatingFuelCriteria;
-  late ElectricityBillCriteria electricityBillCriteria;
-  late CleanElectricityCriteria cleanElectricityCriteria;
-
   UtilitiesCategory(CountryCriteria countryCriteria) : super(key: 'utilities') {
     electricityBillCriteria = ElectricityBillCriteria(countryCriteria);
     heatingFuelCriteria = HeatingFuelCriteria(countryCriteria);
     cleanElectricityCriteria = CleanElectricityCriteria(countryCriteria, electricityBillCriteria);
   }
+
+  late HeatingFuelCriteria heatingFuelCriteria;
+  late ElectricityBillCriteria electricityBillCriteria;
+  late CleanElectricityCriteria cleanElectricityCriteria;
 
   @override
   String title() => Translation.current.utilitiesCategoryTitle;
@@ -282,8 +287,6 @@ class UtilitiesCategory extends CriteriaCategory {
 }
 
 class FlightsCriteria extends Criteria {
-  static const _airlinerKmsPerHour = 800;
-
   FlightsCriteria()
       : super(
           key: 'flights',
@@ -292,6 +295,8 @@ class FlightsCriteria extends Criteria {
           step: 1,
           currentValue: 0, // is overriden below
         );
+
+  static const _airlinerKmsPerHour = 800;
 
   @override
   String title() => Translation.current.flightsCriteriaTitle;
@@ -324,9 +329,6 @@ class FlightsCriteria extends Criteria {
 }
 
 class CarCriteria extends Criteria {
-  final CarConsumptionCriteria _carConsumptionCriteria;
-  final CountryCriteria _countryCriteria;
-
   CarCriteria(this._carConsumptionCriteria, this._countryCriteria)
       : super(
           key: 'car',
@@ -335,6 +337,9 @@ class CarCriteria extends Criteria {
           step: 50,
           currentValue: 0, // is overriden below
         );
+
+  final CarConsumptionCriteria _carConsumptionCriteria;
+  final CountryCriteria _countryCriteria;
 
   @override
   String title() => Translation.current.carCriteriaTitle;
@@ -388,8 +393,6 @@ class CarCriteria extends Criteria {
 }
 
 class CarConsumptionCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-
   CarConsumptionCriteria(this._countryCriteria)
       : super(
           key: 'car_consumption',
@@ -400,6 +403,8 @@ class CarConsumptionCriteria extends Criteria {
         ) {
     currentValue = _meanValue;
   }
+
+  final CountryCriteria _countryCriteria;
 
   @override
   String title() => Translation.current.carConsumptionCriteriaTitle;
@@ -438,8 +443,6 @@ class CarConsumptionCriteria extends Criteria {
 }
 
 class PublicTransportCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-
   PublicTransportCriteria(this._countryCriteria)
       : super(
           key: 'public_transport',
@@ -448,6 +451,8 @@ class PublicTransportCriteria extends Criteria {
           step: 50,
           currentValue: 0, // is changed just below
         );
+
+  final CountryCriteria _countryCriteria;
 
   @override
   String title() => Translation.current.publicTransportCriteriaTitle;
@@ -495,16 +500,16 @@ class PublicTransportCriteria extends Criteria {
 }
 
 class TravelCategory extends CriteriaCategory {
-  final flightsCriteria = FlightsCriteria();
-  late CarCriteria carCriteria;
-  late CarConsumptionCriteria carConsumptionCriteria;
-  late PublicTransportCriteria publicTransportCriteria;
-
   TravelCategory(CountryCriteria countryCriteria) : super(key: 'travel') {
     carConsumptionCriteria = CarConsumptionCriteria(countryCriteria);
     carCriteria = CarCriteria(carConsumptionCriteria, countryCriteria);
     publicTransportCriteria = PublicTransportCriteria(countryCriteria);
   }
+
+  final flightsCriteria = FlightsCriteria();
+  late CarCriteria carCriteria;
+  late CarConsumptionCriteria carConsumptionCriteria;
+  late PublicTransportCriteria publicTransportCriteria;
 
   @override
   String title() => Translation.current.travelCategoryTitle;
@@ -685,11 +690,6 @@ class SnackCriteria extends Criteria {
 }
 
 class OverweightCriteria extends Criteria {
-  final RuminantMeatCriteria _ruminantMeatCriteria;
-  final NonRuminantMeatCriteria _nonRuminantMeatCriteria;
-  final CheeseCriteria _dairyCriteria;
-  final SnackCriteria _snackCriteria;
-
   OverweightCriteria(this._ruminantMeatCriteria, this._nonRuminantMeatCriteria, this._dairyCriteria, this._snackCriteria)
       : super(
           key: 'overweight',
@@ -698,6 +698,11 @@ class OverweightCriteria extends Criteria {
           step: 1,
           currentValue: 0,
         );
+
+  final RuminantMeatCriteria _ruminantMeatCriteria;
+  final NonRuminantMeatCriteria _nonRuminantMeatCriteria;
+  final CheeseCriteria _dairyCriteria;
+  final SnackCriteria _snackCriteria;
 
   @override
   String title() => Translation.current.overweightCriteriaTitle;
@@ -731,14 +736,14 @@ class OverweightCriteria extends Criteria {
 }
 
 class FoodCategory extends CriteriaCategory {
+  FoodCategory() : super(key: 'food');
+
   final ruminantMeatCriteria = RuminantMeatCriteria();
   final nonRuminantMeatCriteria = NonRuminantMeatCriteria();
   final dairyCriteria = CheeseCriteria();
   final snackCriteria = SnackCriteria();
   late OverweightCriteria overweightCriteria =
       OverweightCriteria(ruminantMeatCriteria, nonRuminantMeatCriteria, dairyCriteria, snackCriteria);
-
-  FoodCategory() : super(key: 'food');
 
   @override
   String title() => Translation.current.foodCategoryTitle;
@@ -756,8 +761,6 @@ class FoodCategory extends CriteriaCategory {
 }
 
 class MaterialGoodsCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-
   MaterialGoodsCriteria(this._countryCriteria)
       : super(
           key: 'material_goods',
@@ -767,6 +770,8 @@ class MaterialGoodsCriteria extends Criteria {
           currentValue: 0, // is overriden below
         );
 
+  final CountryCriteria _countryCriteria;
+
   @override
   String title() => Translation.current.materialGoodsCriteriaTitle;
 
@@ -774,7 +779,7 @@ class MaterialGoodsCriteria extends Criteria {
   String explanation() => Translation.current.materialGoodsCriteriaExplanation(unit);
 
   @override
-  double get maxValue => (((10000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+  double get maxValue => ((10000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step;
 
   @override
   double get currentValue => super.currentValue > maxValue
@@ -832,8 +837,6 @@ class MaterialGoodsCriteria extends Criteria {
 }
 
 class SavingsCriteria extends Criteria {
-  final CountryCriteria _countryCriteria;
-
   SavingsCriteria(this._countryCriteria)
       : super(
           key: 'savings',
@@ -843,6 +846,8 @@ class SavingsCriteria extends Criteria {
           currentValue: 0, // is overriden below
         );
 
+  final CountryCriteria _countryCriteria;
+
   @override
   String title() => Translation.current.savingsCriteriaTitle;
 
@@ -850,7 +855,7 @@ class SavingsCriteria extends Criteria {
   String explanation() => '${Translation.current.inUnit(unit)}\n\n${Translation.current.savingsCriteriaExplanation}';
 
   @override
-  double get maxValue => (((100000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step).toDouble();
+  double get maxValue => ((100000 / _countryCriteria.getCurrencyRate()) / step).truncate() * step;
 
   @override
   double get currentValue => min(maxValue, super.currentValue);
@@ -988,15 +993,15 @@ class InternetCriteria extends Criteria {
 }
 
 class GoodsCategory extends CriteriaCategory {
-  late MaterialGoodsCriteria materialGoodsCriteria;
-  late SavingsCriteria savingsCriteria;
-  final waterCriteria = WaterCriteria();
-  final internetCriteria = InternetCriteria();
-
   GoodsCategory(CountryCriteria countryCriteria) : super(key: 'goods') {
     materialGoodsCriteria = MaterialGoodsCriteria(countryCriteria);
     savingsCriteria = SavingsCriteria(countryCriteria);
   }
+
+  late MaterialGoodsCriteria materialGoodsCriteria;
+  late SavingsCriteria savingsCriteria;
+  final waterCriteria = WaterCriteria();
+  final internetCriteria = InternetCriteria();
 
   @override
   String title() => Translation.current.goodsAndServicesCategoryTitle;
