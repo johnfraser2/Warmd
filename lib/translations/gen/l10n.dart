@@ -73,7 +73,7 @@ class Translation {
   /// `See how your activities impact planet, animals & more.`
   String get onboardingStep1Description {
     return Intl.message(
-      'See how your activities impact planet, animals & more.',
+      'See how your activities impact the planet, animals & more.',
       name: 'onboardingStep1Description',
       desc: '',
       args: [],
@@ -93,7 +93,7 @@ class Translation {
   /// `Taking small steps, everyday, are cornerstone to drive big changes for the future.`
   String get onboardingStep2Description {
     return Intl.message(
-      'Taking small steps, everyday, are cornerstone to drive big changes for the future.',
+      'Taking small steps, every day, are cornerstone to drive big changes for the future.',
       name: 'onboardingStep2Description',
       desc: '',
       args: [],
@@ -243,7 +243,7 @@ class Translation {
   /// `Your own impact is insignificant compared to that of companies or governments, and for the moment their ecological policies are far from sufficient.\nTry to influence their decisions by voting, by writing to your representatives, by joigning a climate action group or via other means.\n\nIf there is one thing to do it is certainly this one.`
   String get politicalAdvice {
     return Intl.message(
-      'Your own impact is insignificant compared to that of companies or governments, and for the moment their ecological policies are far from sufficient.\nTry to influence their decisions by voting, by writing to your representatives, by joigning a climate action group or via other means.\n\nIf there is one thing to do it is certainly this one.',
+      'Your own impact is insignificant compared to that of companies or governments, and at the moment their ecological policies are far from sufficient.\nTry to influence their decisions by voting, by writing to your representatives, by joigning a climate action group or via other means.\n\nIf there is one thing to do it is certainly this one.',
       name: 'politicalAdvice',
       desc: '',
       args: [],
@@ -263,12 +263,12 @@ class Translation {
   /// `Try to better insulate your home and avoid heating more than necessary (an adult sleep quality is best at 66°F/19°C). Smart controls can help you switching off the heating when you are outside.\n\nAlso prefer heating with heat pump, with low-carbon electricity, with wood from local and sustainable forests or with biogas.`
   String get heatingFuelCriteriaAdvice {
     return Intl.message(
-      'Try to better insulate your home and avoid heating more than necessary (an adult sleep quality is best at 66°F/19°C). Smart controls can help you switching off the heating when you are outside.\n\nAlso prefer heating with heat pump, with low-carbon electricity, with wood from local and sustainable forests or with biogas.',
+      'Try to better insulate your home and avoid heating more than necessary (adult sleep quality is best at 66°F/19°C). Smart controls can help you by switching off the heating when you are outside.\n\nAlso prefer heating with heat pump, with low-carbon electricity, with wood from local and sustainable forests or with biogas.',
       name: 'heatingFuelCriteriaAdvice',
       desc: '',
       args: [],
     );
-  }
+  }safer
 
   /// `Your electricity bill`
   String get electricityBillCriteriaTitle {
@@ -363,7 +363,7 @@ class Translation {
   /// `You may further improve your car impact by learning eco-driving or by using train/subway/tram/bus (don't buy an new car, its construction will pollutes more than using your current one).`
   String get carCriteriaAdviceLow {
     return Intl.message(
-      'You may further improve your car impact by learning eco-driving or by using train/subway/tram/bus (don\'t buy an new car, its construction will pollutes more than using your current one).',
+      'You may further improve your car impact by learning eco-driving or by using train/subway/tram/bus (don\'t buy a new car, its construction will pollute more than using your current one).',
       name: 'carCriteriaAdviceLow',
       desc: '',
       args: [],
@@ -490,10 +490,10 @@ class Translation {
     );
   }
 
-  /// `Number of pig, chicken, fish or egg meal`
+  /// `Number of pig, chicken, fish or egg meals`
   String get nonRuminantMeatCriteriaTitle {
     return Intl.message(
-      'Number of pig, chicken, fish or egg meal',
+      'Number of pig, chicken, fish or egg meals',
       name: 'nonRuminantMeatCriteriaTitle',
       desc: '',
       args: [],
@@ -510,20 +510,20 @@ class Translation {
     );
   }
 
-  /// `Number of cheese portion (1.5 oz)`
+  /// `Number of cheese portions (1.5 oz)`
   String get cheeseCriteriaTitle {
     return Intl.message(
-      'Number of cheese portion (1.5 oz)',
+      'Number of cheese portions (1.5 oz)',
       name: 'cheeseCriteriaTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `If you want or need dairy product, you can take milk or yogurt instead, which are 5 to 8 times less polluting than cheese.`
+  /// `If you want or need dairy products, you can have milk or yogurt instead, which are 5 to 8 times less polluting than cheese.`
   String get cheeseCriteriaAdvice {
     return Intl.message(
-      'If you want or need dairy product, you can take milk or yogurt instead, which are 5 to 8 times less polluting than cheese.',
+      'If you want or need dairy products, you can have milk or yogurt instead, which are 5 to 8 times less polluting than cheese.',
       name: 'cheeseCriteriaAdvice',
       desc: '',
       args: [],
@@ -660,10 +660,10 @@ class Translation {
     );
   }
 
-  /// `Most of today's banks still invest the majority of your savings on companies with big carbon impact. Fortunately, some banks now allow you to choose for low-carbon investments.`
+  /// `Most of today's banks still invest the majority of your savings on companies with big carbon impact. Fortunately, some banks now allow you to choose low-carbon investments.`
   String get savingsCriteriaAdvice {
     return Intl.message(
-      'Most of today\'s banks still invest the majority of your savings on companies with big carbon impact. Fortunately, some banks now allow you to choose for low-carbon investments.',
+      'Most of today\'s banks still invest the majority of your savings on companies with big carbon impact. Fortunately, some banks now allow you to choose low-carbon investments.',
       name: 'savingsCriteriaAdvice',
       desc: '',
       args: [],
@@ -740,10 +740,10 @@ class Translation {
     );
   }
 
-  /// `Only few emails or search per week`
+  /// `Only a few emails or search per week`
   String get internetCriteriaLabel1 {
     return Intl.message(
-      'Only few emails or search per week',
+      'Only a few emails or search per week',
       name: 'internetCriteriaLabel1',
       desc: '',
       args: [],
@@ -760,10 +760,10 @@ class Translation {
     );
   }
 
-  /// `I watch lot of streaming video (> 30 min / day)`
+  /// `I watch a lot of streaming video (> 30 min / day)`
   String get internetCriteriaLabel3 {
     return Intl.message(
-      'I watch lot of streaming video (> 30 min / day)',
+      'I watch a lot of streaming video (> 30 min / day)',
       name: 'internetCriteriaLabel3',
       desc: '',
       args: [],
@@ -1060,20 +1060,20 @@ class Translation {
     );
   }
 
-  /// `We already gained (b)+1°C(/b) (in average) from pre-industrial levels, with an already visible increase in the number of heat waves, droughts, fires or cyclones. Despite what some climate skeptics say, scientists (a https://climate.nasa.gov/evidence/)are over 95% sure(/a) that this is due to greenhouse gas emissions from human activities (CO₂, CH₄, N₂O). Nature cannot absorb such a amount of greenhouse gases and, as if that were not enough, we keep adding more to the atmosphere every year.\n\nBy reaching (b)+2°C(/b) in 2100, (a https://www.wwf.org.uk/updates/our-warming-world-how-much-difference-will-half-degree-really-make)we will certainly suffer(/a) a major loss in our biodiversity (-18% insects, -16% plants, -8% vertebrates, -99% corals), 49 million people will be impacted by sea-level rise and 410 million people will suffer severe droughts, leading to massive emigration, financial and political instabilities.\n\nAt (b)+4°C(/b) humans will not be able to live around the equator (a http://www.uhm.hawaii.edu/news/article.php?aId=8657)due to deadly heat(/a):`
+  /// `We already gained (b)+1°C(/b) (on average) from pre-industrial levels, with an already visible increase in the number of heat waves, droughts, fires or cyclones. Despite what some climate skeptics say, scientists (a https://climate.nasa.gov/evidence/)are over 95% sure(/a) that this is due to greenhouse gas emissions from human activities (CO₂, CH₄, N₂O). Nature cannot absorb such a amount of greenhouse gases and, as if that were not enough, we keep adding more to the atmosphere every year.\n\nBy reaching (b)+2°C(/b) in 2100, (a https://www.wwf.org.uk/updates/our-warming-world-how-much-difference-will-half-degree-really-make)we will certainly suffer(/a) a major loss in our biodiversity (-18% insects, -16% plants, -8% vertebrates, -99% corals), 49 million people will be impacted by sea-level rise and 410 million people will suffer severe droughts, leading to massive emigration, financial and political instabilities.\n\nAt (b)+4°C(/b) humans will not be able to live around the equator (a http://www.uhm.hawaii.edu/news/article.php?aId=8657)due to deadly heat(/a):`
   String get consequencesPart1 {
     return Intl.message(
-      'We already gained (b)+1°C(/b) (in average) from pre-industrial levels, with an already visible increase in the number of heat waves, droughts, fires or cyclones. Despite what some climate skeptics say, scientists (a https://climate.nasa.gov/evidence/)are over 95% sure(/a) that this is due to greenhouse gas emissions from human activities (CO₂, CH₄, N₂O). Nature cannot absorb such a amount of greenhouse gases and, as if that were not enough, we keep adding more to the atmosphere every year.\n\nBy reaching (b)+2°C(/b) in 2100, (a https://www.wwf.org.uk/updates/our-warming-world-how-much-difference-will-half-degree-really-make)we will certainly suffer(/a) a major loss in our biodiversity (-18% insects, -16% plants, -8% vertebrates, -99% corals), 49 million people will be impacted by sea-level rise and 410 million people will suffer severe droughts, leading to massive emigration, financial and political instabilities.\n\nAt (b)+4°C(/b) humans will not be able to live around the equator (a http://www.uhm.hawaii.edu/news/article.php?aId=8657)due to deadly heat(/a):',
+      'We already gained (b)+1°C(/b) (on average) from pre-industrial levels, with an already visible increase in the number of heat waves, droughts, fires or cyclones. Despite what some climate skeptics say, scientists (a https://climate.nasa.gov/evidence/)are over 95% sure(/a) that this is due to greenhouse gas emissions from human activities (CO₂, CH₄, N₂O). Nature cannot absorb such a amount of greenhouse gases and, as if that were not enough, we keep adding more to the atmosphere every year.\n\nBy reaching (b)+2°C(/b) in 2100, (a https://www.wwf.org.uk/updates/our-warming-world-how-much-difference-will-half-degree-really-make)we will certainly suffer(/a) a major loss in our biodiversity (-18% insects, -16% plants, -8% vertebrates, -99% corals), 49 million people will be impacted by sea-level rise and 410 million people will suffer severe droughts, leading to massive emigration, financial and political instabilities.\n\nAt (b)+4°C(/b) humans will not be able to live around the equator (a http://www.uhm.hawaii.edu/news/article.php?aId=8657)due to deadly heat(/a):',
       name: 'consequencesPart1',
       desc: '',
       args: [],
     );
   }
 
-  /// `Billions of people will emigrate to other area with a very high risk of famines, wars and millions or billions of deaths.\n\n(b)+6°C(/b) is the same difference of average temperature between the previous (b)ice age(/b) and the (b)20th century(/b).`
+  /// `Billions of people will emigrate to areas with a very high risk of famines, wars and millions or billions of deaths.\n\n(b)+6°C(/b) is the same difference in average temperature between the previous (b)ice age(/b) and the (b)20th century(/b).`
   String get consequencesPart2 {
     return Intl.message(
-      'Billions of people will emigrate to other area with a very high risk of famines, wars and millions or billions of deaths.\n\n(b)+6°C(/b) is the same difference of average temperature between the previous (b)ice age(/b) and the (b)20th century(/b).',
+      'Billions of people will emigrate to areas with a very high risk of famines, wars and millions or billions of deaths.\n\n(b)+6°C(/b) is the same difference in average temperature between the previous (b)ice age(/b) and the (b)20th century(/b).',
       name: 'consequencesPart2',
       desc: '',
       args: [],
@@ -1140,10 +1140,10 @@ class Translation {
     );
   }
 
-  /// `This list is non-exhaustive and has not be sponsored, it is simply links we believe to be helpful.\nIf you have any suggestion or remark, (a mailto:warmd_app@icloud.com)please tell us(/a).`
+  /// `This list is non-exhaustive and has not been sponsored, it is simply links we believe to be helpful.\nIf you have any suggestions or remarks, (a mailto:warmd_app@icloud.com)please tell us(/a).`
   String get advicesLinksExplanation {
     return Intl.message(
-      'This list is non-exhaustive and has not be sponsored, it is simply links we believe to be helpful.\nIf you have any suggestion or remark, (a mailto:warmd_app@icloud.com)please tell us(/a).',
+      'This list is non-exhaustive and has not been sponsored, it is simply links we believe to be helpful.\nIf you have any suggestions or remarks, (a mailto:warmd_app@icloud.com)please tell us(/a).',
       name: 'advicesLinksExplanation',
       desc: '',
       args: [],
@@ -1190,10 +1190,10 @@ class Translation {
     );
   }
 
-  /// `Emissions essentially come from few main sectors (source: IPCC, 2014, global emissions).`
+  /// `Emissions essentially come from a few main sectors (source: IPCC, 2014, global emissions).`
   String get globalActionsPart1 {
     return Intl.message(
-      'Emissions essentially come from few main sectors (source: IPCC, 2014, global emissions).',
+      'Emissions essentially come from a few main sectors (source: IPCC, 2014, global emissions).',
       name: 'globalActionsPart1',
       desc: '',
       args: [],
